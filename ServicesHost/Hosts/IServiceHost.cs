@@ -1,4 +1,4 @@
-﻿namespace ServicesHost
+namespace ServicesHost.Hosts
 {
     public interface IServiceHost
     {

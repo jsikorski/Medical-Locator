@@ -1,19 +1,26 @@
 ﻿using System;
+using ServicesHost.Hosts;
+using ServicesHost.Utils;
 
 namespace ServicesHost
 {
     public static class HostsBootstrapper
     {
-        private static AuthorizationServiceHost _authorizationServiceHost;
-
         public static void Run()
         {
-            _authorizationServiceHost = new AuthorizationServiceHost();
-            StartService(_authorizationServiceHost, "Cannot start authorization service.");
+            var authorizationServiceHost = new AuthorizationServiceHost();
+            StartService(authorizationServiceHost, "Cannot start authorization service.");
+            ConsoleController.EmptyLine();
+            var googleMapsInterfaceServiceHost = new GoogleMapsInterfaceServiceHost();
+            StartService(googleMapsInterfaceServiceHost, "Cannot start Google Maps interface service.");
+            ConsoleController.EmptyLine();
 
             Console.ReadKey();
 
-            StopService(_authorizationServiceHost, "Cannot stop authorization service.");
+            StopService(authorizationServiceHost, "Cannot stop authorization service.");
+            ConsoleController.EmptyLine();
+            StopService(googleMapsInterfaceServiceHost, "Cannot stop Google Maps interface service.");
+
             Console.ReadKey();
         }
 

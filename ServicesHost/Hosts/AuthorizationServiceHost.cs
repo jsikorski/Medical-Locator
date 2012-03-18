@@ -1,7 +1,7 @@
-﻿using System;
 using System.ServiceModel;
+using ServicesHost.Utils;
 
-namespace ServicesHost
+namespace ServicesHost.Hosts
 {
     public class AuthorizationServiceHost : IServiceHost
     {

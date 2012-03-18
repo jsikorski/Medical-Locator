@@ -1,14 +1,19 @@
-﻿using System;
+using System;
 using System.ServiceModel;
 
-namespace ServicesHost
+namespace ServicesHost.Utils
 {
     public static class ConsoleController
     {
-         public static void Write(string message)
-         {
-             Console.WriteLine(message);
-         }
+        public static void Write(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public static void EmptyLine()
+        {
+            Console.WriteLine(string.Empty);
+        }
 
         public static void ShowServiceHostEndpoints(ServiceHost serviceHost)
         {

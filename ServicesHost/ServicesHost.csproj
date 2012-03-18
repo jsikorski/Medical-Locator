@@ -45,12 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorizationServiceHost.cs" />
-    <Compile Include="ConsoleController.cs" />
     <Compile Include="HostsBootstrapper.cs" />
-    <Compile Include="IServiceHost.cs" />
+    <Compile Include="Hosts\AuthorizationServiceHost.cs" />
+    <Compile Include="Hosts\GoogleMapsInterfaceServiceHost.cs" />
+    <Compile Include="Hosts\IServiceHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ConsoleController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AuthorizationService\AuthorizationService.csproj">
