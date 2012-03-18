@@ -5,39 +5,32 @@ namespace ServicesHost
 {
     public class AuthorizationServiceHost : IServiceHost
     {
-        ServiceHost _serviceHost;    
+        ServiceHost _serviceHost;
+
+        private bool _isServiceRunning;
+        public bool IsServiceRunning
+        {
+            get { return _isServiceRunning; }
+        }
 
         public void StartService()
         {
             ConsoleController.Write("Starting authorization service...");
 
             _serviceHost = new ServiceHost(typeof(AuthorizationService.AuthorizationService));
-            try
-            {
-                _serviceHost.Open();
-            }
-            catch (Exception)
-            {
-                ConsoleController.Write("Cannot start authorization service.");
-                return;
-            }
-
+            _serviceHost.Open();
+            _isServiceRunning = true;
+            
             ConsoleController.Write("Authorization service started.");
+            ConsoleController.ShowServiceHostEndpoints(_serviceHost);
         }
 
         public void StopService()
         {
             ConsoleController.Write("Stoping authorizaion service...");
 
-            try
-            {
-                _serviceHost.Close();                
-            }
-            catch (Exception)
-            {
-                ConsoleController.Write("Cannot stop authorization service.");
-                return;
-            }
+            _serviceHost.Close();
+            _isServiceRunning = false;
 
             ConsoleController.Write("Authorization service stopped.");
         }

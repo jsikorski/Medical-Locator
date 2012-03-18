@@ -9,6 +9,7 @@ namespace ServicesHost
     {
         static void Main(string[] args)
         {
+            HostsBootstrapper.Run();
         }
     }
 }
