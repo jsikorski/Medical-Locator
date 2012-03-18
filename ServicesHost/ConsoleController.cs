@@ -5,7 +5,7 @@ namespace ServicesHost
 {
     public static class ConsoleController
     {
-         public static void ShowMessage(string message)
+         public static void Write(string message)
          {
              Console.WriteLine(message);
          }
@@ -14,7 +14,7 @@ namespace ServicesHost
         {
             foreach (var endpoint in serviceHost.Description.Endpoints)
             {
-                ShowMessage(string.Format("{0}: {1}", endpoint.Binding, endpoint.ListenUri));
+                Write(string.Format("{0}: {1}", endpoint.Binding, endpoint.ListenUri));
             }
         }
     }

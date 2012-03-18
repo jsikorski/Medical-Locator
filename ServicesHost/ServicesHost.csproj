@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizationServiceHost.cs" />
+    <Compile Include="ConsoleController.cs" />
     <Compile Include="HostsBootstrapper.cs" />
     <Compile Include="IServiceHost.cs" />
     <Compile Include="Program.cs" />
