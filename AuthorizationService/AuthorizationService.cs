@@ -7,25 +7,17 @@ using System.Text;
 
 namespace AuthorizationService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "AuthorizationService" in both code and config file together.
     public class AuthorizationService : IAuthorizationService
     {
-        public string GetData(int value)
+        public bool TryLogin(string login, string password)
         {
-            return string.Format("You entered: {0}", value);
+            // TODO: Correct login to database
+            return true;
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public void Logout()
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+
         }
     }
 }

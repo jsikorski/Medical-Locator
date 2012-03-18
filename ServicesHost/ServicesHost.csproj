@@ -11,7 +11,8 @@
     <RootNamespace>ServicesHost</RootNamespace>
     <AssemblyName>ServicesHost</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -43,8 +44,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorizationServiceHost.cs" />
+    <Compile Include="HostsBootstrapper.cs" />
+    <Compile Include="IServiceHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AuthorizationService\AuthorizationService.csproj">
+      <Project>{3B0090B6-8057-486D-99CF-DDA1F850676F}</Project>
+      <Name>AuthorizationService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoogleMapsInterfaceService\GoogleMapsInterfaceService.csproj">
+      <Project>{B2FF034E-0386-4D17-8151-D611E1324764}</Project>
+      <Name>GoogleMapsInterfaceService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
