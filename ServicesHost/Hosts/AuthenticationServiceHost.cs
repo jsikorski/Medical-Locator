@@ -3,7 +3,7 @@ using ServicesHost.Utils;
 
 namespace ServicesHost.Hosts
 {
-    public class AuthorizationServiceHost : IServiceHost
+    public class AuthenticationServiceHost : IServiceHost
     {
         ServiceHost _serviceHost;
 
@@ -15,24 +15,24 @@ namespace ServicesHost.Hosts
 
         public void StartService()
         {
-            ConsoleController.Write("Starting authorization service...");
+            ConsoleController.Write("Starting authentication service...");
 
-            _serviceHost = new ServiceHost(typeof(AuthorizationService.AuthorizationService));
+            _serviceHost = new ServiceHost(typeof(AuthenticationService.AuthenticationService));
             _serviceHost.Open();
             _isServiceRunning = true;
-            
-            ConsoleController.Write("Authorization service started.");
+
+            ConsoleController.Write("Authentication service started.");
             ConsoleController.ShowServiceHostEndpoints(_serviceHost);
         }
 
         public void StopService()
         {
-            ConsoleController.Write("Stoping authorizaion service...");
+            ConsoleController.Write("Stoping authentication service...");
 
             _serviceHost.Close();
             _isServiceRunning = false;
 
-            ConsoleController.Write("Authorization service stopped.");
+            ConsoleController.Write("Authentication service stopped.");
         }
     }
 }

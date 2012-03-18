@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleMapsInterfaceService", "GoogleMapsInterfaceService\GoogleMapsInterfaceService.csproj", "{B2FF034E-0386-4D17-8151-D611E1324764}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationService", "AuthorizationService\AuthorizationService.csproj", "{3B0090B6-8057-486D-99CF-DDA1F850676F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationService", "AuthorizationService\AuthenticationService.csproj", "{3B0090B6-8057-486D-99CF-DDA1F850676F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalLocator.WebFront", "MedicalLocator.WebFront\MedicalLocator.WebFront.csproj", "{DF001E24-CFC0-4AC5-B498-524055B706D9}"
 EndProject

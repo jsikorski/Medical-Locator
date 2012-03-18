@@ -8,7 +8,7 @@ namespace ServicesHost
     {
         public static void Run()
         {
-            var authorizationServiceHost = new AuthorizationServiceHost();
+            var authorizationServiceHost = new AuthenticationServiceHost();
             StartService(authorizationServiceHost, "Cannot start authorization service.");
             ConsoleController.EmptyLine();
             var googleMapsInterfaceServiceHost = new GoogleMapsInterfaceServiceHost();

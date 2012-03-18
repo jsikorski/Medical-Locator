@@ -5,10 +5,10 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-namespace AuthorizationService
+namespace AuthenticationService
 {
     [ServiceContract]
-    public interface IAuthorizationService
+    public interface IAuthenticationService
     {
         [OperationContract]
         bool TryLogin(string login, string password);
