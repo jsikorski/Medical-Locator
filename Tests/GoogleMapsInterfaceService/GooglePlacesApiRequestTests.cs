@@ -17,7 +17,7 @@ namespace Tests.GoogleMapsInterfaceService
         }
 
         [Test]
-        public void ToRequestStringCorrect()
+        public void ToRequestStringSingleMedicalType()
         {
             _googlePlacesApiRequest = new GooglePlacesApiRequest(
                 "testKey", new Location(50.0, 25.0), 500, true, 
@@ -28,7 +28,5 @@ namespace Tests.GoogleMapsInterfaceService
             string actual = _googlePlacesApiRequest.ToRequestString();
             Assert.AreEqual(expected, actual);
         }
-
-
     }
 }

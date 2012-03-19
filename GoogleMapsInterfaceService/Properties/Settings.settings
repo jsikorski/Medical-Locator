@@ -5,5 +5,8 @@
     <Setting Name="GooglePlacesApiBaseAddress" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://maps.googleapis.com/maps/api/place/search/json?</Value>
     </Setting>
+    <Setting Name="GooglePlacesApiRequestFormat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0}key={1}&amp;location={2}&amp;radius={3}&amp;types={4}&amp;sensor={5}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

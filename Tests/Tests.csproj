@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GoogleMapsInterfaceService\GooglePlacesApiRequestTests.cs" />
+    <Compile Include="GoogleMapsInterfaceService\IEnumerableExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

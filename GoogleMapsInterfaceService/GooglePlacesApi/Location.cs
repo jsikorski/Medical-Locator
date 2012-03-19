@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace GoogleMapsInterfaceService.GooglePlacesApi
 {
     public class Location
@@ -11,9 +13,10 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
             _longitude = longitude;
         }
 
-        public override string ToString()
+        public string ToUrlFormat()
         {
-            return string.Format("{0},{1}", _latitude, _longitude);
+            return string.Format("{0},{1}", _latitude.ToString("0.0", CultureInfo.InvariantCulture),
+                                 _longitude.ToString("0.0", CultureInfo.InvariantCulture));
         }
     }
 }

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="GooglePlacesApi\GooglePlacesApiRequest.cs" />
     <Compile Include="GooglePlacesApi\Location.cs" />
     <Compile Include="GooglePlacesApi\MedicalType.cs" />

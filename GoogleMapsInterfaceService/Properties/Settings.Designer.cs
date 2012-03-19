@@ -34,5 +34,17 @@ namespace GoogleMapsInterfaceService.Properties {
                 this["GooglePlacesApiBaseAddress"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}key={1}&location={2}&radius={3}&types={4}&sensor={5}")]
+        public string GooglePlacesApiRequestFormat {
+            get {
+                return ((string)(this["GooglePlacesApiRequestFormat"]));
+            }
+            set {
+                this["GooglePlacesApiRequestFormat"] = value;
+            }
+        }
     }
 }

@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using System.Globalization;
 using GoogleMapsInterfaceService.Properties;
 using GoogleMapsInterfaceService.Requests;
+using GoogleMapsInterfaceService.Extensions;
+using System.Linq;
 
 namespace GoogleMapsInterfaceService.GooglePlacesApi
 {
@@ -27,16 +30,14 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
 
         public string ToRequestString()
         {
-            const string requestFormat = "{0}key={1}&location={2}&types={3}";
-            
             return string.Format(
-                requestFormat, 
+                Settings.Default.GooglePlacesApiRequestFormat, 
                 Settings.Default.GooglePlacesApiBaseAddress, 
                 _key, 
-                _location, 
-                _radius, 
-                _isGpsUsed, 
-                _medicalTypes);
+                _location.ToUrlFormat(), 
+                _radius,
+                _medicalTypes.Select(type => type.ToString()).ToUrlFormat(), 
+                _isGpsUsed.ToString(CultureInfo.InvariantCulture).ToLowerInvariant());
         }
     }
 }
