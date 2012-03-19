@@ -6,7 +6,7 @@ namespace GoogleMapsInterfaceService.Key
     {
         public static readonly string GooglePlacesApiKey;
 
-        private const string KeyFilePath = @"Key\googlePlacesApiKey.txt";
+        private const string KeyFilePath = @"Keys\googlePlacesApiKey.txt";
 
         static KeysProvider()
         {

@@ -53,12 +53,12 @@
   <ItemGroup>
     <Compile Include="GooglePlacesApi\ApiResult.cs" />
     <Compile Include="GooglePlacesApi\Geometry.cs" />
-    <Compile Include="Key\KeysProvider.cs" />
     <Compile Include="GooglePlacesApi\GooglePlacesApiRequest.cs" />
     <Compile Include="GooglePlacesApi\Location.cs" />
     <Compile Include="GooglePlacesApi\MedicalType.cs" />
     <Compile Include="GooglePlacesApi\GooglePlacesApiResponse.cs" />
     <Compile Include="IGoogleMapsInterfaceService.cs" />
+    <Compile Include="Keys\KeysProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GoogleMapsInterfaceService.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -85,7 +85,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Key\googlePlacesApiKey.txt">
+    <Content Include="Keys\googlePlacesApiKey.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
