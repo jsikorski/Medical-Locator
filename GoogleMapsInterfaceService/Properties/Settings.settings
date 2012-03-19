@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GoogleMapsInterfaceService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="GooglePlacesApiBaseAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://maps.googleapis.com/maps/api/place/search/json?</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
