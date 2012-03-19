@@ -1,0 +1,62 @@
+﻿{
+   "html_attributions" : [],
+   "results" : [
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 52.4063740,
+               "lng" : 16.9251680
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+         "id" : "1d177109bcc3719a27f301b59fd3334c9cbe0765",
+         "name" : "Art Medicum. Zespół poradni specjalistycznych",
+         "reference" : "CpQBhgAAAB_Q8suork0IXE4N9Mbe299_srvZFiCV2Th5_RuA17IOKAQ9ddPfpfqP6djQ1Qa6iLUhrc-_2Lzh3q9P6ChqnoD63WB0UWpusRWWwncEt-n5nxsG88HVPiUmqD0LOZcJvDAkcm8lnLbiowG8yIXlgvFyXoFl6M72fWlCQ6OJbDpS0VyyrKY9n_EmNaRgrq2CFRIQ_o_nZYV5_sAeM-lIUEpsyhoUUi0qXGyTDY66Nj5pnBWHO6kOzOw",
+         "types" : [ "doctor", "health", "establishment" ],
+         "vicinity" : "60-001 Poznań;"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 52.4063740,
+               "lng" : 16.9251680
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+         "id" : "79b6085184373864ce515d2e29628761bd4f6bc2",
+         "name" : "Grela Damian. Praktyka lekarska",
+         "reference" : "CoQBdQAAANQuvrr5rTp01EqrrZYlyiNI2HOFEBcdWs0nBADdIqvg9BbAj00i2L4ay5GQJs50xmNahqXWESyvAvbD5e7xHABFrIgcPFh9XcctPs8POQL7RdbolFU-tTeaOQe8UcqdgW_tPnSvqbaped1xA6SD18ulJhPXpt6K8vq37Ax-1O3vEhAGhebmDzVkmVN3cN5IG8PUGhRS_pZlUWAZD2l-qbbH-JRlpKa72A",
+         "types" : [ "doctor", "health", "establishment" ],
+         "vicinity" : "Poznań;"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 52.4063740,
+               "lng" : 16.9251680
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+         "id" : "2db8ae2cd11af396f2957f4ca8bf0d8e5e9ae43f",
+         "name" : "Korytowska Aleksandra, lek. med. laryngolog",
+         "reference" : "CpQBgQAAAMCm1-dZKhrr3ytcc6YUpVBTl4FDUyje7GUt71NYtbj__JVDxqRqvR1Qd7Yi9lghK8yn1Dv9pRecNC19uazGWlocrKqXIk2OQAOOwLFHhwibBZEC3ZMSw1g4KKV3izAKfhh_4GdG1IsLOV6HkEow7_9cQPDPpn0yXZG5BfUHrCtSUAxjlvALc-GaTTdXO8Yu-hIQsWObTeSoM4JoO_Tehnx4QBoU5MeqgYdXMuhkInSWG0Wl4ZpWBck",
+         "types" : [ "doctor", "health", "establishment" ],
+         "vicinity" : "60-143 Poznań;"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 52.4063740,
+               "lng" : 16.9251680
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+         "id" : "16ded3c3d45d909bc7afd5a7d517281369efd1c7",
+         "name" : "Nowicki Paweł, lek. med. Spec. chirurg. Indywidualna praktyka lekarska",
+         "reference" : "CqQBngAAAAg3y_oGVlHGV3mImODjSLHQtWvfrNELilLiKvjG4kjnshdesKU1CUniJVsTEzwqnztxgo74VsoPV6LgqrdRfFlK0ws8hcvHFhlH2r_CGmmOPBnWxe3XGF7NsRVSMY4Q4FijtVcMh31Carw0127O90rWNnBpHyVYo9I770Ccxy_62YxwFifsJCCUCHPatsH8VMXP_nxoWd6ufKTJGSZwaB0SEL8SkKlqIZbfhUh9NZ4sNnsaFIu1hZz6xvillNPraLO8QR4TM44D",
+         "types" : [ "doctor", "health", "establishment" ],
+         "vicinity" : "61-492 Poznań;"
+      }
+   ],
+   "status" : "OK"
+}

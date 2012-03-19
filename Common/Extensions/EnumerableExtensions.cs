@@ -1,24 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using GoogleMapsInterfaceService.GooglePlacesApi;
 
-namespace GoogleMapsInterfaceService.Extensions
+namespace Common.Extensions
 {
-    public static class IEnumerableExtensions
+    public static class EnumerableExtensions
     {
         public static string ToUrlFormat(this IEnumerable<string> enumerable)
         {
-            if (!enumerable.Any())
+            var list = enumerable.ToList();
+
+            if (list.Count == 0)
             {
                 return string.Empty;
             }
 
-            if (enumerable.Count() == 1)
+            if (list.Count == 1)
             {
-                return enumerable.First().ToLowerInvariant();
+                return list.First().ToLowerInvariant();
             }
 
-            return enumerable.Aggregate(
+            return list.Aggregate(
                 (current, next) => current.ToLowerInvariant() + "|" + next.ToLowerInvariant());
         }
     }

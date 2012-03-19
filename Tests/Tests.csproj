@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.3.0.0\lib\NET40\NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -47,18 +50,34 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\EnumerableExtensionsTests.cs" />
+    <Compile Include="GoogleMapsInterfaceService\KeysProviderTests.cs" />
     <Compile Include="GoogleMapsInterfaceService\GooglePlacesApiRequestTests.cs" />
-    <Compile Include="GoogleMapsInterfaceService\IEnumerableExtensionsTests.cs" />
+    <Compile Include="GoogleMapsInterfaceService\LocationTests.cs" />
+    <Compile Include="GoogleMapsInterfaceService\RequestsSenderTests.cs" />
+    <Compile Include="GoogleMapsInterfaceService\ServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{CC601095-34F4-4E8C-BAF8-18D17D765174}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GoogleMapsInterfaceService\GoogleMapsInterfaceService.csproj">
       <Project>{B2FF034E-0386-4D17-8151-D611E1324764}</Project>
       <Name>GoogleMapsInterfaceService</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\googlePlacesApiTestJsonResponse.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\googlePlacesApiTestRequestFormat.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

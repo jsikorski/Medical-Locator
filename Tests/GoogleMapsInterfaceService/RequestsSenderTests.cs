@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
+using GoogleMapsInterfaceService;
 using GoogleMapsInterfaceService.GooglePlacesApi;
+using GoogleMapsInterfaceService.Key;
+using GoogleMapsInterfaceService.Requests;
 using NSubstitute;
 using NUnit.Framework;
 
 namespace Tests.GoogleMapsInterfaceService
 {
-    public class GooglePlacesApiRequestTests
+    public class RequestsSenderTests
     {
         [Test]
-        public void ToRequestUrlTest()
+        public void GooglePlacesApiRequestSendTest()
         {
-            const string key = "testKey";
+            string key = KeysProvider.GooglePlacesApiKey;
             const int radius = 500;
             const bool isGpsUsed = true;
             var medialTypes = new List<MedicalType> {MedicalType.Dentist};
@@ -18,11 +21,10 @@ namespace Tests.GoogleMapsInterfaceService
             location.ToUrlFormat().Returns("50.0,25.0");
 
             var googlePlacesApiRequest = new GooglePlacesApiRequest(key, location, radius, isGpsUsed, medialTypes);
+            var requestsSender = new RequestsSender();
+            string response = requestsSender.SendRequest(googlePlacesApiRequest);
 
-            const string expected = "https://maps.googleapis.com/maps/api/place/search/json?" +
-                                    "key=testKey&location=50.0,25.0&radius=500&types=dentist&sensor=true";
-            string actual = googlePlacesApiRequest.ToRequestUrl();
-            Assert.AreEqual(expected, actual);
+            Assert.IsNotNullOrEmpty(response);
         }
     }
 }

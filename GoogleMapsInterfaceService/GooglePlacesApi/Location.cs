@@ -1,22 +1,34 @@
 using System.Globalization;
+using System.Runtime.Serialization;
 
 namespace GoogleMapsInterfaceService.GooglePlacesApi
 {
+    [DataContract]
     public class Location
     {
-        private readonly double _latitude;
-        private readonly double _longitude;
+        [DataMember]
+        public double Lat { get; set; }
+        [DataMember]
+        public double Lng { get; set; }
 
-        public Location(double latitude, double longitude)
+        public Location()
         {
-            _latitude = latitude;
-            _longitude = longitude;
+            
         }
 
-        public string ToUrlFormat()
+        public Location(double lat, double lng)
         {
-            return string.Format("{0},{1}", _latitude.ToString("0.0", CultureInfo.InvariantCulture),
-                                 _longitude.ToString("0.0", CultureInfo.InvariantCulture));
+            Lat = lat;
+            Lng = lng;
+        }
+
+        // Method virtual for mocking purposes
+        public virtual string ToUrlFormat()
+        {
+            return string.Format(
+                "{0},{1}", 
+                Lat.ToString(CultureInfo.InvariantCulture), 
+                Lng.ToString(CultureInfo.InvariantCulture));
         }
     }
 }

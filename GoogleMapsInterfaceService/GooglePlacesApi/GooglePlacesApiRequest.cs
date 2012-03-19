@@ -1,20 +1,25 @@
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.Serialization;
+using Common.Extensions;
 using GoogleMapsInterfaceService.Properties;
 using GoogleMapsInterfaceService.Requests;
-using GoogleMapsInterfaceService.Extensions;
 using System.Linq;
 
 namespace GoogleMapsInterfaceService.GooglePlacesApi
 {
+    [DataContract]
     public class GooglePlacesApiRequest : IRequest
     {
-        public static readonly string GooglePlacesApiBaseAddress = Settings.Default.GooglePlacesApiBaseAddress;
-
+        [DataMember]
         private readonly string _key;
+        [DataMember]
         private readonly Location _location;
+        [DataMember]
         private readonly int _radius;
+        [DataMember]
         private readonly bool _isGpsUsed;
+        [DataMember]
         private readonly IEnumerable<MedicalType> _medicalTypes;
 
         public GooglePlacesApiRequest(
@@ -28,7 +33,7 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
             _medicalTypes = medicalTypes;
         }
 
-        public string ToRequestString()
+        public string ToRequestUrl()
         {
             return string.Format(
                 Settings.Default.GooglePlacesApiRequestFormat, 

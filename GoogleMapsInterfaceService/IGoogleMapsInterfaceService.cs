@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using GoogleMapsInterfaceService.GooglePlacesApi;
+using GoogleMapsInterfaceService.Requests;
 
 namespace GoogleMapsInterfaceService
 {
@@ -11,6 +13,6 @@ namespace GoogleMapsInterfaceService
     public interface IGoogleMapsInterfaceService
     {
         [OperationContract]
-        void SampleOperation();
+        GooglePlacesApiResponse SendGooglePlacesApiRequest(GooglePlacesApiRequest request);
     }
 }

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using Common.Extensions;
 using NUnit.Framework;
-using GoogleMapsInterfaceService.Extensions;
 
-namespace Tests.GoogleMapsInterfaceService
+namespace Tests.Common
 {
-    public class IEnumerableExtensionsTests
+    public class EnumerableExtensionsTests
     {
         [Test]
         public void ToUrlFormatEmptyListTest()
@@ -19,7 +19,7 @@ namespace Tests.GoogleMapsInterfaceService
         public void ToUrlFormatSingleElementListTest()
         {
             var enumerable = new List<string> { "A" };
-            const string expected = "A";
+            const string expected = "a";
             string actual = enumerable.ToUrlFormat();
             Assert.AreEqual(expected, actual);
         }
@@ -28,7 +28,7 @@ namespace Tests.GoogleMapsInterfaceService
         public void ToUrlFormatMultipleElementsListTest()
         {
             var enumerable = new List<string> { "A", "B", "C" };
-            const string expected = "A|B|C";
+            const string expected = "a|b|c";
             string actual = enumerable.ToUrlFormat();
             Assert.AreEqual(expected, actual);
         }

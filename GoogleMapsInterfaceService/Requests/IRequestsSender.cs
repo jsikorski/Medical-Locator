@@ -2,6 +2,6 @@
 {
     public interface IRequestsSender
     {
-        void SendRequest(IRequest request);
+        string SendRequest(IRequest request);
     }
 }
