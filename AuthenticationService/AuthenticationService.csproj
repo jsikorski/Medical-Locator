@@ -8,8 +8,8 @@
     <ProjectGuid>{3B0090B6-8057-486D-99CF-DDA1F850676F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AuthorizationService</RootNamespace>
-    <AssemblyName>AuthorizationService</AssemblyName>
+    <RootNamespace>AuthenticationService</RootNamespace>
+    <AssemblyName>AuthenticationService</AssemblyName>
     <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>

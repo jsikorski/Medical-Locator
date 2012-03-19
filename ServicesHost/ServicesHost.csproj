@@ -54,7 +54,7 @@
     <Compile Include="Utils\ConsoleController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AuthorizationService\AuthenticationService.csproj">
+    <ProjectReference Include="..\AuthenticationService\AuthenticationService.csproj">
       <Project>{3B0090B6-8057-486D-99CF-DDA1F850676F}</Project>
       <Name>AuthenticationService</Name>
     </ProjectReference>
