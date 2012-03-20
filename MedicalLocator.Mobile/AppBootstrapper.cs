@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using Autofac;
 
 namespace MedicalLocator.Mobile {
@@ -65,10 +66,45 @@ namespace MedicalLocator.Mobile {
 
         private IContainer CreateContainer()
         {
-            var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+            var builder = new ContainerBuilder();
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .AsSelf().AsImplementedInterfaces();
-            return containerBuilder.Build();
+
+            ////  register phone services
+            //var caliburnAssembly = AssemblySource.Instance.Union(new[] { typeof(IStorageMechanism).Assembly }).ToArray();
+            ////  register IStorageMechanism implementors
+            //builder.RegisterAssemblyTypes(caliburnAssembly)
+            //  .Where(type => typeof(IStorageMechanism).IsAssignableFrom(type)
+            //                 && !type.IsAbstract
+            //                 && !type.IsInterface)
+            //  .As<IStorageMechanism>()
+            //  .SingleInstance();
+
+            ////  register IStorageHandler implementors
+            //builder.RegisterAssemblyTypes(caliburnAssembly)
+            //  .Where(type => typeof(IStorageHandler).IsAssignableFrom(type)
+            //                 && !type.IsAbstract
+            //                 && !type.IsInterface)
+            //  .As<IStorageHandler>()
+            //  .SingleInstance();
+
+            // The constructor of these services must be called
+            // to attach to the framework properly.
+            var phoneService = new PhoneApplicationServiceAdapter(RootFrame);
+            var navigationService = new FrameAdapter(RootFrame);
+
+            builder.RegisterInstance<INavigationService>(navigationService).SingleInstance();
+            builder.RegisterInstance<IPhoneService>(phoneService).SingleInstance();
+            builder.Register<IEventAggregator>(c => new EventAggregator()).SingleInstance();
+            builder.Register<IWindowManager>(c => new WindowManager()).SingleInstance();
+            builder.Register<IVibrateController>(c => new SystemVibrateController()).SingleInstance();
+            builder.Register<ISoundEffectPlayer>(c => new XnaSoundEffectPlayer()).SingleInstance();
+            builder.RegisterType<StorageCoordinator>().AsSelf().SingleInstance();
+            builder.RegisterType<TaskController>().AsSelf().SingleInstance();
+
+            builder.Register(c => _container).SingleInstance();
+
+            return builder.Build();
         }
     }
 }
