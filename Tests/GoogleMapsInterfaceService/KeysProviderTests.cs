@@ -10,7 +10,7 @@ namespace Tests.GoogleMapsInterfaceService
         [Test]
         public void GooglePlacesApiKeyTest()
         {
-            Assert.IsNotNull(KeysProvider.GooglePlacesApiKey);
+            Assert.IsNotNullOrEmpty(KeysProvider.GooglePlacesApiKey);
         }
     }
 }
