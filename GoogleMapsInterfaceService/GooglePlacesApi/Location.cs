@@ -6,21 +6,10 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
     [DataContract]
     public class Location
     {
-        [DataMember]
+        [DataMember(IsRequired = true, EmitDefaultValue = false)]
         public double Lat { get; set; }
-        [DataMember]
+        [DataMember(IsRequired = true, EmitDefaultValue = false)]
         public double Lng { get; set; }
-
-        public Location()
-        {
-            
-        }
-
-        public Location(double lat, double lng)
-        {
-            Lat = lat;
-            Lng = lng;
-        }
 
         // Method virtual for mocking purposes
         public virtual string ToUrlFormat()

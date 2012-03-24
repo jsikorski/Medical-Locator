@@ -6,6 +6,7 @@ using GoogleMapsInterfaceService.Key;
 using GoogleMapsInterfaceService.Requests;
 using NSubstitute;
 using NUnit.Framework;
+using System.Linq;
 
 namespace Tests.GoogleMapsInterfaceService
 {
@@ -18,15 +19,17 @@ namespace Tests.GoogleMapsInterfaceService
             string requestUrl = string.Format(requestFormat, KeysProvider.GooglePlacesApiKey);
             string requestResponse = File.ReadAllText(@"Resources\googlePlacesApiTestJsonResponse.txt");
 
-            var location = Substitute.For<Location>(52.406368, 16.925158);
+            var location = Substitute.For<Location>();
+            location.Lat = 52.406368;
+            location.Lng = 16.925158;
             location.ToUrlFormat().Returns("52.406368,16.925158");
-            const int radius = 1;
-            const bool isGpsUsed = true;
-            var medialTypes = new List<MedicalType> { MedicalType.Doctor };
 
-            var request = Substitute.For<GooglePlacesApiRequest>(KeysProvider.GooglePlacesApiKey,
-                                                                 location, radius,
-                                                                 isGpsUsed, medialTypes);
+            var request = Substitute.For<GooglePlacesApiRequest>();
+            request.Key = KeysProvider.GooglePlacesApiKey;
+            request.IsGpsUsed = true;
+            request.Location = location;
+            request.MedicalTypes = new List<MedicalType> { MedicalType.Doctor };
+            request.Radius = 1;
             request.ToRequestUrl().Returns(requestUrl);
 
             var requestSender = Substitute.For<IRequestsSender>();
@@ -39,6 +42,10 @@ namespace Tests.GoogleMapsInterfaceService
             Assert.IsNotNull(response.Results);
             Assert.IsNotEmpty(response.Results);
             Assert.AreEqual("OK", response.Status);
+
+            Location responseLocation = response.Results.First().Geometry.Location;
+            Assert.AreNotEqual(0.0, responseLocation.Lat);
+            Assert.AreNotEqual(0.0, responseLocation.Lng);
         }
     }
 }
