@@ -7,6 +7,7 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:Maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
                             xmlns:cal="http://www.caliburnproject.org"
+                            xmlns:Infrastructure="clr-namespace:MedicalLocator.Mobile.Infrastructure"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
@@ -16,31 +17,33 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True">
-
-    <Grid x:Name="LayoutRoot"
+    <Infrastructure:BusyIndicatorControl IsBusy="{Binding IsBusy}">
+        <Grid x:Name="LayoutRoot"
           Background="White">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <Grid x:Name="ContentPanel"
+            <Grid x:Name="ContentPanel"
               Grid.Row="0"
               Margin="12,0,12,0">
-            <Maps:Map LogoVisibility="Collapsed">
-                <Maps:MapItemsControl ItemsSource="{Binding MapPins}" />
-            </Maps:Map>
-        </Grid>
+                <Maps:Map LogoVisibility="Collapsed">
+                    <Maps:MapItemsControl ItemsSource="{Binding MapPins}" />
+                </Maps:Map>
+            </Grid>
 
-        <Grid Grid.Row="1"
+            <Grid Grid.Row="1"
               Margin="12,0,12,0">
-            <Image Height="32"
+                <Image Height="32"
                    Margin="0 15 0 20"
                    HorizontalAlignment="Right"
                    Source="Graphics/powered-by-google-on-white.png" />
+            </Grid>
+
         </Grid>
-    </Grid>
+    </Infrastructure:BusyIndicatorControl>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True"
@@ -59,5 +62,4 @@
                               Text="about" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-
 </phone:PhoneApplicationPage>

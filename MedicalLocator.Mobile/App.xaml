@@ -4,6 +4,11 @@
              xmlns:Mobile="clr-namespace:MedicalLocator.Mobile">
 
     <Application.Resources>
-        <Mobile:AppBootstrapper x:Key="bootstrapper" />
+        <ResourceDictionary>
+            <Mobile:AppBootstrapper x:Key="bootstrapper" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

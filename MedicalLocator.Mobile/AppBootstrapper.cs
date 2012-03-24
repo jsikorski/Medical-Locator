@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using System.Reflection;
 using Autofac;
+using MedicalLocator.Mobile.Commands;
 
-namespace MedicalLocator.Mobile {
+namespace MedicalLocator.Mobile
+{
     using System;
     using System.Collections.Generic;
     using System.Windows.Controls;
@@ -32,7 +34,8 @@ namespace MedicalLocator.Mobile {
         static void AddCustomConventions()
         {
             ConventionManager.AddElementConvention<Pivot>(Pivot.ItemsSourceProperty, "SelectedItem", "SelectionChanged").ApplyBinding =
-                (viewModelType, path, property, element, convention) => {
+                (viewModelType, path, property, element, convention) =>
+                {
                     if (ConventionManager
                         .GetElementConvention(typeof(ItemsControl))
                         .ApplyBinding(viewModelType, path, property, element, convention))
@@ -48,7 +51,8 @@ namespace MedicalLocator.Mobile {
                 };
 
             ConventionManager.AddElementConvention<Panorama>(Panorama.ItemsSourceProperty, "SelectedItem", "SelectionChanged").ApplyBinding =
-                (viewModelType, path, property, element, convention) => {
+                (viewModelType, path, property, element, convention) =>
+                {
                     if (ConventionManager
                         .GetElementConvention(typeof(ItemsControl))
                         .ApplyBinding(viewModelType, path, property, element, convention))
@@ -68,7 +72,9 @@ namespace MedicalLocator.Mobile {
         {
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .AsSelf().AsImplementedInterfaces();
+                .Where(type => !type.Name.EndsWith("ViewModel")).AsSelf().AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                .Where(type => type.Name.EndsWith("ViewModel")).SingleInstance();
 
             ////  register phone services
             //var caliburnAssembly = AssemblySource.Instance.Union(new[] { typeof(IStorageMechanism).Assembly }).ToArray();

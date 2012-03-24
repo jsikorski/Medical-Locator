@@ -1,30 +1,34 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Device.Location;
 using System.Windows;
 using Caliburn.Micro;
+using MedicalLocator.Mobile.Commands;
+using MedicalLocator.Mobile.Infrastructure;
 using Microsoft.Phone.Controls.Maps;
 
 namespace MedicalLocator.Mobile
 {
-    public class MainPageViewModel
+    public class MainPageViewModel : Screen, IBusyScope
     {
+        private readonly Func<ShowAboutPage> _showAboutPageFactory;
+        private readonly Func<TestCommand> _testCommandFactory;
         public IEnumerable<Pushpin> MapPins { get; private set; }
 
-        private readonly INavigationService _navigationService;
-
-        public MainPageViewModel(INavigationService navigationService)
+        public MainPageViewModel(
+            INavigationService navigationService, 
+            Func<ShowAboutPage> showAboutPageFactory, 
+            Func<TestCommand> testCommandFactory)
         {
-            _navigationService = navigationService;
-            //MapPins = new List<Pushpin>
-            //              {
-            //                  new Pushpin() {Location = new GeoCoordinate(50.0, 25.0)},
-            //                  new Pushpin() {Location = new GeoCoordinate(45.0, 25.0)}
-            //              };
+            _showAboutPageFactory = showAboutPageFactory;
+            _testCommandFactory = testCommandFactory;
         }
 
         public void FindMe()
         {
-            MessageBox.Show("To do...");
+            //MessageBox.Show("To do...");
+            ICommand testCommand = _testCommandFactory();
+            CommandInvoker.Invoke(testCommand);
         }
 
         public void Search()
@@ -39,7 +43,19 @@ namespace MedicalLocator.Mobile
 
         public void OpenAboutPage()
         {
-            MessageBox.Show("To do...");
+            ICommand command = _showAboutPageFactory();
+            CommandInvoker.Execute(command);
+        }
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                NotifyOfPropertyChange(() => IsBusy);
+            }
         }
     }
 }
