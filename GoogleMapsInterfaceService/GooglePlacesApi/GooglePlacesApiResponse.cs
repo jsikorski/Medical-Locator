@@ -11,6 +11,6 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
         public IEnumerable<ApiResult> Results { get; set; }
 
         [DataMember]
-        public string Status { get; set; }
+        public Status Status { get; set; }
     }
 }

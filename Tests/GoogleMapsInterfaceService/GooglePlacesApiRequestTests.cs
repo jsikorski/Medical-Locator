@@ -8,24 +8,17 @@ namespace Tests.GoogleMapsInterfaceService
     public class GooglePlacesApiRequestTests
     {
         [Test]
-        public void ToRequestUrlTest()
+        public void request_is_correctly_transformed_to_url()
         {
-            const string key = "testKey";
-            const int radius = 500;
-            const bool isGpsUsed = true;
             var medialTypes = new List<MedicalType> {MedicalType.Dentist};
-            var location = Substitute.For<Location>();
-            location.Lat = 50.0;
-            location.Lng = 25.0;
-            location.ToUrlFormat().Returns("50.0,25.0");
-
+            var location = Substitutes.GetLocationSubstitute();
             var googlePlacesApiRequest = new GooglePlacesApiRequest
                                              {
-                                                 Key = key,
-                                                 IsGpsUsed = isGpsUsed,
+                                                 Key = "testKey",
+                                                 IsGpsUsed = true,
                                                  Location = location,
                                                  MedicalTypes = medialTypes,
-                                                 Radius = radius
+                                                 Radius = 500
                                              };
 
             const string expected = "https://maps.googleapis.com/maps/api/place/search/json?" +

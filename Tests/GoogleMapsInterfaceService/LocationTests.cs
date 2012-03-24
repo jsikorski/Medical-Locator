@@ -6,7 +6,7 @@ namespace Tests.GoogleMapsInterfaceService
     public class LocationTests
     {
         [Test]
-        public void ToUrlStringAccurateValuesTest()
+        public void accurate_values_are_correctly_transformed()
         {
             var location = new Location { Lat = 25.0, Lng = 50.0 };
 
@@ -16,7 +16,7 @@ namespace Tests.GoogleMapsInterfaceService
         }
 
         [Test]
-        public void ToUrlStringNotAccurateValuesTest()
+        public void not_accurate_values_are_correctly_transformed()
         {
             var location = new Location { Lat = 25.55, Lng = 50.44 };
 

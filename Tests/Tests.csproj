@@ -43,6 +43,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -51,11 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\EnumerableExtensionsTests.cs" />
-    <Compile Include="GoogleMapsInterfaceService\KeysProviderTests.cs" />
+    <Compile Include="Common\KeysProviderTests.cs" />
     <Compile Include="GoogleMapsInterfaceService\GooglePlacesApiRequestTests.cs" />
     <Compile Include="GoogleMapsInterfaceService\LocationTests.cs" />
     <Compile Include="GoogleMapsInterfaceService\RequestsSenderTests.cs" />
     <Compile Include="GoogleMapsInterfaceService\ServiceTests.cs" />
+    <Compile Include="GoogleMapsInterfaceService\Substitutes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,10 +74,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\googlePlacesApiTestJsonResponse.txt">
+    <Content Include="Resources\googlePlacesApiDeniedJsonResponse.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\googlePlacesApiTestRequestFormat.txt">
+    <Content Include="Resources\googlePlacesApiJsonResponse.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\googlePlacesApiRequestFormat.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

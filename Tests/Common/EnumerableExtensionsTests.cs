@@ -7,7 +7,7 @@ namespace Tests.Common
     public class EnumerableExtensionsTests
     {
         [Test]
-        public void ToUrlFormatEmptyListTest()
+        public void empty_list_is_correctly_transformed()
         {
             var enumerable = new List<string>();
             string expected = string.Empty;
@@ -16,7 +16,7 @@ namespace Tests.Common
         }
 
         [Test]
-        public void ToUrlFormatSingleElementListTest()
+        public void single_element_list_is_correctly_transformed()
         {
             var enumerable = new List<string> { "A" };
             const string expected = "a";
@@ -25,7 +25,7 @@ namespace Tests.Common
         }
 
         [Test]
-        public void ToUrlFormatMultipleElementsListTest()
+        public void multiple_elements_list_is_correctly_transformed()
         {
             var enumerable = new List<string> { "A", "B", "C" };
             const string expected = "a|b|c";

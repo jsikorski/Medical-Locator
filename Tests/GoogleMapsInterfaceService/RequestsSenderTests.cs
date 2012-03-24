@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Common.Keys;
 using GoogleMapsInterfaceService;
 using GoogleMapsInterfaceService.GooglePlacesApi;
-using GoogleMapsInterfaceService.Key;
 using GoogleMapsInterfaceService.Requests;
 using NSubstitute;
 using NUnit.Framework;
@@ -11,24 +11,18 @@ namespace Tests.GoogleMapsInterfaceService
     public class RequestsSenderTests
     {
         [Test]
-        public void GooglePlacesApiRequestSendTest()
+        public void correct_request_gives_response_from_google_places_api()
         {
-            string key = KeysProvider.GooglePlacesApiKey;
-            const int radius = 500;
-            const bool isGpsUsed = true;
             var medialTypes = new List<MedicalType> {MedicalType.Dentist};
-            var location = Substitute.For<Location>();
-            location.Lat = 50.0;
-            location.Lng = 25.0;
-            location.ToUrlFormat().Returns("50.0,25.0");
+            var location = Substitutes.GetLocationSubstitute();
 
             var googlePlacesApiRequest = new GooglePlacesApiRequest
                                              {
-                                                 IsGpsUsed = isGpsUsed,
-                                                 Key = key,
+                                                 IsGpsUsed = true,
+                                                 Key = KeysProvider.GooglePlacesApiKey,
                                                  Location = location,
                                                  MedicalTypes = medialTypes,
-                                                 Radius = radius
+                                                 Radius = 500
                                              };
             var requestsSender = new RequestsSender();
             string response = requestsSender.SendRequest(googlePlacesApiRequest);
