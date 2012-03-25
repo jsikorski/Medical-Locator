@@ -1,0 +1,1 @@
+﻿https://maps.googleapis.com/maps/api/place/search/json?key={0}&location=52,16&radius=10000&sensor=true&types=doctor

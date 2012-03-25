@@ -1,0 +1,62 @@
+﻿{
+   "html_attributions" : [],
+   "results" : [
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 52.0704840,
+               "lng" : 15.8606470
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+         "id" : "fcc078222f4b83be1f088e40b71e5325f8612b85",
+         "name" : "Piasecka Teresa, lek. medycyny rodzinnej",
+         "reference" : "CoQBfgAAAE97nud_SCnVcgOkaevcVdmM3261U_73WtEsHYhSXheQcmIuo-CMfQy4W79OYNZHUjFcPa7CYjn8_bZzTqCPMvSKYmVsMmnniqcI0CFJWz1nWCJ5UWeFgmH9OFoWKymnsU8zzjGBqnQAZZ4M7hY526DouFFgCGcYzN1AIFBz86mQEhClG9mpVkb2I4374lVZXsr5GhS4-4Ho54047zxO0V36z-eTGUeT7Q",
+         "types" : [ "doctor", "health", "establishment" ],
+         "vicinity" : "Marchlewskiego 4, Kargowa"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 51.9325920,
+               "lng" : 15.9027230
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+         "id" : "0bf7ff1a66617bc643fd3fba118f194b1f9b7a3b",
+         "name" : "Ganecka Małgorzata, lek. med. Praktyka lekarza rodzinnego NZOZ",
+         "reference" : "CqQBlwAAAINoB9iiOwr6fXJeqA-CXlZ74kaMXC1VE4Sn7dZqgXeuBiLU1thoeOJwf73G4ibf4WPQkMinSFeK5AJg0hOq39r3B8zYU2AK9iLXS2MKDfvkp6mE6AhhJdsRnz7BiW-H1dUDtMwIkm7vq-1d5x7WHggQM2oF2hWjhaUPM6j87KV4zHYX7TEzlQneReNrw0hRAuvVXeTOPbHXSD_6RBL0KQESEEYEUuP0ISI-ColNrjTJ31QaFJlfL8JSMxzTvl-_d5ck_fYt4D3l",
+         "types" : [ "doctor", "health", "establishment" ],
+         "vicinity" : "67-416 Konotop; Polna 1"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 52.0704840,
+               "lng" : 15.8606470
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+         "id" : "ffe8000bf664914b30c606bef5b6b2e20c9e82c1",
+         "name" : "Szalewska-Kot M., lek. medycyny rodzinnej",
+         "reference" : "CoQBfwAAABzmNtZaYzFBk12pP9V5t0ouNz_zglqQ362MVtNmX1_bIghCz787oFLdwZcltpZj3sx4q5lVktLeS49qllpWD2OF95opGEA5pJuuse7bR7fHiE31faXvkSb35QeKclDAy3XJn5krMrnd6RoLaB_KrjMgDXJT3a0KskX6fJ9_YjUpEhDg6xY6-53DrEe2-95F9kBaGhQ689sH4oywsUm2UjpGxqukIXkjvQ",
+         "types" : [ "doctor", "health", "establishment" ],
+         "vicinity" : "Marchlewskiego 4, Kargowa"
+      },
+      {
+         "geometry" : {
+            "location" : {
+               "lat" : 51.9632110,
+               "lng" : 15.9619380
+            }
+         },
+         "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png",
+         "id" : "335b7c4b19a8e566467a72db56f1da173bea4b13",
+         "name" : "Szalewska-Kot Maria. Praktyka lekarza rodzinnego",
+         "reference" : "CpQBhwAAAFoGIgeJ5Bkg680dqzj6vLoyPxtvE-Y41irIVob6hTp4AOp87ctvPbld-jRYgiQxdfDPR-D9sOyAk_9BC6ipWJVNxEAyF2i0Yv-PNiZFtmkDFoMjujq53dhHXyHpVXoK2lb0OfvXiWsZ8JtoqG844sIucINEL0T3x2zNvW9AhhTjVqDL-47WWTfgtwr-M71jUBIQBawTy2b9vlnuxfxjoUjKZRoUWPIRijsPgLY92nz7Wf370qsSwN8",
+         "types" : [ "doctor", "health", "establishment" ],
+         "vicinity" : "67-415 Kolsko; Krótka 2"
+      }
+   ],
+   "status" : "OK"
+}
