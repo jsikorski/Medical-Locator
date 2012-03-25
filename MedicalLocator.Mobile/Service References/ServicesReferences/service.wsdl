@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GoogleMapsInterfaceService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GooglePlacesApi" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendGooglePlacesApiRequest" />
+  </wsdl:message>
+  <wsdl:message name="IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendGooglePlacesApiRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_ConnectionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q1:ConnectionFault" />
+  </wsdl:message>
+  <wsdl:message name="IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_RequestDeniedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q2:RequestDeniedFault" />
+  </wsdl:message>
+  <wsdl:message name="IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_InvalidResponseFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q3:InvalidResponseFault" />
+  </wsdl:message>
+  <wsdl:portType name="IGoogleMapsInterfaceService">
+    <wsdl:operation name="SendGooglePlacesApiRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequest" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestResponse" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestConnectionFaultFault" name="ConnectionFaultFault" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_ConnectionFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestRequestDeniedFaultFault" name="RequestDeniedFaultFault" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_RequestDeniedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestInvalidResponseFaultFault" name="InvalidResponseFaultFault" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_InvalidResponseFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IGoogleMapsInterfaceService" type="tns:IGoogleMapsInterfaceService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendGooglePlacesApiRequest">
+      <soap:operation soapAction="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ConnectionFaultFault">
+        <soap:fault use="literal" name="ConnectionFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="RequestDeniedFaultFault">
+        <soap:fault use="literal" name="RequestDeniedFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidResponseFaultFault">
+        <soap:fault use="literal" name="InvalidResponseFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GoogleMapsInterfaceService">
+    <wsdl:port name="BasicHttpBinding_IGoogleMapsInterfaceService" binding="tns:BasicHttpBinding_IGoogleMapsInterfaceService">
+      <soap:address location="http://localhost:8090/GoogleMapsInterfaceService/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
