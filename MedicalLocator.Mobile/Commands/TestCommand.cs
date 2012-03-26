@@ -21,7 +21,7 @@ namespace MedicalLocator.Mobile.Commands
             {
                 var request = new GooglePlacesApiRequest
                                   {
-                                      Key = "111",
+                                      Key = "AIzaSyBT0QSMKebiRxchKcntQrbvRATIXcSm4cM",
                                       IsGpsUsed = true,
                                       Location = new Location {Lat = 50.0, Lng = 45.0},
                                       Radius = 10,
@@ -29,12 +29,10 @@ namespace MedicalLocator.Mobile.Commands
                                   };
 
                 var client = new GoogleMapsInterfaceServiceClient();
+                GooglePlacesApiResponse response = client.SendGooglePlacesApiRequest(request);
+
                 //client.SendGooglePlacesApiRequestAsync(new GooglePlacesApiRequest());
-                RequestInvoker.InvokeSync<int>(
-                    () => client.SendGooglePlacesApiRequestAsync(new GooglePlacesApiRequest()));
-                
-                client.SendGooglePlacesApiRequestCompleted += ClientOnSendGooglePlacesApiRequestCompleted;
-                Thread.Sleep(5000);
+
             }
         }
 

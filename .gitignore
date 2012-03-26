@@ -36,3 +36,4 @@ ASPNETDB.MDF
 aspnetdb_log.ldf
 
 googlePlacesApiKey.txt
+PhoneKeysProvider.cs
