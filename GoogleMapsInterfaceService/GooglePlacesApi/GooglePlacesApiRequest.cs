@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.Serialization;
 using Common.Extensions;
+using Common.Keys;
 using GoogleMapsInterfaceService.Properties;
 using GoogleMapsInterfaceService.Requests;
 using System.Linq;
@@ -12,8 +13,6 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
     [DataContract]
     public class GooglePlacesApiRequest : IRequest
     {
-        [DataMember(IsRequired = true, EmitDefaultValue = false)]
-        public string Key { get; set; }
         [DataMember(IsRequired = true, EmitDefaultValue = false)]
         public Location Location { get; set; }
         [DataMember(IsRequired = true, EmitDefaultValue = false)]
@@ -28,7 +27,7 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
             return string.Format(
                 Settings.Default.GooglePlacesApiRequestFormat, 
                 Settings.Default.GooglePlacesApiBaseAddress, 
-                Key, 
+                KeysProvider.GooglePlacesApiKey, 
                 Location.ToUrlFormat(), 
                 Radius,
                 MedicalTypes.Select(type => type.ToString()).ToUrlFormat(), 

@@ -19,7 +19,6 @@ namespace Tests.GoogleMapsInterfaceService
             var googlePlacesApiRequest = new GooglePlacesApiRequest
                                              {
                                                  IsGpsUsed = true,
-                                                 Key = KeysProvider.GooglePlacesApiKey,
                                                  Location = location,
                                                  MedicalTypes = medialTypes,
                                                  Radius = 500

@@ -18,7 +18,6 @@ namespace Tests.GoogleMapsInterfaceService
         public static GooglePlacesApiRequest GetGooglePlacesApiRequestSubstitute(Location location, string url, string key)
          {
              var requestSubstitute = Substitute.For<GooglePlacesApiRequest>();
-             requestSubstitute.Key = key;
              requestSubstitute.IsGpsUsed = true;
              requestSubstitute.Location = location;
              requestSubstitute.MedicalTypes = new List<MedicalType> { MedicalType.Doctor };

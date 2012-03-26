@@ -21,7 +21,6 @@ namespace MedicalLocator.Mobile.Commands
             {
                 var request = new GooglePlacesApiRequest
                                   {
-                                      Key = "AIzaSyBT0QSMKebiRxchKcntQrbvRATIXcSm4cM",
                                       IsGpsUsed = true,
                                       Location = new Location {Lat = 50.0, Lng = 45.0},
                                       Radius = 10,

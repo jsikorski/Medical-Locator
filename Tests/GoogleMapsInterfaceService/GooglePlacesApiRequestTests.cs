@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Common.Keys;
 using GoogleMapsInterfaceService.GooglePlacesApi;
 using NSubstitute;
 using NUnit.Framework;
@@ -14,7 +15,6 @@ namespace Tests.GoogleMapsInterfaceService
             var location = Substitutes.GetLocationSubstitute();
             var googlePlacesApiRequest = new GooglePlacesApiRequest
                                              {
-                                                 Key = "testKey",
                                                  IsGpsUsed = true,
                                                  Location = location,
                                                  MedicalTypes = medialTypes,
@@ -24,7 +24,10 @@ namespace Tests.GoogleMapsInterfaceService
             const string expected = "https://maps.googleapis.com/maps/api/place/search/json?" +
                                     "key=testKey&location=50.0,25.0&radius=500&types=dentist&sensor=true";
             string actual = googlePlacesApiRequest.ToRequestUrl();
-            Assert.AreEqual(expected, actual);
+
+            Assert.IsTrue(actual.Contains("https://maps.googleapis.com/maps/api/place/search/json?"));
+            Assert.IsTrue(actual.Contains("key="));
+            Assert.IsTrue(actual.Contains("&location=50.0,25.0&radius=500&types=dentist&sensor=true"));
         }
     }
 }
