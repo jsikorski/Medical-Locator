@@ -35,5 +35,4 @@ _[Uu]pgradeReport_Files*/
 ASPNETDB.MDF
 aspnetdb_log.ldf
 
-googlePlacesApiKey.txt
-PhoneKeysProvider.cs
+KeysProvider.cs
