@@ -21,10 +21,7 @@ namespace Tests.GoogleMapsInterfaceService
                                                  Radius = 500
                                              };
 
-            const string expected = "https://maps.googleapis.com/maps/api/place/search/json?" +
-                                    "key=testKey&location=50.0,25.0&radius=500&types=dentist&sensor=true";
             string actual = googlePlacesApiRequest.ToRequestUrl();
-
             Assert.IsTrue(actual.Contains("https://maps.googleapis.com/maps/api/place/search/json?"));
             Assert.IsTrue(actual.Contains("key="));
             Assert.IsTrue(actual.Contains("&location=50.0,25.0&radius=500&types=dentist&sensor=true"));
