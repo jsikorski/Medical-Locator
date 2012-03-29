@@ -1,34 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Device.Location;
 using System.Windows;
+using Autofac;
 using Caliburn.Micro;
 using MedicalLocator.Mobile.Commands;
+using MedicalLocator.Mobile.Gps;
 using MedicalLocator.Mobile.Infrastructure;
 using Microsoft.Phone.Controls.Maps;
 
 namespace MedicalLocator.Mobile
 {
-    public class MainPageViewModel : Screen, IBusyScope
+    public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler
     {
-        private readonly Func<ShowAboutPage> _showAboutPageFactory;
-        private readonly Func<TestCommand> _testCommandFactory;
-        public IEnumerable<Pushpin> MapPins { get; private set; }
+        private readonly IContainer _container;
 
-        public MainPageViewModel(
-            INavigationService navigationService, 
-            Func<ShowAboutPage> showAboutPageFactory, 
-            Func<TestCommand> testCommandFactory)
+        public MainPageViewModel(IContainer container)
         {
-            _showAboutPageFactory = showAboutPageFactory;
-            _testCommandFactory = testCommandFactory;
+            _container = container;
+            BingMap = new Map();
         }
 
         public void FindMe()
         {
-            //MessageBox.Show("To do...");
-            ICommand testCommand = _testCommandFactory();
-            CommandInvoker.Invoke(testCommand);
+            var command = _container.Resolve<FindMe>();
+            CommandInvoker.Execute(command);
         }
 
         public void Search()
@@ -43,9 +38,11 @@ namespace MedicalLocator.Mobile
 
         public void OpenAboutPage()
         {
-            ICommand command = _showAboutPageFactory();
+            var command = _container.Resolve<ShowAboutPage>();
             CommandInvoker.Execute(command);
         }
+
+        #region Implementation of IBusyScope
 
         private bool _isBusy;
         public bool IsBusy
@@ -57,6 +54,16 @@ namespace MedicalLocator.Mobile
                 NotifyOfPropertyChange(() => IsBusy);
             }
         }
+
+        #endregion
+
+        #region Implementation of IBingMapHandler
+
+        public Map BingMap { get; private set; }
+
+        public IEnumerable<Pushpin> LocationsPins { get; set; }
+
+        #endregion
     }
 }
 

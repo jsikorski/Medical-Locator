@@ -5,7 +5,6 @@
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                            xmlns:Maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
                             xmlns:cal="http://www.caliburnproject.org"
                             xmlns:Infrastructure="clr-namespace:MedicalLocator.Mobile.Infrastructure"
                             mc:Ignorable="d"
@@ -19,7 +18,7 @@
                             shell:SystemTray.IsVisible="True">
     <Infrastructure:BusyIndicatorControl IsBusy="{Binding IsBusy}">
         <Grid x:Name="LayoutRoot"
-          Background="White">
+              Background="White">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -27,19 +26,19 @@
             </Grid.RowDefinitions>
 
             <Grid x:Name="ContentPanel"
-              Grid.Row="0"
-              Margin="12,0,12,0">
-                <Maps:Map LogoVisibility="Collapsed">
-                    <Maps:MapItemsControl ItemsSource="{Binding MapPins}" />
-                </Maps:Map>
+                  Grid.Row="0"
+                  Margin="12,0,12,0">
+                <ContentControl Content="{Binding BingMap}"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch" />
             </Grid>
 
             <Grid Grid.Row="1"
-              Margin="12,0,12,0">
+                  Margin="12,0,12,0">
                 <Image Height="32"
-                   Margin="0 15 0 20"
-                   HorizontalAlignment="Right"
-                   Source="Graphics/powered-by-google-on-white.png" />
+                       Margin="0 15 0 20"
+                       HorizontalAlignment="Right"
+                       Source="Graphics/powered-by-google-on-white.png" />
             </Grid>
 
         </Grid>

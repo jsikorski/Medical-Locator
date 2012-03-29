@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Device.Location;
+using System.Linq;
 using System.Reflection;
 using Autofac;
 using MedicalLocator.Mobile.Commands;
@@ -74,25 +75,27 @@ namespace MedicalLocator.Mobile
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(type => !type.Name.EndsWith("ViewModel")).AsSelf().AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Where(type => type.Name.EndsWith("ViewModel")).SingleInstance();
+                .Where(type => type.Name.EndsWith("ViewModel")).AsSelf().AsImplementedInterfaces().SingleInstance();
 
-            ////  register phone services
-            //var caliburnAssembly = AssemblySource.Instance.Union(new[] { typeof(IStorageMechanism).Assembly }).ToArray();
-            ////  register IStorageMechanism implementors
-            //builder.RegisterAssemblyTypes(caliburnAssembly)
-            //  .Where(type => typeof(IStorageMechanism).IsAssignableFrom(type)
-            //                 && !type.IsAbstract
-            //                 && !type.IsInterface)
-            //  .As<IStorageMechanism>()
-            //  .SingleInstance();
+            builder.RegisterType<GeoCoordinateWatcher>().SingleInstance();
 
-            ////  register IStorageHandler implementors
-            //builder.RegisterAssemblyTypes(caliburnAssembly)
-            //  .Where(type => typeof(IStorageHandler).IsAssignableFrom(type)
-            //                 && !type.IsAbstract
-            //                 && !type.IsInterface)
-            //  .As<IStorageHandler>()
-            //  .SingleInstance();
+            //  register phone services
+            var caliburnAssembly = AssemblySource.Instance.Union(new[] { typeof(IStorageMechanism).Assembly }).ToArray();
+            //  register IStorageMechanism implementors
+            builder.RegisterAssemblyTypes(caliburnAssembly)
+              .Where(type => typeof(IStorageMechanism).IsAssignableFrom(type)
+                             && !type.IsAbstract
+                             && !type.IsInterface)
+              .As<IStorageMechanism>()
+              .SingleInstance();
+
+            //  register IStorageHandler implementors
+            builder.RegisterAssemblyTypes(caliburnAssembly)
+              .Where(type => typeof(IStorageHandler).IsAssignableFrom(type)
+                             && !type.IsAbstract
+                             && !type.IsInterface)
+              .As<IStorageHandler>()
+              .SingleInstance();
 
             // The constructor of these services must be called
             // to attach to the framework properly.
