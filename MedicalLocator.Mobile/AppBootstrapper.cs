@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Autofac;
 using MedicalLocator.Mobile.Commands;
+using MedicalLocator.Mobile.Gps;
 
 namespace MedicalLocator.Mobile
 {
@@ -73,11 +74,12 @@ namespace MedicalLocator.Mobile
         {
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Where(type => !type.Name.EndsWith("ViewModel")).AsSelf().AsImplementedInterfaces();
+                .Where(type => !type.Name.EndsWith("ViewModel") && !type.Name.EndsWith("Manager")).AsSelf().AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(type => type.Name.EndsWith("ViewModel")).AsSelf().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<GeoCoordinateWatcher>().SingleInstance();
+            builder.RegisterType<GpsManager>().AsImplementedInterfaces().SingleInstance();
 
             //  register phone services
             var caliburnAssembly = AssemblySource.Instance.Union(new[] { typeof(IStorageMechanism).Assembly }).ToArray();

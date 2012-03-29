@@ -42,6 +42,12 @@ namespace MedicalLocator.Mobile
             CommandInvoker.Execute(command);
         }
 
+        protected override void OnViewLoaded(object view)
+        {
+            var command = _container.Resolve<StartGps>();
+            CommandInvoker.Invoke(command);
+        }
+
         #region Implementation of IBusyScope
 
         private bool _isBusy;

@@ -18,14 +18,19 @@ namespace MedicalLocator.Mobile.Commands
 
         public void Execute()
         {
-            _gpsManager.StartGps();
+            if (!_gpsManager.IsStarted)
+            {
+                _gpsManager.StartGps();                                
+            }
 
-            GeoCoordinate geoCoordinate = _gpsManager.GetLocation();
+            if (!_gpsManager.IsTracking)
+            {
+                _gpsManager.StartTracking(_bingMapHandler);
+            }
+
+            GeoCoordinate userLocation = _gpsManager.GetLocation();
             Map map = _bingMapHandler.BingMap;
-            
-            map.Children.Clear();
-            map.Children.Add(new Pushpin { Location = geoCoordinate });
-            map.SetView(LocationRect.CreateLocationRect(geoCoordinate));
+            map.SetUserLocation(userLocation);
         }
     }
 }
