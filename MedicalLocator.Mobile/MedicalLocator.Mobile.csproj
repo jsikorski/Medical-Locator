@@ -85,13 +85,16 @@
     <Compile Include="Commands\FindMe.cs" />
     <Compile Include="Commands\ShowAboutPage.cs" />
     <Compile Include="Commands\StartGps.cs" />
+    <Compile Include="Commands\StopGps.cs" />
     <Compile Include="Features\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\AboutPageViewModel.cs" />
+    <Compile Include="Gps\GpsUnavailableException.cs" />
     <Compile Include="Gps\IBingMapHandler.cs" />
     <Compile Include="Gps\IGpsManager.cs" />
     <Compile Include="Gps\GpsManager.cs" />
+    <Compile Include="Gps\GpsDisabledException.cs" />
     <Compile Include="Gps\MapExtensions.cs" />
     <Compile Include="Infrastructure\BusyArea.cs" />
     <Compile Include="Infrastructure\BusyIndicatorControl.cs" />

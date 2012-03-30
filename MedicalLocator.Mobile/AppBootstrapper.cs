@@ -1,9 +1,12 @@
 ﻿using System.Device.Location;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
 using Autofac;
 using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.Gps;
+using MedicalLocator.Mobile.Infrastructure;
+using Microsoft.Phone.Shell;
 
 namespace MedicalLocator.Mobile
 {
@@ -31,6 +34,18 @@ namespace MedicalLocator.Mobile
         protected override IEnumerable<object> GetAllInstances(Type serviceType)
         {
             return _container.Resolve(serviceType.MakeArrayType()) as IEnumerable<object>;
+        }
+
+        protected override void OnStartup(object sender, StartupEventArgs e)
+        {
+            var command = _container.Resolve<StartGps>();
+            CommandInvoker.Invoke(command);
+        }
+
+        protected override void OnClose(object sender, ClosingEventArgs e)
+        {
+            var command = _container.Resolve<StopGps>();
+            CommandInvoker.Invoke(command);
         }
 
         static void AddCustomConventions()
@@ -74,7 +89,8 @@ namespace MedicalLocator.Mobile
         {
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Where(type => !type.Name.EndsWith("ViewModel") && !type.Name.EndsWith("Manager")).AsSelf().AsImplementedInterfaces();
+                .Where(type => !type.Name.EndsWith("ViewModel") && !type.Name.EndsWith("Manager")).AsSelf().
+                AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(type => type.Name.EndsWith("ViewModel")).AsSelf().AsImplementedInterfaces().SingleInstance();
 

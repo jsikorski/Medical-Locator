@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Device.Location;
+using System.Windows;
+using MedicalLocator.Mobile.ServicesReferences;
 using Microsoft.Phone.Controls.Maps;
 
 namespace MedicalLocator.Mobile.Gps
@@ -28,13 +30,20 @@ namespace MedicalLocator.Mobile.Gps
 
         public void StartGps()
         {
-            _geoCoordinateWatcher.Start();
+            _geoCoordinateWatcher.StatusChanged += StatusChangedHandler;
+            bool startResult = _geoCoordinateWatcher.TryStart(false, new TimeSpan(0, 0, 3));
+            if (!startResult)
+            {
+                HandleGpsStartError();
+            }
+
             _isStarted = true;
         }
 
         public void StopGps()
         {
-            _isStarted = false;  
+            _isStarted = false;
+            _geoCoordinateWatcher.StatusChanged -= StatusChangedHandler;
             _geoCoordinateWatcher.Stop();
         }
 
@@ -44,7 +53,8 @@ namespace MedicalLocator.Mobile.Gps
             _geoCoordinateWatcher.PositionChanged += PositionChangedHandler;
             _isTracking = true;
         }
-        public void StopStracking()
+
+        public void StopTracking()
         {
             _isTracking = false;
             _geoCoordinateWatcher.PositionChanged -= PositionChangedHandler;
@@ -56,11 +66,43 @@ namespace MedicalLocator.Mobile.Gps
             return _geoCoordinateWatcher.Position.Location;
         }
 
-        private void PositionChangedHandler(object sender, GeoPositionChangedEventArgs<GeoCoordinate> geoPositionChangedEventArgs)
+        private void StatusChangedHandler(object sender, GeoPositionStatusChangedEventArgs args)
         {
-            GeoCoordinate location = geoPositionChangedEventArgs.Position.Location;
+            GeoPositionStatus status = args.Status;
+            if (status == GeoPositionStatus.Disabled)
+            {
+                if (IsGpsDisabled())
+                {
+                    MessageBox.Show("Gps disabled.");
+                    _isStarted = false;
+                }
+                else
+                {
+                    MessageBox.Show("Gps unavailable.");
+                }
+            }
+        }
+
+        private void PositionChangedHandler(object sender, GeoPositionChangedEventArgs<GeoCoordinate> args)
+        {
+            GeoCoordinate location = args.Position.Location;
             Map map = _bigBingMapHandler.BingMap;
             map.SetUserLocation(location);
+        }
+
+        private void HandleGpsStartError()
+        {
+            if (IsGpsDisabled())
+            {
+                throw new GpsDisabledException();
+            }
+
+            throw new GpsUnavailableException();
+        }
+
+        private bool IsGpsDisabled()
+        {
+            return _geoCoordinateWatcher.Permission == GeoPositionPermission.Denied;
         }
     }
 }

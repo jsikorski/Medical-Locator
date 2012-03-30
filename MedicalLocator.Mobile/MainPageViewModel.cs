@@ -23,7 +23,7 @@ namespace MedicalLocator.Mobile
         public void FindMe()
         {
             var command = _container.Resolve<FindMe>();
-            CommandInvoker.Execute(command);
+            CommandInvoker.Invoke(command);
         }
 
         public void Search()
@@ -40,12 +40,6 @@ namespace MedicalLocator.Mobile
         {
             var command = _container.Resolve<ShowAboutPage>();
             CommandInvoker.Execute(command);
-        }
-
-        protected override void OnViewLoaded(object view)
-        {
-            var command = _container.Resolve<StartGps>();
-            CommandInvoker.Invoke(command);
         }
 
         #region Implementation of IBusyScope
@@ -66,8 +60,6 @@ namespace MedicalLocator.Mobile
         #region Implementation of IBingMapHandler
 
         public Map BingMap { get; private set; }
-
-        public IEnumerable<Pushpin> LocationsPins { get; set; }
 
         #endregion
     }

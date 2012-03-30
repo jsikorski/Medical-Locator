@@ -11,7 +11,7 @@ namespace MedicalLocator.Mobile.Gps
         void StopGps();
 
         void StartTracking(IBingMapHandler bingMapHandler);
-        void StopStracking();
+        void StopTracking();
 
         GeoCoordinate GetLocation();
     }
