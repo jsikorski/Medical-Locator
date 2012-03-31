@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Device.Location;
 using System.Windows;
-using MedicalLocator.Mobile.ServicesReferences;
 using Microsoft.Phone.Controls.Maps;
 
 namespace MedicalLocator.Mobile.Gps
 {
     public class GpsManager : IGpsManager
     {
+        private readonly TimeSpan _gpsTryStartTimeSpan = new TimeSpan(0, 0, 3);
+
         private IBingMapHandler _bigBingMapHandler;
         private readonly GeoCoordinateWatcher _geoCoordinateWatcher;
 
@@ -28,37 +29,31 @@ namespace MedicalLocator.Mobile.Gps
             get { return _isTracking; }
         }
 
-        public void StartGps()
+        public void TryStartGps()
         {
-            _geoCoordinateWatcher.StatusChanged += StatusChangedHandler;
-            bool startResult = _geoCoordinateWatcher.TryStart(false, new TimeSpan(0, 0, 3));
-            if (!startResult)
+            if (!IsStarted)
             {
-                HandleGpsStartError();
+                StartGps();
             }
-
-            _isStarted = true;
         }
 
         public void StopGps()
         {
+            if (IsTracking)
+            {
+                StopTracking();
+            }
+
             _isStarted = false;
-            _geoCoordinateWatcher.StatusChanged -= StatusChangedHandler;
             _geoCoordinateWatcher.Stop();
         }
 
-        public void StartTracking(IBingMapHandler bingMapHandler)
+        public void TryStartTracking(IBingMapHandler bingMapHandler)
         {
-            _bigBingMapHandler = bingMapHandler;
-            _geoCoordinateWatcher.PositionChanged += PositionChangedHandler;
-            _isTracking = true;
-        }
-
-        public void StopTracking()
-        {
-            _isTracking = false;
-            _geoCoordinateWatcher.PositionChanged -= PositionChangedHandler;
-            _bigBingMapHandler = null;
+            if (!IsTracking)
+            {
+                StartTracking(bingMapHandler);
+            }
         }
 
         public GeoCoordinate GetLocation()
@@ -66,28 +61,36 @@ namespace MedicalLocator.Mobile.Gps
             return _geoCoordinateWatcher.Position.Location;
         }
 
-        private void StatusChangedHandler(object sender, GeoPositionStatusChangedEventArgs args)
+        private void StartGps()
         {
-            GeoPositionStatus status = args.Status;
-            if (status == GeoPositionStatus.Disabled)
+            bool started = _geoCoordinateWatcher.TryStart(false, _gpsTryStartTimeSpan);
+            if (!started)
             {
-                if (IsGpsDisabled())
-                {
-                    MessageBox.Show("Gps disabled.");
-                    _isStarted = false;
-                }
-                else
-                {
-                    MessageBox.Show("Gps unavailable.");
-                }
+                HandleGpsStartError();
             }
+
+            _isStarted = true;
+        }
+
+        private void StartTracking(IBingMapHandler bingMapHandler)
+        {
+            _bigBingMapHandler = bingMapHandler;
+            _geoCoordinateWatcher.PositionChanged += PositionChangedHandler;
+            _isTracking = true;
+        }
+
+        private void StopTracking()
+        {
+            _isTracking = false;
+            _geoCoordinateWatcher.PositionChanged -= PositionChangedHandler;
+            _bigBingMapHandler = null;
         }
 
         private void PositionChangedHandler(object sender, GeoPositionChangedEventArgs<GeoCoordinate> args)
         {
             GeoCoordinate location = args.Position.Location;
             Map map = _bigBingMapHandler.BingMap;
-            map.SetUserLocation(location);
+            map.SetUserPushpin(location);
         }
 
         private void HandleGpsStartError()

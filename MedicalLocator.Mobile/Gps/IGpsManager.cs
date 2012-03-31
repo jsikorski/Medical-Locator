@@ -7,11 +7,9 @@ namespace MedicalLocator.Mobile.Gps
         bool IsStarted { get; }
         bool IsTracking { get; }
 
-        void StartGps();
+        void TryStartGps();
+        void TryStartTracking(IBingMapHandler bingMapHandler);
         void StopGps();
-
-        void StartTracking(IBingMapHandler bingMapHandler);
-        void StopTracking();
 
         GeoCoordinate GetLocation();
     }

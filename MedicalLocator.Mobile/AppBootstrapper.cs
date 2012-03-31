@@ -36,18 +36,6 @@ namespace MedicalLocator.Mobile
             return _container.Resolve(serviceType.MakeArrayType()) as IEnumerable<object>;
         }
 
-        protected override void OnStartup(object sender, StartupEventArgs e)
-        {
-            var command = _container.Resolve<StartGps>();
-            CommandInvoker.Invoke(command);
-        }
-
-        protected override void OnClose(object sender, ClosingEventArgs e)
-        {
-            var command = _container.Resolve<StopGps>();
-            CommandInvoker.Invoke(command);
-        }
-
         static void AddCustomConventions()
         {
             ConventionManager.AddElementConvention<Pivot>(Pivot.ItemsSourceProperty, "SelectedItem", "SelectionChanged").ApplyBinding =

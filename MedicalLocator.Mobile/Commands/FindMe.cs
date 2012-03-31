@@ -6,42 +6,30 @@ using Microsoft.Phone.Controls.Maps;
 
 namespace MedicalLocator.Mobile.Commands
 {
-    public class FindMe : ICommand, IHasErrorHandler<GpsDisabledException>, IHasErrorHandler<GpsUnavailableException>
+    public class FindMe : GpsCommand
     {
         private readonly IGpsManager _gpsManager;
         private readonly IBingMapHandler _bingMapHandler;
+        private readonly IBusyScope _busyScope;
 
-        public FindMe(IGpsManager gpsManager, IBingMapHandler bingMapHandler)
+        public FindMe(IGpsManager gpsManager, MainPageViewModel mainPageViewModel)
         {
             _gpsManager = gpsManager;
-            _bingMapHandler = bingMapHandler;
+            _bingMapHandler = mainPageViewModel;
+            _busyScope = mainPageViewModel;
         }
 
-        public void Execute()
+        public override void Execute()
         {
-            if (!_gpsManager.IsStarted)
+            using (new BusyArea(_busyScope))
             {
-                _gpsManager.StartGps();                                
+                _gpsManager.TryStartGps();
+                _gpsManager.TryStartTracking(_bingMapHandler);
+
+                GeoCoordinate userLocation = _gpsManager.GetLocation();
+                Map map = _bingMapHandler.BingMap;
+                map.SetUserLocation(userLocation);
             }
-
-            if (!_gpsManager.IsTracking)
-            {
-                _gpsManager.StartTracking(_bingMapHandler);
-            }
-
-            GeoCoordinate userLocation = _gpsManager.GetLocation();
-            Map map = _bingMapHandler.BingMap;
-            map.SetUserLocation(userLocation);
-        }
-
-        public void HandleError(GpsDisabledException exception)
-        {
-            MessageBox.Show("Location services seems to be disabled.");
-        }
-
-        public void HandleError(GpsUnavailableException exception)
-        {
-            MessageBox.Show("Location services are unavailable.");
         }
     }
 }

@@ -8,11 +8,16 @@ namespace MedicalLocator.Mobile.Gps
     {
         public static void SetUserLocation(this Map map, GeoCoordinate location)
         {
+            SetUserPushpin(map, location);
+            Execute.OnUIThread(() => map.SetView(LocationRect.CreateLocationRect(location)));
+        }
+
+        public static void SetUserPushpin(this Map map, GeoCoordinate location)
+        {
             Execute.OnUIThread(() =>
                                    {
                                        map.Children.Clear();
                                        map.Children.Add(new Pushpin { Location = location });
-                                       map.SetView(LocationRect.CreateLocationRect(location));
                                    });
         }
     }

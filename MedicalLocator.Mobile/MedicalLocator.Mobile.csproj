@@ -83,8 +83,8 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Commands\FindMe.cs" />
+    <Compile Include="Commands\GpsCommand.cs" />
     <Compile Include="Commands\ShowAboutPage.cs" />
-    <Compile Include="Commands\StartGps.cs" />
     <Compile Include="Commands\StopGps.cs" />
     <Compile Include="Features\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -102,6 +102,7 @@
     <Compile Include="Infrastructure\IBusyScope.cs" />
     <Compile Include="Infrastructure\ICommand.cs" />
     <Compile Include="Infrastructure\IHasErrorHandler.cs" />
+    <Compile Include="Infrastructure\MessageBoxService.cs" />
     <Compile Include="Infrastructure\SyncCommunicationExtensions.cs" />
     <Compile Include="Infrastructure\UICommand.cs" />
     <Compile Include="Keys\KeysProvider.cs" />
