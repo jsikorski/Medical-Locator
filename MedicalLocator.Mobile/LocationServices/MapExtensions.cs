@@ -2,7 +2,7 @@
 using Caliburn.Micro;
 using Microsoft.Phone.Controls.Maps;
 
-namespace MedicalLocator.Mobile.Gps
+namespace MedicalLocator.Mobile.LocationServices
 {
     public static class MapExtensions
     {

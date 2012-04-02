@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Device.Location;
-using System.Windows;
+using MedicalLocator.Mobile.Infrastructure;
+using MedicalLocator.Mobile.Model;
 using Microsoft.Phone.Controls.Maps;
 
-namespace MedicalLocator.Mobile.Gps
+namespace MedicalLocator.Mobile.LocationServices
 {
-    public class GpsManager : IGpsManager
+    [SingleInstance]
+    public class LocationServicesManager : ILocationServicesManager
     {
         private readonly TimeSpan _gpsTryStartTimeSpan = new TimeSpan(0, 0, 3);
 
         private IBingMapHandler _bigBingMapHandler;
         private readonly GeoCoordinateWatcher _geoCoordinateWatcher;
+        private readonly CurrentContext _currentContext;
 
-        public GpsManager(GeoCoordinateWatcher geoCoordinateWatcher)
+        public LocationServicesManager(GeoCoordinateWatcher geoCoordinateWatcher, CurrentContext currentContext)
         {
             _geoCoordinateWatcher = geoCoordinateWatcher;
+            _currentContext = currentContext;
         }
 
         private bool _isStarted;
@@ -29,15 +33,20 @@ namespace MedicalLocator.Mobile.Gps
             get { return _isTracking; }
         }
 
-        public void TryStartGps()
+        public void TryStart()
         {
+            if (!_currentContext.AreLocationServicesAllowed)
+            {
+                throw new LocationServicesNotAllowedException();
+            }
+
             if (!IsStarted)
             {
-                StartGps();
+                Start();
             }
         }
 
-        public void StopGps()
+        public void Stop()
         {
             if (IsTracking)
             {
@@ -61,7 +70,7 @@ namespace MedicalLocator.Mobile.Gps
             return _geoCoordinateWatcher.Position.Location;
         }
 
-        private void StartGps()
+        private void Start()
         {
             bool started = _geoCoordinateWatcher.TryStart(false, _gpsTryStartTimeSpan);
             if (!started)
@@ -97,10 +106,10 @@ namespace MedicalLocator.Mobile.Gps
         {
             if (IsGpsDisabled())
             {
-                throw new GpsDisabledException();
+                throw new LocationServicesDisabledException();
             }
 
-            throw new GpsUnavailableException();
+            throw new LocationServicesUnavailableException();
         }
 
         private bool IsGpsDisabled()

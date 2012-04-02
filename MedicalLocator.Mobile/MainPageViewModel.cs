@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Device.Location;
 using System.Windows;
 using Autofac;
 using Caliburn.Micro;
 using MedicalLocator.Mobile.Commands;
-using MedicalLocator.Mobile.Gps;
 using MedicalLocator.Mobile.Infrastructure;
+using MedicalLocator.Mobile.LocationServices;
 using Microsoft.Phone.Controls.Maps;
 
 namespace MedicalLocator.Mobile
 {
+    [SingleInstance]
     public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler
     {
         private readonly IContainer _container;
@@ -33,7 +35,8 @@ namespace MedicalLocator.Mobile
 
         public void OpenSettings()
         {
-            MessageBox.Show("To do...");
+            var command = _container.Resolve<OpenSettingsPage>();
+            CommandInvoker.Execute(command);
         }
 
         public void OpenAboutPage()
@@ -44,7 +47,7 @@ namespace MedicalLocator.Mobile
 
         protected override void OnDeactivate(bool close)
         {
-            var command = _container.Resolve<StopGps>();
+            var command = _container.Resolve<StopLocationServices>();
             CommandInvoker.Invoke(command);
             base.OnDeactivate(close);
         }

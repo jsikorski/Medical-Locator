@@ -82,27 +82,37 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Commands\AskForLocationServices.cs" />
     <Compile Include="Commands\FindMe.cs" />
-    <Compile Include="Commands\GpsCommand.cs" />
+    <Compile Include="Commands\LocationServicesCommand.cs" />
+    <Compile Include="Commands\OpenSettingsPage.cs" />
     <Compile Include="Commands\ShowAboutPage.cs" />
-    <Compile Include="Commands\StopGps.cs" />
+    <Compile Include="Commands\StopLocationServices.cs" />
+    <Compile Include="Converters\CenterTypesToNamesConverter.cs" />
+    <Compile Include="Converters\CenterTypeToVisibilityConverter.cs" />
     <Compile Include="Features\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\AboutPageViewModel.cs" />
-    <Compile Include="Gps\GpsUnavailableException.cs" />
-    <Compile Include="Gps\IBingMapHandler.cs" />
-    <Compile Include="Gps\IGpsManager.cs" />
-    <Compile Include="Gps\GpsManager.cs" />
-    <Compile Include="Gps\GpsDisabledException.cs" />
-    <Compile Include="Gps\MapExtensions.cs" />
+    <Compile Include="Features\SearchedObjectViewModel.cs" />
+    <Compile Include="Features\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\SettingsPageViewModel.cs" />
+    <Compile Include="LocationServices\LocationServicesNotAllowedException.cs" />
+    <Compile Include="LocationServices\LocationServicesUnavailableException.cs" />
+    <Compile Include="LocationServices\IBingMapHandler.cs" />
+    <Compile Include="LocationServices\ILocationServicesManager.cs" />
+    <Compile Include="LocationServices\LocationServicesManager.cs" />
+    <Compile Include="LocationServices\LocationServicesDisabledException.cs" />
+    <Compile Include="LocationServices\MapExtensions.cs" />
     <Compile Include="Infrastructure\BusyArea.cs" />
     <Compile Include="Infrastructure\BusyIndicatorControl.cs" />
     <Compile Include="Infrastructure\CommandInvoker.cs" />
     <Compile Include="Infrastructure\IBusyScope.cs" />
     <Compile Include="Infrastructure\ICommand.cs" />
     <Compile Include="Infrastructure\IHasErrorHandler.cs" />
-    <Compile Include="Infrastructure\MessageBoxService.cs" />
+    <Compile Include="Infrastructure\SingleInstanceAttribute.cs" />
     <Compile Include="Infrastructure\SyncCommunicationExtensions.cs" />
     <Compile Include="Infrastructure\UICommand.cs" />
     <Compile Include="Keys\KeysProvider.cs" />
@@ -110,12 +120,15 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPageViewModel.cs" />
+    <Compile Include="Model\CenterType.cs" />
+    <Compile Include="Model\CurrentContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ServicesReferences\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utils\MessageBoxService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -123,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Features\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Features\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

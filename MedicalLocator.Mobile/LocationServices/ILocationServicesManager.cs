@@ -1,15 +1,15 @@
 ﻿using System.Device.Location;
 
-namespace MedicalLocator.Mobile.Gps
+namespace MedicalLocator.Mobile.LocationServices
 {
-    public interface IGpsManager
+    public interface ILocationServicesManager
     {
         bool IsStarted { get; }
         bool IsTracking { get; }
 
-        void TryStartGps();
+        void TryStart();
         void TryStartTracking(IBingMapHandler bingMapHandler);
-        void StopGps();
+        void Stop();
 
         GeoCoordinate GetLocation();
     }

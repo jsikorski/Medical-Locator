@@ -26,7 +26,7 @@
                     Grid.Row="0"
                     Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle"
-                       Text="Medical Locator"
+                       Text="MEDICAL LOCATOR"
                        Style="{StaticResource PhoneTextNormalStyle}" />
             <TextBlock x:Name="PageTitle"
                        Text="About"
@@ -37,6 +37,13 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="15,0,15,0">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize"
+                            Value="23" />
+                </Style>
+            </Grid.Resources>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />

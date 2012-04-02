@@ -4,7 +4,6 @@ using System.Reflection;
 using System.Windows;
 using Autofac;
 using MedicalLocator.Mobile.Commands;
-using MedicalLocator.Mobile.Gps;
 using MedicalLocator.Mobile.Infrastructure;
 using Microsoft.Phone.Shell;
 
@@ -34,6 +33,13 @@ namespace MedicalLocator.Mobile
         protected override IEnumerable<object> GetAllInstances(Type serviceType)
         {
             return _container.Resolve(serviceType.MakeArrayType()) as IEnumerable<object>;
+        }
+
+        protected override void OnLaunch(object sender, LaunchingEventArgs e)
+        {
+            base.OnLaunch(sender, e);
+            var command = _container.Resolve<AskForLocationServices>();
+            CommandInvoker.Execute(command);
         }
 
         static void AddCustomConventions()
@@ -77,13 +83,13 @@ namespace MedicalLocator.Mobile
         {
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Where(type => !type.Name.EndsWith("ViewModel") && !type.Name.EndsWith("Manager")).AsSelf().
-                AsImplementedInterfaces();
+                .Where(type => !type.GetCustomAttributes(true).Any(a => a.GetType() == typeof(SingleInstanceAttribute)))
+                .AsSelf().AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Where(type => type.Name.EndsWith("ViewModel")).AsSelf().AsImplementedInterfaces().SingleInstance();
+                .Where(type => type.GetCustomAttributes(true).Any(a => a.GetType() == typeof(SingleInstanceAttribute)))
+                .AsSelf().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<GeoCoordinateWatcher>().SingleInstance();
-            builder.RegisterType<GpsManager>().AsImplementedInterfaces().SingleInstance();
 
             //  register phone services
             var caliburnAssembly = AssemblySource.Instance.Union(new[] { typeof(IStorageMechanism).Assembly }).ToArray();
