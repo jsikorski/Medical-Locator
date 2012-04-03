@@ -1,5 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
+using System.Windows;
 using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.Utils;
 
 namespace MedicalLocator.Mobile.Infrastructure
 {

@@ -65,7 +65,7 @@ namespace MedicalLocator.Mobile.LocationServices
             }
         }
 
-        public GeoCoordinate GetLocation()
+        public GeoCoordinate GetGeoCoordinate()
         {
             return _geoCoordinateWatcher.Position.Location;
         }

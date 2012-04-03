@@ -55,7 +55,7 @@
   </wsdl:binding>
   <wsdl:service name="GoogleMapsInterfaceService">
     <wsdl:port name="BasicHttpBinding_IGoogleMapsInterfaceService" binding="tns:BasicHttpBinding_IGoogleMapsInterfaceService">
-      <soap:address location="http://localhost:8090/GoogleMapsInterfaceService/Service.svc" />
+      <soap:address location="http://192.168.2.8:8090/GoogleMapsInterfaceService/Service.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

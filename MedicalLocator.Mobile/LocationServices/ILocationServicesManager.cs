@@ -11,6 +11,6 @@ namespace MedicalLocator.Mobile.LocationServices
         void TryStartTracking(IBingMapHandler bingMapHandler);
         void Stop();
 
-        GeoCoordinate GetLocation();
+        GeoCoordinate GetGeoCoordinate();
     }
 }

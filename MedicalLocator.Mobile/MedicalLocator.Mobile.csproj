@@ -83,7 +83,7 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Commands\AskForLocationServices.cs" />
-    <Compile Include="Commands\FindMe.cs" />
+    <Compile Include="Commands\FindNearest.cs" />
     <Compile Include="Commands\LocationServicesCommand.cs" />
     <Compile Include="Commands\OpenSettingsPage.cs" />
     <Compile Include="Commands\ShowAboutPage.cs" />
@@ -157,23 +157,23 @@
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.Faults.xsd">
+    <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.Faults1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.GooglePlacesApi.xsd">
+    <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.GooglePlacesApi1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServicesReferences\MedicalLocator.Mobile.ServicesReferences.GooglePlacesApiResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServicesReferences\service.wsdl" />
-    <None Include="Service References\ServicesReferences\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServicesReferences\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\ServicesReferences\service1.wsdl" />
+    <None Include="Service References\ServicesReferences\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicesReferences\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">

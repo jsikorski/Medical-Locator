@@ -22,9 +22,9 @@ namespace MedicalLocator.Mobile
             BingMap = new Map();
         }
 
-        public void FindMe()
+        public void FindNearest()
         {
-            var command = _container.Resolve<FindMe>();
+            var command = _container.Resolve<FindNearest>();
             CommandInvoker.Invoke(command);
         }
 

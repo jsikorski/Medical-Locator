@@ -35,6 +35,10 @@ namespace MedicalLocator.Mobile.Infrastructure
             {
                 InvokeErrorHandler(command, exception);
             }
+            else if (HasExceptionErrorHandler(command))
+            {
+                InvokeErrorHandler(command, exception);
+            }
             else
             {
                 HandleUnknownError();                
@@ -44,6 +48,11 @@ namespace MedicalLocator.Mobile.Infrastructure
         private static void HandleUnknownError()
         {
             Caliburn.Micro.Execute.OnUIThread(() => MessageBox.Show("Unknown error"));
+        }
+
+        private static bool HasExceptionErrorHandler(ICommand command)
+        {
+            return HasErrorHandler(command, new Exception());
         }
 
         private static bool HasErrorHandler(ICommand command, Exception exception)

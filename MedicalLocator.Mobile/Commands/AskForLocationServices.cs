@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.IO;
+using System.Windows;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Utils;
