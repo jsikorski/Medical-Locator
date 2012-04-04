@@ -6,7 +6,7 @@ using Autofac;
 using Caliburn.Micro;
 using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.Infrastructure;
-using MedicalLocator.Mobile.LocationServices;
+using MedicalLocator.Mobile.Services.LocationServices;
 using Microsoft.Phone.Controls.Maps;
 
 namespace MedicalLocator.Mobile

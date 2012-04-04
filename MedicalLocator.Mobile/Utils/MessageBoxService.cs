@@ -8,13 +8,19 @@ namespace MedicalLocator.Mobile.Utils
         public static MessageBoxResult ShowQuestion(string message)
         {
             MessageBoxResult result = MessageBoxResult.None;
-            result = MessageBox.Show(message, "Information", MessageBoxButton.OKCancel);
+            Execute.OnUIThread(() => result = MessageBox.Show(message, "Information", MessageBoxButton.OKCancel));
             return result;
         }
 
         public static void ShowError(string message)
         {
             Execute.OnUIThread(() => MessageBox.Show(message, "Error", MessageBoxButton.OK));
+        }
+
+        public static void ShowConnectionError()
+        {
+            ShowError("Cannot connect with server. Please " +
+                      "check data transfer connection or Wi-Fi.");
         }
     }
 }

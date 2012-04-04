@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace MedicalLocator.Mobile.LocationServices
+namespace MedicalLocator.Mobile.Services.LocationServices
 {
     public class LocationServicesDisabledException : Exception
     {

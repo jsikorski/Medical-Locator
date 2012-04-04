@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Device.Location;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
-using Microsoft.Phone.Controls.Maps;
 
-namespace MedicalLocator.Mobile.LocationServices
+namespace MedicalLocator.Mobile.Services.LocationServices
 {
     [SingleInstance]
     public class LocationServicesManager : ILocationServicesManager
@@ -48,24 +47,11 @@ namespace MedicalLocator.Mobile.LocationServices
 
         public void Stop()
         {
-            if (IsTracking)
-            {
-                StopTracking();
-            }
-
             _isStarted = false;
             _geoCoordinateWatcher.Stop();
         }
 
-        public void TryStartTracking(IBingMapHandler bingMapHandler)
-        {
-            if (!IsTracking)
-            {
-                StartTracking(bingMapHandler);
-            }
-        }
-
-        public GeoCoordinate GetGeoCoordinate()
+        public GeoCoordinate GetCoordinates()
         {
             return _geoCoordinateWatcher.Position.Location;
         }
@@ -79,27 +65,6 @@ namespace MedicalLocator.Mobile.LocationServices
             }
 
             _isStarted = true;
-        }
-
-        private void StartTracking(IBingMapHandler bingMapHandler)
-        {
-            _bigBingMapHandler = bingMapHandler;
-            _geoCoordinateWatcher.PositionChanged += PositionChangedHandler;
-            _isTracking = true;
-        }
-
-        private void StopTracking()
-        {
-            _isTracking = false;
-            _geoCoordinateWatcher.PositionChanged -= PositionChangedHandler;
-            _bigBingMapHandler = null;
-        }
-
-        private void PositionChangedHandler(object sender, GeoPositionChangedEventArgs<GeoCoordinate> args)
-        {
-            GeoCoordinate location = args.Position.Location;
-            Map map = _bigBingMapHandler.BingMap;
-            map.SetUserPushpin(location);
         }
 
         private void HandleGpsStartError()

@@ -49,7 +49,7 @@
                               IsMenuEnabled="True">
             <cal:AppBarButton Message="FindNearest"
                               IconUri="/Graphics/findMeIcon.png"
-                              Text="find me" />
+                              Text="find nearby" />
             <cal:AppBarButton Message="Search"
                               IconUri="/Graphics/searchIcon.png"
                               Text="search" />

@@ -4,9 +4,11 @@ using System.Collections.ObjectModel;
 using System.Device.Location;
 using System.ServiceModel;
 using System.Windows;
+using MedicalLocator.Mobile.Exceptions;
 using MedicalLocator.Mobile.Infrastructure;
-using MedicalLocator.Mobile.LocationServices;
 using MedicalLocator.Mobile.Model;
+using MedicalLocator.Mobile.Services;
+using MedicalLocator.Mobile.Services.LocationServices;
 using MedicalLocator.Mobile.ServicesReferences;
 using MedicalLocator.Mobile.Utils;
 using Microsoft.Phone.Controls.Maps;
@@ -14,13 +16,14 @@ using System.Linq;
 
 namespace MedicalLocator.Mobile.Commands
 {
-    public class FindNearest : LocationServicesCommand, IHasErrorHandler<Exception>
+    public class FindNearest : LocationServicesCommand, IHasErrorHandler<WcfConnectionErrorException>
     {
         private const int NearestRange = 1000;
 
         private readonly ILocationServicesManager _locationServicesManager;
         private readonly IBingMapHandler _bingMapHandler;
         private readonly GoogleMapsInterfaceServiceClient _googleMapsInterfaceServiceClient;
+        private readonly IMedicalTypesProvider _medicalTypesProvider;
         private readonly CurrentContext _currentContext;
         private readonly IBusyScope _busyScope;
 
@@ -28,11 +31,13 @@ namespace MedicalLocator.Mobile.Commands
             ILocationServicesManager locationServicesManager,
             MainPageViewModel mainPageViewModel,
             GoogleMapsInterfaceServiceClient googleMapsInterfaceServiceClient,
+            IMedicalTypesProvider medicalTypesProvider,
             CurrentContext currentContext)
         {
             _locationServicesManager = locationServicesManager;
             _bingMapHandler = mainPageViewModel;
             _googleMapsInterfaceServiceClient = googleMapsInterfaceServiceClient;
+            _medicalTypesProvider = medicalTypesProvider;
             _currentContext = currentContext;
             _busyScope = mainPageViewModel;
         }
@@ -42,9 +47,10 @@ namespace MedicalLocator.Mobile.Commands
             using (new BusyArea(_busyScope))
             {
                 StartLocationServices();
-                GeoCoordinate userCoordinate = _locationServicesManager.GetGeoCoordinate();
-                GooglePlacesApiResponse response = GetDataFromGooglePlacesApi(userCoordinate);
-                SetDataOnBingMaps(userCoordinate, response);
+                GeoCoordinate userCoordinates = _locationServicesManager.GetCoordinates();
+                GooglePlacesApiResponse response = GetDataFromGooglePlacesApi(userCoordinates);
+                IEnumerable<GeoCoordinate> objectsCoordinates = GetObjectsCoordinatesFromResponse(response);
+                SetDataOnMap(userCoordinates, objectsCoordinates);
             }
         }
 
@@ -55,38 +61,38 @@ namespace MedicalLocator.Mobile.Commands
 
         private GooglePlacesApiResponse GetDataFromGooglePlacesApi(GeoCoordinate userCoordinate)
         {
+            bool isGpsUsed = _currentContext.AreLocationServicesAllowed;
             var userLocation = new Location { Lat = userCoordinate.Latitude, Lng = userCoordinate.Longitude };
+            IEnumerable<MedicalType> allMedicalTypes = _medicalTypesProvider.GetAllMedicalTypes();
+            var searchedObjects = new ObservableCollection<MedicalType>(allMedicalTypes);
+
             var request = new GooglePlacesApiRequest
                               {
-                                  IsGpsUsed = _currentContext.AreLocationServicesAllowed,
+                                  IsGpsUsed = isGpsUsed,
                                   Location = userLocation,
-                                  MedicalTypes =
-                                      new ObservableCollection<MedicalType> { MedicalType.Doctor, MedicalType.Dentist },
+                                  MedicalTypes = searchedObjects,
                                   Radius = NearestRange
                               };
 
             return _googleMapsInterfaceServiceClient.SendGooglePlacesApiRequest(request);
         }
 
-        private void SetDataOnBingMaps(GeoCoordinate userCoordinate, GooglePlacesApiResponse googlePlacesApiResponse)
+        private IEnumerable<GeoCoordinate> GetObjectsCoordinatesFromResponse(GooglePlacesApiResponse googlePlacesApiResponse)
+        {
+            return googlePlacesApiResponse.Results.Select(
+                result => new GeoCoordinate(result.Geometry.Location.Lat, result.Geometry.Location.Lng));
+        }
+
+        private void SetDataOnMap(GeoCoordinate userCoordinate, IEnumerable<GeoCoordinate> objectsCoordinates)
         {
             Map map = _bingMapHandler.BingMap;
             map.SetUserLocation(userCoordinate);
-
-            IEnumerable<GeoCoordinate> pointsCoordinates =
-                googlePlacesApiResponse.Results.Select(
-                    result => new GeoCoordinate(result.Geometry.Location.Lat, result.Geometry.Location.Lng));
-            Caliburn.Micro.Execute.OnUIThread(() =>
-            {
-                var pushpins = pointsCoordinates.Select(coordinate => new Pushpin { Location = coordinate }).ToList();
-                pushpins.ForEach(pushpin => map.Children.Add(pushpin));
-                map.SetView(LocationRect.CreateLocationRect(pointsCoordinates));
-            });
+            map.SetObjectsPushpinsAndView(objectsCoordinates);
         }
 
-        public void HandleError(Exception exception)
+        public void HandleError(WcfConnectionErrorException exception)
         {
-            MessageBoxService.ShowError("Cannot connect.");
+            MessageBoxService.ShowConnectionError();
         }
     }
 }
