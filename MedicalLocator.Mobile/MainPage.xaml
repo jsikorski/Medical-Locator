@@ -47,8 +47,8 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True"
                               IsMenuEnabled="True">
-            <cal:AppBarButton Message="FindNearest"
-                              IconUri="/Graphics/findMeIcon.png"
+            <cal:AppBarButton Message="FindNearby"
+                              IconUri="/Graphics/findNearbyIcon.png"
                               Text="find nearby" />
             <cal:AppBarButton Message="Search"
                               IconUri="/Graphics/searchIcon.png"

@@ -83,7 +83,7 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Commands\AskForLocationServices.cs" />
-    <Compile Include="Commands\FindNearest.cs" />
+    <Compile Include="Commands\FindNearby.cs" />
     <Compile Include="Commands\LocationServicesCommand.cs" />
     <Compile Include="Commands\OpenSettingsPage.cs" />
     <Compile Include="Commands\ShowAboutPage.cs" />
@@ -96,6 +96,10 @@
     </Compile>
     <Compile Include="Features\AboutPageViewModel.cs" />
     <Compile Include="Features\SearchedObjectViewModel.cs" />
+    <Compile Include="Features\SearchPageView.xaml.cs">
+      <DependentUpon>SearchPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\SearchPageViewModel.cs" />
     <Compile Include="Features\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -142,6 +146,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Features\SearchPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Features\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,21 +168,21 @@
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.Faults.xsd">
+    <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.Faults1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.GooglePlacesApi.xsd">
+    <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.GooglePlacesApi1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServicesReferences\MedicalLocator.Mobile.ServicesReferences.GooglePlacesApiResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <Content Include="ServiceReferences.ClientConfig" />
-    <None Include="Service References\ServicesReferences\service.wsdl" />
-    <None Include="Service References\ServicesReferences\service.xsd">
+    <None Include="Service References\ServicesReferences\service1.wsdl" />
+    <None Include="Service References\ServicesReferences\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicesReferences\service1.xsd">
+    <None Include="Service References\ServicesReferences\service21.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -194,7 +202,7 @@
     <Content Include="Graphics\searchIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Graphics\findMeIcon.png">
+    <Content Include="Graphics\findNearbyIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Graphics\settingsIcon.png">

@@ -16,7 +16,7 @@ using System.Linq;
 
 namespace MedicalLocator.Mobile.Commands
 {
-    public class FindNearest : LocationServicesCommand, IHasErrorHandler<WcfConnectionErrorException>
+    public class FindNearby : LocationServicesCommand, IHasErrorHandler<WcfConnectionErrorException>
     {
         private const int NearestRange = 1000;
 
@@ -27,7 +27,7 @@ namespace MedicalLocator.Mobile.Commands
         private readonly CurrentContext _currentContext;
         private readonly IBusyScope _busyScope;
 
-        public FindNearest(
+        public FindNearby(
             ILocationServicesManager locationServicesManager,
             MainPageViewModel mainPageViewModel,
             GoogleMapsInterfaceServiceClient googleMapsInterfaceServiceClient,
