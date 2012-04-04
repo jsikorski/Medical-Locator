@@ -28,20 +28,24 @@ namespace MedicalLocator.Mobile
             CommandInvoker.Invoke(command);
         }
 
-        public void Search()
+        public void SearchSearchPage()
         {
-            MessageBox.Show("To do...");
+            ExecuteCommand<OpenSearchPage>();
         }
 
-        public void OpenSettings()
+        public void OpenSettingsPage()
         {
-            var command = _container.Resolve<OpenSettingsPage>();
-            CommandInvoker.Execute(command);
+            ExecuteCommand<OpenSettingsPage>();
         }
 
         public void OpenAboutPage()
         {
-            var command = _container.Resolve<ShowAboutPage>();
+            ExecuteCommand<ShowAboutPage>();
+        }
+
+        private void ExecuteCommand<T>() where T : ICommand
+        {
+            var command = _container.Resolve<T>();
             CommandInvoker.Execute(command);
         }
 

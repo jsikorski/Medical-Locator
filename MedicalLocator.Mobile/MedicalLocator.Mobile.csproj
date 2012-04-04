@@ -85,19 +85,21 @@
     <Compile Include="Commands\AskForLocationServices.cs" />
     <Compile Include="Commands\FindNearby.cs" />
     <Compile Include="Commands\LocationServicesCommand.cs" />
+    <Compile Include="Commands\OpenSearchPage.cs" />
     <Compile Include="Commands\OpenSettingsPage.cs" />
     <Compile Include="Commands\ShowAboutPage.cs" />
     <Compile Include="Commands\StopLocationServices.cs" />
     <Compile Include="Converters\CenterTypesToNamesConverter.cs" />
-    <Compile Include="Converters\CenterTypeToVisibilityConverter.cs" />
+    <Compile Include="Converters\CenterTypeNameToVisibilityConverter.cs" />
+    <Compile Include="Converters\CenterTypeToNameConverter.cs" />
     <Compile Include="Exceptions\WcfConnectionErrorException.cs" />
     <Compile Include="Features\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\AboutPageViewModel.cs" />
     <Compile Include="Features\SearchedObjectViewModel.cs" />
-    <Compile Include="Features\SearchPageView.xaml.cs">
-      <DependentUpon>SearchPageView.xaml</DependentUpon>
+    <Compile Include="Features\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\SearchPageViewModel.cs" />
     <Compile Include="Features\SettingsPage.xaml.cs">
@@ -126,7 +128,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Services\IMedicalTypesProvider.cs" />
+    <Compile Include="Services\IEnumsValuesProvider.cs" />
     <Compile Include="Services\LocationServices\IBingMapHandler.cs" />
     <Compile Include="Services\LocationServices\ILocationServicesManager.cs" />
     <Compile Include="Services\LocationServices\LocationServicesDisabledException.cs" />
@@ -134,7 +136,7 @@
     <Compile Include="Services\LocationServices\LocationServicesNotAllowedException.cs" />
     <Compile Include="Services\LocationServices\LocationServicesUnavailableException.cs" />
     <Compile Include="Services\LocationServices\MapExtensions.cs" />
-    <Compile Include="Services\MedicalTypesProvider.cs" />
+    <Compile Include="Services\EnumsValuesProvider.cs" />
     <Compile Include="Utils\MessageBoxService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -146,7 +148,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Features\SearchPageView.xaml">
+    <Page Include="Features\SearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

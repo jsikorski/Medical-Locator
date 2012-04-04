@@ -23,7 +23,7 @@ namespace MedicalLocator.Mobile.Commands
         private readonly ILocationServicesManager _locationServicesManager;
         private readonly IBingMapHandler _bingMapHandler;
         private readonly GoogleMapsInterfaceServiceClient _googleMapsInterfaceServiceClient;
-        private readonly IMedicalTypesProvider _medicalTypesProvider;
+        private readonly IEnumsValuesProvider _enumsValuesProvider;
         private readonly CurrentContext _currentContext;
         private readonly IBusyScope _busyScope;
 
@@ -31,13 +31,13 @@ namespace MedicalLocator.Mobile.Commands
             ILocationServicesManager locationServicesManager,
             MainPageViewModel mainPageViewModel,
             GoogleMapsInterfaceServiceClient googleMapsInterfaceServiceClient,
-            IMedicalTypesProvider medicalTypesProvider,
+            IEnumsValuesProvider enumsValuesProvider,
             CurrentContext currentContext)
         {
             _locationServicesManager = locationServicesManager;
             _bingMapHandler = mainPageViewModel;
             _googleMapsInterfaceServiceClient = googleMapsInterfaceServiceClient;
-            _medicalTypesProvider = medicalTypesProvider;
+            _enumsValuesProvider = enumsValuesProvider;
             _currentContext = currentContext;
             _busyScope = mainPageViewModel;
         }
@@ -63,7 +63,7 @@ namespace MedicalLocator.Mobile.Commands
         {
             bool isGpsUsed = _currentContext.AreLocationServicesAllowed;
             var userLocation = new Location { Lat = userCoordinate.Latitude, Lng = userCoordinate.Longitude };
-            IEnumerable<MedicalType> allMedicalTypes = _medicalTypesProvider.GetAllMedicalTypes();
+            IEnumerable<MedicalType> allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
             var searchedObjects = new ObservableCollection<MedicalType>(allMedicalTypes);
 
             var request = new GooglePlacesApiRequest

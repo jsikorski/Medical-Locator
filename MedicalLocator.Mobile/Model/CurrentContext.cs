@@ -21,6 +21,7 @@ namespace MedicalLocator.Mobile.Model
         {
             Range = 2500;
             CenterType = CenterType.MyLocation;
+            Address = string.Empty;
 
             SearchedObjects = new List<MedicalType>();
         }

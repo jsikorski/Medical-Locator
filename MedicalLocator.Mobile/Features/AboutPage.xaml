@@ -29,7 +29,7 @@
                        Text="MEDICAL LOCATOR"
                        Style="{StaticResource PhoneTextNormalStyle}" />
             <TextBlock x:Name="PageTitle"
-                       Text="About"
+                       Text="about"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>

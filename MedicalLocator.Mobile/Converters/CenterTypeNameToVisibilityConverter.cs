@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace MedicalLocator.Mobile.Converters
 {
-    public class CenterTypeToVisibilityConverter : IValueConverter
+    public class CenterTypeNameToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -22,7 +22,6 @@ namespace MedicalLocator.Mobile.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new object();
             throw new NotImplementedException();
         }
     }

@@ -50,10 +50,10 @@
             <cal:AppBarButton Message="FindNearby"
                               IconUri="/Graphics/findNearbyIcon.png"
                               Text="find nearby" />
-            <cal:AppBarButton Message="Search"
+            <cal:AppBarButton Message="SearchSearchPage"
                               IconUri="/Graphics/searchIcon.png"
                               Text="search" />
-            <cal:AppBarButton Message="OpenSettings"
+            <cal:AppBarButton Message="OpenSettingsPage"
                               IconUri="/Graphics/settingsIcon.png"
                               Text="settings" />
             <cal:AppBarButton Message="OpenAboutPage"

@@ -13,9 +13,9 @@ using Microsoft.Phone.Controls;
 
 namespace MedicalLocator.Mobile.Features
 {
-    public partial class SearchPageView : PhoneApplicationPage
+    public partial class SearchPage : PhoneApplicationPage
     {
-        public SearchPageView()
+        public SearchPage()
         {
             InitializeComponent();
         }
