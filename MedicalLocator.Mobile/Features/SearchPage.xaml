@@ -24,79 +24,89 @@
         <!--Pivot Control-->
         <controls:Pivot Title="SEARCH - MEDICAL LOCATOR">
             <controls:PivotItem Header="general">
-                <Grid>
-                    <Grid.Resources>
-                        <Converters:CenterTypesToNamesConverter x:Key="centerTypesToNamesConverter" />
-                        <Converters:CenterTypeNameToVisibilityConverter x:Key="centerTypeToVisibilityConverter" />
-                        <Style TargetType="TextBlock">
-                            <Setter Property="FontSize"
-                                    Value="43" />
-                            <Setter Property="Margin"
-                                    Value="0 0 0 25" />
-                        </Style>
-                    </Grid.Resources>
-
+                <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    
+                    <Grid>
+                        <Grid.Resources>
+                            <Converters:CenterTypesToNamesConverter x:Key="centerTypesToNamesConverter" />
+                            <Converters:CenterTypeNameToVisibilityConverter x:Key="centerTypeToVisibilityConverter" />
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize"
+                                        Value="43" />
+                                <Setter Property="Margin"
+                                        Value="0 0 0 25" />
+                            </Style>
+                        </Grid.Resources>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                    <TextBlock Text="Range [m]"
-                               Grid.Row="0"
-                               Grid.Column="0">
-                    </TextBlock>
-                    <TextBox Grid.Row="0"
-                             Grid.Column="1"
-                             InputScope="TelephoneNumber"
-                             Text="{Binding Range, Mode=TwoWay}" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Center"
-                               Grid.Row="1"
-                               Grid.Column="0" />
-                    <toolkit:ListPicker x:Name="centerTypeListPicker"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        ItemsSource="{Binding CenterTypes, Converter={StaticResource centerTypesToNamesConverter}}"
-                                        SelectedIndex="{Binding SelectedCenterTypeIndex, Mode=TwoWay}">
-                    </toolkit:ListPicker>
+                        <TextBlock Text="Range [m]"
+                                   Grid.Row="0"
+                                   Grid.Column="0">
+                        </TextBlock>
+                        <TextBox Grid.Row="0"
+                                 Grid.Column="1"
+                                 InputScope="TelephoneNumber"
+                                 Text="{Binding Range, Mode=TwoWay}" />
 
-                    <TextBlock Text="Address"
-                               Grid.Row="2"
-                               Grid.Column="0"
-                               Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
-                    <TextBox Grid.Row="2"
-                             Grid.Column="1"
-                             Text="{Binding Address, Mode=TwoWay}"
-                             Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
+                        <TextBlock Text="Center"
+                                   Grid.Row="1"
+                                   Grid.Column="0" />
+                        <toolkit:ListPicker x:Name="centerTypeListPicker"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            ItemsSource="{Binding CenterTypes, Converter={StaticResource centerTypesToNamesConverter}}"
+                                            SelectedIndex="{Binding SelectedCenterTypeIndex, Mode=TwoWay}">
+                        </toolkit:ListPicker>
 
-                    <TextBlock Text="Longitude"
-                               Grid.Row="3"
-                               Grid.Column="0"
-                               Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
-                    <TextBox Grid.Row="3"
-                             Grid.Column="1"
-                             Text="{Binding Longitude, Mode=TwoWay}"
-                             InputScope="TelephoneNumber"
-                             Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
+                        <TextBlock Text="Address"
+                                   Grid.Row="2"
+                                   Grid.Column="0"
+                                   Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
+                        <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Text="{Binding Address, Mode=TwoWay}"
+                                 Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
 
-                    <TextBlock Text="Latitude"
-                               Grid.Row="4"
-                               Grid.Column="0"
-                               Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
-                    <TextBox Grid.Row="4"
-                             Grid.Column="1"
-                             Text="{Binding Latitude, Mode=TwoWay}"
-                             InputScope="TelephoneNumber"
-                             Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
+                        <TextBlock Text="Longitude"
+                                   Grid.Row="3"
+                                   Grid.Column="0"
+                                   Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
+                        <TextBox Grid.Row="3"
+                                 Grid.Column="1"
+                                 Text="{Binding Longitude, Mode=TwoWay}"
+                                 InputScope="TelephoneNumber"
+                                 Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
+
+                        <TextBlock Text="Latitude"
+                                   Grid.Row="4"
+                                   Grid.Column="0"
+                                   Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
+                        <TextBox Grid.Row="4"
+                                 Grid.Column="1"
+                                 Text="{Binding Latitude, Mode=TwoWay}"
+                                 InputScope="TelephoneNumber"
+                                 Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
+                    </Grid>
+                    <Button Grid.Row="1"
+                            Content="Search"
+                            Name="BeginSearch" />
                 </Grid>
             </controls:PivotItem>
 

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Autofac;
 using Caliburn.Micro;
+using MedicalLocator.Mobile.Commands;
+using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services;
 using MedicalLocator.Mobile.ServicesReferences;
@@ -11,6 +14,7 @@ namespace MedicalLocator.Mobile.Features
     {
         private readonly CurrentContext _currentContext;
         private readonly IEnumsValuesProvider _enumsValuesProvider;
+        private readonly IContainer _container;
 
         public int Range
         {
@@ -45,12 +49,22 @@ namespace MedicalLocator.Mobile.Features
 
         public IEnumerable<SearchedObjectViewModel> PossibleSearchedObjects { get; private set; }
 
-        public SearchPageViewModel(CurrentContext currentContext, IEnumsValuesProvider enumsValuesProvider)
+        public SearchPageViewModel(
+            CurrentContext currentContext, 
+            IEnumsValuesProvider enumsValuesProvider, 
+            IContainer container)
         {
             _currentContext = currentContext;
             _enumsValuesProvider = enumsValuesProvider;
+            _container = container;
 
             CenterTypes = _enumsValuesProvider.GetAllCenterTypes();
+        }
+
+        public void BeginSearch()
+        {
+            var command = _container.Resolve<BeginSearch>();
+            CommandInvoker.Execute(command);
         }
 
         protected override void OnActivate()

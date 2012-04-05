@@ -11,30 +11,37 @@ namespace MedicalLocator.Mobile.Services.LocationServices
     {
         public static void SetUserLocation(this Map map, Location userLocation)
         {
-            var userCoordinates = new GeoCoordinate(userLocation.Lat, userLocation.Lng);
-            SetUserPushpin(map, userCoordinates);
+            var userCoordinates = GetGeoCoordinateFromLocation(userLocation);
+            SetUserPushpin(map, userLocation);
             Execute.OnUIThread(() => map.SetView(LocationRect.CreateLocationRect(userCoordinates)));
         }
 
-        public static void SetUserPushpin(this Map map, GeoCoordinate location)
+        public static void SetUserPushpin(this Map map, Location userLocation)
         {
+            var userCoordinates = GetGeoCoordinateFromLocation(userLocation);
             Execute.OnUIThread(() =>
                                    {
                                        map.Children.Clear();
-                                       map.Children.Add(new Pushpin { Location = location });
+                                       map.Children.Add(new Pushpin { Location = userCoordinates });
                                    });
         }
 
-        public static void SetObjectsPushpinsAndView(this Map map, IEnumerable<GeoCoordinate> objectsCoordinates)
+        public static void SetObjectsPushpinsAndView(this Map map, IEnumerable<Location> objectsLocations)
         {
             Execute.OnUIThread(() =>
                                    {
-                                       var coordinatesList = objectsCoordinates.ToList();
-
-                                       var pushpins = coordinatesList.Select(coordinate => new Pushpin { Location = coordinate }).ToList();
+                                       var coordinatesList = objectsLocations.Select(
+                                           location => new GeoCoordinate(location.Lat, location.Lng));
+                                       var pushpins = coordinatesList.Select(
+                                           coordinates => new Pushpin { Location = coordinates }).ToList();
                                        pushpins.ForEach(pushpin => map.Children.Add(pushpin));
                                        map.SetView(LocationRect.CreateLocationRect(coordinatesList));
                                    });
+        }
+
+        private static GeoCoordinate GetGeoCoordinateFromLocation(Location location)
+        {
+            return new GeoCoordinate(location.Lat, location.Lng);
         }
     }
 }

@@ -16,7 +16,7 @@ using System.Linq;
 
 namespace MedicalLocator.Mobile.Commands
 {
-    public class FindNearby : LocationServicesCommand, IHasErrorHandler<WcfConnectionErrorException>
+    public class FindNearby : LocationServicesCommand
     {
         private const int NearestRange = 1000;
 
@@ -46,10 +46,10 @@ namespace MedicalLocator.Mobile.Commands
         {
             using (new BusyArea(_busyScope))
             {
-                Location userCoordinates = _locationProvider.GetUserLocation();
-                GooglePlacesApiResponse response = GetDataFromGooglePlacesApi(userCoordinates);
-                IEnumerable<GeoCoordinate> objectsCoordinates = GetObjectsCoordinatesFromResponse(response);
-                SetDataOnMap(userCoordinates, objectsCoordinates);
+                Location userLocation = _locationProvider.GetUserLocation();
+                GooglePlacesApiResponse response = GetDataFromGooglePlacesApi(userLocation);
+                IEnumerable<Location> objectsLocations = GetObjectsLocationsFromResponse(response);
+                SetDataOnMap(userLocation, objectsLocations);
             }
         }
 
@@ -70,22 +70,16 @@ namespace MedicalLocator.Mobile.Commands
             return _googleMapsInterfaceServiceClient.SendGooglePlacesApiRequest(request);
         }
 
-        private IEnumerable<GeoCoordinate> GetObjectsCoordinatesFromResponse(GooglePlacesApiResponse googlePlacesApiResponse)
+        private IEnumerable<Location> GetObjectsLocationsFromResponse(GooglePlacesApiResponse googlePlacesApiResponse)
         {
-            return googlePlacesApiResponse.Results.Select(
-                result => new GeoCoordinate(result.Geometry.Location.Lat, result.Geometry.Location.Lng));
+            return googlePlacesApiResponse.Results.Select(result => result.Geometry.Location);
         }
 
-        private void SetDataOnMap(Location userLocation, IEnumerable<GeoCoordinate> objectsCoordinates)
+        private void SetDataOnMap(Location userLocation, IEnumerable<Location> objectsLocations)
         {
             Map map = _bingMapHandler.BingMap;
             map.SetUserLocation(userLocation);
-            map.SetObjectsPushpinsAndView(objectsCoordinates);
-        }
-
-        public void HandleError(WcfConnectionErrorException exception)
-        {
-            MessageBoxService.ShowConnectionError();
+            map.SetObjectsPushpinsAndView(objectsLocations);
         }
     }
 }

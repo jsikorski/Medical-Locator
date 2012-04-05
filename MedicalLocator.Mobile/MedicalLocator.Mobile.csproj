@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Commands\AskForLocationServices.cs" />
+    <Compile Include="Commands\BeginSearch.cs" />
     <Compile Include="Commands\FindNearby.cs" />
     <Compile Include="Commands\LocationServicesCommand.cs" />
     <Compile Include="Commands\OpenSearchPage.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Infrastructure\CommandInvoker.cs" />
     <Compile Include="Infrastructure\IBusyScope.cs" />
     <Compile Include="Infrastructure\ICommand.cs" />
+    <Compile Include="Infrastructure\IHasApplicationBar.cs" />
     <Compile Include="Infrastructure\IHasErrorHandler.cs" />
     <Compile Include="Infrastructure\SingleInstanceAttribute.cs" />
     <Compile Include="Infrastructure\SyncCommunicationExtensions.cs" />
@@ -121,6 +123,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPageViewModel.cs" />
+    <Compile Include="Messages\ShouldSearchMessage.cs" />
     <Compile Include="Model\CenterType.cs" />
     <Compile Include="Model\CurrentContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +132,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\IGoogleMapsInterfaceServiceProxy.cs" />
     <Compile Include="Services\LocationProvider.cs" />
     <Compile Include="Services\ILocationProvider.cs" />
     <Compile Include="Services\IEnumsValuesProvider.cs" />
