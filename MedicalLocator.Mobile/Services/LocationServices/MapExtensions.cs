@@ -2,16 +2,18 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
 using Caliburn.Micro;
+using MedicalLocator.Mobile.ServicesReferences;
 using Microsoft.Phone.Controls.Maps;
 
 namespace MedicalLocator.Mobile.Services.LocationServices
 {
     public static class MapExtensions
     {
-        public static void SetUserLocation(this Map map, GeoCoordinate location)
+        public static void SetUserLocation(this Map map, Location userLocation)
         {
-            SetUserPushpin(map, location);
-            Execute.OnUIThread(() => map.SetView(LocationRect.CreateLocationRect(location)));
+            var userCoordinates = new GeoCoordinate(userLocation.Lat, userLocation.Lng);
+            SetUserPushpin(map, userCoordinates);
+            Execute.OnUIThread(() => map.SetView(LocationRect.CreateLocationRect(userCoordinates)));
         }
 
         public static void SetUserPushpin(this Map map, GeoCoordinate location)

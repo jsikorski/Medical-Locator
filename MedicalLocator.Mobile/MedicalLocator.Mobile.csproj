@@ -87,6 +87,7 @@
     <Compile Include="Commands\LocationServicesCommand.cs" />
     <Compile Include="Commands\OpenSearchPage.cs" />
     <Compile Include="Commands\OpenSettingsPage.cs" />
+    <Compile Include="Commands\Search.cs" />
     <Compile Include="Commands\ShowAboutPage.cs" />
     <Compile Include="Commands\StopLocationServices.cs" />
     <Compile Include="Converters\CenterTypesToNamesConverter.cs" />
@@ -128,7 +129,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\LocationProvider.cs" />
+    <Compile Include="Services\ILocationProvider.cs" />
     <Compile Include="Services\IEnumsValuesProvider.cs" />
+    <Compile Include="Services\LocationServices\GeoCoordinateExtensions.cs" />
     <Compile Include="Services\LocationServices\IBingMapHandler.cs" />
     <Compile Include="Services\LocationServices\ILocationServicesManager.cs" />
     <Compile Include="Services\LocationServices\LocationServicesDisabledException.cs" />

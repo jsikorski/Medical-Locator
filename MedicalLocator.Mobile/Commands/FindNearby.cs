@@ -20,7 +20,7 @@ namespace MedicalLocator.Mobile.Commands
     {
         private const int NearestRange = 1000;
 
-        private readonly ILocationServicesManager _locationServicesManager;
+        private readonly ILocationProvider _locationProvider;
         private readonly IBingMapHandler _bingMapHandler;
         private readonly GoogleMapsInterfaceServiceClient _googleMapsInterfaceServiceClient;
         private readonly IEnumsValuesProvider _enumsValuesProvider;
@@ -28,13 +28,13 @@ namespace MedicalLocator.Mobile.Commands
         private readonly IBusyScope _busyScope;
 
         public FindNearby(
-            ILocationServicesManager locationServicesManager,
+            ILocationProvider locationProvider,
             MainPageViewModel mainPageViewModel,
             GoogleMapsInterfaceServiceClient googleMapsInterfaceServiceClient,
             IEnumsValuesProvider enumsValuesProvider,
             CurrentContext currentContext)
         {
-            _locationServicesManager = locationServicesManager;
+            _locationProvider = locationProvider;
             _bingMapHandler = mainPageViewModel;
             _googleMapsInterfaceServiceClient = googleMapsInterfaceServiceClient;
             _enumsValuesProvider = enumsValuesProvider;
@@ -46,23 +46,16 @@ namespace MedicalLocator.Mobile.Commands
         {
             using (new BusyArea(_busyScope))
             {
-                StartLocationServices();
-                GeoCoordinate userCoordinates = _locationServicesManager.GetCoordinates();
+                Location userCoordinates = _locationProvider.GetUserLocation();
                 GooglePlacesApiResponse response = GetDataFromGooglePlacesApi(userCoordinates);
                 IEnumerable<GeoCoordinate> objectsCoordinates = GetObjectsCoordinatesFromResponse(response);
                 SetDataOnMap(userCoordinates, objectsCoordinates);
             }
         }
 
-        private void StartLocationServices()
-        {
-            _locationServicesManager.TryStart();
-        }
-
-        private GooglePlacesApiResponse GetDataFromGooglePlacesApi(GeoCoordinate userCoordinate)
+        private GooglePlacesApiResponse GetDataFromGooglePlacesApi(Location userLocation)
         {
             bool isGpsUsed = _currentContext.AreLocationServicesAllowed;
-            var userLocation = new Location { Lat = userCoordinate.Latitude, Lng = userCoordinate.Longitude };
             IEnumerable<MedicalType> allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
             var searchedObjects = new ObservableCollection<MedicalType>(allMedicalTypes);
 
@@ -83,10 +76,10 @@ namespace MedicalLocator.Mobile.Commands
                 result => new GeoCoordinate(result.Geometry.Location.Lat, result.Geometry.Location.Lng));
         }
 
-        private void SetDataOnMap(GeoCoordinate userCoordinate, IEnumerable<GeoCoordinate> objectsCoordinates)
+        private void SetDataOnMap(Location userLocation, IEnumerable<GeoCoordinate> objectsCoordinates)
         {
             Map map = _bingMapHandler.BingMap;
-            map.SetUserLocation(userCoordinate);
+            map.SetUserLocation(userLocation);
             map.SetObjectsPushpinsAndView(objectsCoordinates);
         }
 
