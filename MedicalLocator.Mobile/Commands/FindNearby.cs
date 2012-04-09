@@ -4,9 +4,9 @@ using System.Collections.ObjectModel;
 using System.Device.Location;
 using System.ServiceModel;
 using System.Windows;
+using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Exceptions;
 using MedicalLocator.Mobile.Infrastructure;
-using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services;
 using MedicalLocator.Mobile.Services.LocationServices;
 using MedicalLocator.Mobile.ServicesReferences;
@@ -16,29 +16,29 @@ using System.Linq;
 
 namespace MedicalLocator.Mobile.Commands
 {
-    public class FindNearby : LocationServicesCommand
+    public class FindNearby : SearchingCommand
     {
         private const int NearestRange = 1000;
 
         private readonly ILocationProvider _locationProvider;
         private readonly IBingMapHandler _bingMapHandler;
-        private readonly GoogleMapsInterfaceServiceClient _googleMapsInterfaceServiceClient;
         private readonly IEnumsValuesProvider _enumsValuesProvider;
-        private readonly CurrentContext _currentContext;
+        private readonly IGoogleMapsInterfaceServiceProxy _googleMapsInterfaceServiceProxy;
+        private readonly IBingMapsHelper _bingMapsHelper;
         private readonly IBusyScope _busyScope;
 
         public FindNearby(
             ILocationProvider locationProvider,
             MainPageViewModel mainPageViewModel,
-            GoogleMapsInterfaceServiceClient googleMapsInterfaceServiceClient,
             IEnumsValuesProvider enumsValuesProvider,
-            CurrentContext currentContext)
+            IGoogleMapsInterfaceServiceProxy googleMapsInterfaceServiceProxy, 
+            BingMapsHelper bingMapsHelper)
         {
             _locationProvider = locationProvider;
             _bingMapHandler = mainPageViewModel;
-            _googleMapsInterfaceServiceClient = googleMapsInterfaceServiceClient;
             _enumsValuesProvider = enumsValuesProvider;
-            _currentContext = currentContext;
+            _googleMapsInterfaceServiceProxy = googleMapsInterfaceServiceProxy;
+            _bingMapsHelper = bingMapsHelper;
             _busyScope = mainPageViewModel;
         }
 
@@ -47,39 +47,16 @@ namespace MedicalLocator.Mobile.Commands
             using (new BusyArea(_busyScope))
             {
                 Location userLocation = _locationProvider.GetUserLocation();
-                GooglePlacesApiResponse response = GetDataFromGooglePlacesApi(userLocation);
-                IEnumerable<Location> objectsLocations = GetObjectsLocationsFromResponse(response);
-                SetDataOnMap(userLocation, objectsLocations);
+                GooglePlacesWcfResponse response = GetResponseFromGooglePlacesApi(userLocation);
+                _bingMapsHelper.SetObjectsUsingGooglePlacesWcfResponse(_bingMapHandler, userLocation, response);
             }
         }
 
-        private GooglePlacesApiResponse GetDataFromGooglePlacesApi(Location userLocation)
+        private GooglePlacesWcfResponse GetResponseFromGooglePlacesApi(Location userLocation)
         {
-            bool isGpsUsed = _currentContext.AreLocationServicesAllowed;
             IEnumerable<MedicalType> allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
-            var searchedObjects = new ObservableCollection<MedicalType>(allMedicalTypes);
-
-            var request = new GooglePlacesApiRequest
-                              {
-                                  IsGpsUsed = isGpsUsed,
-                                  Location = userLocation,
-                                  MedicalTypes = searchedObjects,
-                                  Radius = NearestRange
-                              };
-
-            return _googleMapsInterfaceServiceClient.SendGooglePlacesApiRequest(request);
-        }
-
-        private IEnumerable<Location> GetObjectsLocationsFromResponse(GooglePlacesApiResponse googlePlacesApiResponse)
-        {
-            return googlePlacesApiResponse.Results.Select(result => result.Geometry.Location);
-        }
-
-        private void SetDataOnMap(Location userLocation, IEnumerable<Location> objectsLocations)
-        {
-            Map map = _bingMapHandler.BingMap;
-            map.SetUserLocation(userLocation);
-            map.SetObjectsPushpinsAndView(objectsLocations);
+            return _googleMapsInterfaceServiceProxy
+                .GetResponseFromGooglePlacesApi(userLocation, allMedicalTypes, NearestRange);
         }
     }
 }

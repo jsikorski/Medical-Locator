@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.ServiceModel;
-using Common.Keys;
 using GoogleMapsInterfaceService;
 using GoogleMapsInterfaceService.Faults;
 using GoogleMapsInterfaceService.GooglePlacesApi;
+using GoogleMapsInterfaceService.Keys;
 using GoogleMapsInterfaceService.Requests;
 using NSubstitute;
 using NUnit.Framework;
@@ -28,13 +27,13 @@ namespace Tests.GoogleMapsInterfaceService
 
             IGoogleMapsInterfaceService service
                 = new global::GoogleMapsInterfaceService.GoogleMapsInterfaceService(requestSender);
-            GooglePlacesApiResponse response = service.SendGooglePlacesApiRequest(request);
+            GooglePlacesWcfResponse response = service.SendGooglePlacesApiRequest(request);
 
             Assert.IsNotNull(response.Results);
             Assert.IsNotEmpty(response.Results);
             Assert.AreEqual(Status.Ok, response.Status);
 
-            Location responseLocation = response.Results.First().Geometry.Location;
+            Location responseLocation = response.Results.First().Location;
             Assert.AreNotEqual(0.0, responseLocation.Lat);
             Assert.AreNotEqual(0.0, responseLocation.Lng);
         }

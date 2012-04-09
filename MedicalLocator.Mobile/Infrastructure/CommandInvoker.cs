@@ -41,13 +41,14 @@ namespace MedicalLocator.Mobile.Infrastructure
             }
             else
             {
-                HandleUnknownError();                
+                HandleUnknownError();
             }
         }
 
         private static void HandleUnknownError()
         {
-            Caliburn.Micro.Execute.OnUIThread(() => MessageBox.Show("Unknown error"));
+            Caliburn.Micro.Execute.OnUIThread(
+                () => MessageBox.Show("Unknown error occured. Please contact Medical Locator service."));
         }
 
         private static bool HasExceptionErrorHandler(ICommand command)
@@ -64,7 +65,7 @@ namespace MedicalLocator.Mobile.Infrastructure
         private static void InvokeErrorHandler(ICommand command, Exception exception)
         {
             MethodInfo handlerMethod = command.GetType().GetMethod(ErrorHandlerMethodName, new[] { exception.GetType() });
-            handlerMethod.Invoke(command, new object[] {exception});
+            handlerMethod.Invoke(command, new object[] { exception });
         }
     }
 }

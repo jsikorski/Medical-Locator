@@ -7,7 +7,9 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:cal="http://www.caliburnproject.org"
                             xmlns:Infrastructure="clr-namespace:MedicalLocator.Mobile.Infrastructure"
-                            mc:Ignorable="d"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:Maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
+                            xmlns:Converters="clr-namespace:MedicalLocator.Mobile.Converters" mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -20,6 +22,11 @@
         <Grid x:Name="LayoutRoot"
               Background="White">
 
+            <Grid.Resources>
+                <Converters:PushpinTypeToBrushConverter x:Key="pushpinTypeToBrushConverter"/>
+                <Converters:PushpinTypeToImageSourceConverter x:Key="pushpinTypeToImageSourceConverter"/>
+            </Grid.Resources>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
@@ -28,9 +35,18 @@
             <Grid x:Name="ContentPanel"
                   Grid.Row="0"
                   Margin="12,0,12,0">
-                <ContentControl Content="{Binding BingMap}"
-                                HorizontalContentAlignment="Stretch"
-                                VerticalContentAlignment="Stretch" />
+                <Maps:Map x:Name="BingMap">
+                    <Maps:MapItemsControl ItemsSource="{Binding BingMapPushpins}">
+                        <Maps:MapItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Maps:Pushpin Location="{Binding Coordinates}"
+                                              Background="{Binding PushpinType, Converter={StaticResource pushpinTypeToBrushConverter}}">
+                                    <Image Source="{Binding PushpinType, Converter={StaticResource pushpinTypeToImageSourceConverter}}" />
+                                </Maps:Pushpin>
+                            </DataTemplate>
+                        </Maps:MapItemsControl.ItemTemplate>
+                    </Maps:MapItemsControl>
+                </Maps:Map>
             </Grid>
 
             <Grid Grid.Row="1"
@@ -38,7 +54,13 @@
                 <Image Height="32"
                        Margin="0 15 0 20"
                        HorizontalAlignment="Right"
-                       Source="Graphics/powered-by-google-on-white.png" />
+                       Source="Graphics/powered-by-google-on-white.png">
+                    <toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:ContextMenu>
+                            <toolkit:MenuItem Header="this is menu 1"></toolkit:MenuItem>
+                        </toolkit:ContextMenu>
+                    </toolkit:ContextMenuService.ContextMenu>
+                </Image>
             </Grid>
 
         </Grid>

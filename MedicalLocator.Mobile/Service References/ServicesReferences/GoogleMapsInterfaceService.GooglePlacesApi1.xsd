@@ -65,33 +65,26 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="MedicalType" nillable="true" type="tns:MedicalType" />
-  <xs:complexType name="GooglePlacesApiResponse">
+  <xs:complexType name="GooglePlacesWcfResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Results" nillable="true" type="tns:ArrayOfApiResult" />
+      <xs:element minOccurs="0" name="Results" nillable="true" type="tns:ArrayOfGooglePlacesWcfResult" />
       <xs:element minOccurs="0" name="Status" type="tns:Status" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="GooglePlacesApiResponse" nillable="true" type="tns:GooglePlacesApiResponse" />
-  <xs:complexType name="ArrayOfApiResult">
+  <xs:element name="GooglePlacesWcfResponse" nillable="true" type="tns:GooglePlacesWcfResponse" />
+  <xs:complexType name="ArrayOfGooglePlacesWcfResult">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="ApiResult" nillable="true" type="tns:ApiResult" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GooglePlacesWcfResult" nillable="true" type="tns:GooglePlacesWcfResult" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfApiResult" nillable="true" type="tns:ArrayOfApiResult" />
-  <xs:complexType name="ApiResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Geometry" nillable="true" type="tns:Geometry" />
-      <xs:element minOccurs="0" name="Icon" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ApiResult" nillable="true" type="tns:ApiResult" />
-  <xs:complexType name="Geometry">
+  <xs:element name="ArrayOfGooglePlacesWcfResult" nillable="true" type="tns:ArrayOfGooglePlacesWcfResult" />
+  <xs:complexType name="GooglePlacesWcfResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="Location" nillable="true" type="tns:Location" />
+      <xs:element minOccurs="0" name="Type" type="tns:MedicalType" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Geometry" nillable="true" type="tns:Geometry" />
+  <xs:element name="GooglePlacesWcfResult" nillable="true" type="tns:GooglePlacesWcfResult" />
   <xs:simpleType name="Status">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Ok" />

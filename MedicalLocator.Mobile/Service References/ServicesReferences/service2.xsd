@@ -11,7 +11,7 @@
   <xs:element name="SendGooglePlacesApiRequestResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GooglePlacesApi" minOccurs="0" name="SendGooglePlacesApiRequestResult" nillable="true" type="q2:GooglePlacesApiResponse" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GooglePlacesApi" minOccurs="0" name="SendGooglePlacesApiRequestResult" nillable="true" type="q2:GooglePlacesWcfResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

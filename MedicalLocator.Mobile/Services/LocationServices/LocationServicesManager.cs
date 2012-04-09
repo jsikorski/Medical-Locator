@@ -10,7 +10,6 @@ namespace MedicalLocator.Mobile.Services.LocationServices
     {
         private readonly TimeSpan _gpsTryStartTimeSpan = new TimeSpan(0, 0, 3);
 
-        private IBingMapHandler _bigBingMapHandler;
         private readonly GeoCoordinateWatcher _geoCoordinateWatcher;
         private readonly CurrentContext _currentContext;
 
@@ -20,17 +19,7 @@ namespace MedicalLocator.Mobile.Services.LocationServices
             _currentContext = currentContext;
         }
 
-        private bool _isStarted;
-        public bool IsStarted
-        {
-            get { return _isStarted; }
-        }
-
-        private bool _isTracking;
-        public bool IsTracking
-        {
-            get { return _isTracking; }
-        }
+        public bool IsStarted { get; private set; }
 
         public void TryStart()
         {
@@ -47,7 +36,7 @@ namespace MedicalLocator.Mobile.Services.LocationServices
 
         public void Stop()
         {
-            _isStarted = false;
+            IsStarted = false;
             _geoCoordinateWatcher.Stop();
         }
 
@@ -64,7 +53,7 @@ namespace MedicalLocator.Mobile.Services.LocationServices
                 HandleGpsStartError();
             }
 
-            _isStarted = true;
+            IsStarted = true;
         }
 
         private void HandleGpsStartError()

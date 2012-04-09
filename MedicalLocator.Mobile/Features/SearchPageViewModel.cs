@@ -76,7 +76,7 @@ namespace MedicalLocator.Mobile.Features
 
         protected override void OnDeactivate(bool close)
         {
-            _currentContext.SearchedObjects = PossibleSearchedObjects.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType);
+            _currentContext.SelectedSearchedObjects = PossibleSearchedObjects.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType);
             base.OnDeactivate(close);
         }
     }

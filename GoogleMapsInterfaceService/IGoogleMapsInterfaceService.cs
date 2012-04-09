@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
+﻿using System.ServiceModel;
 using GoogleMapsInterfaceService.Faults;
 using GoogleMapsInterfaceService.GooglePlacesApi;
-using GoogleMapsInterfaceService.Requests;
 
 namespace GoogleMapsInterfaceService
 {
@@ -17,6 +11,6 @@ namespace GoogleMapsInterfaceService
         [FaultContract(typeof(ConnectionFault))]
         [FaultContract(typeof(InvalidResponseFault))]
         [FaultContract(typeof(RequestDeniedFault))]
-        GooglePlacesApiResponse SendGooglePlacesApiRequest(GooglePlacesApiRequest request);
+        GooglePlacesWcfResponse SendGooglePlacesApiRequest(GooglePlacesApiRequest request);
     }
 }

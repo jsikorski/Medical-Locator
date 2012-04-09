@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Device.Location;
-using System.Threading;
-using System.Windows;
-using Autofac;
+﻿using Autofac;
 using Caliburn.Micro;
+using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Messages;
-using MedicalLocator.Mobile.Services.LocationServices;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Shell;
 
 namespace MedicalLocator.Mobile
 {
     [SingleInstance]
-    public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler, IHasApplicationBar, IHandle<ShouldSearchMessage>
+    public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler, 
+        IHasApplicationBar, IHandle<ShouldSearchMessage>
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IContainer _container;
+        private Map _bingMap;
 
         public MainPageViewModel(IEventAggregator eventAggregator, IContainer container)
         {
@@ -26,7 +23,7 @@ namespace MedicalLocator.Mobile
             _eventAggregator.Subscribe(this);
 
             _container = container;
-            BingMap = new Map();
+            BingMapPushpins = new BindableCollection<PushpinViewModel>();
         }
 
         public void FindNearby()
@@ -62,12 +59,6 @@ namespace MedicalLocator.Mobile
             CommandInvoker.Invoke(command);
         }
 
-        protected override void OnActivate()
-        {
-            ApplicationBar.IsVisible = true;
-            base.OnActivate();
-        }
-
         protected override void OnDeactivate(bool close)
         {
             var command = _container.Resolve<StopLocationServices>();
@@ -77,7 +68,9 @@ namespace MedicalLocator.Mobile
 
         protected override void OnViewAttached(object view, object context)
         {
-            ApplicationBar = ((MainPage)view).ApplicationBar;
+            var mainPage = (MainPage) view;
+            ApplicationBar = mainPage.ApplicationBar;
+            _bingMap = mainPage.BingMap;
             base.OnViewAttached(view, context);
         }
 
@@ -98,7 +91,18 @@ namespace MedicalLocator.Mobile
 
         #region Implementation of IBingMapHandler
 
-        public Map BingMap { get; private set; }
+        public BindableCollection<PushpinViewModel> BingMapPushpins { get; private set; }
+
+        public void UpdateBingMapView()
+        {
+            _bingMap.UpdateView(BingMapPushpins);
+        }
+
+        #endregion
+
+        #region Implementation of IHasApplicationBar
+
+        public IApplicationBar ApplicationBar { get; private set; }
 
         #endregion
 
@@ -108,12 +112,6 @@ namespace MedicalLocator.Mobile
         {
             Search();
         }
-
-        #endregion
-
-        #region Implementation of IHasApplicationBar
-
-        public IApplicationBar ApplicationBar { get; private set; }
 
         #endregion
     }

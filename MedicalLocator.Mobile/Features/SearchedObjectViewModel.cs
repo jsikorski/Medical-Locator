@@ -23,7 +23,7 @@ namespace MedicalLocator.Mobile.Features
             return new SearchedObjectViewModel
                        {
                            MedicalType = medicalType,
-                           IsSelected = currentContext.SearchedObjects.Contains(medicalType)
+                           IsSelected = currentContext.SelectedSearchedObjects.Contains(medicalType)
                        };
         }
     }

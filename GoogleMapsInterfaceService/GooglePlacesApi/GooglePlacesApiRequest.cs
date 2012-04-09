@@ -1,12 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.Serialization;
-using Common.Extensions;
-using Common.Keys;
+using GoogleMapsInterfaceService.Extensions;
+using GoogleMapsInterfaceService.Keys;
 using GoogleMapsInterfaceService.Properties;
 using GoogleMapsInterfaceService.Requests;
-using System.Linq;
 
 namespace GoogleMapsInterfaceService.GooglePlacesApi
 {

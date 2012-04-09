@@ -82,10 +82,16 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="BingMaps\BingMapsHelper.cs" />
+    <Compile Include="BingMaps\IBingMapsHelper.cs" />
+    <Compile Include="BingMaps\IBingMapHandler.cs" />
+    <Compile Include="BingMaps\BingMapExtensions.cs" />
+    <Compile Include="BingMaps\PushpinType.cs" />
+    <Compile Include="BingMaps\PushpinViewModel.cs" />
     <Compile Include="Commands\AskForLocationServices.cs" />
     <Compile Include="Commands\BeginSearch.cs" />
     <Compile Include="Commands\FindNearby.cs" />
-    <Compile Include="Commands\LocationServicesCommand.cs" />
+    <Compile Include="Commands\SearchingCommand.cs" />
     <Compile Include="Commands\OpenSearchPage.cs" />
     <Compile Include="Commands\OpenSettingsPage.cs" />
     <Compile Include="Commands\Search.cs" />
@@ -94,6 +100,8 @@
     <Compile Include="Converters\CenterTypesToNamesConverter.cs" />
     <Compile Include="Converters\CenterTypeNameToVisibilityConverter.cs" />
     <Compile Include="Converters\CenterTypeToNameConverter.cs" />
+    <Compile Include="Converters\PushpinTypeToBrushConverter.cs" />
+    <Compile Include="Converters\PushpinTypeToImageSourceConverter.cs" />
     <Compile Include="Exceptions\WcfConnectionErrorException.cs" />
     <Compile Include="Features\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -132,19 +140,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\GoogleMapsInterfaceServiceProxy.cs" />
     <Compile Include="Services\IGoogleMapsInterfaceServiceProxy.cs" />
     <Compile Include="Services\LocationProvider.cs" />
     <Compile Include="Services\ILocationProvider.cs" />
     <Compile Include="Services\IEnumsValuesProvider.cs" />
     <Compile Include="Services\LocationServices\GeoCoordinateExtensions.cs" />
-    <Compile Include="Services\LocationServices\IBingMapHandler.cs" />
     <Compile Include="Services\LocationServices\ILocationServicesManager.cs" />
+    <Compile Include="Services\LocationServices\LocationExtensions.cs" />
     <Compile Include="Services\LocationServices\LocationServicesDisabledException.cs" />
     <Compile Include="Services\LocationServices\LocationServicesManager.cs" />
     <Compile Include="Services\LocationServices\LocationServicesNotAllowedException.cs" />
     <Compile Include="Services\LocationServices\LocationServicesUnavailableException.cs" />
-    <Compile Include="Services\LocationServices\MapExtensions.cs" />
     <Compile Include="Services\EnumsValuesProvider.cs" />
+    <Page Include="Styles\PushpinsStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="Utils\MessageBoxService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +180,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Styles.xaml">
+    <Page Include="Styles\BusyIndicatorControlStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -184,10 +196,16 @@
     <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.GooglePlacesApi1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicesReferences\MedicalLocator.Mobile.ServicesReferences.GooglePlacesApiResponse.datasource">
+    <Content Include="Graphics\Pushpins\me.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Graphics\findNearbyIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\ServicesReferences\MedicalLocator.Mobile.ServicesReferences.GooglePlacesWcfResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <Content Include="ServiceReferences.ClientConfig" />
     <None Include="Service References\ServicesReferences\service1.wsdl" />
     <None Include="Service References\ServicesReferences\service2.xsd">
       <SubType>Designer</SubType>
@@ -210,9 +228,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Content Include="Graphics\searchIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Graphics\findNearbyIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Graphics\settingsIcon.png">

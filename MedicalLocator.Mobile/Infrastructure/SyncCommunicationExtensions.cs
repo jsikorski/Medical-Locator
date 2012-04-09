@@ -9,11 +9,11 @@ namespace MedicalLocator.Mobile.Infrastructure
 {
     public static class SyncCommunicationExtensions
     {
-        public static GooglePlacesApiResponse SendGooglePlacesApiRequest(
+        public static GooglePlacesWcfResponse SendGooglePlacesApiRequest(
             this GoogleMapsInterfaceServiceClient client, GooglePlacesApiRequest request)
         {
             var syncProvider = new ManualResetEvent(false);
-            GooglePlacesApiResponse response = null;
+            GooglePlacesWcfResponse response = null;
             client.SendGooglePlacesApiRequestCompleted += (sender, args) =>
                                                               {
                                                                   syncProvider.Set();

@@ -4,12 +4,12 @@ using System.Runtime.Serialization;
 namespace GoogleMapsInterfaceService.GooglePlacesApi
 {
     [DataContract]
-    public class GooglePlacesApiResponse
+    public class GooglePlacesWcfResponse
     {
         [DataMember]
-        public IEnumerable<GooglePlacesApiResult> Results { get; set; }
+        public IEnumerable<GooglePlacesWcfResult> Results { get; set; }
 
         [DataMember]
-        public Status Status { get; set; }
+        public Status Status { get; set; } 
     }
 }

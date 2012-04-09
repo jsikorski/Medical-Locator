@@ -27,12 +27,13 @@ namespace GoogleMapsInterfaceService
             _requestsSender = requestsSender;
         }
 
-        public GooglePlacesApiResponse SendGooglePlacesApiRequest(GooglePlacesApiRequest request)
+        public GooglePlacesWcfResponse SendGooglePlacesApiRequest(GooglePlacesApiRequest request)
         {
             string responseJson = GetJsonFromGooglePlacesApi(request);
-            var response = GetDeserializedDataFromJson<GooglePlacesApiResponse>(responseJson);
-            CheckGooglePlacesApiResponse(response);
-            return response;
+            var apiResponse = GetDeserializedDataFromJson<GooglePlacesApiResponse>(responseJson);
+            CheckGooglePlacesApiResponse(apiResponse);
+            GooglePlacesWcfResponse wcfResponse = ConvertGooglePlacesApiToGooglePlacesWcfResponse(apiResponse);
+            return wcfResponse;
         }
 
         private string GetJsonFromGooglePlacesApi(GooglePlacesApiRequest request)
@@ -57,29 +58,6 @@ namespace GoogleMapsInterfaceService
             return responseJson;
         }
 
-        private T GetDeserializedDataFromJson<T>(string jsonString)
-        {
-            var serializer = new JavaScriptSerializer();
-
-            T deserializedData;
-            try
-            {
-                deserializedData = serializer.Deserialize<T>(jsonString);
-            }
-            catch (Exception)
-            {
-                var invalidResponseFault = new InvalidResponseFault
-                                               {
-                                                   ResponseText = jsonString,
-                                                   Message = "Received invalid response."
-                                               };
-
-                throw new FaultException<InvalidResponseFault>(invalidResponseFault, "Invalid response from server");
-            }
-
-            return deserializedData;
-        }
-
         private void CheckGooglePlacesApiResponse(GooglePlacesApiResponse response)
         {
             if (response.Status == Status.Request_Denied)
@@ -92,5 +70,35 @@ namespace GoogleMapsInterfaceService
                 throw new FaultException<RequestDeniedFault>(requestDeniedFault, "Request is denied");
             }
         }
+
+        private GooglePlacesWcfResponse ConvertGooglePlacesApiToGooglePlacesWcfResponse(GooglePlacesApiResponse googlePlacesApiResponse)
+        {
+            var converter = new GooglePlacesApiToWcfResponseConverter();
+            return converter.Convert(googlePlacesApiResponse);
+        }
+
+        private T GetDeserializedDataFromJson<T>(string jsonString)
+        {
+            var serializer = new JavaScriptSerializer();
+
+            T deserializedData;
+            try
+            {
+                deserializedData = serializer.Deserialize<T>(jsonString);
+            }
+            catch (Exception)
+            {
+                var invalidResponseFault = new InvalidResponseFault
+                {
+                    ResponseText = jsonString,
+                    Message = "Received invalid response."
+                };
+
+                throw new FaultException<InvalidResponseFault>(invalidResponseFault, "Invalid response from server");
+            }
+
+            return deserializedData;
+        }
+
     }
 }

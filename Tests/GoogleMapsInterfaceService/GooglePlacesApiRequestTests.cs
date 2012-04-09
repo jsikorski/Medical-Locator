@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Common.Keys;
 using GoogleMapsInterfaceService.GooglePlacesApi;
-using NSubstitute;
 using NUnit.Framework;
 
 namespace Tests.GoogleMapsInterfaceService

@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationService", "Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{6B210515-6088-40E9-8D58-955FC37D9CE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{CC601095-34F4-4E8C-BAF8-18D17D765174}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,16 +87,6 @@ Global
 		{6B210515-6088-40E9-8D58-955FC37D9CE6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6B210515-6088-40E9-8D58-955FC37D9CE6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6B210515-6088-40E9-8D58-955FC37D9CE6}.Release|x86.ActiveCfg = Release|Any CPU
-		{CC601095-34F4-4E8C-BAF8-18D17D765174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC601095-34F4-4E8C-BAF8-18D17D765174}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC601095-34F4-4E8C-BAF8-18D17D765174}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{CC601095-34F4-4E8C-BAF8-18D17D765174}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{CC601095-34F4-4E8C-BAF8-18D17D765174}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CC601095-34F4-4E8C-BAF8-18D17D765174}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC601095-34F4-4E8C-BAF8-18D17D765174}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC601095-34F4-4E8C-BAF8-18D17D765174}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{CC601095-34F4-4E8C-BAF8-18D17D765174}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{CC601095-34F4-4E8C-BAF8-18D17D765174}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

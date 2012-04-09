@@ -1,4 +1,4 @@
-using Common.Keys;
+using GoogleMapsInterfaceService.Keys;
 using NUnit.Framework;
 
 namespace Tests.Common

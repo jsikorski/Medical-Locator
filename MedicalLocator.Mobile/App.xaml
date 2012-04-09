@@ -7,7 +7,8 @@
         <ResourceDictionary>
             <Mobile:AppBootstrapper x:Key="bootstrapper" />
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/Styles.xaml" />
+                <ResourceDictionary Source="Styles/BusyIndicatorControlStyle.xaml" />
+                <ResourceDictionary Source="Styles/PushpinsStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

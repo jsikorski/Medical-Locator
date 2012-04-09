@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Common.Extensions;
+using GoogleMapsInterfaceService.Extensions;
 using NUnit.Framework;
 
 namespace Tests.Common

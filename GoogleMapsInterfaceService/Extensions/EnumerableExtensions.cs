@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace Common.Extensions
+namespace GoogleMapsInterfaceService.Extensions
 {
     public static class EnumerableExtensions
     {
