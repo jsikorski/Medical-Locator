@@ -11,7 +11,7 @@ namespace MedicalLocator.Mobile.Converters
     public class PushpinTypeToImageSourceConverter : IValueConverter
     {
         private const string PushpinImagesSourceBase = @"Graphics\Pushpins\";
-        private const string UserPushpinImageSource = PushpinImagesSourceBase + "me.png";
+        private const string UserPushpinImageSource = PushpinImagesSourceBase + "user.png";
         private readonly IDictionary<MedicalType, string> _fileNamesDictionary
             = new Dictionary<MedicalType, string>
                   {

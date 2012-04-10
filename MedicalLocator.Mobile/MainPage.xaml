@@ -35,13 +35,20 @@
             <Grid x:Name="ContentPanel"
                   Grid.Row="0"
                   Margin="12,0,12,0">
-                <Maps:Map x:Name="BingMap">
+                <Maps:Map x:Name="BingMap" 
+                          LogoVisibility="Collapsed">
                     <Maps:MapItemsControl ItemsSource="{Binding BingMapPushpins}">
                         <Maps:MapItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Maps:Pushpin Location="{Binding Coordinates}"
-                                              Background="{Binding PushpinType, Converter={StaticResource pushpinTypeToBrushConverter}}">
-                                    <Image Source="{Binding PushpinType, Converter={StaticResource pushpinTypeToImageSourceConverter}}" />
+                                            Background="{Binding PushpinType, Converter={StaticResource pushpinTypeToBrushConverter}}"
+                                            Tap="PushpinTap">
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu IsZoomEnabled="False">
+                                            <toolkit:MenuItem Style="{StaticResource PushpinTooltipsStyle}" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <Image Source="{Binding PushpinType, Converter={StaticResource pushpinTypeToImageSourceConverter}}"/>
                                 </Maps:Pushpin>
                             </DataTemplate>
                         </Maps:MapItemsControl.ItemTemplate>
@@ -55,12 +62,8 @@
                        Margin="0 15 0 20"
                        HorizontalAlignment="Right"
                        Source="Graphics/powered-by-google-on-white.png">
-                    <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu>
-                            <toolkit:MenuItem Header="this is menu 1"></toolkit:MenuItem>
-                        </toolkit:ContextMenu>
-                    </toolkit:ContextMenuService.ContextMenu>
                 </Image>
+
             </Grid>
 
         </Grid>

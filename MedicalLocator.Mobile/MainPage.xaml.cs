@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Shell;
+using GestureEventArgs = System.Windows.Input.GestureEventArgs;
 
 namespace MedicalLocator.Mobile
 {
@@ -21,6 +22,17 @@ namespace MedicalLocator.Mobile
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void PushpinTap(object sender, GestureEventArgs e)
+        {
+            OpenPushpinTooltip(sender as Pushpin);
+        }
+
+        private void OpenPushpinTooltip(Pushpin pushpin)
+        {
+            ContextMenu contextMenu = ContextMenuService.GetContextMenu(pushpin);
+            contextMenu.IsOpen = true;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text;
 
 namespace GoogleMapsInterfaceService.Requests
 {
@@ -9,6 +10,7 @@ namespace GoogleMapsInterfaceService.Requests
             string requestUrl = request.ToRequestUrl();
             
             var webClient = new WebClient();
+            webClient.Encoding = Encoding.UTF8;
             string response = webClient.DownloadString(requestUrl);
             return response;
         }

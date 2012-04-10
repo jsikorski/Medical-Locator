@@ -1,0 +1,31 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:Converters="clr-namespace:MedicalLocator.Mobile.Converters" mc:Ignorable="d">
+    <Converters:PushpinTypeToNameConverter x:Key="pushpinTypeToNameConverter" />
+    <Style x:Key="PushpinTooltipsStyle" TargetType="toolkit:MenuItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="toolkit:MenuItem">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" 
+                                       TextWrapping="Wrap" 
+                                       Margin="24,0" 
+                                       FontSize="26"/>
+                        <TextBlock Text="{Binding Vicinity}" 
+                                       TextTrimming="WordEllipsis" 
+                                       Margin="24,0" 
+                                       FontSize="22"/>
+                        <TextBlock Text="{Binding PushpinType, Converter={StaticResource pushpinTypeToNameConverter}}" 
+                                       TextTrimming="WordEllipsis" 
+                                       Margin="24,0" 
+                                       FontSize="22"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

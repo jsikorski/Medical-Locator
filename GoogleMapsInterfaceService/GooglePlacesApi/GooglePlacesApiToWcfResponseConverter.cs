@@ -16,10 +16,12 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
 
         private GooglePlacesWcfResult GetGooglePlacesWcfFromApiResult(GooglePlacesApiResult googlePlacesApiResult)
         {
+            string name = googlePlacesApiResult.Name;
+            string vicinity = googlePlacesApiResult.Vicinity;
             Location location = googlePlacesApiResult.Geometry.Location;
             MedicalType medicalType = GetMostSpecificMedicalType(googlePlacesApiResult);
 
-            return new GooglePlacesWcfResult { Location = location, Type = medicalType };
+            return new GooglePlacesWcfResult { Name = name, Vicinity = vicinity, Location = location, Type = medicalType };
         }
 
         private MedicalType GetMostSpecificMedicalType(GooglePlacesApiResult googlePlacesApiResult)

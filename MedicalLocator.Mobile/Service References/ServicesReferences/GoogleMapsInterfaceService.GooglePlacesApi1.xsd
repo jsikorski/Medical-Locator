@@ -81,7 +81,9 @@
   <xs:complexType name="GooglePlacesWcfResult">
     <xs:sequence>
       <xs:element minOccurs="0" name="Location" nillable="true" type="tns:Location" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Type" type="tns:MedicalType" />
+      <xs:element minOccurs="0" name="Vicinity" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="GooglePlacesWcfResult" nillable="true" type="tns:GooglePlacesWcfResult" />

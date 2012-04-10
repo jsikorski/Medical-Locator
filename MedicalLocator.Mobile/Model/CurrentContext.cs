@@ -11,20 +11,20 @@ namespace MedicalLocator.Mobile.Model
     {
         private readonly IEnumsValuesProvider _enumsValuesProvider;
         public bool AreLocationServicesAllowed { get; set; }
-        public int Range { get; set; }
-        public CenterType CenterType { get; set; }
-        public string Address { get; set; }
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
+        public int SearchingRange { get; set; }
+        public CenterType SearchingCenterType { get; set; }
+        public string SearchedAddress { get; set; }
+        public double SearchedLongitude { get; set; }
+        public double SearchedLatitude { get; set; }
 
         public IEnumerable<MedicalType> SelectedSearchedObjects { get; set; }
 
         public CurrentContext(IEnumsValuesProvider enumsValuesProvider)
         {
             _enumsValuesProvider = enumsValuesProvider;
-            Range = 2500;
-            CenterType = CenterType.MyLocation;
-            Address = string.Empty;
+            SearchingRange = 2500;
+            SearchingCenterType = CenterType.MyLocation;
+            SearchedAddress = string.Empty;
             
             SelectedSearchedObjects = _enumsValuesProvider.GetAllMedicalTypes();
         }

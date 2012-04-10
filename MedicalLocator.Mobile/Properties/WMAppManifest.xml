@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{d214d3eb-5137-4ec0-9a6a-e9d3dd815d73}" Title="MedicalLocator.Mobile" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="MedicalLocator.Mobile author" Description="Sample description" Publisher="MedicalLocator.Mobile">
+  <App xmlns="" ProductID="{d214d3eb-5137-4ec0-9a6a-e9d3dd815d73}" BitsPerPixel="32" Title="MedicalLocator.Mobile" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="MedicalLocator.Mobile author" Description="Sample description" Publisher="MedicalLocator.Mobile">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES"/>

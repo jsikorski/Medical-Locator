@@ -10,29 +10,35 @@ using MedicalLocator.Mobile.Services.LocationServices;
 
 namespace MedicalLocator.Mobile.BingMaps
 {
-    public class BingMapsHelper : IBingMapsHelper
+    public class BingMapHelper : IBingMapHelper
     {
+        private readonly IBingMapHandler _bingMapHandler;
+
+        public BingMapHelper(IBingMapHandler bingMapHandler)
+        {
+            _bingMapHandler = bingMapHandler;
+        }
+
         public void SetObjectsUsingGooglePlacesWcfResponse(
-            IBingMapHandler bingMapHandler,
             Location centerLocation,
             GooglePlacesWcfResponse response)
         {
-            bingMapHandler.BingMapPushpins.Clear();
-            SetCenterPushpin(bingMapHandler, centerLocation);
+            _bingMapHandler.BingMapPushpins.Clear();
+            SetCenterPushpin(_bingMapHandler, centerLocation);
 
             if (!response.Results.Any())
             {
-                bingMapHandler.UpdateBingMapView();
+                _bingMapHandler.UpdateBingMapView();
                 return;
             }
-            
-            SetObjectsPushpins(bingMapHandler, response);
-            bingMapHandler.UpdateBingMapView();
+
+            SetObjectsPushpins(_bingMapHandler, response);
+            _bingMapHandler.UpdateBingMapView();
         }
 
         private void SetCenterPushpin(IBingMapHandler bingMapHandler, Location centerLocation)
         {
-            var centerPushpin = new PushpinViewModel(centerLocation.ToGeoCoordinate(), PushpinType.UserPushpin);
+            var centerPushpin = new PushpinViewModel("Me", string.Empty, centerLocation.ToGeoCoordinate(), PushpinType.UserPushpin);
             bingMapHandler.BingMapPushpins.Add(centerPushpin);
         }
 
@@ -46,6 +52,8 @@ namespace MedicalLocator.Mobile.BingMaps
         {
             return googlePlacesWcfResponse.Results.Select(
                 result => new PushpinViewModel(
+                              result.Name,
+                              result.Vicinity,
                               GetCoordinatesFromWcfResult(result),
                               GetPushpinTypeFromApiResult(result)));
         }

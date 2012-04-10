@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Threading;
-using System.Windows;
-using MedicalLocator.Mobile.Exceptions;
 using MedicalLocator.Mobile.ServicesReferences;
-using MedicalLocator.Mobile.Utils;
 
 namespace MedicalLocator.Mobile.Infrastructure
 {
@@ -14,6 +11,7 @@ namespace MedicalLocator.Mobile.Infrastructure
         {
             var syncProvider = new ManualResetEvent(false);
             GooglePlacesWcfResponse response = null;
+            Exception responseException = null;
             client.SendGooglePlacesApiRequestCompleted += (sender, args) =>
                                                               {
                                                                   syncProvider.Set();
@@ -22,21 +20,22 @@ namespace MedicalLocator.Mobile.Infrastructure
                                                                   {
                                                                       response = args.Result;
                                                                   }
-                                                                  catch
+                                                                  catch (Exception exception)
                                                                   {
+                                                                      responseException = exception;
                                                                   }
                                                               };
             client.SendGooglePlacesApiRequestAsync(request);
             syncProvider.WaitOne();
-            CheckResponse(response);
+            CheckException(responseException);
             return response;
         }
 
-        private static void CheckResponse(object response)
+        private static void CheckException(Exception exception)
         {
-            if (response == null)
+            if (exception != null)
             {
-                throw new WcfConnectionErrorException();
+                throw exception;
             }
         }
     }

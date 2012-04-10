@@ -9,7 +9,7 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public string Icon { get; set; }
+        public string Vicinity { get; set; }
         [DataMember]
         public Geometry Geometry { get; set; }
         [DataMember]

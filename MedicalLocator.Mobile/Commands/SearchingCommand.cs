@@ -1,5 +1,4 @@
 ﻿using System.ServiceModel;
-using MedicalLocator.Mobile.Exceptions;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Services.LocationServices;
 using MedicalLocator.Mobile.ServicesReferences;
@@ -12,7 +11,7 @@ namespace MedicalLocator.Mobile.Commands
         IHasErrorHandler<LocationServicesDisabledException>,
         IHasErrorHandler<LocationServicesUnavailableException>,
         IHasErrorHandler<LocationServicesNotAllowedException>,
-        IHasErrorHandler<WcfConnectionErrorException>,
+        IHasErrorHandler<EndpointNotFoundException>,
         IHasErrorHandler<FaultException<ConnectionFault>>,
         IHasErrorHandler<FaultException<InvalidResponseFault>>,
         IHasErrorHandler<FaultException<RequestDeniedFault>>
@@ -33,27 +32,24 @@ namespace MedicalLocator.Mobile.Commands
                                         "location services are enabled in settings menu.");
         }
 
-        public void HandleError(WcfConnectionErrorException exception)
+        public void HandleError(EndpointNotFoundException exception)
         {
             MessageBoxService.ShowConnectionError();
         }
 
         public void HandleError(FaultException<ConnectionFault> exception)
         {
-            MessageBoxService.ShowError("Server cannot connect with external services. " +
-                                        "Please contact with application support.");
+            MessageBoxService.ShowInternalError("Server cannot connect with external services.");
         }
 
         public void HandleError(FaultException<InvalidResponseFault> exception)
         {
-            MessageBoxService.ShowError("Server cannot get correct data from server." +
-                                        "Please contact with application support.");
+            MessageBoxService.ShowInternalError("Server cannot get correct data from server.");
         }
 
         public void HandleError(FaultException<RequestDeniedFault> exception)
         {
-            MessageBoxService.ShowError("Server does not have permission to connect ot external services." +
-                                        "Please contact with application support.");
+            MessageBoxService.ShowInternalError("Server does not have permission to connect ot external services.");
         }
 
         public abstract void Execute();

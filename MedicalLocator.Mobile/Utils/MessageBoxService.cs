@@ -17,6 +17,12 @@ namespace MedicalLocator.Mobile.Utils
             Execute.OnUIThread(() => MessageBox.Show(message, "Error", MessageBoxButton.OK));
         }
 
+        public static void ShowInternalError(string message)
+        {
+            string fullMessage = message + " Please contact with application support.";
+            Execute.OnUIThread(() => MessageBox.Show(fullMessage, "Error", MessageBoxButton.OK));
+        }
+
         public static void ShowConnectionError()
         {
             ShowError("Cannot connect with server. Please " +

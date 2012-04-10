@@ -5,6 +5,7 @@ using System.Windows;
 using Autofac;
 using System.Linq;
 using Caliburn.Micro;
+using MedicalLocator.Mobile.Utils;
 
 namespace MedicalLocator.Mobile.Infrastructure
 {
@@ -47,8 +48,7 @@ namespace MedicalLocator.Mobile.Infrastructure
 
         private static void HandleUnknownError()
         {
-            Caliburn.Micro.Execute.OnUIThread(
-                () => MessageBox.Show("Unknown error occured. Please contact Medical Locator service."));
+            MessageBoxService.ShowInternalError("Unknown error occured.");
         }
 
         private static bool HasExceptionErrorHandler(ICommand command)

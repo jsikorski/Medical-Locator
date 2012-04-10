@@ -55,7 +55,7 @@
                     <TextBox Grid.Row="0"
                          Grid.Column="1"
                          InputScope="TelephoneNumber"
-                         Text="{Binding Range, Mode=TwoWay}" />
+                         Text="{Binding SearchingRange, Mode=TwoWay}" />
 
                     <TextBlock Text="Center"
                            Grid.Row="1"
@@ -63,7 +63,7 @@
                     <toolkit:ListPicker x:Name="centerTypeListPicker"
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    ItemsSource="{Binding CenterTypes, Converter={StaticResource centerTypesToNamesConverter}}"
+                                    ItemsSource="{Binding PossibleSearchingCenterTypes, Converter={StaticResource centerTypesToNamesConverter}}"
                                     SelectedIndex="{Binding SelectedCenterTypeIndex, Mode=TwoWay}">
                     </toolkit:ListPicker>
 
@@ -73,7 +73,7 @@
                            Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
                     <TextBox Grid.Row="2"
                          Grid.Column="1"
-                         Text="{Binding Address, Mode=TwoWay}"
+                         Text="{Binding SearchedAddress, Mode=TwoWay}"
                          Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
 
                     <TextBlock Text="Latitude"
@@ -82,7 +82,7 @@
                            Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
                     <TextBox Grid.Row="3"
                          Grid.Column="1"
-                         Text="{Binding Latitude, Mode=TwoWay}"
+                         Text="{Binding SearchedLatitude, Mode=TwoWay}"
                          InputScope="TelephoneNumber"
                          Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
                     
@@ -92,7 +92,7 @@
                            Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
                     <TextBox Grid.Row="4"
                          Grid.Column="1"
-                         Text="{Binding Longitude, Mode=TwoWay}"
+                         Text="{Binding SearchedLongitude, Mode=TwoWay}"
                          InputScope="TelephoneNumber"
                          Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
                 </Grid>
@@ -101,7 +101,7 @@
 
             <controls:PivotItem Header="objects">
                 <ListBox SelectionMode="Multiple"
-                         ItemsSource="{Binding PossibleSearchedObjects}">
+                         ItemsSource="{Binding PossibleSearchedTypes}">
                     <ListBox.Resources>
                         <Style TargetType="CheckBox">
                             <Setter Property="FontSize"

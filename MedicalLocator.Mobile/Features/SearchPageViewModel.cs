@@ -16,38 +16,38 @@ namespace MedicalLocator.Mobile.Features
         private readonly IEnumsValuesProvider _enumsValuesProvider;
         private readonly IContainer _container;
 
-        public int Range
+        public int SearchingRange
         {
-            get { return _currentContext.Range; }
-            set { _currentContext.Range = value; }
+            get { return _currentContext.SearchingRange; }
+            set { _currentContext.SearchingRange = value; }
         }
 
-        public IEnumerable<CenterType> CenterTypes { get; set; }
+        public IEnumerable<CenterType> PossibleSearchingCenterTypes { get; set; }
         public int SelectedCenterTypeIndex
         {
-            get { return CenterTypes.ToList().IndexOf(_currentContext.CenterType); }
-            set { _currentContext.CenterType = CenterTypes.ElementAt(value); }
+            get { return PossibleSearchingCenterTypes.ToList().IndexOf(_currentContext.SearchingCenterType); }
+            set { _currentContext.SearchingCenterType = PossibleSearchingCenterTypes.ElementAt(value); }
         }
 
-        public string Address
+        public string SearchedAddress
         {
-            get { return _currentContext.Address; }
-            set { _currentContext.Address = value; }
+            get { return _currentContext.SearchedAddress; }
+            set { _currentContext.SearchedAddress = value; }
         }
 
-        public double Longitude
+        public double SearchedLatitude
         {
-            get { return _currentContext.Longitude; }
-            set { _currentContext.Longitude = value; }
+            get { return _currentContext.SearchedLatitude; }
+            set { _currentContext.SearchedLatitude = value; }
         }
 
-        public double Latitude
+        public double SearchedLongitude
         {
-            get { return _currentContext.Latitude; }
-            set { _currentContext.Latitude = value; }
+            get { return _currentContext.SearchedLongitude; }
+            set { _currentContext.SearchedLongitude = value; }
         }
 
-        public IEnumerable<SearchedObjectViewModel> PossibleSearchedObjects { get; private set; }
+        public IEnumerable<SearchedObjectViewModel> PossibleSearchedTypes { get; private set; }
 
         public SearchPageViewModel(
             CurrentContext currentContext, 
@@ -58,7 +58,7 @@ namespace MedicalLocator.Mobile.Features
             _enumsValuesProvider = enumsValuesProvider;
             _container = container;
 
-            CenterTypes = _enumsValuesProvider.GetAllCenterTypes();
+            PossibleSearchingCenterTypes = _enumsValuesProvider.GetAllCenterTypes();
         }
 
         public void BeginSearch()
@@ -70,13 +70,13 @@ namespace MedicalLocator.Mobile.Features
         protected override void OnActivate()
         {
             IEnumerable<MedicalType> allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
-            PossibleSearchedObjects = allMedicalTypes.Select(
+            PossibleSearchedTypes = allMedicalTypes.Select(
                 type => SearchedObjectViewModel.CreateUsingContext(type, _currentContext)).ToList();
         }
 
         protected override void OnDeactivate(bool close)
         {
-            _currentContext.SelectedSearchedObjects = PossibleSearchedObjects.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType);
+            _currentContext.SelectedSearchedObjects = PossibleSearchedTypes.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType);
             base.OnDeactivate(close);
         }
     }
