@@ -122,7 +122,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True"
                               IsMenuEnabled="True">
-            <cal:AppBarButton Message="BeginSearch"
+            <cal:AppBarButton Message="Search"
                               IconUri="/Graphics/searchIcon.png"
                               Text="search" />
         </shell:ApplicationBar>

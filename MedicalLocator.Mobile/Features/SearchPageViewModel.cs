@@ -61,10 +61,10 @@ namespace MedicalLocator.Mobile.Features
             PossibleSearchingCenterTypes = _enumsValuesProvider.GetAllCenterTypes();
         }
 
-        public void BeginSearch()
+        public void Search()
         {
-            var command = _container.Resolve<BeginSearch>();
-            CommandInvoker.Execute(command);
+            var command = _container.Resolve<Search>();
+            CommandInvoker.Invoke(command);
         }
 
         protected override void OnActivate()

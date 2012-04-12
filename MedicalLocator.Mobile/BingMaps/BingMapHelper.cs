@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
-using Caliburn.Micro;
-using MedicalLocator.Mobile.Messages;
 using MedicalLocator.Mobile.ServicesReferences;
-using Microsoft.Phone.Controls.Maps;
 using MedicalLocator.Mobile.Services.LocationServices;
 
 namespace MedicalLocator.Mobile.BingMaps

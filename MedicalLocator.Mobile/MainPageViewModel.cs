@@ -3,15 +3,13 @@ using Caliburn.Micro;
 using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.Infrastructure;
-using MedicalLocator.Mobile.Messages;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Shell;
 
 namespace MedicalLocator.Mobile
 {
     [SingleInstance]
-    public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler, 
-        IHasApplicationBar, IHandle<ShouldSearchMessage>
+    public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler, IHasApplicationBar
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IContainer _container;
@@ -51,12 +49,6 @@ namespace MedicalLocator.Mobile
         {
             var command = _container.Resolve<T>();
             CommandInvoker.Execute(command);
-        }
-
-        private void Search()
-        {
-            var command = _container.Resolve<Search>();
-            CommandInvoker.Invoke(command);
         }
 
         protected override void OnDeactivate(bool close)
@@ -103,15 +95,6 @@ namespace MedicalLocator.Mobile
         #region Implementation of IHasApplicationBar
 
         public IApplicationBar ApplicationBar { get; private set; }
-
-        #endregion
-
-        #region Implementation of IHandle<ShouldSearchMessage>
-
-        public void Handle(ShouldSearchMessage message)
-        {
-            Search();
-        }
 
         #endregion
     }
