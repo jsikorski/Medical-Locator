@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using MedicalLocator.Mobile.Exceptions;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Services.LocationServices;
 using MedicalLocator.Mobile.ServicesReferences;
@@ -14,7 +15,8 @@ namespace MedicalLocator.Mobile.Commands
         IHasErrorHandler<EndpointNotFoundException>,
         IHasErrorHandler<FaultException<ConnectionFault>>,
         IHasErrorHandler<FaultException<InvalidResponseFault>>,
-        IHasErrorHandler<FaultException<RequestDeniedFault>>
+        IHasErrorHandler<FaultException<RequestDeniedFault>>,
+        IHasErrorHandler<NoSearchResultsException>
     {
         public void HandleError(LocationServicesDisabledException exception)
         {
@@ -50,6 +52,11 @@ namespace MedicalLocator.Mobile.Commands
         public void HandleError(FaultException<RequestDeniedFault> exception)
         {
             MessageBoxService.ShowInternalError("Server does not have permission to connect ot external services.");
+        }
+
+        public void HandleError(NoSearchResultsException exception)
+        {
+            MessageBoxService.ShowInformation("No results was found.");
         }
 
         public abstract void Execute();

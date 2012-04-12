@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MedicalLocator.Mobile.BingMaps;
+using MedicalLocator.Mobile.Exceptions;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.ServicesReferences;
 
@@ -26,6 +27,11 @@ namespace MedicalLocator.Mobile.Services
             using (new BusyArea(_busyScope))
             {
                 GooglePlacesWcfResponse response = GetResponseFromGooglePlacesApi(centerLocation, searchedTypes, range);
+                if (response.Status == Status.Zero_Results)
+                {
+                    throw new NoSearchResultsException();
+                }
+
                 _bingMapHelper.SetObjectsUsingGooglePlacesWcfResponse(centerLocation, response);
             }
         }

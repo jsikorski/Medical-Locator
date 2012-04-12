@@ -9,7 +9,8 @@
                             xmlns:Infrastructure="clr-namespace:MedicalLocator.Mobile.Infrastructure"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:Maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
-                            xmlns:Converters="clr-namespace:MedicalLocator.Mobile.Converters" mc:Ignorable="d"
+                            xmlns:Converters="clr-namespace:MedicalLocator.Mobile.Converters"
+                            mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -23,8 +24,8 @@
               Background="White">
 
             <Grid.Resources>
-                <Converters:PushpinTypeToBrushConverter x:Key="pushpinTypeToBrushConverter"/>
-                <Converters:PushpinTypeToImageSourceConverter x:Key="pushpinTypeToImageSourceConverter"/>
+                <Converters:PushpinTypeToBrushConverter x:Key="pushpinTypeToBrushConverter" />
+                <Converters:PushpinTypeToImageSourceConverter x:Key="pushpinTypeToImageSourceConverter" />
             </Grid.Resources>
 
             <Grid.RowDefinitions>
@@ -35,20 +36,19 @@
             <Grid x:Name="ContentPanel"
                   Grid.Row="0"
                   Margin="12,0,12,0">
-                <Maps:Map x:Name="BingMap" 
+                <Maps:Map x:Name="BingMap"
                           LogoVisibility="Collapsed">
                     <Maps:MapItemsControl ItemsSource="{Binding BingMapPushpins}">
                         <Maps:MapItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Maps:Pushpin Location="{Binding Coordinates}"
-                                            Background="{Binding PushpinType, Converter={StaticResource pushpinTypeToBrushConverter}}"
-                                            Tap="PushpinTap">
+                                              Background="{Binding PushpinType, Converter={StaticResource pushpinTypeToBrushConverter}}">
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu IsZoomEnabled="False">
                                             <toolkit:MenuItem Style="{StaticResource PushpinTooltipsStyle}" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
-                                    <Image Source="{Binding PushpinType, Converter={StaticResource pushpinTypeToImageSourceConverter}}"/>
+                                    <Image Source="{Binding PushpinType, Converter={StaticResource pushpinTypeToImageSourceConverter}}" />
                                 </Maps:Pushpin>
                             </DataTemplate>
                         </Maps:MapItemsControl.ItemTemplate>
