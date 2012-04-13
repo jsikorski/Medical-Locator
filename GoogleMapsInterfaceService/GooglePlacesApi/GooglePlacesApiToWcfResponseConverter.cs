@@ -26,16 +26,19 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
 
         private MedicalType GetMostSpecificMedicalType(GooglePlacesApiResult googlePlacesApiResult)
         {
-            object result = null;
+            MedicalType medicalType;
             int index = 0;
-            while (result == null)
+            while (true)
             {
                 string typeName = googlePlacesApiResult.Types.ElementAt(index);
-                result = Enum.Parse(typeof(MedicalType), typeName, true);
+                if (Enum.TryParse(typeName, true, out medicalType))
+                {
+                    break;
+                }
                 index++;
             }
 
-            return (MedicalType)result;
+            return medicalType;
         }
     }
 }
