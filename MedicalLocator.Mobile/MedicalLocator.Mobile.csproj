@@ -97,6 +97,7 @@
     <Compile Include="Commands\ShowAboutPage.cs" />
     <Compile Include="Commands\ShowMainPage.cs" />
     <Compile Include="Commands\StopLocationServices.cs" />
+    <Compile Include="Converters\MyBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\CenterTypesToNamesConverter.cs" />
     <Compile Include="Converters\CenterTypeNameToVisibilityConverter.cs" />
     <Compile Include="Converters\PushpinTypeToBrushConverter.cs" />
