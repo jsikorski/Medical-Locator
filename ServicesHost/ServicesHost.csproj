@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HostsBootstrapper.cs" />
-    <Compile Include="Hosts\AuthenticationServiceHost.cs" />
+    <Compile Include="Hosts\DatabaseConnectionServiceHost.cs" />
     <Compile Include="Hosts\GoogleMapsInterfaceServiceHost.cs" />
     <Compile Include="Hosts\IServiceHost.cs" />
     <Compile Include="Program.cs" />
@@ -54,9 +54,9 @@
     <Compile Include="Utils\ConsoleController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AuthenticationService\AuthenticationService.csproj">
+    <ProjectReference Include="..\DatabaseConnectionService\DatabaseConnectionService.csproj">
       <Project>{3B0090B6-8057-486D-99CF-DDA1F850676F}</Project>
-      <Name>AuthenticationService</Name>
+      <Name>DatabaseConnectionService</Name>
     </ProjectReference>
     <ProjectReference Include="..\GoogleMapsInterfaceService\GoogleMapsInterfaceService.csproj">
       <Project>{B2FF034E-0386-4D17-8151-D611E1324764}</Project>

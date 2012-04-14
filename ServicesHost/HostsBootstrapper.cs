@@ -8,8 +8,8 @@ namespace ServicesHost
     {
         public static void Run()
         {
-            var authorizationServiceHost = new AuthenticationServiceHost();
-            StartService(authorizationServiceHost, "Cannot start authorization service.");
+            var databaseConnectionService = new DatabaseConnectionServiceHost();
+            StartService(databaseConnectionService, "Cannot start authorization service.");
             ConsoleController.EmptyLine();
             var googleMapsInterfaceServiceHost = new GoogleMapsInterfaceServiceHost();
             StartService(googleMapsInterfaceServiceHost, "Cannot start Google Maps interface service.");
@@ -17,7 +17,7 @@ namespace ServicesHost
 
             Console.ReadKey();
 
-            StopService(authorizationServiceHost, "Cannot stop authorization service.");
+            StopService(databaseConnectionService, "Cannot stop authorization service.");
             ConsoleController.EmptyLine();
             StopService(googleMapsInterfaceServiceHost, "Cannot stop Google Maps interface service.");
 
