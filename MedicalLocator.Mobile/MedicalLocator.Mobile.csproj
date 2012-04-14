@@ -95,6 +95,7 @@
     <Compile Include="Commands\OpenSettingsPage.cs" />
     <Compile Include="Commands\Search.cs" />
     <Compile Include="Commands\ShowAboutPage.cs" />
+    <Compile Include="Commands\ShowMainPage.cs" />
     <Compile Include="Commands\StopLocationServices.cs" />
     <Compile Include="Converters\CenterTypesToNamesConverter.cs" />
     <Compile Include="Converters\CenterTypeNameToVisibilityConverter.cs" />
@@ -106,6 +107,10 @@
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\AboutPageViewModel.cs" />
+    <Compile Include="Features\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\LoginPageViewModel.cs" />
     <Compile Include="Features\SearchedObjectViewModel.cs" />
     <Compile Include="Features\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
@@ -152,6 +157,10 @@
     <Compile Include="Services\LocationServices\LocationServicesNotAllowedException.cs" />
     <Compile Include="Services\LocationServices\LocationServicesUnavailableException.cs" />
     <Compile Include="Services\EnumsValuesProvider.cs" />
+    <Page Include="Features\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\PushpinsStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
