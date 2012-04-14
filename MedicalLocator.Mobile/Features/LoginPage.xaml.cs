@@ -19,5 +19,43 @@ namespace MedicalLocator.Mobile.Features
         {
             InitializeComponent();
         }
+
+        private void RegisterButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (RegisterAgreeCheckbox.IsChecked == false)
+                return; // todo: error message
+
+            if (RegisterName.Text.Length < 3 || RegisterName.Text.Length > 16)
+                return; // todo: error message
+
+            if (RegisterPassword.Password != RegisterPasswordRetype.Password)
+                return; // todo: error message
+
+            if (RegisterPassword.Password.Length < 3 || RegisterPassword.Password.Length > 16)
+                return; // todo: error message
+
+            if ((DataContext as LoginPageViewModel).RegisterNewUser(RegisterName.Text, RegisterPassword.Password))
+            {
+                LoginRegisterPivot.SelectedIndex = 0; // change to login pivot item
+                LoginName = RegisterName;
+            }
+        }
+
+        private void LoginButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (LoginAnonymouslyToggleSwitch.IsChecked == true)
+            {
+                (DataContext as LoginPageViewModel).LoginAnonymously();
+                return;
+            }
+
+            if (LoginName.Text.Length < 3 || LoginName.Text.Length > 16)
+                return; // todo: error message
+
+            if (LoginPassword.Password.Length < 3 || LoginPassword.Password.Length > 16)
+                return; // todo: error message
+
+            (DataContext as LoginPageViewModel).LoginByNameAndPass(LoginName.Text, LoginPassword.Password);
+        }
     }
 }
