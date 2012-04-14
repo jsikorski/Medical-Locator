@@ -37,8 +37,13 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
-            <toolkit:ToggleSwitch IsChecked="{Binding AreLocationServicesAllowed, Mode=TwoWay}"
-                                  Header="Use location services" />
+            <StackPanel>
+                <TextBlock Text="Logged in user:"></TextBlock>
+                <TextBlock Text="{Binding LoggedInUser}"></TextBlock>
+
+                <toolkit:ToggleSwitch IsChecked="{Binding AreLocationServicesAllowed, Mode=TwoWay}"
+                                    Header="Use location services" />
+            </StackPanel>
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>

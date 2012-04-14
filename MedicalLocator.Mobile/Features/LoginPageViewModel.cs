@@ -1,26 +1,36 @@
 ﻿using Autofac;
 using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.Infrastructure;
+using MedicalLocator.Mobile.Model;
 
 namespace MedicalLocator.Mobile.Features
 {
     public class LoginPageViewModel
     {
         private readonly IContainer _container;
-        
-        public LoginPageViewModel(IContainer container)
+        private readonly CurrentContext _currentContext;
+
+        public bool IsAnonymouslyLogin { get; set; }
+        public string Login { get; set; }
+
+        public LoginPageViewModel(IContainer container, CurrentContext currentContext)
         {
             _container = container;
+            _currentContext = currentContext;
+
+            IsAnonymouslyLogin = false;
+            Login = "";
         }
 
         public void OpenMainPage()
         {
-            ExecuteCommand<ShowMainPage>();
-        }
+            // todo: add error handling (eg. empty string in login field).
+            if (IsAnonymouslyLogin)
+                _currentContext.LoggedInUser = "Anonymously";
+            else
+                _currentContext.LoggedInUser = Login;
 
-        private void ExecuteCommand<T>() where T : ICommand
-        {
-            var command = _container.Resolve<T>();
+            var command = _container.Resolve<ShowMainPage>();
             CommandInvoker.Execute(command);
         }
     }

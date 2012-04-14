@@ -10,6 +10,15 @@ namespace MedicalLocator.Mobile.Features
     {
         private readonly CurrentContext _currentContext;
 
+        public string LoggedInUser
+        {
+            get { return _currentContext.LoggedInUser; }
+            set
+            {
+                _currentContext.LoggedInUser = value;
+            }
+        }
+
         public bool AreLocationServicesAllowed
         {
             get { return _currentContext.AreLocationServicesAllowed; }

@@ -16,6 +16,7 @@ namespace MedicalLocator.Mobile.Model
         public string SearchedAddress { get; set; }
         public double SearchedLongitude { get; set; }
         public double SearchedLatitude { get; set; }
+        public string LoggedInUser { get; set; }
 
         public IEnumerable<MedicalType> SelectedSearchedObjects { get; set; }
 
@@ -25,6 +26,7 @@ namespace MedicalLocator.Mobile.Model
             SearchingRange = 2500;
             SearchingCenterType = CenterType.MyLocation;
             SearchedAddress = string.Empty;
+            LoggedInUser = "SDSA";
             
             SelectedSearchedObjects = _enumsValuesProvider.GetAllMedicalTypes();
         }
