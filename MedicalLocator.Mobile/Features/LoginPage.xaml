@@ -28,38 +28,72 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <controls:Pivot Title="pivot"
+        <controls:Pivot Title="medical locator"
                         Grid.Row="1">
             <controls:PivotItem Header="login">
                 <ScrollViewer>
-                    <StackPanel Height="607"
-                                Width="456">
+                    <StackPanel>
                         <toolkit:ToggleSwitch x:Name="toggleSwitch"
                                               Header="Login anonymously"
-                                              Height="112" IsChecked="True" />
+                                              Height="112"
+                                              IsChecked="False" />
+                        
                         <TextBlock Text="Login"
                                    Margin="8,0"
                                    Visibility="{Binding IsChecked, ElementName=toggleSwitch, Mode=OneWay, Converter={StaticResource myBooleanToVisibilityConverter}, ConverterParameter=true}" />
+                        
                         <TextBox Margin="8,0"
                                  TextWrapping="Wrap"
                                  Height="72"
                                  Visibility="{Binding IsChecked, ElementName=toggleSwitch, Mode=OneWay, Converter={StaticResource myBooleanToVisibilityConverter}, ConverterParameter=true}" />
+                        
                         <TextBlock Text="Password"
                                    Margin="8,0"
                                    Visibility="{Binding IsChecked, ElementName=toggleSwitch, Mode=OneWay, Converter={StaticResource myBooleanToVisibilityConverter}, ConverterParameter=true}" />
+                        
                         <PasswordBox Height="72"
                                      Margin="8,0"
                                      Visibility="{Binding IsChecked, ElementName=toggleSwitch, Mode=OneWay, Converter={StaticResource myBooleanToVisibilityConverter}, ConverterParameter=true}" />
+                        
                         <Button x:Name="OpenMainPage"
-                                Content="Login" Margin="0" />
-                        <Grid Margin="0,0,174,0" />
-                        <Grid Height="131"
-                              Width="426" />
+                                Content="Login"
+                                Margin="0" />
                     </StackPanel>
                 </ScrollViewer>
             </controls:PivotItem>
-            <controls:PivotItem Header="item2">
-                <ScrollViewer />
+            <controls:PivotItem Header="register">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="Login"
+                                   Margin="8,0" />
+                        <TextBox Margin="8,0"
+                                 TextWrapping="Wrap"
+                                 Height="72" />
+                        <TextBlock Text="Password"
+                                   Margin="8,0" />
+                        <PasswordBox Height="72"
+                                     Margin="8,0" />
+                        <TextBlock Text="Retype password"
+                                   Margin="8,0" />
+                        <PasswordBox Height="72"
+                                     Margin="8,0" />
+                        <TextBlock Text="Licence"
+                                   Margin="8,0" />
+                        <TextBox Margin="8,0"
+                                 TextWrapping="Wrap"
+                                 Height="196"
+                                 IsReadOnly="True"
+                                 Text="[todo]&#xd;&#xa;&#xd;&#xa;&quot;THE BEER-WARE LICENSE&quot; (Revision 42): &lt;phk@FreeBSD.ORG&gt; wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return Poul-Henning Kamp."
+                                 FontSize="21.333" />
+                        <CheckBox Content="I have read and agree to the license agreement."
+                                  Height="72"
+                                  Margin="8,0"
+                                  FontSize="16" />
+                        <Button x:Name="RegisterNewUser"
+                                Content="Register"
+                                Margin="0" />
+                    </StackPanel>
+                </ScrollViewer>
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>

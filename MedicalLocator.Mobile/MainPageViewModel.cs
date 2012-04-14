@@ -42,7 +42,7 @@ namespace MedicalLocator.Mobile
 
         public void OpenAboutPage()
         {
-            ExecuteCommand<ShowMainPage>();
+            ExecuteCommand<ShowAboutPage>();
         }
 
         private void ExecuteCommand<T>() where T : ICommand
