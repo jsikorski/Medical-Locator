@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -11,7 +12,10 @@ namespace DatabaseConnectionService
     {
         public bool TryLogin(string login, string password)
         {
-            // TODO: Correct login to database
+            // todo
+            if (login.ToLower().Trim() == "noirion")
+                return false;
+
             return true;
         }
 

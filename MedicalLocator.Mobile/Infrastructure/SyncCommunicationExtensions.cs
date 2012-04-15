@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
+using Caliburn.Micro;
 using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.DatabaseConnectionReference;
 
 namespace MedicalLocator.Mobile.Infrastructure
 {
@@ -26,6 +28,30 @@ namespace MedicalLocator.Mobile.Infrastructure
                                                                   }
                                                               };
             client.SendGooglePlacesApiRequestAsync(request);
+            syncProvider.WaitOne();
+            CheckException(responseException);
+            return response;
+        }
+
+        public static bool TryLogin(
+            this DatabaseConnectionServiceClient client, string login, string password)
+        {
+            var syncProvider = new ManualResetEvent(false);
+            bool response = false;
+            Exception responseException = null;
+            client.TryLoginCompleted += (sender, args) =>
+            {
+                syncProvider.Set();
+                try
+                {
+                    response = args.Result;
+                }
+                catch (Exception exception)
+                {
+                    responseException = exception;
+                }
+            };
+            client.TryLoginAsync(login, password);
             syncProvider.WaitOne();
             CheckException(responseException);
             return response;

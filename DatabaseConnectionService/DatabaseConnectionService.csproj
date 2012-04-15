@@ -46,6 +46,7 @@
     <Compile Include="DatabaseConnectionService.cs" />
     <Compile Include="IDatabaseConnectionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDataResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

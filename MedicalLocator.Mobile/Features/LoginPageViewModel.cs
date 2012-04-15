@@ -19,31 +19,31 @@ namespace MedicalLocator.Mobile.Features
             IsAnonymouslyLogin = false;
         }
 
-        private void OpenMainPage()
-        {
-            var command = _container.Resolve<ShowMainPage>();
-            CommandInvoker.Execute(command);
-        }
-
         public bool RegisterNewUser(string name, string password)
         {
-            // todo: insert to database
             return true;
         }
 
         public bool LoginByNameAndPass(string name, string password)
         {
-            _currentContext.LoggedInUser = name;
+            var command = _container.Resolve<Login>();
+            command.LoginByNameAndPass(name, password);
+            CommandInvoker.Invoke(command);
 
-            OpenMainPage();
+            // dwa commandy kolo siebie nie wygladaja dobrze, jutro to poprawie.
+            var command2 = _container.Resolve<ShowMainPage>();
+            CommandInvoker.Invoke(command2);
             return true;
         }
 
         public bool LoginAnonymously()
         {
-            _currentContext.LoggedInUser = "anonymously";
+            var command = _container.Resolve<Login>();
+            command.LoginAnonymously();
+            CommandInvoker.Invoke(command);
 
-            OpenMainPage();
+            var command2 = _container.Resolve<ShowMainPage>();
+            CommandInvoker.Invoke(command2);
             return true;
         }
     }

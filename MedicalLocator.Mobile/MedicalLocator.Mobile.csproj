@@ -89,6 +89,7 @@
     <Compile Include="BingMaps\PushpinType.cs" />
     <Compile Include="BingMaps\PushpinViewModel.cs" />
     <Compile Include="Commands\AskForLocationServices.cs" />
+    <Compile Include="Commands\Login.cs" />
     <Compile Include="Commands\FindNearby.cs" />
     <Compile Include="Commands\SearchingCommand.cs" />
     <Compile Include="Commands\OpenSearchPage.cs" />
@@ -139,6 +140,11 @@
     <Compile Include="Model\CenterType.cs" />
     <Compile Include="Model\CurrentContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\DatabaseConnectionReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServicesReferences\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -210,7 +216,22 @@
     <Content Include="Graphics\findNearbyIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\DatabaseConnectionReference\configuration91.svcinfo" />
+    <None Include="Service References\DatabaseConnectionReference\configuration.svcinfo" />
+    <None Include="Service References\DatabaseConnectionReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="ServiceReferences.ClientConfig">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Service References\DatabaseConnectionReference\service.wsdl" />
+    <None Include="Service References\DatabaseConnectionReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DatabaseConnectionReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.Faults.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -259,6 +280,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DatabaseConnectionReference\" />
     <WCFMetadataStorage Include="Service References\ServicesReferences\" />
   </ItemGroup>
   <ItemGroup />
