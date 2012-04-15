@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Autofac;
 using Caliburn.Micro;
@@ -7,6 +9,7 @@ using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services;
 using MedicalLocator.Mobile.ServicesReferences;
+using IContainer = Autofac.IContainer;
 
 namespace MedicalLocator.Mobile.Features
 {
@@ -19,7 +22,12 @@ namespace MedicalLocator.Mobile.Features
         public int SearchingRange
         {
             get { return _currentContext.SearchingRange; }
-            set { _currentContext.SearchingRange = value; }
+            set {
+                if (value < 50)
+                {
+                    throw new Exception("Must be greater!");
+                }
+                _currentContext.SearchingRange = value; }
         }
 
         public IEnumerable<CenterType> PossibleSearchingCenterTypes { get; set; }
@@ -79,5 +87,15 @@ namespace MedicalLocator.Mobile.Features
             _currentContext.SelectedSearchedObjects = PossibleSearchedTypes.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType);
             base.OnDeactivate(close);
         }
+
+        //public string Error
+        //{
+        //    get { return "ABC"; }
+        //}
+
+        //public string this[string columnName]
+        //{
+        //    get { return "AAA"; }
+        //}
     }
 }

@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="Styles/BusyIndicatorControlStyle.xaml" />
                 <ResourceDictionary Source="Styles/PushpinsStyle.xaml" />
                 <ResourceDictionary Source="Styles/PushpinsTooltipStyle.xaml" />
+                <ResourceDictionary Source="ControlsTemplates/TextBoxControlTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

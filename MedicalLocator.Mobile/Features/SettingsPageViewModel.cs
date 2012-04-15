@@ -18,10 +18,7 @@ namespace MedicalLocator.Mobile.Features
         public bool AreLocationServicesAllowed
         {
             get { return _currentContext.AreLocationServicesAllowed; }
-            set
-            {
-                _currentContext.AreLocationServicesAllowed = value;
-            }
+            set { _currentContext.AreLocationServicesAllowed = value; }
         }
 
         public SettingsPageViewModel(CurrentContext currentContext)

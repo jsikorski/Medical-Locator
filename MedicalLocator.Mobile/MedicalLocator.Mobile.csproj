@@ -100,6 +100,10 @@
     <Compile Include="Commands\ShowMainPage.cs" />
     <Compile Include="Commands\StopLocationServices.cs" />
     <Compile Include="Converters\MyBooleanToVisibilityConverter.cs" />
+    <Page Include="ControlsTemplates\TextBoxControlTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="Converters\CenterTypesToNamesConverter.cs" />
     <Compile Include="Converters\CenterTypeNameToVisibilityConverter.cs" />
     <Compile Include="Converters\PushpinTypeToBrushConverter.cs" />
