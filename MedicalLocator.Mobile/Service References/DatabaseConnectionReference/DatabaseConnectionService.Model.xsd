@@ -4,18 +4,11 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="IsAnonymous" type="xs:boolean" />
       <xs:element minOccurs="0" name="IsValid" type="xs:boolean" />
-      <xs:element minOccurs="0" name="LastUsedAddress" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="LastUsedRange" type="xs:int" />
+      <xs:element minOccurs="0" name="LastSearch" nillable="true" type="tns:MedicalLocatorUserLastSearch" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="LoginResponse" nillable="true" type="tns:LoginResponse" />
-  <xs:complexType name="RegisterStatus">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="RegisterStatus" nillable="true" type="tns:RegisterStatus" />
   <xs:complexType name="MedicalLocatorUserLastSearch">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
@@ -24,4 +17,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MedicalLocatorUserLastSearch" nillable="true" type="tns:MedicalLocatorUserLastSearch" />
+  <xs:complexType name="RegisterStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegisterStatus" nillable="true" type="tns:RegisterStatus" />
 </xs:schema>

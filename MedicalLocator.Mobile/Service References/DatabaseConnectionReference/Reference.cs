@@ -24,9 +24,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         private bool IsValidField;
         
-        private string LastUsedAddressField;
-        
-        private int LastUsedRangeField;
+        private MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch LastSearchField;
         
         private string NameField;
         
@@ -57,27 +55,14 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string LastUsedAddress {
+        public MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch LastSearch {
             get {
-                return this.LastUsedAddressField;
+                return this.LastSearchField;
             }
             set {
-                if ((object.ReferenceEquals(this.LastUsedAddressField, value) != true)) {
-                    this.LastUsedAddressField = value;
-                    this.RaisePropertyChanged("LastUsedAddress");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int LastUsedRange {
-            get {
-                return this.LastUsedRangeField;
-            }
-            set {
-                if ((this.LastUsedRangeField.Equals(value) != true)) {
-                    this.LastUsedRangeField = value;
-                    this.RaisePropertyChanged("LastUsedRange");
+                if ((object.ReferenceEquals(this.LastSearchField, value) != true)) {
+                    this.LastSearchField = value;
+                    this.RaisePropertyChanged("LastSearch");
                 }
             }
         }
@@ -91,36 +76,6 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterStatus", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
-    public partial class RegisterStatus : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private bool IsSuccessfulField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsSuccessful {
-            get {
-                return this.IsSuccessfulField;
-            }
-            set {
-                if ((this.IsSuccessfulField.Equals(value) != true)) {
-                    this.IsSuccessfulField = value;
-                    this.RaisePropertyChanged("IsSuccessful");
                 }
             }
         }
@@ -181,6 +136,36 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
                 if ((this.HospitalField.Equals(value) != true)) {
                     this.HospitalField = value;
                     this.RaisePropertyChanged("Hospital");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterStatus", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
+    public partial class RegisterStatus : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private bool IsSuccessfulField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsSuccessful {
+            get {
+                return this.IsSuccessfulField;
+            }
+            set {
+                if ((this.IsSuccessfulField.Equals(value) != true)) {
+                    this.IsSuccessfulField = value;
+                    this.RaisePropertyChanged("IsSuccessful");
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
@@ -9,13 +10,15 @@ namespace MedicalLocator.Mobile.Features
     {
         private readonly IContainer _container;
         private readonly CurrentContext _currentContext;
+        private readonly Func<LoginData, Login> _loginFactory;
 
         public bool IsAnonymouslyLogin { get; set; }
 
-        public LoginPageViewModel(IContainer container, CurrentContext currentContext)
+        public LoginPageViewModel(IContainer container, CurrentContext currentContext, Func<LoginData, Login> loginFactory)
         {
             _container = container;
             _currentContext = currentContext;
+            _loginFactory = loginFactory;
             IsAnonymouslyLogin = false;
         }
 
@@ -24,30 +27,22 @@ namespace MedicalLocator.Mobile.Features
             var command = _container.Resolve<Register>();
             command.SetNameAndPass(name, password);
             CommandInvoker.Invoke(command);
-
             return true;
         }
 
-        public bool LoginByNameAndPass(string name, string password)
+        public bool LoginByNameAndPass(string login, string password)
         {
-            var command = _container.Resolve<Login>();
-            command.SetLoginAndPass(name, password);
+            var loginData = new LoginData {Login = login, Password = password, Container = _container};
+            var command = _loginFactory(loginData);
             CommandInvoker.Invoke(command);
-
-            // dwa commandy kolo siebie nie wygladaja dobrze, jutro to poprawie.
-            var command2 = _container.Resolve<ShowMainPage>();
-            CommandInvoker.Invoke(command2);
             return true;
         }
 
         public bool LoginAnonymously()
         {
-            var command = _container.Resolve<Login>();
-            command.SetLoginAndPass(null, null);
+            var loginData = new LoginData { Login = null, Password = null, Container = _container };
+            var command = _loginFactory(loginData);
             CommandInvoker.Invoke(command);
-
-            var command2 = _container.Resolve<ShowMainPage>();
-            CommandInvoker.Invoke(command2);
             return true;
         }
     }

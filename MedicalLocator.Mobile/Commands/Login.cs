@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Navigation;
+using Autofac;
 using Caliburn.Micro;
 using MedicalLocator.Mobile.DatabaseConnectionReference;
 using MedicalLocator.Mobile.Features;
@@ -9,22 +10,32 @@ using MedicalLocator.Mobile.Model;
 
 namespace MedicalLocator.Mobile.Commands
 {
+    public class LoginData
+    {
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public IContainer Container { get; set; }
+    }
+
     public class Login : ICommand
     {
         private readonly CurrentContext _currentContext;
         private string _login;
         private string _pass;
-        public Login(CurrentContext currentContext)
+        private IContainer _container;
+        public Login(CurrentContext currentContext, LoginData loginData)
         {
             _currentContext = currentContext;
-            _login = null;
-            _pass = null;
+            _login = loginData.Login;
+            _pass = loginData.Password;
+            _container = loginData.Container;
         }
 
-        public void SetLoginAndPass(string login, string pass)
+        public void SetLoginAndPass(string login, string pass, IContainer container)
         {
             _login = login;
             _pass = pass;
+            _container = container;
         }
 
         public void Execute()
@@ -41,17 +52,19 @@ namespace MedicalLocator.Mobile.Commands
                 loginResponse = client.Login(_login, _pass);   
             }
             
-            // todo:
             if (loginResponse.IsValid)
             {
                 if (loginResponse.IsAnonymous)
                     _currentContext.LoggedInUser = "Anonymous";
                 else
                     _currentContext.LoggedInUser = loginResponse.Name;
+
+                var command2 = _container.Resolve<ShowMainPage>();
+                CommandInvoker.Invoke(command2);
             }
             else
             {
-                _currentContext.LoggedInUser = "Error user";
+                // todo: login error message
             }
         }
     }
