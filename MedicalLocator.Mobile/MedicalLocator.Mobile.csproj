@@ -146,11 +146,6 @@
     <Compile Include="Infrastructure\SyncCommunicationExtensions.cs" />
     <Compile Include="Infrastructure\UICommand.cs" />
     <Compile Include="Keys\KeysProvider.cs" />
-    <Compile Include="Model\CenterType.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainPageViewModel.cs" />
     <Compile Include="Model\CurrentContext.cs" />
     <Compile Include="Model\EnumsValuesProvider.cs" />
     <Compile Include="Model\IEnumsValuesProvider.cs" />

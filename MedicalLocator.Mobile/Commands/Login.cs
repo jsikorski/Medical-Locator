@@ -20,13 +20,6 @@ namespace MedicalLocator.Mobile.Commands
     public class Login : ICommand
     {
         private readonly CurrentContext _currentContext;
-<<<<<<< HEAD
-        private readonly IContainer _container;
-        private readonly string _login;
-        private readonly string _pass;
-
-        public Login(CurrentContext currentContext, IContainer container, LoginData loginData)
-=======
         private readonly IEnumsValuesProvider _enumsValuesProvider;
         private readonly IContainer _container;
 
@@ -34,7 +27,6 @@ namespace MedicalLocator.Mobile.Commands
         private string _pass;
 
         public Login(CurrentContext currentContext, IEnumsValuesProvider enumsValuesProvider, IContainer container, LoginData loginData)
->>>>>>> Using data readed from raven in app
         {
             _container = container;
             _enumsValuesProvider = enumsValuesProvider;
@@ -42,15 +34,6 @@ namespace MedicalLocator.Mobile.Commands
             _container = container;
             _login = loginData.Login;
             _pass = loginData.Password;
-<<<<<<< HEAD
-=======
-        }
-
-        public void SetLoginAndPass(string login, string pass)
-        {
-            _login = login;
-            _pass = pass;
->>>>>>> Using data readed from raven in app
         }
 
         public void Execute()
