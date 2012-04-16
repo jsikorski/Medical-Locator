@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
@@ -29,7 +30,7 @@ namespace MedicalLocator.Mobile.Commands
         {
             Location userLocation = _locationProvider.GetUserLocation();
             var allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
-            _searchingManager.ExecuteSearching(userLocation, NearestRange, allMedicalTypes);
+            _searchingManager.ExecuteSearching(userLocation, NearestRange, (IEnumerable<MedicalType>)allMedicalTypes);
         }
     }
 }

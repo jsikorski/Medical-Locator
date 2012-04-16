@@ -19,7 +19,8 @@ namespace MedicalLocator.Mobile.Model
         public void SetLoggedInUser(MedicalLocatorUserData user)
         {
             if (user.LastSearch.SearchedObjects == null)
-                user.LastSearch.SearchedObjects = new ObservableCollection<MedicalType>(_enumsValuesProvider.GetAllMedicalTypes());
+                user.LastSearch.SearchedObjects =
+                    new ObservableCollection<MedicalType>(_enumsValuesProvider.GetAllMedicalTypes());
 
             LoggedInUser = user;
         }
