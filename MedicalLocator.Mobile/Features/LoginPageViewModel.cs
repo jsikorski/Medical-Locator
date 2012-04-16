@@ -12,14 +12,11 @@ namespace MedicalLocator.Mobile.Features
         private readonly CurrentContext _currentContext;
         private readonly Func<LoginData, Login> _loginFactory;
 
-        public bool IsAnonymouslyLogin { get; set; }
-
         public LoginPageViewModel(IContainer container, CurrentContext currentContext, Func<LoginData, Login> loginFactory)
         {
             _container = container;
             _currentContext = currentContext;
             _loginFactory = loginFactory;
-            IsAnonymouslyLogin = false;
         }
 
         public bool RegisterNewUser(string name, string password)

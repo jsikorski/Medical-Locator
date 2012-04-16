@@ -60,7 +60,7 @@ namespace MedicalLocator.Mobile.Commands
                     _currentContext.LoggedInUser = loginResponse.User;
 
                 var command = _container.Resolve<ShowMainPage>();
-                CommandInvoker.Invoke(command);
+                CommandInvoker.Execute(command);
             }
             else
             {

@@ -35,8 +35,7 @@
                     <StackPanel>
                         <toolkit:ToggleSwitch x:Name="LoginAnonymouslyToggleSwitch"
                                               Header="Login anonymously"
-                                              Height="112"
-                                              IsChecked="{Binding IsAnonymouslyLogin, Mode=TwoWay}" />
+                                              Height="112"/>
                         
                         <TextBlock Text="Login"
                                    Margin="8,0"
