@@ -8,4 +8,17 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="CenterType" nillable="true" type="tns:CenterType" />
+  <xs:complexType name="ArrayOfMedicalType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MedicalType" type="tns:MedicalType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMedicalType" nillable="true" type="tns:ArrayOfMedicalType" />
+  <xs:simpleType name="MedicalType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Doctor" />
+      <xs:enumeration value="Dentist" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MedicalType" nillable="true" type="tns:MedicalType" />
 </xs:schema>

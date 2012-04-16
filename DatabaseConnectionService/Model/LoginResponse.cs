@@ -12,6 +12,6 @@ namespace DatabaseConnectionService.Model
         public bool IsAnonymous { get; set; }
 
         [DataMember]
-        public MedicalLocatorUser User { get; set; }
+        public MedicalLocatorUserData UserData { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Common.Enums;
 using DatabaseConnectionService.Model;
 using Raven.Client;
 using Raven.Client.Document;
@@ -22,7 +23,7 @@ namespace DatabaseConnectionService
                 documentStore.Initialize();
                 using (var session = documentStore.OpenSession())
                 {
-                    var userList = session.Query<MedicalLocatorUser>().Where(u => (u.Login == login && u.Password == password)).ToList();
+                    var userList = session.Query<MedicalLocatorUserData>().Where(u => (u.Login == login && u.Password == password)).ToList();
                     if (userList.Count == 0)
                     {
                         loginResponse.IsValid = false;
@@ -32,7 +33,7 @@ namespace DatabaseConnectionService
                     var user = userList[0];
                     loginResponse.IsValid = true;
                     loginResponse.IsAnonymous = false;
-                    loginResponse.User = user;
+                    loginResponse.UserData = user;
                 }
             }
 
@@ -49,15 +50,15 @@ namespace DatabaseConnectionService
                 documentStore.Initialize();
                 using (var session = documentStore.OpenSession())
                 {
-                    var hasLogin = session.Query<MedicalLocatorUser>().Any(u => u.Login == login);
+                    var hasLogin = session.Query<MedicalLocatorUserData>().Any(u => u.Login == login);
                     if (hasLogin)
                     {
                         status.IsSuccessful = false;
                         return status;
                     }
 
-                    var lastSearch = new MedicalLocatorUserLastSearch { Address = "", Dentist = true, Doctor = true };
-                    var user = new MedicalLocatorUser { Login = login, Password = password, LastSearch = lastSearch };
+                    var lastSearch = new MedicalLocatorUserLastSearch { CenterType = CenterType.MyLocation, Range = 2500 };
+                    var user = new MedicalLocatorUserData { Login = login, Password = password, LastSearch = lastSearch };
                     session.Store(user);
                     session.SaveChanges();
                 }

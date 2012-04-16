@@ -68,7 +68,7 @@
   <ItemGroup>
     <Compile Include="DatabaseConnectionService.cs" />
     <Compile Include="IDatabaseConnectionService.cs" />
-    <Compile Include="Model\MedicalLocatorUser.cs" />
+    <Compile Include="Model\MedicalLocatorUserData.cs" />
     <Compile Include="Model\RegisterStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\LoginResponse.cs" />

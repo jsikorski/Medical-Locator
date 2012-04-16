@@ -1,5 +1,5 @@
 ﻿using MedicalLocator.Mobile.Model;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.DatabaseConnectionReference;
 using System.Linq;
 
 namespace MedicalLocator.Mobile.Features
@@ -23,7 +23,7 @@ namespace MedicalLocator.Mobile.Features
             return new SearchedObjectViewModel
                        {
                            MedicalType = medicalType,
-                           IsSelected = currentContext.SelectedSearchedObjects.Contains(medicalType)
+                           IsSelected = currentContext.LoggedInUser.LastSearch.SearchedObjects.Contains(medicalType)
                        };
         }
     }
