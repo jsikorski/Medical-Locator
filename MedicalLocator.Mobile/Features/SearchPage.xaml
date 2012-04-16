@@ -9,6 +9,7 @@
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:Converters="clr-namespace:MedicalLocator.Mobile.Converters"
                             xmlns:cal="http://www.caliburnproject.org"
+                            xmlns:Validation="clr-namespace:MedicalLocator.Mobile.Validation"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
@@ -53,12 +54,10 @@
                                Grid.Row="0"
                                Grid.Column="0">
                     </TextBlock>
-                    <TextBox Grid.Row="0"
-                             Grid.Column="1"
-                             InputScope="TelephoneNumber"
-                             Text="{Binding SearchingRange, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}"
-                             Style="{StaticResource ValidationTextBoxStyle}"
-                             BindingValidationError="MainPage_BindingValidationError" />
+                    <Validation:ValidableTextBox Grid.Row="0"
+                                                 Grid.Column="1"
+                                                 InputScope="TelephoneNumber"
+                                                 Text="{Binding SearchingRange, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
 
                     <TextBlock Text="Center"
                                Grid.Row="1"
