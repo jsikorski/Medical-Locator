@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
+using MedicalLocator.Mobile.DatabaseConnectionReference;
 using MedicalLocator.Mobile.Model;
 using System.Linq;
 

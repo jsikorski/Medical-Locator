@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using Common.Enums;
 using GoogleMapsInterfaceService.Extensions;
 using GoogleMapsInterfaceService.Keys;
 using GoogleMapsInterfaceService.Properties;

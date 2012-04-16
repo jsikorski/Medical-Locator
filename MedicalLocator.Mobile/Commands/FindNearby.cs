@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Infrastructure;
+using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services;
 using MedicalLocator.Mobile.ServicesReferences;
 

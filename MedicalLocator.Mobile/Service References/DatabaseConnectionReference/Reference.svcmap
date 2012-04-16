@@ -27,6 +27,7 @@
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d0f313b0-297d-4999-82af-049cffc1fe3d" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="f4b3396a-53be-451b-a874-bc783656536e" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
     <MetadataFile FileName="DatabaseConnectionService.Model.xsd" MetadataType="Schema" ID="6217e1ca-066a-4a20-8b2b-1ff996687ed3" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="Common.Enums.xsd" MetadataType="Schema" ID="a503abd1-15ab-419c-bb6d-d89cd1d5e28e" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

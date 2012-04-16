@@ -138,8 +138,7 @@ namespace MedicalLocator.Mobile.ServicesReferences {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MedicalType", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GooglePlacesAp" +
-        "i")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MedicalType", Namespace="http://schemas.datacontract.org/2004/07/Common.Enums")]
     public enum MedicalType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]

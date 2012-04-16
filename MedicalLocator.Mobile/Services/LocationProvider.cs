@@ -1,4 +1,5 @@
 ﻿using System;
+using MedicalLocator.Mobile.DatabaseConnectionReference;
 using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services.LocationServices;
 using MedicalLocator.Mobile.ServicesReferences;
@@ -25,7 +26,7 @@ namespace MedicalLocator.Mobile.Services
         public Location GetCenterLocation()
         {
             TryStartLocationServices();
-            switch (_currentContext.SearchingCenterType)
+            switch (_currentContext.LoggedInUser.LastSearch.CenterType)
             {
                 case CenterType.MyLocation:
                     return GetUserLocation();
@@ -33,7 +34,7 @@ namespace MedicalLocator.Mobile.Services
                 // TODO
                     throw new NotImplementedException();
                 case CenterType.Coordinates:
-                    return new Location { Lat = _currentContext.SearchedLatitude, Lng = _currentContext.SearchedLongitude };
+                    return new Location { Lat = _currentContext.LoggedInUser.LastSearch.Latitude, Lng = _currentContext.LoggedInUser.LastSearch.Longitude };
             }
 
             return null;

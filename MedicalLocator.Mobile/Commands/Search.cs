@@ -27,7 +27,7 @@ namespace MedicalLocator.Mobile.Commands
         {
             Location centerLocation = _locationProvider.GetCenterLocation();
             IEnumerable<MedicalType> searchedTypes = _currentContext.SelectedSearchedObjects;
-            _searchingManager.ExecuteSearching(centerLocation, _currentContext.SearchingRange, searchedTypes);
+            _searchingManager.ExecuteSearching(centerLocation, _currentContext.LoggedInUser.LastSearch.Range, searchedTypes);
         }
     }
 }

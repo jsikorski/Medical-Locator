@@ -157,9 +157,17 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         private string AddressField;
         
+        private MedicalLocator.Mobile.DatabaseConnectionReference.CenterType CenterTypeField;
+        
         private bool DentistField;
         
-        private bool HospitalField;
+        private bool DoctorField;
+        
+        private double LatitudeField;
+        
+        private double LongitudeField;
+        
+        private int RangeField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Address {
@@ -170,6 +178,19 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
                 if ((object.ReferenceEquals(this.AddressField, value) != true)) {
                     this.AddressField = value;
                     this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MedicalLocator.Mobile.DatabaseConnectionReference.CenterType CenterType {
+            get {
+                return this.CenterTypeField;
+            }
+            set {
+                if ((this.CenterTypeField.Equals(value) != true)) {
+                    this.CenterTypeField = value;
+                    this.RaisePropertyChanged("CenterType");
                 }
             }
         }
@@ -188,14 +209,53 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Hospital {
+        public bool Doctor {
             get {
-                return this.HospitalField;
+                return this.DoctorField;
             }
             set {
-                if ((this.HospitalField.Equals(value) != true)) {
-                    this.HospitalField = value;
-                    this.RaisePropertyChanged("Hospital");
+                if ((this.DoctorField.Equals(value) != true)) {
+                    this.DoctorField = value;
+                    this.RaisePropertyChanged("Doctor");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Latitude {
+            get {
+                return this.LatitudeField;
+            }
+            set {
+                if ((this.LatitudeField.Equals(value) != true)) {
+                    this.LatitudeField = value;
+                    this.RaisePropertyChanged("Latitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Longitude {
+            get {
+                return this.LongitudeField;
+            }
+            set {
+                if ((this.LongitudeField.Equals(value) != true)) {
+                    this.LongitudeField = value;
+                    this.RaisePropertyChanged("Longitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Range {
+            get {
+                return this.RangeField;
+            }
+            set {
+                if ((this.RangeField.Equals(value) != true)) {
+                    this.RangeField = value;
+                    this.RaisePropertyChanged("Range");
                 }
             }
         }
@@ -208,6 +268,20 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CenterType", Namespace="http://schemas.datacontract.org/2004/07/Common.Enums")]
+    public enum CenterType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MyLocation = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Address = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Coordinates = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
