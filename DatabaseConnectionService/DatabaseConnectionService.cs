@@ -16,6 +16,27 @@ namespace DatabaseConnectionService
         public LoginResponse Login(string login, string password)
         {
             var loginResponse = new LoginResponse();
+
+            using (IDocumentStore documentStore = new DocumentStore() { Url = "http://localhost:8080" })
+            {
+                documentStore.Initialize();
+                using (var session = documentStore.OpenSession())
+                {
+                    var userList = session.Query<MedicalLocatorUser>().Where(u => (u.Login == login && u.Password == password)).ToList();
+                    if (userList.Count == 0)
+                    {
+                        loginResponse.IsValid = false;
+                        return loginResponse;
+                    }
+
+                    var user = userList[0];
+                    loginResponse.IsValid = true;
+                    loginResponse.IsAnonymous = false;
+                    loginResponse.Name = user.Login;
+                    loginResponse.LastSearch = user.LastSearch;
+                }
+            }
+
             return loginResponse;
         }
 

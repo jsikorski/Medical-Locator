@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows.Navigation;
 using Caliburn.Micro;
+using MedicalLocator.Mobile.DatabaseConnectionReference;
 using MedicalLocator.Mobile.Features;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
@@ -11,34 +12,42 @@ namespace MedicalLocator.Mobile.Commands
     public class Login : ICommand
     {
         private readonly CurrentContext _currentContext;
-        private string _name;
+        private string _login;
         private string _pass;
         public Login(CurrentContext currentContext)
         {
             _currentContext = currentContext;
-            _name = "";
-            _pass = "";
+            _login = null;
+            _pass = null;
         }
 
-        public void LoginByNameAndPass(string name, string pass)
+        public void SetLoginAndPass(string login, string pass)
         {
-            _name = name;
+            _login = login;
             _pass = pass;
-        }
-
-        public void LoginAnonymously()
-        {
-            _name = "";
-            _pass = "";
         }
 
         public void Execute()
         {
-            var client = new DatabaseConnectionReference.DatabaseConnectionServiceClient();
-            var loginResponse = client.Login(_name, _pass);
+            var loginResponse = new LoginResponse();
+            if (_login == null)
+            {
+                loginResponse.IsAnonymous = true;
+                loginResponse.IsValid = true;
+            }
+            else
+            {
+                var client = new DatabaseConnectionServiceClient();
+                loginResponse = client.Login(_login, _pass);   
+            }
+            
+            // todo:
             if (loginResponse.IsValid)
             {
-                _currentContext.LoggedInUser = loginResponse.Name;
+                if (loginResponse.IsAnonymous)
+                    _currentContext.LoggedInUser = "Anonymous";
+                else
+                    _currentContext.LoggedInUser = loginResponse.Name;
             }
             else
             {

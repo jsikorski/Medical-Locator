@@ -31,7 +31,7 @@ namespace MedicalLocator.Mobile.Features
         public bool LoginByNameAndPass(string name, string password)
         {
             var command = _container.Resolve<Login>();
-            command.LoginByNameAndPass(name, password);
+            command.SetLoginAndPass(name, password);
             CommandInvoker.Invoke(command);
 
             // dwa commandy kolo siebie nie wygladaja dobrze, jutro to poprawie.
@@ -43,7 +43,7 @@ namespace MedicalLocator.Mobile.Features
         public bool LoginAnonymously()
         {
             var command = _container.Resolve<Login>();
-            command.LoginAnonymously();
+            command.SetLoginAndPass(null, null);
             CommandInvoker.Invoke(command);
 
             var command2 = _container.Resolve<ShowMainPage>();

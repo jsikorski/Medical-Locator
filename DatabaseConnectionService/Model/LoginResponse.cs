@@ -15,14 +15,6 @@ namespace DatabaseConnectionService.Model
         public string Name { get; set; }
 
         [DataMember]
-        public string LastUsedAddress { get; set; }
-
-        [DataMember]
-        public int LastUsedRange { get; set; }
-
-        //[DataMember]
-        //public string LastUsedCoordinates { get; set; }
-
-        // centre type, gps settings?, list of medical objects types.
+        public MedicalLocatorUserLastSearch LastSearch { get; set; }
     }
 }
