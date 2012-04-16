@@ -21,6 +21,10 @@ namespace MedicalLocator.Mobile.Features
 
         public bool RegisterNewUser(string name, string password)
         {
+            var command = _container.Resolve<Register>();
+            command.SetNameAndPass(name, password);
+            CommandInvoker.Invoke(command);
+
             return true;
         }
 

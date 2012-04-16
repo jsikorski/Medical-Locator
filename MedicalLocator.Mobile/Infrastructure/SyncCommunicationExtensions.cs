@@ -33,13 +33,13 @@ namespace MedicalLocator.Mobile.Infrastructure
             return response;
         }
 
-        public static bool TryLogin(
+        public static LoginResponse Login(
             this DatabaseConnectionServiceClient client, string login, string password)
         {
             var syncProvider = new ManualResetEvent(false);
-            bool response = false;
+            LoginResponse response = null;
             Exception responseException = null;
-            client.TryLoginCompleted += (sender, args) =>
+            client.LoginCompleted += (sender, args) =>
             {
                 syncProvider.Set();
                 try
@@ -51,7 +51,31 @@ namespace MedicalLocator.Mobile.Infrastructure
                     responseException = exception;
                 }
             };
-            client.TryLoginAsync(login, password);
+            client.LoginAsync(login, password);
+            syncProvider.WaitOne();
+            CheckException(responseException);
+            return response;
+        }
+
+        public static RegisterStatus Register(
+            this DatabaseConnectionServiceClient client, string login, string password)
+        {
+            var syncProvider = new ManualResetEvent(false);
+            RegisterStatus response = null;
+            Exception responseException = null;
+            client.RegisterCompleted += (sender, args) =>
+            {
+                syncProvider.Set();
+                try
+                {
+                    response = args.Result;
+                }
+                catch (Exception exception)
+                {
+                    responseException = exception;
+                }
+            };
+            client.RegisterAsync(login, password);
             syncProvider.WaitOne();
             CheckException(responseException);
             return response;

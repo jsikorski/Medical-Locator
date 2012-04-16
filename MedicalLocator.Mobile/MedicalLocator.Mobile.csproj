@@ -89,6 +89,7 @@
     <Compile Include="BingMaps\PushpinType.cs" />
     <Compile Include="BingMaps\PushpinViewModel.cs" />
     <Compile Include="Commands\AskForLocationServices.cs" />
+    <Compile Include="Commands\Register.cs" />
     <Compile Include="Commands\Login.cs" />
     <Compile Include="Commands\FindNearby.cs" />
     <Compile Include="Commands\SearchingCommand.cs" />
@@ -218,6 +219,15 @@
     </Content>
     <None Include="Service References\DatabaseConnectionReference\configuration91.svcinfo" />
     <None Include="Service References\DatabaseConnectionReference\configuration.svcinfo" />
+    <None Include="Service References\DatabaseConnectionReference\DatabaseConnectionService.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\DatabaseConnectionReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

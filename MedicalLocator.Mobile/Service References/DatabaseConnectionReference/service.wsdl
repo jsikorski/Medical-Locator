@@ -4,34 +4,45 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IDatabaseConnectionService_TryLogin_InputMessage">
-    <wsdl:part name="parameters" element="tns:TryLogin" />
+  <wsdl:message name="IDatabaseConnectionService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
-  <wsdl:message name="IDatabaseConnectionService_TryLogin_OutputMessage">
-    <wsdl:part name="parameters" element="tns:TryLoginResponse" />
+  <wsdl:message name="IDatabaseConnectionService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
-  <wsdl:message name="IDatabaseConnectionService_Logout_InputMessage">
-    <wsdl:part name="parameters" element="tns:Logout" />
+  <wsdl:message name="IDatabaseConnectionService_Register_InputMessage">
+    <wsdl:part name="parameters" element="tns:Register" />
   </wsdl:message>
-  <wsdl:message name="IDatabaseConnectionService_Logout_OutputMessage">
-    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  <wsdl:message name="IDatabaseConnectionService_Register_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseConnectionService_SaveUserSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUserSettings" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseConnectionService_SaveUserSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUserSettingsResponse" />
   </wsdl:message>
   <wsdl:portType name="IDatabaseConnectionService">
-    <wsdl:operation name="TryLogin">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/TryLogin" message="tns:IDatabaseConnectionService_TryLogin_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseConnectionService/TryLoginResponse" message="tns:IDatabaseConnectionService_TryLogin_OutputMessage" />
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/Login" message="tns:IDatabaseConnectionService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseConnectionService/LoginResponse" message="tns:IDatabaseConnectionService_Login_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Logout">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/Logout" message="tns:IDatabaseConnectionService_Logout_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseConnectionService/LogoutResponse" message="tns:IDatabaseConnectionService_Logout_OutputMessage" />
+    <wsdl:operation name="Register">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/Register" message="tns:IDatabaseConnectionService_Register_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseConnectionService/RegisterResponse" message="tns:IDatabaseConnectionService_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/SaveUserSettings" message="tns:IDatabaseConnectionService_SaveUserSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseConnectionService/SaveUserSettingsResponse" message="tns:IDatabaseConnectionService_SaveUserSettings_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDatabaseConnectionService" type="tns:IDatabaseConnectionService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="TryLogin">
-      <soap:operation soapAction="http://tempuri.org/IDatabaseConnectionService/TryLogin" style="document" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseConnectionService/Login" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -39,8 +50,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Logout">
-      <soap:operation soapAction="http://tempuri.org/IDatabaseConnectionService/Logout" style="document" />
+    <wsdl:operation name="Register">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseConnectionService/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserSettings">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseConnectionService/SaveUserSettings" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
