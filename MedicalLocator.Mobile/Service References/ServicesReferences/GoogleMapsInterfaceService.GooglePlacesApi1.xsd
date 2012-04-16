@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GooglePlacesApi" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GooglePlacesApi" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Common.Enums" />
+  <xs:complexType name="GooglePlacesApiRequest">
+    <xs:sequence>
+      <xs:element name="IsGpsUsed" type="xs:boolean">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Location" nillable="true" type="tns:Location">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Common.Enums" name="MedicalTypes" nillable="true" type="q1:ArrayOfMedicalType">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Radius" type="xs:int">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GooglePlacesApiRequest" nillable="true" type="tns:GooglePlacesApiRequest" />
+  <xs:complexType name="Location">
+    <xs:sequence>
+      <xs:element name="Lat" type="xs:double">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Lng" type="xs:double">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Location" nillable="true" type="tns:Location" />
+  <xs:complexType name="GooglePlacesWcfResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Results" nillable="true" type="tns:ArrayOfGooglePlacesWcfResult" />
+      <xs:element minOccurs="0" name="Status" type="tns:Status" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GooglePlacesWcfResponse" nillable="true" type="tns:GooglePlacesWcfResponse" />
+  <xs:complexType name="ArrayOfGooglePlacesWcfResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GooglePlacesWcfResult" nillable="true" type="tns:GooglePlacesWcfResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGooglePlacesWcfResult" nillable="true" type="tns:ArrayOfGooglePlacesWcfResult" />
+  <xs:complexType name="GooglePlacesWcfResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Location" nillable="true" type="tns:Location" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Common.Enums" minOccurs="0" name="Type" type="q2:MedicalType" />
+      <xs:element minOccurs="0" name="Vicinity" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GooglePlacesWcfResult" nillable="true" type="tns:GooglePlacesWcfResult" />
+  <xs:simpleType name="Status">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ok" />
+      <xs:enumeration value="Zero_Results" />
+      <xs:enumeration value="Request_Denied" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Status" nillable="true" type="tns:Status" />
+</xs:schema>
