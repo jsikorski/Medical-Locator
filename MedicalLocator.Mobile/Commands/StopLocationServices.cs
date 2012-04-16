@@ -1,4 +1,5 @@
-﻿using MedicalLocator.Mobile.Infrastructure;
+﻿using MedicalLocator.Mobile.Features;
+using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Services.LocationServices;
 
 namespace MedicalLocator.Mobile.Commands

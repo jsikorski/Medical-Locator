@@ -6,11 +6,12 @@
         <ResourceDictionary>
             <Mobile:AppBootstrapper x:Key="bootstrapper" />
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/BusyIndicatorControlStyle.xaml" />
-                <ResourceDictionary Source="Styles/PushpinsStyle.xaml" />
-                <ResourceDictionary Source="Styles/PushpinsTooltipStyle.xaml" />
-                <ResourceDictionary Source="ControlsTemplates/TextBoxControlTemplate.xaml" />
+                <ResourceDictionary Source="Infrastructure\BusyIndicatorControlStyle.xaml" />
+                <ResourceDictionary Source="BingMaps\PushpinsStyle.xaml" />
+                <ResourceDictionary Source="BingMaps\PushpinsTooltipStyle.xaml" />
+                <ResourceDictionary Source="Validation\ValidableTextBoxStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
+    

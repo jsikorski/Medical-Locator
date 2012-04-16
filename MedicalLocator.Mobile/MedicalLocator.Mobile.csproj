@@ -100,9 +100,13 @@
     <Compile Include="Commands\ShowMainPage.cs" />
     <Compile Include="Commands\StopLocationServices.cs" />
     <Compile Include="Converters\MyBooleanToVisibilityConverter.cs" />
-    <Page Include="ControlsTemplates\TextBoxControlTemplate.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="BingMaps\PushpinsStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BingMaps\PushpinsTooltipStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Compile Include="Converters\CenterTypesToNamesConverter.cs" />
     <Compile Include="Converters\CenterTypeNameToVisibilityConverter.cs" />
@@ -118,6 +122,10 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\LoginPageViewModel.cs" />
+    <Compile Include="Features\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Features\MainPageViewModel.cs" />
     <Compile Include="Features\SearchedObjectViewModel.cs" />
     <Compile Include="Features\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
@@ -138,10 +146,6 @@
     <Compile Include="Infrastructure\SyncCommunicationExtensions.cs" />
     <Compile Include="Infrastructure\UICommand.cs" />
     <Compile Include="Keys\KeysProvider.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainPageViewModel.cs" />
     <Compile Include="Model\CenterType.cs" />
     <Compile Include="Model\CurrentContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,16 +177,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\PushpinsStyle.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Features\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\PushpinsTooltipStyle.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="Services\SearchingManager.cs" />
     <Compile Include="Utils\MessageBoxService.cs" />
+    <Page Include="Validation\ValidableTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -201,11 +205,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\BusyIndicatorControlStyle.xaml">
+    <Page Include="Infrastructure\BusyIndicatorControlStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -273,9 +273,9 @@
     <Content Include="Graphics\aboutIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Graphics\powered-by-google-on-white.png">
+    <Content Include="Graphics\powered-by-google-on-white.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="Graphics\searchIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

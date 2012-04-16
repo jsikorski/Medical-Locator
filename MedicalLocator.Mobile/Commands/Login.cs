@@ -14,28 +14,21 @@ namespace MedicalLocator.Mobile.Commands
     {
         public string Login { get; set; }
         public string Password { get; set; }
-        public IContainer Container { get; set; }
     }
 
     public class Login : ICommand
     {
         private readonly CurrentContext _currentContext;
-        private string _login;
-        private string _pass;
-        private IContainer _container;
-        public Login(CurrentContext currentContext, LoginData loginData)
+        private readonly IContainer _container;
+        private readonly string _login;
+        private readonly string _pass;
+
+        public Login(CurrentContext currentContext, IContainer container, LoginData loginData)
         {
             _currentContext = currentContext;
+            _container = container;
             _login = loginData.Login;
             _pass = loginData.Password;
-            _container = loginData.Container;
-        }
-
-        public void SetLoginAndPass(string login, string pass, IContainer container)
-        {
-            _login = login;
-            _pass = pass;
-            _container = container;
         }
 
         public void Execute()

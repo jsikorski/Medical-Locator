@@ -2,6 +2,7 @@
 using Caliburn.Micro;
 using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Exceptions;
+using MedicalLocator.Mobile.Features;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.ServicesReferences;
 

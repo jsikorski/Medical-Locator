@@ -1,4 +1,4 @@
-﻿using Autofac;
+using Autofac;
 using Caliburn.Micro;
 using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Commands;
@@ -6,7 +6,7 @@ using MedicalLocator.Mobile.Infrastructure;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Shell;
 
-namespace MedicalLocator.Mobile
+namespace MedicalLocator.Mobile.Features
 {
     [SingleInstance]
     public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler, IHasApplicationBar
