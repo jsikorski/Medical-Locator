@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Autofac;
 using Caliburn.Micro;
@@ -11,6 +13,7 @@ using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services;
 using MedicalLocator.Mobile.ServicesReferences;
 using IContainer = Autofac.IContainer;
+using MedicalType = MedicalLocator.Mobile.DatabaseConnectionReference.MedicalType;
 
 namespace MedicalLocator.Mobile.Features
 {
@@ -85,7 +88,7 @@ namespace MedicalLocator.Mobile.Features
 
         protected override void OnDeactivate(bool close)
         {
-            _currentContext.SelectedSearchedObjects = PossibleSearchedTypes.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType);
+        ////    _currentContext.SelectedSearchedObjects = PossibleSearchedTypes.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType);
             base.OnDeactivate(close);
         }
 

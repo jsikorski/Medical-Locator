@@ -26,8 +26,8 @@ namespace MedicalLocator.Mobile.Commands
         public override void Execute()
         {
             Location centerLocation = _locationProvider.GetCenterLocation();
-            IEnumerable<MedicalType> searchedTypes = _currentContext.SelectedSearchedObjects;
-            _searchingManager.ExecuteSearching(centerLocation, _currentContext.LoggedInUser.LastSearch.Range, searchedTypes);
+        /////    IEnumerable<MedicalType> searchedTypes = _currentContext.SelectedSearchedObjects;
+       ////     _searchingManager.ExecuteSearching(centerLocation, _currentContext.LoggedInUser.LastSearch.Range, searchedTypes);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         private bool IsValidField;
         
-        private MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUser UserField;
+        private MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserData UserDataField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool IsAnonymous {
@@ -53,14 +53,14 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUser User {
+        public MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserData UserData {
             get {
-                return this.UserField;
+                return this.UserDataField;
             }
             set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
+                if ((object.ReferenceEquals(this.UserDataField, value) != true)) {
+                    this.UserDataField = value;
+                    this.RaisePropertyChanged("UserData");
                 }
             }
         }
@@ -77,8 +77,8 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MedicalLocatorUser", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
-    public partial class MedicalLocatorUser : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="MedicalLocatorUserData", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
+    public partial class MedicalLocatorUserData : object, System.ComponentModel.INotifyPropertyChanged {
         
         private int IdField;
         
@@ -159,15 +159,13 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         private MedicalLocator.Mobile.DatabaseConnectionReference.CenterType CenterTypeField;
         
-        private bool DentistField;
-        
-        private bool DoctorField;
-        
         private double LatitudeField;
         
         private double LongitudeField;
         
         private int RangeField;
+        
+        private System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.DatabaseConnectionReference.MedicalType> SearchedObjectsField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Address {
@@ -191,32 +189,6 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
                 if ((this.CenterTypeField.Equals(value) != true)) {
                     this.CenterTypeField = value;
                     this.RaisePropertyChanged("CenterType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Dentist {
-            get {
-                return this.DentistField;
-            }
-            set {
-                if ((this.DentistField.Equals(value) != true)) {
-                    this.DentistField = value;
-                    this.RaisePropertyChanged("Dentist");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Doctor {
-            get {
-                return this.DoctorField;
-            }
-            set {
-                if ((this.DoctorField.Equals(value) != true)) {
-                    this.DoctorField = value;
-                    this.RaisePropertyChanged("Doctor");
                 }
             }
         }
@@ -260,6 +232,19 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.DatabaseConnectionReference.MedicalType> SearchedObjects {
+            get {
+                return this.SearchedObjectsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SearchedObjectsField, value) != true)) {
+                    this.SearchedObjectsField = value;
+                    this.RaisePropertyChanged("SearchedObjects");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -282,6 +267,17 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Coordinates = 2,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MedicalType", Namespace="http://schemas.datacontract.org/2004/07/Common.Enums")]
+    public enum MedicalType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Doctor = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Dentist = 1,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

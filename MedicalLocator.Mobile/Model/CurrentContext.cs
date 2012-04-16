@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Device.Location;
 using MedicalLocator.Mobile.DatabaseConnectionReference;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Services;
-using MedicalLocator.Mobile.ServicesReferences;
 
 namespace MedicalLocator.Mobile.Model
 {
@@ -12,17 +13,20 @@ namespace MedicalLocator.Mobile.Model
     {
         private readonly IEnumsValuesProvider _enumsValuesProvider;
         public bool AreLocationServicesAllowed { get; set; }
-        public MedicalLocatorUser LoggedInUser { get; set; }
 
-        public IEnumerable<MedicalType> SelectedSearchedObjects { get; set; }
+        public MedicalLocatorUserData LoggedInUser { get; private set; }
+
+        public void SetLoggedInUser(MedicalLocatorUserData user)
+        {
+            if (user.LastSearch.SearchedObjects == null)
+                user.LastSearch.SearchedObjects = new ObservableCollection<MedicalType>(_enumsValuesProvider.GetAllMedicalTypes());
+
+            LoggedInUser = user;
+        }
 
         public CurrentContext(IEnumsValuesProvider enumsValuesProvider)
         {
             _enumsValuesProvider = enumsValuesProvider;
-
-            LoggedInUser = null;
-            
-            SelectedSearchedObjects = _enumsValuesProvider.GetAllMedicalTypes();
         }
     }
 }

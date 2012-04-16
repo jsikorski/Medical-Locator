@@ -42,25 +42,25 @@ namespace MedicalLocator.Mobile.Commands
             else
             {
                 var client = new DatabaseConnectionServiceClient();
-                loginResponse = client.Login(_login, _pass);   
+                loginResponse = client.Login(_login, _pass);
             }
-            
+
             if (loginResponse.IsValid)
             {
                 if (loginResponse.IsAnonymous)
                 {
-                    _currentContext.LoggedInUser = new MedicalLocatorUser
-                                                       {
-                                                           Id = 0,
-                                                           Login = null,
-                                                           Password = null,
-                                                           LastSearch =
-                                                               new MedicalLocatorUserLastSearch
-                                                                   {CenterType = CenterType.MyLocation, Range = 2500}
-                                                       };
+                    _currentContext.SetLoggedInUser(
+                        new MedicalLocatorUserData()
+                            {
+                                Id = 0,
+                                Login = null,
+                                Password = null,
+                                LastSearch =
+                                    new MedicalLocatorUserLastSearch { CenterType = CenterType.MyLocation, Range = 2500 }
+                            });
                 }
                 else
-                    _currentContext.LoggedInUser = loginResponse.User;
+                    _currentContext.SetLoggedInUser(loginResponse.UserData);
 
                 var command = _container.Resolve<ShowMainPage>();
                 CommandInvoker.Execute(command);

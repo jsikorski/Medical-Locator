@@ -28,7 +28,7 @@ namespace MedicalLocator.Mobile.Commands
         public override void Execute()
         {
             Location userLocation = _locationProvider.GetUserLocation();
-            IEnumerable<MedicalType> allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
+            var allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
             _searchingManager.ExecuteSearching(userLocation, NearestRange, allMedicalTypes);
         }
     }

@@ -5,11 +5,11 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="IsAnonymous" type="xs:boolean" />
       <xs:element minOccurs="0" name="IsValid" type="xs:boolean" />
-      <xs:element minOccurs="0" name="User" nillable="true" type="tns:MedicalLocatorUser" />
+      <xs:element minOccurs="0" name="UserData" nillable="true" type="tns:MedicalLocatorUserData" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="LoginResponse" nillable="true" type="tns:LoginResponse" />
-  <xs:complexType name="MedicalLocatorUser">
+  <xs:complexType name="MedicalLocatorUserData">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="LastSearch" nillable="true" type="tns:MedicalLocatorUserLastSearch" />
@@ -17,16 +17,15 @@
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="MedicalLocatorUser" nillable="true" type="tns:MedicalLocatorUser" />
+  <xs:element name="MedicalLocatorUserData" nillable="true" type="tns:MedicalLocatorUserData" />
   <xs:complexType name="MedicalLocatorUserLastSearch">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Common.Enums" minOccurs="0" name="CenterType" type="q1:CenterType" />
-      <xs:element minOccurs="0" name="Dentist" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Doctor" type="xs:boolean" />
       <xs:element minOccurs="0" name="Latitude" type="xs:double" />
       <xs:element minOccurs="0" name="Longitude" type="xs:double" />
       <xs:element minOccurs="0" name="Range" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Common.Enums" minOccurs="0" name="SearchedObjects" nillable="true" type="q2:ArrayOfMedicalType" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MedicalLocatorUserLastSearch" nillable="true" type="tns:MedicalLocatorUserLastSearch" />
