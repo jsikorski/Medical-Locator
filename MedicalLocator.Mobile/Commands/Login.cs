@@ -55,7 +55,17 @@ namespace MedicalLocator.Mobile.Commands
             if (loginResponse.IsValid)
             {
                 if (loginResponse.IsAnonymous)
-                    _currentContext.LoggedInUser = null;
+                {
+                    _currentContext.LoggedInUser = new MedicalLocatorUser
+                                                       {
+                                                           Id = 0,
+                                                           Login = null,
+                                                           Password = null,
+                                                           LastSearch =
+                                                               new MedicalLocatorUserLastSearch
+                                                                   {CenterType = CenterType.MyLocation, Range = 2500}
+                                                       };
+                }
                 else
                     _currentContext.LoggedInUser = loginResponse.User;
 
