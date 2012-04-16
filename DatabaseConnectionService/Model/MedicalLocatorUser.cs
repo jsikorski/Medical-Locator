@@ -12,7 +12,7 @@ namespace DatabaseConnectionService.Model
         public bool Hospital { get; set; }
     }
 
-    class MedicalLocatorUser
+    public class MedicalLocatorUser
     {
         public int Id { get; set; }
         public string Login { get; set; }

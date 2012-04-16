@@ -32,8 +32,7 @@ namespace DatabaseConnectionService
                     var user = userList[0];
                     loginResponse.IsValid = true;
                     loginResponse.IsAnonymous = false;
-                    loginResponse.Name = user.Login;
-                    loginResponse.LastSearch = user.LastSearch;
+                    loginResponse.User = user;
                 }
             }
 

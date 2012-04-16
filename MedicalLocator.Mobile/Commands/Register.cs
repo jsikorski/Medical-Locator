@@ -29,13 +29,11 @@ namespace MedicalLocator.Mobile.Commands
             var client = new DatabaseConnectionReference.DatabaseConnectionServiceClient();
             if (client.Register(_name, _pass).IsSuccessful)
             {
-                // todo:
-                _currentContext.LoggedInUser = _name;
+                // todo: message
             }
             else
             {
-                // todo:
-                _currentContext.LoggedInUser = "Error user";
+                // todo: message
             }
         }
     }

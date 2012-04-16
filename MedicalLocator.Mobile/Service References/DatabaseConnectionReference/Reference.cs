@@ -24,9 +24,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         private bool IsValidField;
         
-        private MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch LastSearchField;
-        
-        private string NameField;
+        private MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUser UserField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool IsAnonymous {
@@ -55,6 +53,55 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUser User {
+            get {
+                return this.UserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MedicalLocatorUser", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
+    public partial class MedicalLocatorUser : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int IdField;
+        
+        private MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch LastSearchField;
+        
+        private string LoginField;
+        
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch LastSearch {
             get {
                 return this.LastSearchField;
@@ -68,14 +115,27 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
+        public string Login {
             get {
-                return this.NameField;
+                return this.LoginField;
             }
             set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
+                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
+                    this.LoginField = value;
+                    this.RaisePropertyChanged("Login");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
                 }
             }
         }

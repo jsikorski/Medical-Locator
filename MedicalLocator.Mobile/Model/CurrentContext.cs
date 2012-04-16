@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Device.Location;
+using MedicalLocator.Mobile.DatabaseConnectionReference;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Services;
 using MedicalLocator.Mobile.ServicesReferences;
@@ -16,7 +17,7 @@ namespace MedicalLocator.Mobile.Model
         public string SearchedAddress { get; set; }
         public double SearchedLongitude { get; set; }
         public double SearchedLatitude { get; set; }
-        public string LoggedInUser { get; set; }
+        public MedicalLocatorUser LoggedInUser { get; set; }
 
         public IEnumerable<MedicalType> SelectedSearchedObjects { get; set; }
 
@@ -26,7 +27,7 @@ namespace MedicalLocator.Mobile.Model
             SearchingRange = 2500;
             SearchingCenterType = CenterType.MyLocation;
             SearchedAddress = string.Empty;
-            LoggedInUser = "SDSA";
+            LoggedInUser = null;
             
             SelectedSearchedObjects = _enumsValuesProvider.GetAllMedicalTypes();
         }

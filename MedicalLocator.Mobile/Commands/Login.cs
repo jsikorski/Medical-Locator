@@ -55,12 +55,12 @@ namespace MedicalLocator.Mobile.Commands
             if (loginResponse.IsValid)
             {
                 if (loginResponse.IsAnonymous)
-                    _currentContext.LoggedInUser = "Anonymous";
+                    _currentContext.LoggedInUser = null;
                 else
-                    _currentContext.LoggedInUser = loginResponse.Name;
+                    _currentContext.LoggedInUser = loginResponse.User;
 
-                var command2 = _container.Resolve<ShowMainPage>();
-                CommandInvoker.Invoke(command2);
+                var command = _container.Resolve<ShowMainPage>();
+                CommandInvoker.Invoke(command);
             }
             else
             {
