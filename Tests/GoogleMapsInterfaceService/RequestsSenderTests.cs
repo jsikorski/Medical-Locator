@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Common.Enums;
 using GoogleMapsInterfaceService.GooglePlacesApi;
 using GoogleMapsInterfaceService.Requests;
 using NUnit.Framework;

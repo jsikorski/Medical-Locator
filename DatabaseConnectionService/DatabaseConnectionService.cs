@@ -56,7 +56,7 @@ namespace DatabaseConnectionService
                         return status;
                     }
 
-                    var lastSearch = new MedicalLocatorUserLastSearch { Address = "", Dentist = true, Hospital = true };
+                    var lastSearch = new MedicalLocatorUserLastSearch { Address = "", Dentist = true, Doctor = true };
                     var user = new MedicalLocatorUser { Login = login, Password = password, LastSearch = lastSearch };
                     session.Store(user);
                     session.SaveChanges();

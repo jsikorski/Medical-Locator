@@ -87,6 +87,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{306B2B9C-D916-4D3E-AEDF-E105432039A9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GoogleMapsInterfaceService\GoogleMapsInterfaceService.csproj">
       <Project>{B2FF034E-0386-4D17-8151-D611E1324764}</Project>
       <Name>GoogleMapsInterfaceService</Name>

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Common.Enums" />
   <xs:complexType name="LoginResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="IsAnonymous" type="xs:boolean" />
@@ -20,8 +21,12 @@
   <xs:complexType name="MedicalLocatorUserLastSearch">
     <xs:sequence>
       <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Common.Enums" minOccurs="0" name="CenterType" type="q1:CenterType" />
       <xs:element minOccurs="0" name="Dentist" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Hospital" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Doctor" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Latitude" type="xs:double" />
+      <xs:element minOccurs="0" name="Longitude" type="xs:double" />
+      <xs:element minOccurs="0" name="Range" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MedicalLocatorUserLastSearch" nillable="true" type="tns:MedicalLocatorUserLastSearch" />

@@ -63,7 +63,6 @@
     <Compile Include="GooglePlacesApi\GooglePlacesWcfResponse.cs" />
     <Compile Include="GooglePlacesApi\GooglePlacesWcfResult.cs" />
     <Compile Include="GooglePlacesApi\Location.cs" />
-    <Compile Include="GooglePlacesApi\MedicalType.cs" />
     <Compile Include="GooglePlacesApi\GooglePlacesApiToWcfResponseConverter.cs" />
     <Compile Include="GooglePlacesApi\Status.cs" />
     <Compile Include="IGoogleMapsInterfaceService.cs" />
@@ -90,6 +89,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{306B2B9C-D916-4D3E-AEDF-E105432039A9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
