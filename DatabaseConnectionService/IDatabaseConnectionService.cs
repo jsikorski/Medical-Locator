@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using DatabaseConnectionService.Model;
 
 namespace DatabaseConnectionService
 {
@@ -11,9 +12,12 @@ namespace DatabaseConnectionService
     public interface IDatabaseConnectionService
     {
         [OperationContract]
-        bool TryLogin(string login, string password);
+        LoginResponse Login(string login, string password);
 
         [OperationContract]
-        void Logout();
+        RegisterStatus Register(string login, string password);
+
+        [OperationContract]
+        bool SaveUserSettings(string login, MedicalLocatorUserLastSearch lastSearch);
     }
 }
