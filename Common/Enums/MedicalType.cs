@@ -3,6 +3,11 @@
     public enum MedicalType
     {
         Doctor,
-        Dentist
+        Dentist//,
+        //Health,
+        //Hospital,
+        //pharmacy,
+        //physiotherapist,
+        //veterinary_care,
     }
 }
