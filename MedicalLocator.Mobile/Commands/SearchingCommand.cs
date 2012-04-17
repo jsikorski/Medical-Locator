@@ -2,7 +2,7 @@
 using MedicalLocator.Mobile.Exceptions;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Services.LocationServices;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
 using MedicalLocator.Mobile.Utils;
 
 namespace MedicalLocator.Mobile.Commands

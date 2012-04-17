@@ -20,15 +20,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.4:8090/GoogleMapsInterfaceService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.1.100:8090/GoogleMapsInterfaceService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="ef2b0409-7954-44d8-b522-750850c967fe" SourceId="1" SourceUrl="http://192.168.1.4:8090/GoogleMapsInterfaceService/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="54eb9039-a475-4113-bc3f-1ae2da262317" SourceId="1" SourceUrl="http://192.168.1.4:8090/GoogleMapsInterfaceService/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="6e04682d-8b57-4b0e-9c87-b12aa63b005f" SourceId="1" SourceUrl="http://192.168.1.4:8090/GoogleMapsInterfaceService/mex" />
-    <MetadataFile FileName="GoogleMapsInterfaceService.GooglePlacesApi1.xsd" MetadataType="Schema" ID="fe8aba25-95b3-4db2-b879-bef5dc093ae7" SourceId="1" SourceUrl="http://192.168.1.4:8090/GoogleMapsInterfaceService/mex" />
-    <MetadataFile FileName="Common.Enums.xsd" MetadataType="Schema" ID="9d014fd4-842c-4496-859f-b0f5cad8bdee" SourceId="1" SourceUrl="http://192.168.1.4:8090/GoogleMapsInterfaceService/mex" />
-    <MetadataFile FileName="GoogleMapsInterfaceService.Faults1.xsd" MetadataType="Schema" ID="adaecaaf-e9e2-450b-804e-1b0b658248c7" SourceId="1" SourceUrl="http://192.168.1.4:8090/GoogleMapsInterfaceService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="aebc5741-9075-4c87-91d3-71e0d389d063" SourceId="1" SourceUrl="http://192.168.1.100:8090/GoogleMapsInterfaceService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="f23a50c9-4da3-4d91-be3c-d4ce4a8dc5bb" SourceId="1" SourceUrl="http://192.168.1.100:8090/GoogleMapsInterfaceService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="4bfa4680-491f-4fcd-96e4-a04e6e180c28" SourceId="1" SourceUrl="http://192.168.1.100:8090/GoogleMapsInterfaceService/mex" />
+    <MetadataFile FileName="GoogleMapsInterfaceService.GooglePlacesApi.xsd" MetadataType="Schema" ID="02a8a141-b681-4fde-adce-f649a66f5c05" SourceId="1" SourceUrl="http://192.168.1.100:8090/GoogleMapsInterfaceService/mex" />
+    <MetadataFile FileName="Common.Enums1.xsd" MetadataType="Schema" ID="b2650372-d6dd-432b-9f57-a8d13acc3b10" SourceId="1" SourceUrl="http://192.168.1.100:8090/GoogleMapsInterfaceService/mex" />
+    <MetadataFile FileName="GoogleMapsInterfaceService.Faults.xsd" MetadataType="Schema" ID="8141edce-b062-4727-95f2-3d544153e9db" SourceId="1" SourceUrl="http://192.168.1.100:8090/GoogleMapsInterfaceService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

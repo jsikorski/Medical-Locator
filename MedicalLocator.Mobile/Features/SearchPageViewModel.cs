@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Autofac;
 using Caliburn.Micro;
@@ -10,8 +7,6 @@ using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.DatabaseConnectionReference;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
-using MedicalLocator.Mobile.Services;
-using MedicalLocator.Mobile.ServicesReferences;
 using IContainer = Autofac.IContainer;
 using MedicalType = MedicalLocator.Mobile.DatabaseConnectionReference.MedicalType;
 
@@ -25,38 +20,33 @@ namespace MedicalLocator.Mobile.Features
 
         public int SearchingRange
         {
-            get { return _currentContext.LoggedInUser.LastSearch.Range; }
-            set {
-                if (value < 50)
-                {
-                    throw new Exception("Must be greater!");
-                }
-                _currentContext.LoggedInUser.LastSearch.Range = value; }
+            get { return _currentContext.LoggedInUserModel.LastSearch.Range; }
+            set { _currentContext.LoggedInUserModel.LastSearch.Range = value; }
         }
 
         public IEnumerable<CenterType> PossibleSearchingCenterTypes { get; set; }
         public int SelectedCenterTypeIndex
         {
-            get { return PossibleSearchingCenterTypes.ToList().IndexOf(_currentContext.LoggedInUser.LastSearch.CenterType); }
-            set { _currentContext.LoggedInUser.LastSearch.CenterType = PossibleSearchingCenterTypes.ElementAt(value); }
+            get { return PossibleSearchingCenterTypes.ToList().IndexOf(_currentContext.LoggedInUserModel.LastSearch.CenterType); }
+            set { _currentContext.LoggedInUserModel.LastSearch.CenterType = PossibleSearchingCenterTypes.ElementAt(value); }
         }
 
         public string SearchedAddress
         {
-            get { return _currentContext.LoggedInUser.LastSearch.Address; }
-            set { _currentContext.LoggedInUser.LastSearch.Address = value; }
+            get { return _currentContext.LoggedInUserModel.LastSearch.Address; }
+            set { _currentContext.LoggedInUserModel.LastSearch.Address = value; }
         }
 
         public double SearchedLatitude
         {
-            get { return _currentContext.LoggedInUser.LastSearch.Latitude; }
-            set { _currentContext.LoggedInUser.LastSearch.Latitude = value; }
+            get { return _currentContext.LoggedInUserModel.LastSearch.Latitude; }
+            set { _currentContext.LoggedInUserModel.LastSearch.Latitude = value; }
         }
 
         public double SearchedLongitude
         {
-            get { return _currentContext.LoggedInUser.LastSearch.Longitude; }
-            set { _currentContext.LoggedInUser.LastSearch.Longitude = value; }
+            get { return _currentContext.LoggedInUserModel.LastSearch.Longitude; }
+            set { _currentContext.LoggedInUserModel.LastSearch.Longitude = value; }
         }
 
         public IEnumerable<SearchedObjectViewModel> PossibleSearchedTypes { get; private set; }
@@ -91,15 +81,5 @@ namespace MedicalLocator.Mobile.Features
         ////    _currentContext.SelectedSearchedObjects = PossibleSearchedTypes.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType);
             base.OnDeactivate(close);
         }
-
-        //public string Error
-        //{
-        //    get { return "ABC"; }
-        //}
-
-        //public string this[string columnName]
-        //{
-        //    get { return "AAA"; }
-        //}
     }
 }

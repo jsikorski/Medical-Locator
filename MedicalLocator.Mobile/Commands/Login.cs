@@ -54,7 +54,7 @@ namespace MedicalLocator.Mobile.Commands
             {
                 if (loginResponse.IsAnonymous)
                 {
-                    _currentContext.SetLoggedInUser(
+                    _currentContext.SetLoggedInUserModel(
                         new MedicalLocatorUserData()
                             {
                                 Id = 0,
@@ -70,7 +70,7 @@ namespace MedicalLocator.Mobile.Commands
                             });
                 }
                 else
-                    _currentContext.SetLoggedInUser(loginResponse.UserData);
+                    _currentContext.SetLoggedInUserModel(loginResponse.UserData);
 
                 var command = _container.Resolve<ShowMainPage>();
                 CommandInvoker.Execute(command);

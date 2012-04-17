@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Caliburn.Micro;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
 using Microsoft.Phone.Controls.Maps;
 
 namespace MedicalLocator.Mobile.BingMaps

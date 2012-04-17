@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Caliburn.Micro;
 using MedicalLocator.Mobile.Model;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
 using System.Linq;
 
 namespace MedicalLocator.Mobile.Features
@@ -12,7 +12,7 @@ namespace MedicalLocator.Mobile.Features
 
         public string LoggedInUserName
         {
-            get { return (_currentContext.LoggedInUser == null) ? "anonymous" : _currentContext.LoggedInUser.Login; }
+            get { return (_currentContext.LoggedInUserModel == null) ? "anonymous" : _currentContext.LoggedInUserModel.Login; }
         }
 
         public bool AreLocationServicesAllowed

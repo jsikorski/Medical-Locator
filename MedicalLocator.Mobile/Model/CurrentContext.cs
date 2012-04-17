@@ -14,15 +14,15 @@ namespace MedicalLocator.Mobile.Model
         private readonly IEnumsValuesProvider _enumsValuesProvider;
         public bool AreLocationServicesAllowed { get; set; }
 
-        public MedicalLocatorUserData LoggedInUser { get; private set; }
+        public MedicalLocatorUserData LoggedInUserModel { get; private set; }
 
-        public void SetLoggedInUser(MedicalLocatorUserData user)
+        public void SetLoggedInUserModel(MedicalLocatorUserData userModel)
         {
-            if (user.LastSearch.SearchedObjects == null)
-                user.LastSearch.SearchedObjects =
+            if (userModel.LastSearch.SearchedObjects == null)
+                userModel.LastSearch.SearchedObjects =
                     new ObservableCollection<MedicalType>(_enumsValuesProvider.GetAllMedicalTypes());
 
-            LoggedInUser = user;
+            LoggedInUserModel = userModel;
         }
 
         public CurrentContext(IEnumsValuesProvider enumsValuesProvider)

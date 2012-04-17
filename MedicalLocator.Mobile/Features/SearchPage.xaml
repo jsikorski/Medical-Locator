@@ -56,9 +56,7 @@
                     <TextBox Grid.Row="0"
                              Grid.Column="1"
                              InputScope="TelephoneNumber"
-                             Text="{Binding SearchingRange, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}"
-                             Style="{StaticResource ValidationTextBoxStyle}"
-                             BindingValidationError="MainPage_BindingValidationError" />
+                             Text="{Binding SearchingRange, Mode=TwoWay }"/>
 
                     <TextBlock Text="Center"
                                Grid.Row="1"

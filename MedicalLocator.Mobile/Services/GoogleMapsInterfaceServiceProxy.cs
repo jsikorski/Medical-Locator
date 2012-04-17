@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
 using System.Linq;
 
 namespace MedicalLocator.Mobile.Services

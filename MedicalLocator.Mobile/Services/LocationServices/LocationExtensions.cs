@@ -1,5 +1,5 @@
 ﻿using System.Device.Location;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
 
 namespace MedicalLocator.Mobile.Services.LocationServices
 {

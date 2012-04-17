@@ -4,7 +4,7 @@ using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Exceptions;
 using MedicalLocator.Mobile.Features;
 using MedicalLocator.Mobile.Infrastructure;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
 
 namespace MedicalLocator.Mobile.Services
 {

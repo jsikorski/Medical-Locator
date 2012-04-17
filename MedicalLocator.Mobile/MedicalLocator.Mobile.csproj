@@ -155,7 +155,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\ServicesReferences\Reference.cs">
+    <Compile Include="Service References\GoogleMapsInterfaceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -248,23 +248,23 @@
     <None Include="Service References\DatabaseConnectionReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicesReferences\Common.Enums.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\Common.Enums1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.Faults1.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicesReferences\GoogleMapsInterfaceService.GooglePlacesApi1.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicesReferences\MedicalLocator.Mobile.ServicesReferences.GooglePlacesWcfResponse.datasource">
+    <None Include="Service References\GoogleMapsInterfaceReference\MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesWcfResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServicesReferences\service1.wsdl" />
-    <None Include="Service References\ServicesReferences\service2.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\service.wsdl" />
+    <None Include="Service References\GoogleMapsInterfaceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServicesReferences\service21.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -287,9 +287,9 @@
     <Content Include="Graphics\settingsIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Service References\ServicesReferences\configuration91.svcinfo" />
-    <None Include="Service References\ServicesReferences\configuration.svcinfo" />
-    <None Include="Service References\ServicesReferences\Reference.svcmap">
+    <None Include="Service References\GoogleMapsInterfaceReference\configuration91.svcinfo" />
+    <None Include="Service References\GoogleMapsInterfaceReference\configuration.svcinfo" />
+    <None Include="Service References\GoogleMapsInterfaceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -300,7 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DatabaseConnectionReference\" />
-    <WCFMetadataStorage Include="Service References\ServicesReferences\" />
+    <WCFMetadataStorage Include="Service References\GoogleMapsInterfaceReference\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

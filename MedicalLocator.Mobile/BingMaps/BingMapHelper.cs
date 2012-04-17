@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
 using MedicalLocator.Mobile.Services.LocationServices;
 
 namespace MedicalLocator.Mobile.BingMaps

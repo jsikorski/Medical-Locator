@@ -2,7 +2,7 @@
 using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
 using MedicalLocator.Mobile.Infrastructure;
 
 namespace MedicalLocator.Mobile.Commands
@@ -27,7 +27,7 @@ namespace MedicalLocator.Mobile.Commands
         {
             Location centerLocation = _locationProvider.GetCenterLocation();
         /////    IEnumerable<MedicalType> searchedTypes = _currentContext.SelectedSearchedObjects;
-       ////     _searchingManager.ExecuteSearching(centerLocation, _currentContext.LoggedInUser.LastSearch.Range, searchedTypes);
+       ////     _searchingManager.ExecuteSearching(centerLocation, _currentContext.LoggedInUserModel.LastSearch.Range, searchedTypes);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using Caliburn.Micro;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
 using MedicalLocator.Mobile.DatabaseConnectionReference;
 
 namespace MedicalLocator.Mobile.Infrastructure

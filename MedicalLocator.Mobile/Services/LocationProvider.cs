@@ -2,7 +2,7 @@
 using MedicalLocator.Mobile.DatabaseConnectionReference;
 using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services.LocationServices;
-using MedicalLocator.Mobile.ServicesReferences;
+using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
 
 namespace MedicalLocator.Mobile.Services
 {
@@ -26,7 +26,7 @@ namespace MedicalLocator.Mobile.Services
         public Location GetCenterLocation()
         {
             TryStartLocationServices();
-            switch (_currentContext.LoggedInUser.LastSearch.CenterType)
+            switch (_currentContext.LoggedInUserModel.LastSearch.CenterType)
             {
                 case CenterType.MyLocation:
                     return GetUserLocation();
@@ -34,7 +34,7 @@ namespace MedicalLocator.Mobile.Services
                 // TODO
                     throw new NotImplementedException();
                 case CenterType.Coordinates:
-                    return new Location { Lat = _currentContext.LoggedInUser.LastSearch.Latitude, Lng = _currentContext.LoggedInUser.LastSearch.Longitude };
+                    return new Location { Lat = _currentContext.LoggedInUserModel.LastSearch.Latitude, Lng = _currentContext.LoggedInUserModel.LastSearch.Longitude };
             }
 
             return null;
