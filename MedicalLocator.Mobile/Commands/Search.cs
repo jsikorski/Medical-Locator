@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services;
@@ -26,8 +27,16 @@ namespace MedicalLocator.Mobile.Commands
         public override void Execute()
         {
             Location centerLocation = _locationProvider.GetCenterLocation();
-        /////    IEnumerable<MedicalType> searchedTypes = _currentContext.SelectedSearchedObjects;
-       ////     _searchingManager.ExecuteSearching(centerLocation, _currentContext.LoggedInUserModel.LastSearch.Range, searchedTypes);
+            var searchedTypes = _currentContext.LoggedInUserModel.LastSearch.SearchedObjects;
+
+            // DatabaseConnectionService.MedicalType to GoogleMapsInterfaceService.MedicalType...
+            var googleStyleSearchedTypes = new ObservableCollection<MedicalType>();
+            foreach (var searchedType in searchedTypes)
+            {
+                googleStyleSearchedTypes.Add((MedicalType) searchedType);
+            }
+
+            _searchingManager.ExecuteSearching(centerLocation, _currentContext.LoggedInUserModel.LastSearch.Range, googleStyleSearchedTypes);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Autofac;
 using Caliburn.Micro;
@@ -78,7 +79,7 @@ namespace MedicalLocator.Mobile.Features
 
         protected override void OnDeactivate(bool close)
         {
-        ////    _currentContext.SelectedSearchedObjects = PossibleSearchedTypes.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType);
+            _currentContext.LoggedInUserModel.LastSearch.SearchedObjects = new ObservableCollection<MedicalType>(PossibleSearchedTypes.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType));
             base.OnDeactivate(close);
         }
     }
