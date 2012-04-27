@@ -1,0 +1,11 @@
+﻿<div id="menu">
+    @MenuItem("Find nearby", "FindNearby", "Search")
+    @MenuItem("Search", "Search", "Search")
+    @MenuItem("About", "ShowAbout", "Home")
+
+    @Html.Partial("_LoginPartial")
+</div>
+
+@helper MenuItem(string itemText, string actionName, string controllerName) {
+    @Ajax.ActionLink(itemText, actionName, controllerName, null, new { @class = "menu_item" })
+}

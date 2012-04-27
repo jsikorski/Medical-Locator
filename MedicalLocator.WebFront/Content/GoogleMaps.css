@@ -1,0 +1,6 @@
+﻿html, body, #google_map_div 
+{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}

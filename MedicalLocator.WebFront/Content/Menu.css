@@ -1,0 +1,26 @@
+﻿#menu {
+    background: black;
+    border-bottom-color: white;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.menu_item {
+    display: inline-block;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 25px;
+    font-size: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.menu_item:hover {
+    color: #C9E1AF
+}
+
+#login_button {
+    float: right;
+    margin-right: 25px;
+    margin-left: 0px;
+}
