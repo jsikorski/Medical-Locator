@@ -7,5 +7,7 @@
 </div>
 
 @helper MenuItem(string itemText, string actionName, string controllerName) {
-    @Ajax.ActionLink(itemText, actionName, controllerName, null, new { @class = "menu_item" })
+    <div class="menu_item">
+        @Ajax.ActionLink(itemText, actionName, controllerName, null)
+    </div>
 }

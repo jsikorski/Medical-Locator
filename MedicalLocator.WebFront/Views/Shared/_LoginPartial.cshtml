@@ -1,9 +1,10 @@
-﻿@if (User.Identity.IsAuthenticated)
-{
-    @:Welcome @User.Identity.Name!
-        @Html.ActionLink("Logout", "Logout", "Users", new { id = "login_button", @class = "menu_item" });
-}
-else
-{
-    @Html.ActionLink("Login", "Login", "Users", new { id = "login_button", @class = "menu_item" })
-}
+﻿<div id="login_block" class="menu_item">
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink(User.Identity.Name, "ShowUserPopup", "Users");
+    }
+    else
+    {
+        @Html.ActionLink("Login", "Login", "Users")
+    }
+</div>

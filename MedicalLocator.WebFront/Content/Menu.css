@@ -15,11 +15,18 @@
     color: white;
 }
 
+.menu_item a 
+{
+    font-size: inherit;
+    text-decoration: inherit;
+    color: inherit;
+}
+
 .menu_item:hover {
     color: #C9E1AF
 }
 
-#login_button {
+#login_block {
     float: right;
     margin-right: 25px;
     margin-left: 0px;
