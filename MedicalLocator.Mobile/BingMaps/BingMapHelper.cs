@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
 using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
+using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services.LocationServices;
 
 namespace MedicalLocator.Mobile.BingMaps
@@ -61,7 +62,7 @@ namespace MedicalLocator.Mobile.BingMaps
 
         private PushpinType GetPushpinTypeFromApiResult(GooglePlacesWcfResult wcfResult)
         {
-            MedicalType medicalType = wcfResult.Type;
+            MedicalType medicalType = MedicalTypeConverter.FromGoogleService(wcfResult.Type);
             return PushpinType.FromMedicalType(medicalType);
         }
     }

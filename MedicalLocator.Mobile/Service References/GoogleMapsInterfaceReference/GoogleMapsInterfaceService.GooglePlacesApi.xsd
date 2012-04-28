@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GooglePlacesApi" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GooglePlacesApi" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/Common.Enums" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Model" />
   <xs:complexType name="GooglePlacesApiRequest">
     <xs:sequence>
       <xs:element name="IsGpsUsed" type="xs:boolean">
@@ -17,7 +17,7 @@
           </xs:appinfo>
         </xs:annotation>
       </xs:element>
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Common.Enums" name="MedicalTypes" nillable="true" type="q1:ArrayOfMedicalType">
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Model" name="MedicalTypes" nillable="true" type="q1:ArrayOfMedicalTypeGoogleService">
         <xs:annotation>
           <xs:appinfo>
             <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
@@ -70,7 +70,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Location" nillable="true" type="tns:Location" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Common.Enums" minOccurs="0" name="Type" type="q2:MedicalType" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Model" minOccurs="0" name="Type" type="q2:MedicalTypeGoogleService" />
       <xs:element minOccurs="0" name="Vicinity" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

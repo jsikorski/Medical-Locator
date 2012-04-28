@@ -5,6 +5,7 @@ using MedicalLocator.Mobile.Exceptions;
 using MedicalLocator.Mobile.Features;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
+using MedicalLocator.Mobile.Model;
 
 namespace MedicalLocator.Mobile.Services
 {

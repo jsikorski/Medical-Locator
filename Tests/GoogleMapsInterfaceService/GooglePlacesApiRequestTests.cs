@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Common.Enums;
 using GoogleMapsInterfaceService.GooglePlacesApi;
+using GoogleMapsInterfaceService.Model;
 using NUnit.Framework;
 
 namespace Tests.GoogleMapsInterfaceService
@@ -10,7 +10,7 @@ namespace Tests.GoogleMapsInterfaceService
         [Test]
         public void request_is_correctly_transformed_to_url()
         {
-            var medialTypes = new List<MedicalType> {MedicalType.Dentist};
+            var medialTypes = new List<MedicalTypeGoogleService> { MedicalTypeGoogleService.Dentist };
             var location = Substitutes.GetLocationSubstitute();
             var googlePlacesApiRequest = new GooglePlacesApiRequest
                                              {

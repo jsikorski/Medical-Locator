@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Common.Enums;
 using GoogleMapsInterfaceService.GooglePlacesApi;
+using GoogleMapsInterfaceService.Model;
 using NSubstitute;
 
 namespace Tests.GoogleMapsInterfaceService
@@ -21,7 +21,7 @@ namespace Tests.GoogleMapsInterfaceService
              var requestSubstitute = Substitute.For<GooglePlacesApiRequest>();
              requestSubstitute.IsGpsUsed = true;
              requestSubstitute.Location = location;
-             requestSubstitute.MedicalTypes = new List<MedicalType> { MedicalType.Doctor };
+             requestSubstitute.MedicalTypes = new List<MedicalTypeGoogleService> { MedicalTypeGoogleService.Doctor };
              requestSubstitute.Radius = 1;
              requestSubstitute.ToRequestUrl().Returns(url);
              return requestSubstitute;

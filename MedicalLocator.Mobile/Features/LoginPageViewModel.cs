@@ -26,7 +26,7 @@ namespace MedicalLocator.Mobile.Features
 
         public bool LoginByNameAndPass(string login, string password)
         {
-            var loginData = new LoginData {Login = login, Password = password};
+            var loginData = new LoginData {IsAnonymous = false, Login = login, Password = password};
             var command = _loginFactory(loginData);
             CommandInvoker.Invoke(command);
             return true;
@@ -34,7 +34,7 @@ namespace MedicalLocator.Mobile.Features
 
         public bool LoginAnonymously()
         {
-            var loginData = new LoginData { Login = null, Password = null };
+            var loginData = new LoginData { IsAnonymous = true };
             var command = _loginFactory(loginData);
             CommandInvoker.Invoke(command);
             return true;

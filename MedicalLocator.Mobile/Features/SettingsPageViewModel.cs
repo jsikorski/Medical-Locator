@@ -12,7 +12,7 @@ namespace MedicalLocator.Mobile.Features
 
         public string LoggedInUserName
         {
-            get { return (_currentContext.LoggedInUserModel == null) ? "anonymous" : _currentContext.LoggedInUserModel.Login; }
+            get { return _currentContext.CurrentUserLogin; }
         }
 
         public bool AreLocationServicesAllowed

@@ -15,6 +15,7 @@ namespace MedicalLocator.Mobile.Commands
     {
         public string Login { get; set; }
         public string Password { get; set; }
+        public bool IsAnonymous { get; set; }
     }
 
     public class Login : ICommand
@@ -22,9 +23,7 @@ namespace MedicalLocator.Mobile.Commands
         private readonly CurrentContext _currentContext;
         private readonly IEnumsValuesProvider _enumsValuesProvider;
         private readonly IContainer _container;
-
-        private string _login;
-        private string _pass;
+        private readonly LoginData _loginData;
 
         public Login(CurrentContext currentContext, IEnumsValuesProvider enumsValuesProvider, IContainer container, LoginData loginData)
         {
@@ -32,53 +31,63 @@ namespace MedicalLocator.Mobile.Commands
             _enumsValuesProvider = enumsValuesProvider;
             _currentContext = currentContext;
             _container = container;
-            _login = loginData.Login;
-            _pass = loginData.Password;
+            _loginData = loginData;
+        }
+
+        private bool TryLoginAnonymously()
+        {
+            _currentContext.CurrentUserLogin = "anonymous";
+            _currentContext.CurrentUserPassword = null;
+            _currentContext.LastAddress = "";
+            _currentContext.LastCenterType = CenterType.MyLocation;
+            _currentContext.LastLatitude = 0;
+            _currentContext.LastLongitude = 0;
+            _currentContext.LastRange = 2500;
+            _currentContext.LastSearchedObjects = _enumsValuesProvider.GetAllMedicalTypes();
+            return true;
+        }
+
+        private bool TryLoginByNameAndPassword()
+        {
+            var client = new DatabaseConnectionServiceClient();
+            var loginResponse = client.Login(_loginData.Login, _loginData.Password);
+            if (!loginResponse.IsValid)
+            {
+                // ?
+                return false;
+            }
+
+            var user = loginResponse.UserData;
+            var lastSearch = user.LastSearch;
+            _currentContext.CurrentUserLogin = user.Login;
+            _currentContext.CurrentUserPassword = user.Password;
+            _currentContext.LastAddress = lastSearch.Address;
+            _currentContext.LastCenterType = CenterTypeConverter.FromDatabaseService(lastSearch.CenterType);
+            _currentContext.LastLatitude = lastSearch.Latitude;
+            _currentContext.LastLongitude = lastSearch.Longitude;
+            _currentContext.LastRange = lastSearch.Range;
+            _currentContext.LastSearchedObjects = MedicalTypeConverter.FromDatabaseService(lastSearch.SearchedObjects);
+            return true;
+        }
+
+        private bool TryLogin()
+        {
+            if (_loginData.IsAnonymous)
+                return TryLoginAnonymously();
+            
+            return TryLoginByNameAndPassword();
         }
 
         public void Execute()
         {
-            var loginResponse = new LoginResponse();
-            if (_login == null)
+            if (!TryLogin())
             {
-                loginResponse.IsAnonymous = true;
-                loginResponse.IsValid = true;
-            }
-            else
-            {
-                var client = new DatabaseConnectionServiceClient();
-                loginResponse = client.Login(_login, _pass);
+                // ?
+                return;
             }
 
-            if (loginResponse.IsValid)
-            {
-                if (loginResponse.IsAnonymous)
-                {
-                    _currentContext.SetLoggedInUserModel(
-                        new MedicalLocatorUserData()
-                            {
-                                Id = 0,
-                                Login = null,
-                                Password = null,
-                                LastSearch =
-                                    new MedicalLocatorUserLastSearch
-                                        {
-                                            CenterType = CenterType.MyLocation, 
-                                            Range = 2500, 
-                                            SearchedObjects = new ObservableCollection<MedicalType>(_enumsValuesProvider.GetAllMedicalTypes())
-                                        }
-                            });
-                }
-                else
-                    _currentContext.SetLoggedInUserModel(loginResponse.UserData);
-
-                var command = _container.Resolve<ShowMainPage>();
-                CommandInvoker.Execute(command);
-            }
-            else
-            {
-                // todo: login error message
-            }
+            var command = _container.Resolve<ShowMainPage>();
+            CommandInvoker.Execute(command);
         }
     }
 }

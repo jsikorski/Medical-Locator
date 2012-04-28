@@ -1,6 +1,6 @@
-﻿namespace Common.Enums
+﻿namespace GoogleMapsInterfaceService.Model
 {
-    public enum MedicalType
+    public enum MedicalTypeGoogleService
     {
         Doctor,
         Dentist//,

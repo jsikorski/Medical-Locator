@@ -20,24 +20,9 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="LoginResponse", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
     public partial class LoginResponse : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private bool IsAnonymousField;
-        
         private bool IsValidField;
         
         private MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserData UserDataField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsAnonymous {
-            get {
-                return this.IsAnonymousField;
-            }
-            set {
-                if ((this.IsAnonymousField.Equals(value) != true)) {
-                    this.IsAnonymousField = value;
-                    this.RaisePropertyChanged("IsAnonymous");
-                }
-            }
-        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool IsValid {
@@ -80,7 +65,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="MedicalLocatorUserData", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
     public partial class MedicalLocatorUserData : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private int IdField;
+        private System.Guid IdField;
         
         private MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch LastSearchField;
         
@@ -89,7 +74,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         private string PasswordField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
+        public System.Guid Id {
             get {
                 return this.IdField;
             }
@@ -157,7 +142,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         private string AddressField;
         
-        private MedicalLocator.Mobile.DatabaseConnectionReference.CenterType CenterTypeField;
+        private MedicalLocator.Mobile.DatabaseConnectionReference.CenterTypeDatabaseService CenterTypeField;
         
         private double LatitudeField;
         
@@ -165,7 +150,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         private int RangeField;
         
-        private System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.DatabaseConnectionReference.MedicalType> SearchedObjectsField;
+        private System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.DatabaseConnectionReference.MedicalTypeDatabaseService> SearchedObjectsField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string Address {
@@ -181,7 +166,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public MedicalLocator.Mobile.DatabaseConnectionReference.CenterType CenterType {
+        public MedicalLocator.Mobile.DatabaseConnectionReference.CenterTypeDatabaseService CenterType {
             get {
                 return this.CenterTypeField;
             }
@@ -233,7 +218,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.DatabaseConnectionReference.MedicalType> SearchedObjects {
+        public System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.DatabaseConnectionReference.MedicalTypeDatabaseService> SearchedObjects {
             get {
                 return this.SearchedObjectsField;
             }
@@ -256,8 +241,8 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CenterType", Namespace="http://schemas.datacontract.org/2004/07/Common.Enums")]
-    public enum CenterType : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="CenterTypeDatabaseService", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
+    public enum CenterTypeDatabaseService : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         MyLocation = 0,
@@ -270,8 +255,8 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MedicalType", Namespace="http://schemas.datacontract.org/2004/07/Common.Enums")]
-    public enum MedicalType : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="MedicalTypeDatabaseService", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
+    public enum MedicalTypeDatabaseService : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Doctor = 0,
@@ -325,7 +310,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus EndRegister(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDatabaseConnectionService/SaveUserSettings", ReplyAction="http://tempuri.org/IDatabaseConnectionService/SaveUserSettingsResponse")]
-        System.IAsyncResult BeginSaveUserSettings(string login, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginSaveUserSettings(string login, string password, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState);
         
         bool EndSaveUserSettings(System.IAsyncResult result);
     }
@@ -573,8 +558,8 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService.BeginSaveUserSettings(string login, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginSaveUserSettings(login, lastSearch, callback, asyncState);
+        System.IAsyncResult MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService.BeginSaveUserSettings(string login, string password, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSaveUserSettings(login, password, lastSearch, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -584,8 +569,9 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         private System.IAsyncResult OnBeginSaveUserSettings(object[] inValues, System.AsyncCallback callback, object asyncState) {
             string login = ((string)(inValues[0]));
-            MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch = ((MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch)(inValues[1]));
-            return ((MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService)(this)).BeginSaveUserSettings(login, lastSearch, callback, asyncState);
+            string password = ((string)(inValues[1]));
+            MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch = ((MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch)(inValues[2]));
+            return ((MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService)(this)).BeginSaveUserSettings(login, password, lastSearch, callback, asyncState);
         }
         
         private object[] OnEndSaveUserSettings(System.IAsyncResult result) {
@@ -601,11 +587,11 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
             }
         }
         
-        public void SaveUserSettingsAsync(string login, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch) {
-            this.SaveUserSettingsAsync(login, lastSearch, null);
+        public void SaveUserSettingsAsync(string login, string password, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch) {
+            this.SaveUserSettingsAsync(login, password, lastSearch, null);
         }
         
-        public void SaveUserSettingsAsync(string login, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, object userState) {
+        public void SaveUserSettingsAsync(string login, string password, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, object userState) {
             if ((this.onBeginSaveUserSettingsDelegate == null)) {
                 this.onBeginSaveUserSettingsDelegate = new BeginOperationDelegate(this.OnBeginSaveUserSettings);
             }
@@ -617,6 +603,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
             }
             base.InvokeAsync(this.onBeginSaveUserSettingsDelegate, new object[] {
                         login,
+                        password,
                         lastSearch}, this.onEndSaveUserSettingsDelegate, this.onSaveUserSettingsCompletedDelegate, userState);
         }
         
@@ -724,10 +711,11 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginSaveUserSettings(string login, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[2];
+            public System.IAsyncResult BeginSaveUserSettings(string login, string password, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[3];
                 _args[0] = login;
-                _args[1] = lastSearch;
+                _args[1] = password;
+                _args[2] = lastSearch;
                 System.IAsyncResult _result = base.BeginInvoke("SaveUserSettings", _args, callback, asyncState);
                 return _result;
             }

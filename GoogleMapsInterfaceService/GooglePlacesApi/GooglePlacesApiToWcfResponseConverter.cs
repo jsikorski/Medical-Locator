@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Enums;
+using GoogleMapsInterfaceService.Model;
 
 namespace GoogleMapsInterfaceService.GooglePlacesApi
 {
@@ -20,14 +20,14 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
             string name = googlePlacesApiResult.Name;
             string vicinity = googlePlacesApiResult.Vicinity;
             Location location = googlePlacesApiResult.Geometry.Location;
-            MedicalType medicalType = GetMostSpecificMedicalType(googlePlacesApiResult);
+            MedicalTypeGoogleService medicalType = GetMostSpecificMedicalType(googlePlacesApiResult);
 
             return new GooglePlacesWcfResult { Name = name, Vicinity = vicinity, Location = location, Type = medicalType };
         }
 
-        private MedicalType GetMostSpecificMedicalType(GooglePlacesApiResult googlePlacesApiResult)
+        private MedicalTypeGoogleService GetMostSpecificMedicalType(GooglePlacesApiResult googlePlacesApiResult)
         {
-            MedicalType medicalType;
+            MedicalTypeGoogleService medicalType;
             int index = 0;
             while (true)
             {

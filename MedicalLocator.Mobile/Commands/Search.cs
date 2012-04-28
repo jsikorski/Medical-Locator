@@ -27,7 +27,7 @@ namespace MedicalLocator.Mobile.Commands
         public override void Execute()
         {
             Location centerLocation = _locationProvider.GetCenterLocation();
-            var searchedTypes = _currentContext.LoggedInUserModel.LastSearch.SearchedObjects;
+            var searchedTypes = _currentContext.LastSearchedObjects;
 
             // DatabaseConnectionService.MedicalType to GoogleMapsInterfaceService.MedicalType...
             var googleStyleSearchedTypes = new ObservableCollection<MedicalType>();
@@ -36,7 +36,7 @@ namespace MedicalLocator.Mobile.Commands
                 googleStyleSearchedTypes.Add((MedicalType) searchedType);
             }
 
-            _searchingManager.ExecuteSearching(centerLocation, _currentContext.LoggedInUserModel.LastSearch.Range, googleStyleSearchedTypes);
+            _searchingManager.ExecuteSearching(centerLocation, _currentContext.LastRange, googleStyleSearchedTypes);
         }
     }
 }

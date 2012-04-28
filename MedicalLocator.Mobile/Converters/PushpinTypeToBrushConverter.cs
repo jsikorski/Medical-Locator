@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
+using MedicalLocator.Mobile.Model;
 
 namespace MedicalLocator.Mobile.Converters
 {

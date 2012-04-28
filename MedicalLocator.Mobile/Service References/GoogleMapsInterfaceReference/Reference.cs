@@ -25,7 +25,7 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         
         private MedicalLocator.Mobile.GoogleMapsInterfaceReference.Location LocationField;
         
-        private System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.GoogleMapsInterfaceReference.MedicalType> MedicalTypesField;
+        private System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.GoogleMapsInterfaceReference.MedicalTypeGoogleService> MedicalTypesField;
         
         private int RadiusField;
         
@@ -56,7 +56,7 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
-        public System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.GoogleMapsInterfaceReference.MedicalType> MedicalTypes {
+        public System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.GoogleMapsInterfaceReference.MedicalTypeGoogleService> MedicalTypes {
             get {
                 return this.MedicalTypesField;
             }
@@ -138,8 +138,8 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MedicalType", Namespace="http://schemas.datacontract.org/2004/07/Common.Enums")]
-    public enum MedicalType : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="MedicalTypeGoogleService", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Model")]
+    public enum MedicalTypeGoogleService : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Doctor = 0,
@@ -204,7 +204,7 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         
         private string NameField;
         
-        private MedicalLocator.Mobile.GoogleMapsInterfaceReference.MedicalType TypeField;
+        private MedicalLocator.Mobile.GoogleMapsInterfaceReference.MedicalTypeGoogleService TypeField;
         
         private string VicinityField;
         
@@ -235,7 +235,7 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public MedicalLocator.Mobile.GoogleMapsInterfaceReference.MedicalType Type {
+        public MedicalLocator.Mobile.GoogleMapsInterfaceReference.MedicalTypeGoogleService Type {
             get {
                 return this.TypeField;
             }

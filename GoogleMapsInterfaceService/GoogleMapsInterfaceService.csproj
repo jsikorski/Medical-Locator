@@ -67,6 +67,7 @@
     <Compile Include="GooglePlacesApi\Status.cs" />
     <Compile Include="IGoogleMapsInterfaceService.cs" />
     <Compile Include="Keys\KeysProvider.cs" />
+    <Compile Include="Model\MedicalTypeGoogleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GoogleMapsInterfaceService.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

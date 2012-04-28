@@ -20,14 +20,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.103:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.1.4:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="5c3927e7-fcaf-46fa-b3a5-e701d52d03b2" SourceId="1" SourceUrl="http://192.168.1.103:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="3780809d-0567-4122-b0a6-72805a5c0064" SourceId="1" SourceUrl="http://192.168.1.103:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="f4a61323-c5be-4022-94f5-58b9c5bd5b2f" SourceId="1" SourceUrl="http://192.168.1.103:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="DatabaseConnectionService.Model1.xsd" MetadataType="Schema" ID="6e0008e4-6792-4a8d-baf0-90fd9d5b38ef" SourceId="1" SourceUrl="http://192.168.1.103:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="Common.Enums1.xsd" MetadataType="Schema" ID="6ac9f41f-c33f-4521-a41f-5d91cd9352e8" SourceId="1" SourceUrl="http://192.168.1.103:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="95055271-c0fb-49cb-8395-8ddc520cb65b" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="ab5feca5-3f7e-4247-8cf7-7653fb7033e4" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="1557fc18-7916-4ddf-8612-82a5fa1c7da0" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="DatabaseConnectionService.Model.xsd" MetadataType="Schema" ID="9ed583d0-1d17-4c81-9cdb-1b9c62dc5de8" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

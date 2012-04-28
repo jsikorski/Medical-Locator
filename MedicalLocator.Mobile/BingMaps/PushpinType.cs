@@ -1,4 +1,5 @@
 ﻿using MedicalLocator.Mobile.GoogleMapsInterfaceReference;
+using MedicalLocator.Mobile.Model;
 
 namespace MedicalLocator.Mobile.BingMaps
 {

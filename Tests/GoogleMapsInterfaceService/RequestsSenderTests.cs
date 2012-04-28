@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Common.Enums;
 using GoogleMapsInterfaceService.GooglePlacesApi;
+using GoogleMapsInterfaceService.Model;
 using GoogleMapsInterfaceService.Requests;
 using NUnit.Framework;
 
@@ -11,7 +11,7 @@ namespace Tests.GoogleMapsInterfaceService
         [Test]
         public void correct_request_gives_response_from_google_places_api()
         {
-            var medialTypes = new List<MedicalType> {MedicalType.Dentist};
+            var medialTypes = new List<MedicalTypeGoogleService> { MedicalTypeGoogleService.Dentist };
             var location = Substitutes.GetLocationSubstitute();
 
             var googlePlacesApiRequest = new GooglePlacesApiRequest

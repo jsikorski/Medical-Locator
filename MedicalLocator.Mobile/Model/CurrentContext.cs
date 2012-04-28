@@ -14,17 +14,25 @@ namespace MedicalLocator.Mobile.Model
         private readonly IEnumsValuesProvider _enumsValuesProvider;
         public bool AreLocationServicesAllowed { get; set; }
 
-        public MedicalLocatorUserData LoggedInUserModel { get; private set; }
+        public IEnumerable<MedicalType> LastSearchedObjects { get; set; }
+        public CenterType LastCenterType { get; set; }
+        public int LastRange { get; set; }
+        public string LastAddress { get; set; }
+        public double LastLongitude { get; set; }
+        public double LastLatitude { get; set; }
 
-        public void SetLoggedInUserModel(MedicalLocatorUserData userModel)
-        {
-            if (userModel.LastSearch.SearchedObjects == null)
-                userModel.LastSearch.SearchedObjects =
-                    new ObservableCollection<MedicalType>(_enumsValuesProvider.GetAllMedicalTypes());
+        public string CurrentUserLogin { get; set; }
+        public string CurrentUserPassword { get; set; }
 
-            LoggedInUserModel = userModel;
-        }
-
+      //  public void SetLoggedInUserModel(MedicalLocatorUserData userModel)
+     //   {
+      //      if (userModel.LastSearch.SearchedObjects == null)
+     //           userModel.LastSearch.SearchedObjects =
+     //               new ObservableCollection<MedicalType>(_enumsValuesProvider.GetAllMedicalTypes());
+//
+    //        LoggedInUserModel = userModel;
+    //    }
+    
         public CurrentContext(IEnumsValuesProvider enumsValuesProvider)
         {
             _enumsValuesProvider = enumsValuesProvider;

@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using Common.Enums;
 using GoogleMapsInterfaceService.Extensions;
 using GoogleMapsInterfaceService.Keys;
+using GoogleMapsInterfaceService.Model;
 using GoogleMapsInterfaceService.Properties;
 using GoogleMapsInterfaceService.Requests;
 
@@ -20,7 +20,7 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
         [DataMember(IsRequired = true, EmitDefaultValue = false)]
         public bool IsGpsUsed { get; set; }
         [DataMember(IsRequired = true, EmitDefaultValue = false)]
-        public IEnumerable<MedicalType> MedicalTypes { get; set; }
+        public IEnumerable<MedicalTypeGoogleService> MedicalTypes { get; set; }
 
         public string ToRequestUrl()
         {

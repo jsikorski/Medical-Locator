@@ -9,9 +9,6 @@ namespace DatabaseConnectionService.Model
         public bool IsValid { get; set; }
 
         [DataMember]
-        public bool IsAnonymous { get; set; }
-
-        [DataMember]
         public MedicalLocatorUserData UserData { get; set; }
     }
 }

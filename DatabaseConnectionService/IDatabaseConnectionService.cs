@@ -18,6 +18,6 @@ namespace DatabaseConnectionService
         RegisterStatus Register(string login, string password);
 
         [OperationContract]
-        bool SaveUserSettings(string login, MedicalLocatorUserLastSearch lastSearch);
+        bool SaveUserSettings(string login, string password, MedicalLocatorUserLastSearch lastSearch);
     }
 }

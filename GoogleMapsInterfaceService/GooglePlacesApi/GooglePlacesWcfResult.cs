@@ -1,5 +1,5 @@
 using System.Runtime.Serialization;
-using Common.Enums;
+using GoogleMapsInterfaceService.Model;
 
 namespace GoogleMapsInterfaceService.GooglePlacesApi
 {
@@ -13,6 +13,6 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
         [DataMember]
         public Location Location { get; set; }
         [DataMember]
-        public MedicalType Type { get; set; } 
+        public MedicalTypeGoogleService Type { get; set; } 
     }
 }
