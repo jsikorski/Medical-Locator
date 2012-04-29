@@ -20,9 +20,24 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="LoginResponse", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
     public partial class LoginResponse : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private string ErrorMessageField;
+        
         private bool IsValidField;
         
         private MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserData UserDataField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorMessage {
+            get {
+                return this.ErrorMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorMessageField, value) != true)) {
+                    this.ErrorMessageField = value;
+                    this.RaisePropertyChanged("ErrorMessage");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool IsValid {

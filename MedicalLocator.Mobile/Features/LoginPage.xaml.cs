@@ -43,19 +43,8 @@ namespace MedicalLocator.Mobile.Features
 
         private void LoginButtonClick(object sender, RoutedEventArgs e)
         {
-            if (LoginAnonymouslyToggleSwitch.IsChecked == true)
-            {
-                (DataContext as LoginPageViewModel).LoginAnonymously();
-                return;
-            }
-
-            if (LoginName.Text.Length < 3 || LoginName.Text.Length > 16)
-                return; // todo: error message
-
-            if (LoginPassword.Password.Length < 3 || LoginPassword.Password.Length > 16)
-                return; // todo: error message
-
-            (DataContext as LoginPageViewModel).LoginByNameAndPass(LoginName.Text, LoginPassword.Password);
+            bool anonymously = (LoginAnonymouslyToggleSwitch.IsChecked == true);
+            (DataContext as LoginPageViewModel).Login(anonymously, LoginName.Text, LoginPassword.Password);
         }
     }
 }

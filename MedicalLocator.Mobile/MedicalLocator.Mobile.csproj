@@ -150,6 +150,7 @@
     <Compile Include="Model\CurrentContext.cs" />
     <Compile Include="Model\EnumsValuesProvider.cs" />
     <Compile Include="Model\IEnumsValuesProvider.cs" />
+    <Compile Include="Model\LoginData.cs" />
     <Compile Include="Model\MedicalType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\DatabaseConnectionReference\Reference.cs">
@@ -182,6 +183,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Services\Logging\ILoggingManager.cs" />
+    <Compile Include="Services\Logging\InvalidLoginException.cs" />
+    <Compile Include="Services\Logging\LoggingManager.cs" />
     <Compile Include="Services\SearchingManager.cs" />
     <Compile Include="Utils\MessageBoxService.cs" />
     <Page Include="Validation\ValidableTextBoxStyle.xaml">

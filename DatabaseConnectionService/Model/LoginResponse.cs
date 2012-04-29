@@ -9,6 +9,9 @@ namespace DatabaseConnectionService.Model
         public bool IsValid { get; set; }
 
         [DataMember]
+        public string ErrorMessage { get; set; }
+
+        [DataMember]
         public MedicalLocatorUserData UserData { get; set; }
     }
 }
