@@ -4,7 +4,7 @@
   <xs:complexType name="LoginResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IsValid" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean" />
       <xs:element minOccurs="0" name="UserData" nillable="true" type="tns:MedicalLocatorUserData" />
     </xs:sequence>
   </xs:complexType>
@@ -50,10 +50,11 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="MedicalTypeDatabaseService" nillable="true" type="tns:MedicalTypeDatabaseService" />
-  <xs:complexType name="RegisterStatus">
+  <xs:complexType name="RegisterResponse">
     <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="RegisterStatus" nillable="true" type="tns:RegisterStatus" />
+  <xs:element name="RegisterResponse" nillable="true" type="tns:RegisterResponse" />
 </xs:schema>

@@ -7,5 +7,6 @@ namespace MedicalLocator.Mobile.Services.Logging
     public interface ILoggingManager
     {
         void TryLogin(LoginData loginData);
+        void TryRegister(RegisterData registerData);
     }
 }

@@ -22,7 +22,7 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         private string ErrorMessageField;
         
-        private bool IsValidField;
+        private bool IsSuccessfulField;
         
         private MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserData UserDataField;
         
@@ -40,14 +40,14 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsValid {
+        public bool IsSuccessful {
             get {
-                return this.IsValidField;
+                return this.IsSuccessfulField;
             }
             set {
-                if ((this.IsValidField.Equals(value) != true)) {
-                    this.IsValidField = value;
-                    this.RaisePropertyChanged("IsValid");
+                if ((this.IsSuccessfulField.Equals(value) != true)) {
+                    this.IsSuccessfulField = value;
+                    this.RaisePropertyChanged("IsSuccessful");
                 }
             }
         }
@@ -282,10 +282,25 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterStatus", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
-    public partial class RegisterStatus : object, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterResponse", Namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model")]
+    public partial class RegisterResponse : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string ErrorMessageField;
         
         private bool IsSuccessfulField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ErrorMessage {
+            get {
+                return this.ErrorMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorMessageField, value) != true)) {
+                    this.ErrorMessageField = value;
+                    this.RaisePropertyChanged("ErrorMessage");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool IsSuccessful {
@@ -320,9 +335,9 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         MedicalLocator.Mobile.DatabaseConnectionReference.LoginResponse EndLogin(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDatabaseConnectionService/Register", ReplyAction="http://tempuri.org/IDatabaseConnectionService/RegisterResponse")]
-        System.IAsyncResult BeginRegister(string login, string password, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginRegister(bool licenceAgree, string login, string password, string passwordRetype, System.AsyncCallback callback, object asyncState);
         
-        MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus EndRegister(System.IAsyncResult result);
+        MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse EndRegister(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDatabaseConnectionService/SaveUserSettings", ReplyAction="http://tempuri.org/IDatabaseConnectionService/SaveUserSettingsResponse")]
         System.IAsyncResult BeginSaveUserSettings(string login, string password, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState);
@@ -364,10 +379,10 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
             this.results = results;
         }
         
-        public MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus Result {
+        public MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse Result {
             get {
                 base.RaiseExceptionIfNecessary();
-                return ((MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus)(this.results[0]));
+                return ((MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse)(this.results[0]));
             }
         }
     }
@@ -525,23 +540,25 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService.BeginRegister(string login, string password, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginRegister(login, password, callback, asyncState);
+        System.IAsyncResult MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService.BeginRegister(bool licenceAgree, string login, string password, string passwordRetype, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRegister(licenceAgree, login, password, passwordRetype, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService.EndRegister(System.IAsyncResult result) {
+        MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService.EndRegister(System.IAsyncResult result) {
             return base.Channel.EndRegister(result);
         }
         
         private System.IAsyncResult OnBeginRegister(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string login = ((string)(inValues[0]));
-            string password = ((string)(inValues[1]));
-            return ((MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService)(this)).BeginRegister(login, password, callback, asyncState);
+            bool licenceAgree = ((bool)(inValues[0]));
+            string login = ((string)(inValues[1]));
+            string password = ((string)(inValues[2]));
+            string passwordRetype = ((string)(inValues[3]));
+            return ((MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService)(this)).BeginRegister(licenceAgree, login, password, passwordRetype, callback, asyncState);
         }
         
         private object[] OnEndRegister(System.IAsyncResult result) {
-            MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus retVal = ((MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService)(this)).EndRegister(result);
+            MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse retVal = ((MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService)(this)).EndRegister(result);
             return new object[] {
                     retVal};
         }
@@ -553,11 +570,11 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
             }
         }
         
-        public void RegisterAsync(string login, string password) {
-            this.RegisterAsync(login, password, null);
+        public void RegisterAsync(bool licenceAgree, string login, string password, string passwordRetype) {
+            this.RegisterAsync(licenceAgree, login, password, passwordRetype, null);
         }
         
-        public void RegisterAsync(string login, string password, object userState) {
+        public void RegisterAsync(bool licenceAgree, string login, string password, string passwordRetype, object userState) {
             if ((this.onBeginRegisterDelegate == null)) {
                 this.onBeginRegisterDelegate = new BeginOperationDelegate(this.OnBeginRegister);
             }
@@ -568,8 +585,10 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
                 this.onRegisterCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRegisterCompleted);
             }
             base.InvokeAsync(this.onBeginRegisterDelegate, new object[] {
+                        licenceAgree,
                         login,
-                        password}, this.onEndRegisterDelegate, this.onRegisterCompletedDelegate, userState);
+                        password,
+                        passwordRetype}, this.onEndRegisterDelegate, this.onRegisterCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -712,17 +731,19 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
                 return _result;
             }
             
-            public System.IAsyncResult BeginRegister(string login, string password, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[2];
-                _args[0] = login;
-                _args[1] = password;
+            public System.IAsyncResult BeginRegister(bool licenceAgree, string login, string password, string passwordRetype, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[4];
+                _args[0] = licenceAgree;
+                _args[1] = login;
+                _args[2] = password;
+                _args[3] = passwordRetype;
                 System.IAsyncResult _result = base.BeginInvoke("Register", _args, callback, asyncState);
                 return _result;
             }
             
-            public MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus EndRegister(System.IAsyncResult result) {
+            public MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse EndRegister(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus _result = ((MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus)(base.EndInvoke("Register", _args, result)));
+                MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse _result = ((MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse)(base.EndInvoke("Register", _args, result)));
                 return _result;
             }
             

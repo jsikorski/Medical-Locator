@@ -15,7 +15,7 @@ namespace DatabaseConnectionService
         LoginResponse Login(string login, string password);
 
         [OperationContract]
-        RegisterStatus Register(string login, string password);
+        RegisterResponse Register(bool licenceAgree, string login, string password, string passwordRetype);
 
         [OperationContract]
         bool SaveUserSettings(string login, string password, MedicalLocatorUserLastSearch lastSearch);

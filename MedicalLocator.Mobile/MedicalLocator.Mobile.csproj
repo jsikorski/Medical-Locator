@@ -147,6 +147,7 @@
     <Compile Include="Infrastructure\UICommand.cs" />
     <Compile Include="Keys\KeysProvider.cs" />
     <Compile Include="Model\CenterType.cs" />
+    <Compile Include="Model\RegisterData.cs" />
     <Compile Include="Model\CurrentContext.cs" />
     <Compile Include="Model\EnumsValuesProvider.cs" />
     <Compile Include="Model\IEnumsValuesProvider.cs" />
@@ -183,6 +184,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Services\Logging\InvalidRegisterException.cs" />
     <Compile Include="Services\Logging\ILoggingManager.cs" />
     <Compile Include="Services\Logging\InvalidLoginException.cs" />
     <Compile Include="Services\Logging\LoggingManager.cs" />
@@ -234,7 +236,7 @@
     <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.LoginResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.RegisterStatus.datasource">
+    <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\DatabaseConnectionReference\Reference.svcmap">

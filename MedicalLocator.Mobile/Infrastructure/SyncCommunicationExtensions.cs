@@ -57,11 +57,11 @@ namespace MedicalLocator.Mobile.Infrastructure
             return response;
         }
 
-        public static RegisterStatus Register(
-            this DatabaseConnectionServiceClient client, string login, string password)
+        public static RegisterResponse Register(
+            this DatabaseConnectionServiceClient client, bool licenceAgree, string login, string password, string passwordRetype)
         {
             var syncProvider = new ManualResetEvent(false);
-            RegisterStatus response = null;
+            RegisterResponse response = null;
             Exception responseException = null;
             client.RegisterCompleted += (sender, args) =>
             {
@@ -75,7 +75,7 @@ namespace MedicalLocator.Mobile.Infrastructure
                     responseException = exception;
                 }
             };
-            client.RegisterAsync(login, password);
+            client.RegisterAsync(licenceAgree, login, password, passwordRetype);
             syncProvider.WaitOne();
             CheckException(responseException);
             return response;

@@ -19,15 +19,17 @@
   <xs:element name="Register">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="licenceAgree" type="xs:boolean" />
         <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="passwordRetype" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RegisterResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" minOccurs="0" name="RegisterResult" nillable="true" type="q2:RegisterStatus" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" minOccurs="0" name="RegisterResult" nillable="true" type="q2:RegisterResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -10,11 +10,13 @@ namespace MedicalLocator.Mobile.Features
     {
         private readonly IContainer _container;
         private readonly Func<LoginData, Login> _loginFactory;
+        private readonly Func<RegisterData, Register> _registerFactory;
 
-        public LoginPageViewModel(IContainer container, Func<LoginData, Login> loginFactory)
+        public LoginPageViewModel(IContainer container, Func<LoginData, Login> loginFactory, Func<RegisterData, Register> registerFactory)
         {
             _container = container;
             _loginFactory = loginFactory;
+            _registerFactory = registerFactory;
         }
 
         public bool Login(bool anonymously, string login, string password)
@@ -35,16 +37,16 @@ namespace MedicalLocator.Mobile.Features
 
         private bool LoginByNameAndPass(string login, string password)
         {
-            var loginData = new LoginData {IsAnonymous = false, Login = login, Password = password};
+            var loginData = new LoginData { IsAnonymous = false, Login = login, Password = password };
             var command = _loginFactory(loginData);
             CommandInvoker.Invoke(command);
             return true;
         }
 
-        public bool RegisterNewUser(string name, string password)
+        public bool RegisterNewUser(bool licenceAgree, string login, string password, string passwordRetype)
         {
-            var command = _container.Resolve<Register>();
-            command.SetNameAndPass(name, password);
+            var registerData = new RegisterData { LicenceAgree = licenceAgree, Login = login, Password = password, PasswordRetype = passwordRetype };
+            var command = _registerFactory(registerData);
             CommandInvoker.Invoke(command);
             return true;
         }

@@ -15,6 +15,14 @@ namespace MedicalLocator.Mobile.Services.Logging
             _enumsValuesProvider = enumsValuesProvider;
         }
 
+        public void TryRegister(RegisterData registerData)
+        {
+            var client = new DatabaseConnectionServiceClient();
+            var regiserResponse = client.Register(registerData.LicenceAgree, registerData.Login, registerData.Password, registerData.PasswordRetype);
+            if (!regiserResponse.IsSuccessful)
+                throw new InvalidRegisterException(regiserResponse.ErrorMessage);
+        }
+
         public void TryLogin(LoginData loginData)
         {
             if (loginData.IsAnonymous)
@@ -43,7 +51,7 @@ namespace MedicalLocator.Mobile.Services.Logging
         {
             var client = new DatabaseConnectionServiceClient();
             var loginResponse = client.Login(loginData.Login, loginData.Password);
-            if (!loginResponse.IsValid)
+            if (!loginResponse.IsSuccessful)
                 throw new InvalidLoginException(loginResponse.ErrorMessage);
 
             var user = loginResponse.UserData;

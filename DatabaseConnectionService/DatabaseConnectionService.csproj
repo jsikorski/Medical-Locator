@@ -72,7 +72,7 @@
     <Compile Include="Model\DatabaseEnumsValuesProvider.cs" />
     <Compile Include="Model\MedicalLocatorUserData.cs" />
     <Compile Include="Model\MedicalTypeDatabaseService.cs" />
-    <Compile Include="Model\RegisterStatus.cs" />
+    <Compile Include="Model\RegisterResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\LoginResponse.cs" />
   </ItemGroup>

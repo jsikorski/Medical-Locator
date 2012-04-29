@@ -22,5 +22,28 @@ namespace DatabaseConnectionService.Model
         public string Login { get; set; }
         public string Password { get; set; }
         public MedicalLocatorUserLastSearch LastSearch { get; set; }
+
+        // factory method
+        public static MedicalLocatorUserData CreateDefaultUser(string login, string password)
+        {
+            var lastSearch = new MedicalLocatorUserLastSearch
+            {
+                SearchedObjects = DatabaseEnumsValuesProvider.GetAllMedicalTypes(),
+                CenterType = CenterTypeDatabaseService.MyLocation,
+                Range = 2500,
+                Address = "",
+                Latitude = 0,
+                Longitude = 0
+            };
+
+            var user = new MedicalLocatorUserData
+            {
+                Login = login,
+                Password = password,
+                LastSearch = lastSearch
+            };
+
+            return user;
+        }
     }
 }
