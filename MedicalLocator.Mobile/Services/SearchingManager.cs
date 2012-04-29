@@ -15,17 +15,20 @@ namespace MedicalLocator.Mobile.Services
         private readonly IBingMapHelper _bingMapHelper;
         private readonly IGoogleMapsInterfaceServiceProxy _googleMapsInterfaceServiceProxy;
         private readonly INavigationService _navigationService;
+        private readonly CurrentContext _currentContext;
 
         public SearchingManager(
             MainPageViewModel mainPageViewModel,
             IBingMapHelper bingMapHelper,
             IGoogleMapsInterfaceServiceProxy googleMapsInterfaceServiceProxy, 
-            INavigationService navigationService)
+            INavigationService navigationService,
+            CurrentContext currentContext)
         {
             _busyScope = mainPageViewModel;
             _bingMapHelper = bingMapHelper;
             _googleMapsInterfaceServiceProxy = googleMapsInterfaceServiceProxy;
             _navigationService = navigationService;
+            _currentContext = currentContext;
         }
 
         public void ExecuteSearching(Location centerLocation, int range, IEnumerable<MedicalType> searchedTypes)
@@ -33,6 +36,9 @@ namespace MedicalLocator.Mobile.Services
             using (new BusyArea(_busyScope))
             {
                 GoToMapPage();
+
+             //   searchedTypes = _currentContext.LastSearchedObjects;
+
                 GooglePlacesWcfResponse response = GetResponseFromGooglePlacesApi(centerLocation, searchedTypes, range);
                 _bingMapHelper.SetObjectsUsingGooglePlacesWcfResponse(centerLocation, response);
             }

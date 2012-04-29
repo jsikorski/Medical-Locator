@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using Caliburn.Micro;
+using MedicalLocator.Mobile.Features;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
 using MedicalLocator.Mobile.Services.Logging;
@@ -12,22 +13,19 @@ namespace MedicalLocator.Mobile.Commands
     {
         private readonly ILoggingManager _loggingManager;
         private readonly LoginData _loginData;
-        private readonly IContainer _container;
+        private readonly INavigationService _navigationService;
 
-        public Login(LoginData loginData, ILoggingManager loggingManager, IContainer container)
+        public Login(LoginData loginData, ILoggingManager loggingManager, INavigationService navigationService)
         {
             _loginData = loginData;
             _loggingManager = loggingManager;
-            _container = container;
+            _navigationService = navigationService;
         }
 
         public void Execute()
         {
             _loggingManager.TryLogin(_loginData);
-
-            // Nie wiem jak to zrobić by z tego wątku w inny sposób przejść na stronę główną, więc zostawiam poniższe.
-            var command = _container.Resolve<ShowMainPage>();
-            CommandInvoker.Execute(command);
+            Caliburn.Micro.Execute.OnUIThread(() => _navigationService.UriFor<MainPageViewModel>().Navigate());            
         }
 
         public void HandleError(InvalidLoginException exception)
