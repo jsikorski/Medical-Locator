@@ -1,13 +1,21 @@
 ﻿<div id="menu">
-    @MenuItem("Find nearby", "FindNearby", "Search")
-    @MenuItem("Search", "Search", "Search")
-    @MenuItem("About", "ShowAbout", "Home")
+    @MenuItem("find_nearby", "Find nearby", "FindNearby", "Searching")
+    @MenuItem("search", "Search", "Search", "Searching")
+    @MenuItem("about", "About", "ShowAbout", "Home")
 
     @Html.Partial("_LoginPartial")
 </div>
 
-@helper MenuItem(string itemText, string actionName, string controllerName) {
-    <div class="menu_item">
-        @Ajax.ActionLink(itemText, actionName, controllerName, null)
+@helper MenuItem(string elementId, string itemText, string actionName, string controllerName) {
+    <div id="@elementId" class="menu_item">
+        <span>@itemText</span>
+        @*@Ajax.ActionLink(itemText, null, null, null, null, new {id = elementId})*@
     </div>
 }
+
+<script type="text/javascript">
+    $(function () {
+        var findNearby = $("#find_nearby");
+        menuManager.initializeFindNearby(findNearby);
+    });
+</script>
