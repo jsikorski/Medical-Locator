@@ -16,8 +16,12 @@ namespace MedicalLocator.Mobile.Converters
         private static readonly IDictionary<MedicalType, Brush> BrushesDictionary
             = new Dictionary<MedicalType, Brush>
                   {
-                      {MedicalType.Doctor, new SolidColorBrush(Colors.Blue)},
-                      {MedicalType.Dentist, new SolidColorBrush(Colors.Red)}
+                      {MedicalType.Doctor, new SolidColorBrush(Colors.Brown)},
+                      {MedicalType.Dentist, new SolidColorBrush(Colors.Blue)},
+                      {MedicalType.Health, new SolidColorBrush(Colors.Purple)},
+                      {MedicalType.Hospital, new SolidColorBrush(Colors.Red)},
+                      {MedicalType.Pharmacy, new SolidColorBrush(Colors.Green)},
+                      {MedicalType.Physiotherapist, new SolidColorBrush(Colors.Cyan)}
                   };
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

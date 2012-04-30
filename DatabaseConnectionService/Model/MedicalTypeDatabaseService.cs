@@ -3,11 +3,10 @@
     public enum MedicalTypeDatabaseService
     {
         Doctor,
-        Dentist//,
-        //Health,
-        //Hospital,
-        //pharmacy,
-        //physiotherapist,
-        //veterinary_care,
+        Dentist,
+        Health,
+        Hospital,
+        Pharmacy,
+        Physiotherapist
     }
 }

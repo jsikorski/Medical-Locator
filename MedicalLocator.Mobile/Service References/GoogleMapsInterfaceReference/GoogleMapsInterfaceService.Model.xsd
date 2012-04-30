@@ -10,6 +10,10 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="Doctor" />
       <xs:enumeration value="Dentist" />
+      <xs:enumeration value="Health" />
+      <xs:enumeration value="Hospital" />
+      <xs:enumeration value="Pharmacy" />
+      <xs:enumeration value="Physiotherapist" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="MedicalTypeGoogleService" nillable="true" type="tns:MedicalTypeGoogleService" />

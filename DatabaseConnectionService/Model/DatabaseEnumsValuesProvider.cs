@@ -6,7 +6,15 @@ namespace DatabaseConnectionService.Model
     {
         static public IEnumerable<MedicalTypeDatabaseService> GetAllMedicalTypes()
         {
-            return new[] { MedicalTypeDatabaseService.Dentist, MedicalTypeDatabaseService.Doctor };
+            return new[]
+                       {
+                           MedicalTypeDatabaseService.Dentist, 
+                           MedicalTypeDatabaseService.Doctor, 
+                           MedicalTypeDatabaseService.Health, 
+                           MedicalTypeDatabaseService.Hospital, 
+                           MedicalTypeDatabaseService.Pharmacy, 
+                           MedicalTypeDatabaseService.Physiotherapist
+                       };
         }
 
         static public IEnumerable<CenterTypeDatabaseService> GetAllCenterTypes()

@@ -9,12 +9,11 @@ namespace MedicalLocator.Mobile.Model
     public enum MedicalType
     {
         Doctor,
-        Dentist//,
-        //Health,
-        //Hospital,
-        //pharmacy,
-        //physiotherapist,
-        //veterinary_care,
+        Dentist,
+        Health,
+        Hospital,
+        Pharmacy,
+        Physiotherapist
     }
 
     // Zakładam, że aplikacja musi posiadać enuma o identycznej strukturze jak oba WebServicy.
@@ -42,7 +41,6 @@ namespace MedicalLocator.Mobile.Model
             return (MedicalTypeDatabaseService)medicalType;
         }
 
-        // todo: zmienić to na jakieś linq, może jakieś template
         public static IEnumerable<MedicalType> FromGoogleService(IEnumerable<MedicalTypeGoogleService> collection)
         {
             return collection.Select(FromGoogleService);

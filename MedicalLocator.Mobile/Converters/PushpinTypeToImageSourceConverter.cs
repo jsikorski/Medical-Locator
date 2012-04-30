@@ -11,13 +11,17 @@ namespace MedicalLocator.Mobile.Converters
 {
     public class PushpinTypeToImageSourceConverter : IValueConverter
     {
-        private const string PushpinImagesSourceBase = @"Graphics\Pushpins\";
+        private const string PushpinImagesSourceBase = @"/MedicalLocator.Mobile;component/Graphics/Pushpins/";
         private const string UserPushpinImageSource = PushpinImagesSourceBase + "user.png";
         private readonly IDictionary<MedicalType, string> _fileNamesDictionary
             = new Dictionary<MedicalType, string>
                   {
                       {MedicalType.Doctor, "doctor.png"},
-                      {MedicalType.Dentist, "dentist.png"}
+                      {MedicalType.Dentist, "dentist.png"},
+                      {MedicalType.Health, "health.png"},
+                      {MedicalType.Hospital, "hospital.png"},
+                      {MedicalType.Pharmacy, "pharmacy.png"},
+                      {MedicalType.Physiotherapist, "physiotherapist.png"}
                   };
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

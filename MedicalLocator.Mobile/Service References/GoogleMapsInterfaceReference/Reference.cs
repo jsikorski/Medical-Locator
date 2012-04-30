@@ -146,6 +146,18 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Dentist = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Health = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Hospital = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Pharmacy = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Physiotherapist = 5,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

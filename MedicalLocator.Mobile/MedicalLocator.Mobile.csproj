@@ -221,9 +221,12 @@
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <Content Include="Graphics\Pushpins\user.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Graphics\Pushpins\dentist.png" />
+    <Resource Include="Graphics\Pushpins\doctor.png" />
+    <Resource Include="Graphics\Pushpins\health.png" />
+    <Resource Include="Graphics\Pushpins\hospital.png" />
+    <Resource Include="Graphics\Pushpins\pharmacy.png" />
+    <Resource Include="Graphics\Pushpins\physiotherapist.png" />
     <Content Include="Graphics\findNearbyIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -242,6 +245,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Resource Include="Graphics\Pushpins\user.png" />
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>

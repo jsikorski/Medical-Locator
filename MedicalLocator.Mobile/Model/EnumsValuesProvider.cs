@@ -7,7 +7,15 @@ namespace MedicalLocator.Mobile.Model
     {
         public IEnumerable<MedicalType> GetAllMedicalTypes()
         {
-            return new[] { MedicalType.Dentist, MedicalType.Doctor };
+            return new[]
+                       {
+                           MedicalType.Dentist, 
+                           MedicalType.Doctor, 
+                           MedicalType.Health, 
+                           MedicalType.Hospital, 
+                           MedicalType.Pharmacy, 
+                           MedicalType.Physiotherapist
+                       };
         }
 
         public IEnumerable<CenterType> GetAllCenterTypes()

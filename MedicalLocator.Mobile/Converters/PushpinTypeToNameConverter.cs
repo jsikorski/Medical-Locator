@@ -15,12 +15,16 @@ namespace MedicalLocator.Mobile.Converters
         private static readonly IDictionary<MedicalType, string> NamesDictionary = new Dictionary<MedicalType, string>
                                                                                        {
                                                                                            {MedicalType.Doctor, "Doctor"},
-                                                                                           {MedicalType.Dentist, "Dentist"}
+                                                                                           {MedicalType.Dentist, "Dentist"},
+                                                                                           {MedicalType.Health, "Health"},
+                                                                                           {MedicalType.Hospital, "Hospital"},
+                                                                                           {MedicalType.Pharmacy, "Pharmacy"},
+                                                                                           {MedicalType.Physiotherapist, "Physiotherapist"}
                                                                                        };
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var pushpinType = (PushpinType) value;
+            var pushpinType = (PushpinType)value;
 
             if (pushpinType == PushpinType.UserPushpin)
             {
