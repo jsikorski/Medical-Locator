@@ -28,7 +28,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <controls:Pivot x:Name="LoginRegisterPivot" Title="medical locator"
+        <controls:Pivot x:Name="LoginRegisterPivot" Title="MEDICAL LOCATOR"
                         Grid.Row="1">
             <controls:PivotItem Header="login">
                 <ScrollViewer>

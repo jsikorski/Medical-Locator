@@ -1,6 +1,9 @@
-﻿using MedicalLocator.Mobile.DatabaseConnectionReference;
+﻿using System.Collections.Generic;
+using MedicalLocator.Mobile.DatabaseConnectionReference;
+using MedicalLocator.Mobile.Features;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
+using System.Linq;
 
 namespace MedicalLocator.Mobile.Services.Logging
 {
@@ -27,7 +30,7 @@ namespace MedicalLocator.Mobile.Services.Logging
         {
             if (loginData.IsAnonymous)
             {
-                TryLoginAnonymously(loginData);
+                TryLoginAnonymously();
             }
             else
             {
@@ -35,16 +38,18 @@ namespace MedicalLocator.Mobile.Services.Logging
             }
         }
 
-        private void TryLoginAnonymously(LoginData loginData)
+        private void TryLoginAnonymously()
         {
             _currentContext.CurrentUserLogin = "anonymous";
             _currentContext.CurrentUserPassword = null;
-            _currentContext.LastAddress = "";
+            _currentContext.LastAddress = string.Empty;
             _currentContext.LastCenterType = CenterType.MyLocation;
             _currentContext.LastLatitude = 0;
             _currentContext.LastLongitude = 0;
             _currentContext.LastRange = 2500;
-            _currentContext.LastSearchedObjects = _enumsValuesProvider.GetAllMedicalTypes();
+
+            _currentContext.LastSearchedMedicalTypes =
+                _enumsValuesProvider.GetAllMedicalTypes().Select(type => new MedicalTypeViewModel(type, true)).ToList();
         }
 
         private void TryLoginByNameAndPassword(LoginData loginData)
@@ -63,7 +68,11 @@ namespace MedicalLocator.Mobile.Services.Logging
             _currentContext.LastLatitude = lastSearch.Latitude;
             _currentContext.LastLongitude = lastSearch.Longitude;
             _currentContext.LastRange = lastSearch.Range;
-            _currentContext.LastSearchedObjects = MedicalTypeConverter.FromDatabaseService(lastSearch.SearchedObjects);
+
+            IEnumerable<MedicalType> allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
+            IEnumerable<MedicalType> lastMedicalTypes = MedicalTypesConverter.FromDatabaseService(lastSearch.SearchedObjects);
+            _currentContext.LastSearchedMedicalTypes =
+                allMedicalTypes.Select(type => new MedicalTypeViewModel(type, lastMedicalTypes.Contains(type))).ToList();
         }
     }
 }

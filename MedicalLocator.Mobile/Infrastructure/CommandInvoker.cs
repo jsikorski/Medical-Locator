@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
@@ -42,13 +43,14 @@ namespace MedicalLocator.Mobile.Infrastructure
             }
             else
             {
-                HandleUnknownError();
+                HandleUnknownError(exception);
             }
         }
 
-        private static void HandleUnknownError()
+        private static void HandleUnknownError(Exception exception)
         {
-            MessageBoxService.ShowInternalError("Unknown error occured.");
+            MessageBoxService.ShowInternalError(string.Format("Unknown error occured. Error message: {0}",
+                                                              exception.Message));
         }
 
         private static bool HasExceptionErrorHandler(ICommand command)

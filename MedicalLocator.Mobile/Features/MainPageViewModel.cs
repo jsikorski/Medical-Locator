@@ -1,3 +1,4 @@
+using System.Device.Location;
 using Autofac;
 using Caliburn.Micro;
 using MedicalLocator.Mobile.BingMaps;
@@ -9,7 +10,7 @@ using Microsoft.Phone.Shell;
 namespace MedicalLocator.Mobile.Features
 {
     [SingleInstance]
-    public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler, IHasApplicationBar
+    public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IContainer _container;
@@ -60,8 +61,7 @@ namespace MedicalLocator.Mobile.Features
 
         protected override void OnViewAttached(object view, object context)
         {
-            var mainPage = (MainPage) view;
-            ApplicationBar = mainPage.ApplicationBar;
+            var mainPage = (MainPage)view;
             _bingMap = mainPage.BingMap;
             base.OnViewAttached(view, context);
         }
@@ -89,12 +89,6 @@ namespace MedicalLocator.Mobile.Features
         {
             _bingMap.UpdateView(BingMapPushpins);
         }
-
-        #endregion
-
-        #region Implementation of IHasApplicationBar
-
-        public IApplicationBar ApplicationBar { get; private set; }
 
         #endregion
     }

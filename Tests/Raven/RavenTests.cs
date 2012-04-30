@@ -33,6 +33,7 @@ namespace Tests.Raven
     [TestFixture]
     public class RandomRavenDBTests
     {
+        [Ignore]
         [Test]
         public void random_raven_tests()
         {

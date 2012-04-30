@@ -29,7 +29,7 @@ namespace MedicalLocator.Mobile.Services
             {
                 IsGpsUsed = isGpsUsed,
                 Location = centerLocation,
-                MedicalTypes = new ObservableCollection<MedicalTypeGoogleService>(MedicalTypeConverter.ToGoogleService(medicalTypes)),
+                MedicalTypes = new ObservableCollection<MedicalTypeGoogleService>(MedicalTypesConverter.ToGoogleService(medicalTypes)),
                 Radius = range
             };
 

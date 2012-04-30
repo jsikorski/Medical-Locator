@@ -126,7 +126,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Features\MainPageViewModel.cs" />
-    <Compile Include="Features\SearchedObjectViewModel.cs" />
+    <Compile Include="Features\MedicalTypeViewModel.cs" />
     <Compile Include="Features\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
@@ -140,7 +140,6 @@
     <Compile Include="Infrastructure\CommandInvoker.cs" />
     <Compile Include="Infrastructure\IBusyScope.cs" />
     <Compile Include="Infrastructure\ICommand.cs" />
-    <Compile Include="Infrastructure\IHasApplicationBar.cs" />
     <Compile Include="Infrastructure\IHasErrorHandler.cs" />
     <Compile Include="Infrastructure\SingleInstanceAttribute.cs" />
     <Compile Include="Infrastructure\SyncCommunicationExtensions.cs" />
@@ -230,7 +229,7 @@
     </Content>
     <None Include="Service References\DatabaseConnectionReference\configuration91.svcinfo" />
     <None Include="Service References\DatabaseConnectionReference\configuration.svcinfo" />
-    <None Include="Service References\DatabaseConnectionReference\DatabaseConnectionService.Model.xsd">
+    <None Include="Service References\DatabaseConnectionReference\DatabaseConnectionService.Model1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.LoginResponse.datasource">
@@ -246,30 +245,30 @@
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Service References\DatabaseConnectionReference\service.wsdl" />
-    <None Include="Service References\DatabaseConnectionReference\service.xsd">
+    <None Include="Service References\DatabaseConnectionReference\service1.wsdl" />
+    <None Include="Service References\DatabaseConnectionReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DatabaseConnectionReference\service1.xsd">
+    <None Include="Service References\DatabaseConnectionReference\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Model.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Model1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GoogleMapsInterfaceReference\MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesWcfResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\service.wsdl" />
-    <None Include="Service References\GoogleMapsInterfaceReference\service.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\service1.wsdl" />
+    <None Include="Service References\GoogleMapsInterfaceReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\service1.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\service21.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

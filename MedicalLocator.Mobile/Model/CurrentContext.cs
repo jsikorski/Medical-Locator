@@ -1,20 +1,16 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Device.Location;
-using MedicalLocator.Mobile.DatabaseConnectionReference;
+using MedicalLocator.Mobile.Features;
 using MedicalLocator.Mobile.Infrastructure;
-using MedicalLocator.Mobile.Services;
+using System.Linq;
 
 namespace MedicalLocator.Mobile.Model
 {
     [SingleInstance]
     public class CurrentContext
     {
-        private readonly IEnumsValuesProvider _enumsValuesProvider;
         public bool AreLocationServicesAllowed { get; set; }
 
-        public IEnumerable<MedicalType> LastSearchedObjects { get; set; }
+        public IEnumerable<MedicalTypeViewModel> LastSearchedMedicalTypes { get; set; }
         public CenterType LastCenterType { get; set; }
         public int LastRange { get; set; }
         public string LastAddress { get; set; }
@@ -23,19 +19,11 @@ namespace MedicalLocator.Mobile.Model
 
         public string CurrentUserLogin { get; set; }
         public string CurrentUserPassword { get; set; }
-
-      //  public void SetLoggedInUserModel(MedicalLocatorUserData userModel)
-     //   {
-      //      if (userModel.LastSearch.SearchedObjects == null)
-     //           userModel.LastSearch.SearchedObjects =
-     //               new ObservableCollection<MedicalType>(_enumsValuesProvider.GetAllMedicalTypes());
-//
-    //        LoggedInUserModel = userModel;
-    //    }
     
-        public CurrentContext(IEnumsValuesProvider enumsValuesProvider)
+        public IEnumerable<MedicalType> GetSelectedMedicalTypes()
         {
-            _enumsValuesProvider = enumsValuesProvider;
+            return LastSearchedMedicalTypes
+                .Where(typeVm => typeVm.IsSelected).Select(typeVm => typeVm.MedicalType).ToList();
         }
     }
 }

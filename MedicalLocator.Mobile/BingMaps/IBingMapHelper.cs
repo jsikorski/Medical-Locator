@@ -4,7 +4,8 @@ namespace MedicalLocator.Mobile.BingMaps
 {
     public interface IBingMapHelper
     {
-        void SetObjectsUsingGooglePlacesWcfResponse(Location centerLocation,
-                                                    GooglePlacesWcfResponse response);
+        void ResetMap();
+        void SetPushpinsUsingGooglePlacesWcfResponse(Location centerLocation,
+                                                     GooglePlacesWcfResponse response);
     }
 }

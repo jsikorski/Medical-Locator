@@ -8,8 +8,7 @@
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:Converters="clr-namespace:MedicalLocator.Mobile.Converters"
-                            xmlns:cal="http://www.caliburnproject.org"
-                            mc:Ignorable="d"
+                            xmlns:cal="http://www.caliburnproject.org" mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="696"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -19,114 +18,119 @@
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True">
 
-    <Grid x:Name="LayoutRoot"
-          Background="Transparent">
-        <controls:Pivot Title="SEARCH - MEDICAL LOCATOR">
-            <controls:PivotItem Header="general">
-                <Grid>
-                    <Grid.Resources>
-                        <Converters:CenterTypesToNamesConverter x:Key="centerTypesToNamesConverter" />
-                        <Converters:CenterTypeNameToVisibilityConverter x:Key="centerTypeToVisibilityConverter" />
-                        <Style TargetType="TextBlock">
-                            <Setter Property="FontSize"
-                                    Value="43" />
-                            <Setter Property="Margin"
-                                    Value="0 0 0 25" />
-                        </Style>
-                    </Grid.Resources>
+  <Grid x:Name="LayoutRoot"
+        Background="Transparent">
+    <controls:Pivot Title="SEARCH - MEDICAL LOCATOR">
+      <controls:PivotItem Header="general">
+        <Grid>
+          <Grid.Resources>
+            <Converters:CenterTypesToNamesConverter x:Key="centerTypesToNamesConverter" />
+            <Converters:CenterTypeNameToVisibilityConverter x:Key="centerTypeToVisibilityConverter" />
+            <Style TargetType="TextBlock">
+              <Setter Property="FontSize"
+                      Value="43" />
+              <Setter Property="Margin"
+                      Value="0 0 0 25" />
+            </Style>
+          </Grid.Resources>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Range [m]"
-                               Grid.Row="0"
-                               Grid.Column="0">
-                    </TextBlock>
-                    <TextBox Grid.Row="0"
-                             Grid.Column="1"
-                             InputScope="TelephoneNumber"
-                             Text="{Binding SearchingRange, Mode=TwoWay }"/>
+          <TextBlock Text="Range [m]"
+                     Grid.Row="0"
+                     Grid.Column="0">
+          </TextBlock>
+          <TextBox Grid.Row="0"
+                   Grid.Column="1"
+                   InputScope="TelephoneNumber"
+                   Text="{Binding SearchingRange, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                   TextChanged="BindableTextBoxTextChanged" />
 
-                    <TextBlock Text="Center"
-                               Grid.Row="1"
-                               Grid.Column="0" />
-                    <toolkit:ListPicker x:Name="centerTypeListPicker"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        ItemsSource="{Binding PossibleSearchingCenterTypes, Converter={StaticResource centerTypesToNamesConverter}}"
-                                        SelectedIndex="{Binding SelectedCenterTypeIndex, Mode=TwoWay}">
-                    </toolkit:ListPicker>
+          <TextBlock Text="Center"
+                     Grid.Row="1"
+                     Grid.Column="0" />
+          <toolkit:ListPicker x:Name="centerTypeListPicker"
+                              Grid.Row="1"
+                              Grid.Column="1"
+                              ItemsSource="{Binding PossibleSearchingCenterTypes, Converter={StaticResource centerTypesToNamesConverter}}"
+                              SelectedIndex="{Binding SelectedCenterTypeIndex, Mode=TwoWay}">
+          </toolkit:ListPicker>
 
-                    <TextBlock Text="Address"
-                               Grid.Row="2"
-                               Grid.Column="0"
-                               Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
-                    <TextBox Grid.Row="2"
-                             Grid.Column="1"
-                             Text="{Binding SearchedAddress, Mode=TwoWay}"
-                             Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
+          <TextBlock Text="Address"
+                     Grid.Row="2"
+                     Grid.Column="0"
+                     Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
+          <TextBox Grid.Row="2"
+                   Grid.Column="1"
+                   Text="{Binding SearchedAddress, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                   TextChanged="BindableTextBoxTextChanged"
+                   Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
 
-                    <TextBlock Text="Latitude"
-                               Grid.Row="3"
-                               Grid.Column="0"
-                               Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
-                    <TextBox Grid.Row="3"
-                             Grid.Column="1"
-                             Text="{Binding SearchedLatitude, Mode=TwoWay}"
-                             InputScope="TelephoneNumber"
-                             Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
+          <TextBlock Text="Latitude"
+                     Grid.Row="3"
+                     Grid.Column="0"
+                     Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
+          <TextBox Grid.Row="3"
+                   Grid.Column="1"
+                   Text="{Binding SearchedLatitude, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                   TextChanged="BindableTextBoxTextChanged"
+                   InputScope="TelephoneNumber"
+                   Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
 
-                    <TextBlock Text="Longitude"
-                               Grid.Row="4"
-                               Grid.Column="0"
-                               Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
-                    <TextBox Grid.Row="4"
-                             Grid.Column="1"
-                             Text="{Binding SearchedLongitude, Mode=TwoWay}"
-                             InputScope="TelephoneNumber"
-                             Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
-                </Grid>
+          <TextBlock Text="Longitude"
+                     Grid.Row="4"
+                     Grid.Column="0"
+                     Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
+          <TextBox Grid.Row="4"
+                   Grid.Column="1"
+                   Text="{Binding SearchedLongitude, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
+                   TextChanged="BindableTextBoxTextChanged"
+                   InputScope="TelephoneNumber"
+                   Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
+        </Grid>
+      </controls:PivotItem>
 
-            </controls:PivotItem>
+      <controls:PivotItem Header="objects">
+        <ListBox SelectionMode="Multiple"
+                 ItemsSource="{Binding SearchedMedicalTypes}">
+          <ListBox.Resources>
+            <Style TargetType="CheckBox">
+              <Setter Property="FontSize"
+                      Value="43" />
+            </Style>
+          </ListBox.Resources>
 
-            <controls:PivotItem Header="objects">
-                <ListBox SelectionMode="Multiple"
-                         ItemsSource="{Binding PossibleSearchedTypes}">
-                    <ListBox.Resources>
-                        <Style TargetType="CheckBox">
-                            <Setter Property="FontSize"
-                                    Value="43" />
-                        </Style>
-                    </ListBox.Resources>
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                        Content="{Binding MedicalType}" />
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </controls:PivotItem>
+    </controls:Pivot>
+  </Grid>
 
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                                      Content="{Binding MedicalType}" />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </controls:PivotItem>
-        </controls:Pivot>
-    </Grid>
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True"
-                              IsMenuEnabled="True">
-            <cal:AppBarButton Message="Search"
-                              IconUri="/Graphics/searchIcon.png"
-                              Text="search" />
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+
+  <phone:PhoneApplicationPage.ApplicationBar>
+    <shell:ApplicationBar IsVisible="True"
+                          IsMenuEnabled="True">
+      <cal:AppBarButton Message="Search"
+                        IconUri="/Graphics/searchIcon.png"
+                        Text="search" />
+    </shell:ApplicationBar>
+  </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

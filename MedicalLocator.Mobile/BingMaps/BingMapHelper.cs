@@ -16,19 +16,16 @@ namespace MedicalLocator.Mobile.BingMaps
             _bingMapHandler = bingMapHandler;
         }
 
-        public void SetObjectsUsingGooglePlacesWcfResponse(
+        public void ResetMap()
+        {
+            ClearPushpins();
+        }
+
+        public void SetPushpinsUsingGooglePlacesWcfResponse(
             Location centerLocation,
             GooglePlacesWcfResponse response)
         {
-            _bingMapHandler.BingMapPushpins.Clear();
             SetCenterPushpin(_bingMapHandler, centerLocation);
-
-            if (!response.Results.Any())
-            {
-                _bingMapHandler.UpdateBingMapView();
-                return;
-            }
-
             SetObjectsPushpins(_bingMapHandler, response);
             _bingMapHandler.UpdateBingMapView();
         }
@@ -41,7 +38,7 @@ namespace MedicalLocator.Mobile.BingMaps
 
         private void SetObjectsPushpins(IBingMapHandler bingMapHandler, GooglePlacesWcfResponse response)
         {
-            var pushpins = GetPushpinsViewModelsFromResponse(response);
+            var pushpins = GetPushpinsViewModelsFromResponse(response).ToList();
             bingMapHandler.BingMapPushpins.AddRange(pushpins);
         }
 
@@ -62,8 +59,13 @@ namespace MedicalLocator.Mobile.BingMaps
 
         private PushpinType GetPushpinTypeFromApiResult(GooglePlacesWcfResult wcfResult)
         {
-            MedicalType medicalType = MedicalTypeConverter.FromGoogleService(wcfResult.Type);
+            MedicalType medicalType = MedicalTypesConverter.FromGoogleService(wcfResult.Type);
             return PushpinType.FromMedicalType(medicalType);
+        }
+
+        private void ClearPushpins()
+        {
+            _bingMapHandler.BingMapPushpins.Clear();
         }
     }
 }

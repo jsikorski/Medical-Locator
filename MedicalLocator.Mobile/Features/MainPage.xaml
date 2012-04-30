@@ -19,7 +19,7 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True">
-    <Infrastructure:BusyIndicatorControl IsBusy="{Binding IsBusy}">
+    <Infrastructure:BusyIndicatorControl IsBusy="{Binding IsBusy}" HideApplicationBar="True">
         <Grid x:Name="LayoutRoot"
               Background="White">
 

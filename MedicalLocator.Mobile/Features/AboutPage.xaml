@@ -5,6 +5,7 @@
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:Infrastructure="clr-namespace:MedicalLocator.Mobile.Infrastructure"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
@@ -15,47 +16,47 @@
                             d:DesignWidth="480"
                             shell:SystemTray.IsVisible="True">
 
-    <Grid x:Name="LayoutRoot"
-          Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+  <Grid x:Name="LayoutRoot"
+        Background="Transparent">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle"
-                       Text="MEDICAL LOCATOR"
-                       Style="{StaticResource PhoneTextNormalStyle}" />
-            <TextBlock x:Name="PageTitle"
-                       Text="about"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
-        </StackPanel>
+    <StackPanel x:Name="TitlePanel"
+                Grid.Row="0"
+                Margin="12,17,0,28">
+      <TextBlock x:Name="ApplicationTitle"
+                 Text="MEDICAL LOCATOR"
+                 Style="{StaticResource PhoneTextNormalStyle}" />
+      <TextBlock x:Name="PageTitle"
+                 Text="about"
+                 Margin="9,-7,0,0"
+                 Style="{StaticResource PhoneTextTitle1Style}" />
+    </StackPanel>
 
-        <Grid x:Name="ContentPanel"
-              Grid.Row="1"
-              Margin="15,0,15,0">
-            <Grid.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="FontSize"
-                            Value="23" />
-                </Style>
-            </Grid.Resources>
+    <Grid x:Name="ContentPanel"
+          Grid.Row="1"
+          Margin="15,0,15,0">
+      <Grid.Resources>
+        <Style TargetType="TextBlock">
+          <Setter Property="FontSize"
+                  Value="23" />
+        </Style>
+      </Grid.Resources>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0">
-                This application was created by:
-            </TextBlock>
-            <StackPanel Grid.Row="1">
-                <TextBlock>- Jakub Sikorski</TextBlock>
-                <TextBlock>- Marek Skłodowski</TextBlock>
-            </StackPanel>
-        </Grid>
+      <TextBlock Grid.Row="0">
+        This application was created by:
+      </TextBlock>
+      <StackPanel Grid.Row="1">
+        <TextBlock>- Jakub Sikorski</TextBlock>
+        <TextBlock>- Marek Skłodowski</TextBlock>
+      </StackPanel>
     </Grid>
+  </Grid>
 </phone:PhoneApplicationPage>

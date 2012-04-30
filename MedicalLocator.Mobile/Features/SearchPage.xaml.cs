@@ -19,5 +19,12 @@ namespace MedicalLocator.Mobile.Features
         {
             InitializeComponent();
         }
+
+        private void BindableTextBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var bindingExpression = ((TextBox) sender).GetBindingExpression(TextBox.TextProperty);
+            if (bindingExpression != null)
+                bindingExpression.UpdateSource();
+        }
     }
 }

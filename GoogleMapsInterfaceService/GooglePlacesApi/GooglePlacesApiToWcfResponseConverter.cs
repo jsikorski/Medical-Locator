@@ -7,6 +7,13 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
 {
     public class GooglePlacesApiToWcfResponseConverter
     {
+        private readonly IEnumerable<MedicalTypeGoogleService> _allowedMedicalTypes;
+
+        public GooglePlacesApiToWcfResponseConverter(IEnumerable<MedicalTypeGoogleService> allowedMedicalTypes)
+        {
+            _allowedMedicalTypes = allowedMedicalTypes;
+        }
+
         public GooglePlacesWcfResponse Convert(GooglePlacesApiResponse googlePlacesApiResponse)
         {
             var wcfResults = googlePlacesApiResponse.Results.Select(GetGooglePlacesWcfFromApiResult).ToList();
@@ -28,11 +35,12 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
         private MedicalTypeGoogleService GetMostSpecificMedicalType(GooglePlacesApiResult googlePlacesApiResult)
         {
             MedicalTypeGoogleService medicalType;
+
             int index = 0;
             while (true)
             {
                 string typeName = googlePlacesApiResult.Types.ElementAt(index);
-                if (Enum.TryParse(typeName, true, out medicalType))
+                if (Enum.TryParse(typeName, true, out medicalType) && _allowedMedicalTypes.Contains(medicalType))
                 {
                     break;
                 }

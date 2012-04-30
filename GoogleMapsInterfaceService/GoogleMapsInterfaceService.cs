@@ -8,6 +8,7 @@ using System.Text;
 using System.Web.Script.Serialization;
 using GoogleMapsInterfaceService.Faults;
 using GoogleMapsInterfaceService.GooglePlacesApi;
+using GoogleMapsInterfaceService.Model;
 using GoogleMapsInterfaceService.Requests;
 
 namespace GoogleMapsInterfaceService
@@ -32,7 +33,7 @@ namespace GoogleMapsInterfaceService
             string responseJson = GetJsonFromGooglePlacesApi(request);
             var apiResponse = GetDeserializedDataFromJson<GooglePlacesApiResponse>(responseJson);
             CheckGooglePlacesApiResponse(apiResponse);
-            GooglePlacesWcfResponse wcfResponse = ConvertGooglePlacesApiToGooglePlacesWcfResponse(apiResponse);
+            GooglePlacesWcfResponse wcfResponse = ConvertGooglePlacesApiToGooglePlacesWcfResponse(apiResponse, request.MedicalTypes);
             return wcfResponse;
         }
 
@@ -71,9 +72,10 @@ namespace GoogleMapsInterfaceService
             }
         }
 
-        private GooglePlacesWcfResponse ConvertGooglePlacesApiToGooglePlacesWcfResponse(GooglePlacesApiResponse googlePlacesApiResponse)
+        private GooglePlacesWcfResponse ConvertGooglePlacesApiToGooglePlacesWcfResponse(
+            GooglePlacesApiResponse googlePlacesApiResponse, IEnumerable<MedicalTypeGoogleService> allowedMedicalTypes)
         {
-            var converter = new GooglePlacesApiToWcfResponseConverter();
+            var converter = new GooglePlacesApiToWcfResponseConverter(allowedMedicalTypes);
             return converter.Convert(googlePlacesApiResponse);
         }
 

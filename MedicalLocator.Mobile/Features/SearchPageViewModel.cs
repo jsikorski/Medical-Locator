@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using System.Windows;
 using Autofac;
 using Caliburn.Micro;
 using MedicalLocator.Mobile.Commands;
@@ -12,6 +13,7 @@ using IContainer = Autofac.IContainer;
 
 namespace MedicalLocator.Mobile.Features
 {
+    [SingleInstance]
     public class SearchPageViewModel : Screen
     {
         private readonly CurrentContext _currentContext;
@@ -49,11 +51,14 @@ namespace MedicalLocator.Mobile.Features
             set { _currentContext.LastLongitude = value; }
         }
 
-        public IEnumerable<SearchedObjectViewModel> PossibleSearchedTypes { get; private set; }
+        public IEnumerable<MedicalTypeViewModel> SearchedMedicalTypes
+        {
+            get { return _currentContext.LastSearchedMedicalTypes; }
+        }
 
         public SearchPageViewModel(
-            CurrentContext currentContext, 
-            IEnumsValuesProvider enumsValuesProvider, 
+            CurrentContext currentContext,
+            IEnumsValuesProvider enumsValuesProvider,
             IContainer container)
         {
             _currentContext = currentContext;
@@ -67,19 +72,6 @@ namespace MedicalLocator.Mobile.Features
         {
             var command = _container.Resolve<Search>();
             CommandInvoker.Invoke(command);
-        }
-
-        protected override void OnActivate()
-        {
-            IEnumerable<MedicalType> allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
-            PossibleSearchedTypes = allMedicalTypes.Select(
-                type => SearchedObjectViewModel.CreateUsingContext(type, _currentContext)).ToList();
-        }
-
-        protected override void OnDeactivate(bool close)
-        {
-            _currentContext.LastSearchedObjects = new ObservableCollection<MedicalType>(PossibleSearchedTypes.Where(vm => vm.IsSelected).Select(vm => vm.MedicalType));
-            base.OnDeactivate(close);
         }
     }
 }
