@@ -2,7 +2,7 @@
 using MedicalLocator.Mobile.Features;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
-using MedicalLocator.Mobile.Services.Logging;
+using MedicalLocator.Mobile.Services.DatabaseServices;
 using MedicalLocator.Mobile.Utils;
 
 namespace MedicalLocator.Mobile.Commands
@@ -11,20 +11,20 @@ namespace MedicalLocator.Mobile.Commands
         ICommand,
         IHasErrorHandler<InvalidLoginException>
     {
-        private readonly ILoggingManager _loggingManager;
+        private readonly IDatabaseManager _databaseManager;
         private readonly LoginData _loginData;
         private readonly INavigationService _navigationService;
 
-        public Login(LoginData loginData, ILoggingManager loggingManager, INavigationService navigationService)
+        public Login(LoginData loginData, IDatabaseManager databaseManager, INavigationService navigationService)
         {
             _loginData = loginData;
-            _loggingManager = loggingManager;
+            _databaseManager = databaseManager;
             _navigationService = navigationService;
         }
 
         public void Execute()
         {
-            _loggingManager.TryLogin(_loginData);
+            _databaseManager.TryLogin(_loginData);
             Caliburn.Micro.Execute.OnUIThread(() => _navigationService.UriFor<MainPageViewModel>().Navigate());            
         }
 

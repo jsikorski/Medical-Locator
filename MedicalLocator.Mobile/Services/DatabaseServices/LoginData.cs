@@ -1,4 +1,4 @@
-﻿namespace MedicalLocator.Mobile.Model
+﻿namespace MedicalLocator.Mobile.Services.DatabaseServices
 {
     public class LoginData
     {

@@ -19,11 +19,11 @@
   <wsdl:message name="IDatabaseConnectionService_Register_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterResponse" />
   </wsdl:message>
-  <wsdl:message name="IDatabaseConnectionService_SaveUserSettings_InputMessage">
-    <wsdl:part name="parameters" element="tns:SaveUserSettings" />
+  <wsdl:message name="IDatabaseConnectionService_SaveSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSettings" />
   </wsdl:message>
-  <wsdl:message name="IDatabaseConnectionService_SaveUserSettings_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SaveUserSettingsResponse" />
+  <wsdl:message name="IDatabaseConnectionService_SaveSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSettingsResponse" />
   </wsdl:message>
   <wsdl:portType name="IDatabaseConnectionService">
     <wsdl:operation name="Login">
@@ -34,9 +34,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/Register" message="tns:IDatabaseConnectionService_Register_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseConnectionService/RegisterResponse" message="tns:IDatabaseConnectionService_Register_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SaveUserSettings">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/SaveUserSettings" message="tns:IDatabaseConnectionService_SaveUserSettings_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseConnectionService/SaveUserSettingsResponse" message="tns:IDatabaseConnectionService_SaveUserSettings_OutputMessage" />
+    <wsdl:operation name="SaveSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/SaveSettings" message="tns:IDatabaseConnectionService_SaveSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseConnectionService/SaveSettingsResponse" message="tns:IDatabaseConnectionService_SaveSettings_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDatabaseConnectionService" type="tns:IDatabaseConnectionService">
@@ -59,8 +59,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SaveUserSettings">
-      <soap:operation soapAction="http://tempuri.org/IDatabaseConnectionService/SaveUserSettings" style="document" />
+    <wsdl:operation name="SaveSettings">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseConnectionService/SaveSettings" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -81,6 +81,30 @@ namespace MedicalLocator.Mobile.Infrastructure
             return response;
         }
 
+        public static SaveSettingsResponse SaveSettings(
+            this DatabaseConnectionServiceClient client, string login, string password, MedicalLocatorUserLastSearch lastSearch)
+        {
+            var syncProvider = new ManualResetEvent(false);
+            SaveSettingsResponse response = null;
+            Exception saveSettingsException = null;
+            client.SaveSettingsCompleted += (sender, args) =>
+            {
+                syncProvider.Set();
+                try
+                {
+                    response = args.Result;
+                }
+                catch (Exception exception)
+                {
+                    saveSettingsException = exception;
+                }
+            };
+            client.SaveSettingsAsync(login, password, lastSearch);
+            syncProvider.WaitOne();
+            CheckException(saveSettingsException);
+            return response;
+        }
+
         private static void CheckException(Exception exception)
         {
             if (exception != null)

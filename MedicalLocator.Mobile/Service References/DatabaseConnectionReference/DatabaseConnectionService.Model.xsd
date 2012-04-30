@@ -61,4 +61,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RegisterResponse" nillable="true" type="tns:RegisterResponse" />
+  <xs:complexType name="SaveSettingsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsSuccessful" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SaveSettingsResponse" nillable="true" type="tns:SaveSettingsResponse" />
 </xs:schema>

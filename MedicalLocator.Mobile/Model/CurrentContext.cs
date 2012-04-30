@@ -19,7 +19,8 @@ namespace MedicalLocator.Mobile.Model
 
         public string CurrentUserLogin { get; set; }
         public string CurrentUserPassword { get; set; }
-    
+        public bool IsAnonymousUser { get; set; }
+
         public IEnumerable<MedicalType> GetSelectedMedicalTypes()
         {
             return LastSearchedMedicalTypes

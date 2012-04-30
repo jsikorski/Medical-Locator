@@ -34,7 +34,7 @@ namespace DatabaseConnectionService
                     var userList = session.Query<MedicalLocatorUserData>().Where(u => (u.Login == login && u.Password == password)).ToList();
                     if (userList.Count == 0)
                     {
-                        return LoginResponse.CreateInvalid("Wrong login or password.");
+                        return LoginResponse.CreateInvalid("Incorrect login or password.");
                     }
 
                     return LoginResponse.CreateValid(userList[0]);
@@ -78,10 +78,35 @@ namespace DatabaseConnectionService
             return RegisterResponse.CreateValid();
         }
 
-        public bool SaveUserSettings(string login, string password, MedicalLocatorUserLastSearch lastSearch)
+        public SaveSettingsResponse SaveSettings(string login, string password, MedicalLocatorUserLastSearch lastSearch)
         {
-            // todo
-            return true;
+            if (login.Length < 3 || login.Length > 16)
+                return SaveSettingsResponse.CreateInvalid("Error while saving settings: Incorrect length of username.");
+
+            if (password.Length < 3 || password.Length > 16)
+                return SaveSettingsResponse.CreateInvalid("Error while saving settings: Incorrect length of password.");
+
+            if (login.ToLower().Trim() == "anonymous")
+                return SaveSettingsResponse.CreateInvalid("Error while saving settings: can not save settings with username 'anonymous'.");
+
+            // Store data in database.
+            using (IDocumentStore documentStore = new DocumentStore() { Url = "http://localhost:8080" })
+            {
+                documentStore.Initialize();
+                using (var session = documentStore.OpenSession())
+                {
+                    var userList = session.Query<MedicalLocatorUserData>().Where(u => (u.Login == login && u.Password == password)).ToList();
+                    if (userList.Count == 0)
+                        return SaveSettingsResponse.CreateInvalid("Error while saving settings: Incorrect pass or login for '" + login + "'.");
+
+                    var user = userList[0];
+                    user.LastSearch = lastSearch;
+                    session.Store(lastSearch);
+                    session.SaveChanges();
+
+                    return SaveSettingsResponse.CreateValid();
+                }
+            }
         }
     }
 }

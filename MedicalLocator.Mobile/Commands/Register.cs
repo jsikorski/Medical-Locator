@@ -5,7 +5,7 @@ using Caliburn.Micro;
 using MedicalLocator.Mobile.Features;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
-using MedicalLocator.Mobile.Services.Logging;
+using MedicalLocator.Mobile.Services.DatabaseServices;
 using MedicalLocator.Mobile.Utils;
 
 namespace MedicalLocator.Mobile.Commands
@@ -14,18 +14,18 @@ namespace MedicalLocator.Mobile.Commands
         ICommand,
         IHasErrorHandler<InvalidRegisterException>
     {
-        private readonly ILoggingManager _loggingManager;
+        private readonly IDatabaseManager _databaseManager;
         private readonly RegisterData _registerData;
 
-        public Register(RegisterData registerData, ILoggingManager loggingManager)
+        public Register(RegisterData registerData, IDatabaseManager databaseManager)
         {
             _registerData = registerData;
-            _loggingManager = loggingManager;
+            _databaseManager = databaseManager;
         }
 
         public void Execute()
         {
-            _loggingManager.TryRegister(_registerData);
+            _databaseManager.TryRegister(_registerData);
             MessageBoxService.ShowInformation("User " + _registerData.Login + " created successfully!");
         }
 

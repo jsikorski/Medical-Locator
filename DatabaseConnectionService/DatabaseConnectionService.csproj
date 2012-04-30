@@ -69,6 +69,7 @@
     <Compile Include="DatabaseConnectionService.cs" />
     <Compile Include="IDatabaseConnectionService.cs" />
     <Compile Include="Model\CenterTypeDatabaseService.cs" />
+    <Compile Include="Model\SaveSettingsResponse.cs" />
     <Compile Include="Model\DatabaseEnumsValuesProvider.cs" />
     <Compile Include="Model\MedicalLocatorUserData.cs" />
     <Compile Include="Model\MedicalTypeDatabaseService.cs" />

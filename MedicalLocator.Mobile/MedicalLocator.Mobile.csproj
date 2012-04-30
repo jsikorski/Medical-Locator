@@ -89,6 +89,7 @@
     <Compile Include="BingMaps\PushpinType.cs" />
     <Compile Include="BingMaps\PushpinViewModel.cs" />
     <Compile Include="Commands\AskForLocationServices.cs" />
+    <Compile Include="Commands\SaveSettings.cs" />
     <Compile Include="Commands\Register.cs" />
     <Compile Include="Commands\Login.cs" />
     <Compile Include="Commands\FindNearby.cs" />
@@ -146,11 +147,12 @@
     <Compile Include="Infrastructure\UICommand.cs" />
     <Compile Include="Keys\KeysProvider.cs" />
     <Compile Include="Model\CenterType.cs" />
-    <Compile Include="Model\RegisterData.cs" />
+    <Compile Include="Services\DatabaseServices\SaveSettingsData.cs" />
+    <Compile Include="Services\DatabaseServices\RegisterData.cs" />
     <Compile Include="Model\CurrentContext.cs" />
     <Compile Include="Model\EnumsValuesProvider.cs" />
     <Compile Include="Model\IEnumsValuesProvider.cs" />
-    <Compile Include="Model\LoginData.cs" />
+    <Compile Include="Services\DatabaseServices\LoginData.cs" />
     <Compile Include="Model\MedicalType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\DatabaseConnectionReference\Reference.cs">
@@ -183,10 +185,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Services\Logging\InvalidRegisterException.cs" />
-    <Compile Include="Services\Logging\ILoggingManager.cs" />
-    <Compile Include="Services\Logging\InvalidLoginException.cs" />
-    <Compile Include="Services\Logging\LoggingManager.cs" />
+    <Compile Include="Services\DatabaseServices\InvalidSaveSettingsException.cs" />
+    <Compile Include="Services\DatabaseServices\InvalidRegisterException.cs" />
+    <Compile Include="Services\DatabaseServices\IDatabaseManager.cs" />
+    <Compile Include="Services\DatabaseServices\InvalidLoginException.cs" />
+    <Compile Include="Services\DatabaseServices\DatabaseManager.cs" />
     <Compile Include="Services\SearchingManager.cs" />
     <Compile Include="Utils\MessageBoxService.cs" />
     <Page Include="Validation\ValidableTextBoxStyle.xaml">
@@ -239,6 +242,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\DatabaseConnectionReference\Reference.svcmap">

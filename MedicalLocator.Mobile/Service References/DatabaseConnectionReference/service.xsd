@@ -33,7 +33,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SaveUserSettings">
+  <xs:element name="SaveSettings">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
@@ -42,10 +42,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SaveUserSettingsResponse">
+  <xs:element name="SaveSettingsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="SaveUserSettingsResult" type="xs:boolean" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" minOccurs="0" name="SaveSettingsResult" nillable="true" type="q4:SaveSettingsResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

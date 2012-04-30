@@ -52,6 +52,14 @@ namespace MedicalLocator.Mobile.Features
             CommandInvoker.Execute(command);
         }
 
+        protected override void OnActivate()
+        {
+            var command = _container.Resolve<SaveSettings>();
+            CommandInvoker.Invoke(command);
+
+            base.OnActivate();
+        }
+
         protected override void OnDeactivate(bool close)
         {
             var command = _container.Resolve<StopLocationServices>();

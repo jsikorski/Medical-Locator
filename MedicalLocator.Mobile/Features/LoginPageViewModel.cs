@@ -3,18 +3,17 @@ using Autofac;
 using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
+using MedicalLocator.Mobile.Services.DatabaseServices;
 
 namespace MedicalLocator.Mobile.Features
 {
     public class LoginPageViewModel
     {
-        private readonly IContainer _container;
         private readonly Func<LoginData, Login> _loginFactory;
         private readonly Func<RegisterData, Register> _registerFactory;
 
-        public LoginPageViewModel(IContainer container, Func<LoginData, Login> loginFactory, Func<RegisterData, Register> registerFactory)
+        public LoginPageViewModel(Func<LoginData, Login> loginFactory, Func<RegisterData, Register> registerFactory)
         {
-            _container = container;
             _loginFactory = loginFactory;
             _registerFactory = registerFactory;
         }

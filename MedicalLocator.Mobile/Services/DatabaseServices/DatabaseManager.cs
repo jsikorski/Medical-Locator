@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using MedicalLocator.Mobile.DatabaseConnectionReference;
 using MedicalLocator.Mobile.Features;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
 using System.Linq;
 
-namespace MedicalLocator.Mobile.Services.Logging
+namespace MedicalLocator.Mobile.Services.DatabaseServices
 {
-    public class LoggingManager : ILoggingManager
+    public class DatabaseManager : IDatabaseManager
     {
         private readonly CurrentContext _currentContext;
         private readonly IEnumsValuesProvider _enumsValuesProvider;
 
-        public LoggingManager(CurrentContext currentContext, IEnumsValuesProvider enumsValuesProvider)
+        public DatabaseManager(CurrentContext currentContext, IEnumsValuesProvider enumsValuesProvider)
         {
             _currentContext = currentContext;
             _enumsValuesProvider = enumsValuesProvider;
@@ -24,6 +25,24 @@ namespace MedicalLocator.Mobile.Services.Logging
             var regiserResponse = client.Register(registerData.LicenceAgree, registerData.Login, registerData.Password, registerData.PasswordRetype);
             if (!regiserResponse.IsSuccessful)
                 throw new InvalidRegisterException(regiserResponse.ErrorMessage);
+        }
+
+        public void TrySaveSettings(SaveSettingsData saveSettingsData)
+        {
+            var searchedObjects = MedicalTypesConverter.ToDatabaseService(saveSettingsData.SearchedObjects);
+            var lastSearch = new MedicalLocatorUserLastSearch
+                                 {
+                                     Address = saveSettingsData.Address,
+                                     CenterType = CenterTypeConverter.ToDatabaseService(saveSettingsData.CenterType),
+                                     Latitude = saveSettingsData.Latitude,
+                                     Longitude = saveSettingsData.Longitude,
+                                     Range = saveSettingsData.Range,
+                                     SearchedObjects = new ObservableCollection<MedicalTypeDatabaseService>(searchedObjects)
+                                 };
+            var client = new DatabaseConnectionServiceClient();
+            var saveSettingsResponse = client.SaveSettings(saveSettingsData.Login, saveSettingsData.Password, lastSearch);
+            if (!saveSettingsResponse.IsSuccessful)
+                throw new InvalidRegisterException(saveSettingsResponse.ErrorMessage);
         }
 
         public void TryLogin(LoginData loginData)
@@ -40,6 +59,7 @@ namespace MedicalLocator.Mobile.Services.Logging
 
         private void TryLoginAnonymously()
         {
+            _currentContext.IsAnonymousUser = true;
             _currentContext.CurrentUserLogin = "anonymous";
             _currentContext.CurrentUserPassword = null;
             _currentContext.LastAddress = string.Empty;
@@ -61,6 +81,7 @@ namespace MedicalLocator.Mobile.Services.Logging
 
             var user = loginResponse.UserData;
             var lastSearch = user.LastSearch;
+            _currentContext.IsAnonymousUser = false;
             _currentContext.CurrentUserLogin = user.Login;
             _currentContext.CurrentUserPassword = user.Password;
             _currentContext.LastAddress = lastSearch.Address;

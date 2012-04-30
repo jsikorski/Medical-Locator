@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MedicalLocator.Mobile.Services.Logging
+namespace MedicalLocator.Mobile.Services.DatabaseServices
 {
     public class InvalidRegisterException : Exception
     {
