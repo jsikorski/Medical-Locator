@@ -20,7 +20,7 @@ namespace MedicalLocator.Mobile.Commands
             LoginData loginData, 
             IDatabaseManager databaseManager, 
             INavigationService navigationService,
-            IBusyScope loginPageViewModel)
+            LoginPageViewModel loginPageViewModel)
         {
             _loginData = loginData;
             _databaseManager = databaseManager;

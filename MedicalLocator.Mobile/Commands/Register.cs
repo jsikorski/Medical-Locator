@@ -18,7 +18,10 @@ namespace MedicalLocator.Mobile.Commands
         private readonly RegisterData _registerData;
         private readonly IBusyScope _loginPageViewModel;
 
-        public Register(RegisterData registerData, IDatabaseManager databaseManager, IBusyScope loginPageViewModel)
+        public Register(
+            RegisterData registerData, 
+            IDatabaseManager databaseManager, 
+            LoginPageViewModel loginPageViewModel)
 
         {
             _registerData = registerData;

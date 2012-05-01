@@ -10,15 +10,16 @@ using MedicalLocator.Mobile.Utils;
 
 namespace MedicalLocator.Mobile.Commands
 {
-    public class SaveSettings :
-        ICommand,
-        IHasErrorHandler<InvalidSaveSettingsException>
+    public class SaveSettings : ICommand, IHasErrorHandler<InvalidSaveSettingsException>
     {
         private readonly IDatabaseManager _databaseManager;
         private readonly CurrentContext _currentContext;
         private readonly IBusyScope _mainPageViewModel;
 
-        public SaveSettings(CurrentContext currentContext, IDatabaseManager databaseManager, IBusyScope mainPageViewModel)
+        public SaveSettings(
+            CurrentContext currentContext, 
+            IDatabaseManager databaseManager, 
+            MainPageViewModel mainPageViewModel)
         {
             _currentContext = currentContext;
             _databaseManager = databaseManager;
@@ -48,8 +49,6 @@ namespace MedicalLocator.Mobile.Commands
 
                 _currentContext.SavedLastSearchHash = _currentContext.GenerateLastSearchedHash();
             }
-
-            // MessageBoxService.ShowInformation("Settings for user " + saveSettingsData.Login + " saved successfully!");
         }
 
         public void HandleError(InvalidSaveSettingsException exception)
