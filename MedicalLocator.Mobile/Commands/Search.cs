@@ -48,7 +48,8 @@ namespace MedicalLocator.Mobile.Commands
 
         private void GoToMapPage()
         {
-            Caliburn.Micro.Execute.OnUIThread(() => _navigationService.UriFor<MainPageViewModel>().Navigate());
+            Caliburn.Micro.Execute.OnUIThread(() => 
+                _navigationService.UriFor<MainPageViewModel>().WithParam(vm => vm.BackNavSkipAll, true).Navigate());
         }
     }
 }

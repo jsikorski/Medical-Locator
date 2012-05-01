@@ -10,7 +10,7 @@ using Microsoft.Phone.Shell;
 namespace MedicalLocator.Mobile.Features
 {
     [SingleInstance]
-    public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler
+    public class MainPageViewModel : Screen, IBusyScope, IBingMapHandler, ICanRemoveBackEntry
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IContainer _container;
@@ -97,6 +97,13 @@ namespace MedicalLocator.Mobile.Features
         {
             _bingMap.UpdateView(BingMapPushpins);
         }
+
+        #endregion
+
+        #region Implementation of ICanRemoveBackEntry
+
+        public bool BackNavSkipOne { get; set; }
+        public bool BackNavSkipAll { get; set; }
 
         #endregion
     }

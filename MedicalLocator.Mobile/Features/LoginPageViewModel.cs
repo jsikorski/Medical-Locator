@@ -9,7 +9,7 @@ using MedicalLocator.Mobile.Services.DatabaseServices;
 namespace MedicalLocator.Mobile.Features
 {
     [SingleInstance]
-    public class LoginPageViewModel : Screen, IBusyScope
+    public class LoginPageViewModel : Screen, IBusyScope, ICanRemoveBackEntry
     {
         private readonly Func<LoginData, Login> _loginFactory;
         private readonly Func<RegisterData, Register> _registerFactory;
@@ -64,6 +64,13 @@ namespace MedicalLocator.Mobile.Features
                 NotifyOfPropertyChange(() => IsBusy);
             }
         }
+
+        #endregion
+
+        #region Implementation of ICanRemoveBackEntry
+
+        public bool BackNavSkipOne { get; set; }
+        public bool BackNavSkipAll { get; set; }
 
         #endregion
     }

@@ -33,7 +33,8 @@ namespace MedicalLocator.Mobile.Commands
             using (new BusyArea(_loginPageViewModel))
             {
                 _databaseManager.TryLogin(_loginData);
-                Caliburn.Micro.Execute.OnUIThread(() => _navigationService.UriFor<MainPageViewModel>().Navigate());            
+                Caliburn.Micro.Execute.OnUIThread(() => 
+                    _navigationService.UriFor<MainPageViewModel>().WithParam(vm => vm.BackNavSkipOne, true).Navigate());            
             }
         }
 

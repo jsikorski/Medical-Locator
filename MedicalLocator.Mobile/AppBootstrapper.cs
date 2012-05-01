@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Navigation;
 using Autofac;
 using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.Infrastructure;
@@ -113,6 +114,7 @@ namespace MedicalLocator.Mobile
             // to attach to the framework properly.
             var phoneService = new PhoneApplicationServiceAdapter(RootFrame);
             var navigationService = new FrameAdapter(RootFrame);
+            navigationService.Navigated += RootFrameNavigated;
 
             builder.RegisterInstance<INavigationService>(navigationService).SingleInstance();
             builder.RegisterInstance<IPhoneService>(phoneService).SingleInstance();
@@ -126,6 +128,24 @@ namespace MedicalLocator.Mobile
             builder.Register(c => _container).SingleInstance();
 
             return builder.Build();
+        }
+
+        void RootFrameNavigated(object sender, NavigationEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.New && e.Uri.ToString().Contains("BackNavSkipAll=True"))
+            {
+                while (RootFrame.BackStack.Any())
+                {
+                    RootFrame.RemoveBackEntry();
+                }
+
+                return;
+            }
+
+            if (e.NavigationMode == NavigationMode.New && e.Uri.ToString().Contains("BackNavSkipOne=True"))
+            {
+                RootFrame.RemoveBackEntry();
+            }
         }
     }
 }

@@ -98,7 +98,6 @@
     <Compile Include="Commands\OpenSettingsPage.cs" />
     <Compile Include="Commands\Search.cs" />
     <Compile Include="Commands\ShowAboutPage.cs" />
-    <Compile Include="Commands\ShowMainPage.cs" />
     <Compile Include="Commands\StopLocationServices.cs" />
     <Compile Include="Converters\MyBooleanToVisibilityConverter.cs" />
     <Page Include="BingMaps\PushpinsStyle.xaml">
@@ -139,6 +138,7 @@
     <Compile Include="Infrastructure\BusyArea.cs" />
     <Compile Include="Infrastructure\BusyIndicatorControl.cs" />
     <Compile Include="Infrastructure\CommandInvoker.cs" />
+    <Compile Include="Infrastructure\ICanRemoveBackEntry.cs" />
     <Compile Include="Infrastructure\IBusyScope.cs" />
     <Compile Include="Infrastructure\ICommand.cs" />
     <Compile Include="Infrastructure\IHasErrorHandler.cs" />
