@@ -4,6 +4,7 @@ using Caliburn.Micro;
 using MedicalLocator.Mobile.BingMaps;
 using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.Infrastructure;
+using MedicalLocator.Mobile.Model;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Shell;
 
@@ -14,14 +15,21 @@ namespace MedicalLocator.Mobile.Features
     {
         private readonly IEventAggregator _eventAggregator;
         private readonly IContainer _container;
+        private readonly CurrentContext _currentContext;
         private Map _bingMap;
 
-        public MainPageViewModel(IEventAggregator eventAggregator, IContainer container)
+        public string LoggedInUserName
+        {
+            get { return _currentContext.CurrentUserLogin; }
+        }
+
+        public MainPageViewModel(IEventAggregator eventAggregator, IContainer container, CurrentContext currentContext)
         {
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
 
             _container = container;
+            _currentContext = currentContext;
             BingMapPushpins = new BindableCollection<PushpinViewModel>();
         }
 

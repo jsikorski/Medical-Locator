@@ -38,9 +38,6 @@
               Grid.Row="1"
               Margin="12,0,12,0">
             <StackPanel>
-                <TextBlock Text="Logged in user:"></TextBlock>
-                <TextBlock Text="{Binding LoggedInUserName}"></TextBlock>
-
                 <toolkit:ToggleSwitch IsChecked="{Binding AreLocationServicesAllowed, Mode=TwoWay}"
                                     Header="Use location services" />
             </StackPanel>

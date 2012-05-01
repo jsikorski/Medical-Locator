@@ -1,4 +1,4 @@
-<phone:PhoneApplicationPage x:Class="MedicalLocator.Mobile.Features.MainPage"
+﻿<phone:PhoneApplicationPage x:Class="MedicalLocator.Mobile.Features.MainPage"
                             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                             xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -19,7 +19,8 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True">
-    <Infrastructure:BusyIndicatorControl IsBusy="{Binding IsBusy}" HideApplicationBar="True">
+    <Infrastructure:BusyIndicatorControl IsBusy="{Binding IsBusy}"
+                                         HideApplicationBar="True">
         <Grid x:Name="LayoutRoot"
               Background="White">
 
@@ -55,6 +56,14 @@
                     </Maps:MapItemsControl>
                 </Maps:Map>
             </Grid>
+            <TextBlock HorizontalAlignment="Right"
+                       TextWrapping="Wrap"
+                       Text="{Binding LoggedInUserName, StringFormat='You are logged in as \{0\}'}"
+                       RenderTransformOrigin="1.627,-1.046"
+                       VerticalAlignment="Top"
+                       Foreground="{StaticResource PhoneAccentBrush}"
+                       IsHitTestVisible="False"
+                       Margin="0,0,12,0" />
 
             <Grid Grid.Row="1"
                   Margin="12,0,12,0">

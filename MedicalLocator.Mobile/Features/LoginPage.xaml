@@ -91,9 +91,8 @@
                             <TextBox Margin="8,0"
                                      TextWrapping="Wrap"
                                      Height="196"
-                                     IsReadOnly="True"
-                                     Text="[todo]&#xd;&#xa;&#xd;&#xa;&quot;THE BEER-WARE LICENSE&quot; (Revision 42): &lt;phk@FreeBSD.ORG&gt; wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return Poul-Henning Kamp."
-                                     FontSize="21.333" />
+                                     Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce felis augue, tempor vitae lobortis vitae, posuere vel lectus. Nulla quis nulla ac ligula adipiscing facilisis at quis ipsum. Nulla placerat pretium est a fermentum. Aliquam molestie neque eu lacus vulputate accumsan. Duis euismod, dui quis faucibus lacinia, quam risus mollis est, eu tristique dui magna a orci. Integer at sodales erat. Proin et enim auctor justo euismod dignissim a et dui. Aliquam mattis augue ac dui molestie nec imperdiet lacus pulvinar. Integer sit amet neque mauris, sed suscipit orci. Phasellus vitae urna nec quam vulputate scelerisque sed et mi. Aenean in lacus augue. Mauris eu massa vel nibh pulvinar pretium eget eu lectus. Aliquam convallis metus vitae augue tristique ut lacinia ante mollis. Donec elit enim, suscipit in malesuada ac, suscipit lacinia quam. Sed pulvinar ullamcorper tellus, vel pharetra eros elementum non. Curabitur sit amet est est, a sollicitudin augue. "
+                                     FontSize="21.333" VerticalScrollBarVisibility="Auto" />
                             <CheckBox x:Name="RegisterAgreeCheckbox"
                                       Content="I have read and agree to the license agreement."
                                       Height="72"
