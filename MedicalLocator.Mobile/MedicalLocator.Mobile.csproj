@@ -147,6 +147,11 @@
     <Compile Include="Infrastructure\UICommand.cs" />
     <Compile Include="Keys\KeysProvider.cs" />
     <Compile Include="Model\CenterType.cs" />
+    <Compile Include="Service References\DatabaseConnectionReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Services\DatabaseServices\SaveSettingsData.cs" />
     <Compile Include="Services\DatabaseServices\RegisterData.cs" />
     <Compile Include="Model\CurrentContext.cs" />
@@ -155,11 +160,6 @@
     <Compile Include="Services\DatabaseServices\LoginData.cs" />
     <Compile Include="Model\MedicalType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\DatabaseConnectionReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\GoogleMapsInterfaceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -224,17 +224,6 @@
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <Resource Include="Graphics\Pushpins\dentist.png" />
-    <Resource Include="Graphics\Pushpins\doctor.png" />
-    <Resource Include="Graphics\Pushpins\health.png" />
-    <Resource Include="Graphics\Pushpins\hospital.png" />
-    <Resource Include="Graphics\Pushpins\pharmacy.png" />
-    <Resource Include="Graphics\Pushpins\physiotherapist.png" />
-    <Content Include="Graphics\findNearbyIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Service References\DatabaseConnectionReference\configuration91.svcinfo" />
-    <None Include="Service References\DatabaseConnectionReference\configuration.svcinfo" />
     <None Include="Service References\DatabaseConnectionReference\DatabaseConnectionService.Model.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -247,15 +236,6 @@
     <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\DatabaseConnectionReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <Resource Include="Graphics\Pushpins\user.png" />
-    <Resource Include="Graphics\logoMobile.png" />
-    <Content Include="ServiceReferences.ClientConfig">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Service References\DatabaseConnectionReference\service.wsdl" />
     <None Include="Service References\DatabaseConnectionReference\service.xsd">
       <SubType>Designer</SubType>
@@ -263,25 +243,45 @@
     <None Include="Service References\DatabaseConnectionReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Model.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Model1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GoogleMapsInterfaceReference\MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesWcfResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\service.wsdl" />
-    <None Include="Service References\GoogleMapsInterfaceReference\service.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\service1.wsdl" />
+    <None Include="Service References\GoogleMapsInterfaceReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\service1.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\service21.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Resource Include="Graphics\Pushpins\dentist.png" />
+    <Resource Include="Graphics\Pushpins\doctor.png" />
+    <Resource Include="Graphics\Pushpins\health.png" />
+    <Resource Include="Graphics\Pushpins\hospital.png" />
+    <Resource Include="Graphics\Pushpins\pharmacy.png" />
+    <Resource Include="Graphics\Pushpins\physiotherapist.png" />
+    <Content Include="Graphics\findNearbyIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Graphics\Pushpins\user.png" />
+    <Resource Include="Graphics\logoMobile.png" />
+    <None Include="Service References\DatabaseConnectionReference\configuration91.svcinfo" />
+    <None Include="Service References\DatabaseConnectionReference\configuration.svcinfo" />
+    <None Include="Service References\DatabaseConnectionReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="ServiceReferences.ClientConfig">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">

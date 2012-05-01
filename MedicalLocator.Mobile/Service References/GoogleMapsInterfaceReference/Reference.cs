@@ -300,8 +300,8 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="FaultBase", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.ConnectionFault))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.InvalidResponseFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.ConnectionFault))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.RequestDeniedFault))]
     public partial class FaultBase : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -326,6 +326,27 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InvalidResponseFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+    public partial class InvalidResponseFault : MedicalLocator.Mobile.GoogleMapsInterfaceReference.FaultBase {
+        
+        private string ResponseTextField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ResponseText {
+            get {
+                return this.ResponseTextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResponseTextField, value) != true)) {
+                    this.ResponseTextField = value;
+                    this.RaisePropertyChanged("ResponseText");
+                }
             }
         }
     }
@@ -368,27 +389,6 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="InvalidResponseFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
-    public partial class InvalidResponseFault : MedicalLocator.Mobile.GoogleMapsInterfaceReference.FaultBase {
-        
-        private string ResponseTextField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ResponseText {
-            get {
-                return this.ResponseTextField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ResponseTextField, value) != true)) {
-                    this.ResponseTextField = value;
-                    this.RaisePropertyChanged("ResponseText");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RequestDeniedFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
     public partial class RequestDeniedFault : MedicalLocator.Mobile.GoogleMapsInterfaceReference.FaultBase {
     }
@@ -401,10 +401,10 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
             "")]
         [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.RequestDeniedFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestRequestD" +
             "eniedFaultFault", Name="RequestDeniedFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.ConnectionFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestConnecti" +
-            "onFaultFault", Name="ConnectionFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.InvalidResponseFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestInvalidR" +
             "esponseFaultFault", Name="InvalidResponseFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.ConnectionFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestConnecti" +
+            "onFaultFault", Name="ConnectionFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         System.IAsyncResult BeginSendGooglePlacesApiRequest(MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesApiRequest request, System.AsyncCallback callback, object asyncState);
         
         MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesWcfResponse EndSendGooglePlacesApiRequest(System.IAsyncResult result);
