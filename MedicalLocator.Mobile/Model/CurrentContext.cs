@@ -26,5 +26,21 @@ namespace MedicalLocator.Mobile.Model
             return LastSearchedMedicalTypes
                 .Where(typeVm => typeVm.IsSelected).Select(typeVm => typeVm.MedicalType).ToList();
         }
+
+        public bool AreSearchParametersChanged()
+        {
+            return SavedLastSearchHash != GenerateLastSearchedHash();
+        }
+
+        public string SavedLastSearchHash { get; set; }
+        public string GenerateLastSearchedHash()
+        {
+            return GetSelectedMedicalTypes().Aggregate("", (current, medicalType) => current + (medicalType.ToString() + "|"))
+                + LastCenterType + "|"
+                + LastRange + "|"
+                + LastLatitude + "|"
+                + LastLongitude + "|"
+                + LastAddress;
+        }
     }
 }

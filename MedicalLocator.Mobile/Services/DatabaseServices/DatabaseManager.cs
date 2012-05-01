@@ -67,9 +67,10 @@ namespace MedicalLocator.Mobile.Services.DatabaseServices
             _currentContext.LastLatitude = 0;
             _currentContext.LastLongitude = 0;
             _currentContext.LastRange = 2500;
-
             _currentContext.LastSearchedMedicalTypes =
                 _enumsValuesProvider.GetAllMedicalTypes().Select(type => new MedicalTypeViewModel(type, true)).ToList();
+
+            _currentContext.SavedLastSearchHash = _currentContext.GenerateLastSearchedHash();
         }
 
         private void TryLoginByNameAndPassword(LoginData loginData)
@@ -94,6 +95,8 @@ namespace MedicalLocator.Mobile.Services.DatabaseServices
             IEnumerable<MedicalType> lastMedicalTypes = MedicalTypesConverter.FromDatabaseService(lastSearch.SearchedObjects);
             _currentContext.LastSearchedMedicalTypes =
                 allMedicalTypes.Select(type => new MedicalTypeViewModel(type, lastMedicalTypes.Contains(type))).ToList();
+
+            _currentContext.SavedLastSearchHash = _currentContext.GenerateLastSearchedHash();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace MedicalLocator.Mobile.Commands
 
         public void Execute()
         {
-            if (_currentContext.IsAnonymousUser)
+            if (_currentContext.IsAnonymousUser || !_currentContext.AreSearchParametersChanged())
                 return;
 
             var saveSettingsData = new SaveSettingsData
@@ -41,7 +41,10 @@ namespace MedicalLocator.Mobile.Commands
             };
 
             _databaseManager.TrySaveSettings(saveSettingsData);
-            MessageBoxService.ShowInformation("Settings for user " + saveSettingsData.Login + " saved successfully!");
+
+            _currentContext.SavedLastSearchHash = _currentContext.GenerateLastSearchedHash();
+            
+            // MessageBoxService.ShowInformation("Settings for user " + saveSettingsData.Login + " saved successfully!");
         }
 
         public void HandleError(InvalidSaveSettingsException exception)
