@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using Caliburn.Micro;
 using MedicalLocator.Mobile.Commands;
 using MedicalLocator.Mobile.Infrastructure;
 using MedicalLocator.Mobile.Model;
@@ -7,7 +8,8 @@ using MedicalLocator.Mobile.Services.DatabaseServices;
 
 namespace MedicalLocator.Mobile.Features
 {
-    public class LoginPageViewModel
+    [SingleInstance]
+    public class LoginPageViewModel : Screen, IBusyScope
     {
         private readonly Func<LoginData, Login> _loginFactory;
         private readonly Func<RegisterData, Register> _registerFactory;
@@ -49,5 +51,20 @@ namespace MedicalLocator.Mobile.Features
             CommandInvoker.Invoke(command);
             return true;
         }
+
+        #region Implementation of IBusyScope
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                NotifyOfPropertyChange(() => IsBusy);
+            }
+        }
+
+        #endregion
     }
 }

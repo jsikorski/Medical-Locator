@@ -14,18 +14,27 @@ namespace MedicalLocator.Mobile.Commands
         private readonly IDatabaseManager _databaseManager;
         private readonly LoginData _loginData;
         private readonly INavigationService _navigationService;
+        private readonly IBusyScope _loginPageViewModel;
 
-        public Login(LoginData loginData, IDatabaseManager databaseManager, INavigationService navigationService)
+        public Login(
+            LoginData loginData, 
+            IDatabaseManager databaseManager, 
+            INavigationService navigationService,
+            IBusyScope loginPageViewModel)
         {
             _loginData = loginData;
             _databaseManager = databaseManager;
             _navigationService = navigationService;
+            _loginPageViewModel = loginPageViewModel;
         }
 
         public void Execute()
         {
-            _databaseManager.TryLogin(_loginData);
-            Caliburn.Micro.Execute.OnUIThread(() => _navigationService.UriFor<MainPageViewModel>().Navigate());            
+            using (new BusyArea(_loginPageViewModel))
+            {
+                _databaseManager.TryLogin(_loginData);
+                Caliburn.Micro.Execute.OnUIThread(() => _navigationService.UriFor<MainPageViewModel>().Navigate());            
+            }
         }
 
         public void HandleError(InvalidLoginException exception)

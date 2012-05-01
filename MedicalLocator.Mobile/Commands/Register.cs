@@ -16,16 +16,23 @@ namespace MedicalLocator.Mobile.Commands
     {
         private readonly IDatabaseManager _databaseManager;
         private readonly RegisterData _registerData;
+        private readonly IBusyScope _loginPageViewModel;
 
-        public Register(RegisterData registerData, IDatabaseManager databaseManager)
+        public Register(RegisterData registerData, IDatabaseManager databaseManager, IBusyScope loginPageViewModel)
+
         {
             _registerData = registerData;
             _databaseManager = databaseManager;
+            _loginPageViewModel = loginPageViewModel;
         }
 
         public void Execute()
         {
-            _databaseManager.TryRegister(_registerData);
+            using (new BusyArea(_loginPageViewModel))
+            {
+                _databaseManager.TryRegister(_registerData);
+            }
+
             MessageBoxService.ShowInformation("User " + _registerData.Login + " created successfully!");
         }
 

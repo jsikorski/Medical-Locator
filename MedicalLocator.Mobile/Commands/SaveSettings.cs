@@ -16,11 +16,13 @@ namespace MedicalLocator.Mobile.Commands
     {
         private readonly IDatabaseManager _databaseManager;
         private readonly CurrentContext _currentContext;
+        private readonly IBusyScope _mainPageViewModel;
 
-        public SaveSettings(CurrentContext currentContext, IDatabaseManager databaseManager)
+        public SaveSettings(CurrentContext currentContext, IDatabaseManager databaseManager, IBusyScope mainPageViewModel)
         {
             _currentContext = currentContext;
             _databaseManager = databaseManager;
+            _mainPageViewModel = mainPageViewModel;
         }
 
         public void Execute()
@@ -28,22 +30,25 @@ namespace MedicalLocator.Mobile.Commands
             if (_currentContext.IsAnonymousUser || !_currentContext.AreSearchParametersChanged())
                 return;
 
-            var saveSettingsData = new SaveSettingsData
+            using (new BusyArea(_mainPageViewModel))
             {
-                Login = _currentContext.CurrentUserLogin,
-                Password = _currentContext.CurrentUserPassword,
-                Address = _currentContext.LastAddress,
-                CenterType = _currentContext.LastCenterType,
-                Latitude = _currentContext.LastLatitude,
-                Longitude = _currentContext.LastLongitude,
-                Range = _currentContext.LastRange,
-                SearchedObjects = _currentContext.GetSelectedMedicalTypes()
-            };
+                var saveSettingsData = new SaveSettingsData
+                                           {
+                                               Login = _currentContext.CurrentUserLogin,
+                                               Password = _currentContext.CurrentUserPassword,
+                                               Address = _currentContext.LastAddress,
+                                               CenterType = _currentContext.LastCenterType,
+                                               Latitude = _currentContext.LastLatitude,
+                                               Longitude = _currentContext.LastLongitude,
+                                               Range = _currentContext.LastRange,
+                                               SearchedObjects = _currentContext.GetSelectedMedicalTypes()
+                                           };
 
-            _databaseManager.TrySaveSettings(saveSettingsData);
+                _databaseManager.TrySaveSettings(saveSettingsData);
 
-            _currentContext.SavedLastSearchHash = _currentContext.GenerateLastSearchedHash();
-            
+                _currentContext.SavedLastSearchHash = _currentContext.GenerateLastSearchedHash();
+            }
+
             // MessageBoxService.ShowInformation("Settings for user " + saveSettingsData.Login + " saved successfully!");
         }
 

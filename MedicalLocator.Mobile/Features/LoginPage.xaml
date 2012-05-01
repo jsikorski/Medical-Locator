@@ -7,6 +7,7 @@
                             xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
                             xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:Converters="clr-namespace:MedicalLocator.Mobile.Converters"
+                            xmlns:Infrastructure="clr-namespace:MedicalLocator.Mobile.Infrastructure"
                             x:Class="MedicalLocator.Mobile.Features.LoginPage"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -17,84 +18,95 @@
                             d:DesignHeight="768"
                             d:DesignWidth="480"
                             shell:SystemTray.IsVisible="True">
+    
+    <Infrastructure:BusyIndicatorControl IsBusy="{Binding IsBusy}"
+                                         HideApplicationBar="True">
+        <Grid x:Name="LayoutRoot"
+              Background="Transparent">
+            <Grid.Resources>
+                <Converters:MyBooleanToVisibilityConverter x:Key="myBooleanToVisibilityConverter" />
+            </Grid.Resources>
 
-    <Grid x:Name="LayoutRoot"
-          Background="Transparent">
-        <Grid.Resources>
-            <Converters:MyBooleanToVisibilityConverter x:Key="myBooleanToVisibilityConverter" />
-        </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <controls:Pivot x:Name="LoginRegisterPivot"
+                            Title="MEDICAL LOCATOR"
+                            Grid.Row="1">
+                <controls:PivotItem Header="login">
+                    <ScrollViewer>
+                        <StackPanel>
+                            <toolkit:ToggleSwitch x:Name="LoginAnonymouslyToggleSwitch"
+                                                  Header="Login anonymously"
+                                                  Height="112" />
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <controls:Pivot x:Name="LoginRegisterPivot" Title="MEDICAL LOCATOR"
-                        Grid.Row="1">
-            <controls:PivotItem Header="login">
-                <ScrollViewer>
-                    <StackPanel>
-                        <toolkit:ToggleSwitch x:Name="LoginAnonymouslyToggleSwitch"
-                                              Header="Login anonymously"
-                                              Height="112"/>
-                        
-                        <TextBlock Text="Login"
-                                   Margin="8,0"
-                                   Visibility="{Binding IsChecked, ConverterParameter=true, Converter={StaticResource myBooleanToVisibilityConverter}, ElementName=LoginAnonymouslyToggleSwitch, Mode=OneWay}" />
+                            <TextBlock Text="Login"
+                                       Margin="8,0"
+                                       Visibility="{Binding IsChecked, ConverterParameter=true, Converter={StaticResource myBooleanToVisibilityConverter}, ElementName=LoginAnonymouslyToggleSwitch, Mode=OneWay}" />
 
-                        <TextBox x:Name="LoginName" Text="{Binding Login, Mode=TwoWay}" 
-                                 Margin="8,0"
-                                 TextWrapping="Wrap"
-                                 Height="72"
-                                 Visibility="{Binding IsChecked, ConverterParameter=true, Converter={StaticResource myBooleanToVisibilityConverter}, ElementName=LoginAnonymouslyToggleSwitch, Mode=OneWay}" />
-                        
-                        <TextBlock Text="Password"
-                                   Margin="8,0"
-                                   Visibility="{Binding IsChecked, ConverterParameter=true, Converter={StaticResource myBooleanToVisibilityConverter}, ElementName=LoginAnonymouslyToggleSwitch, Mode=OneWay}" />
-
-                        <PasswordBox x:Name="LoginPassword" Height="72"
+                            <TextBox x:Name="LoginName"
+                                     Text="{Binding Login, Mode=TwoWay}"
                                      Margin="8,0"
+                                     TextWrapping="Wrap"
+                                     Height="72"
                                      Visibility="{Binding IsChecked, ConverterParameter=true, Converter={StaticResource myBooleanToVisibilityConverter}, ElementName=LoginAnonymouslyToggleSwitch, Mode=OneWay}" />
-                        
-                        <Button Click="LoginButtonClick"
-                                Content="Login"
-                                Margin="0" />
-                    </StackPanel>
-                </ScrollViewer>
-            </controls:PivotItem>
-            <controls:PivotItem Header="register">
-                <ScrollViewer>
-                    <StackPanel>
-                        <TextBlock Text="Login"
-                                   Margin="8,0" />
-                        <TextBox x:Name="RegisterName" Margin="8,0"
-                                 TextWrapping="Wrap"
-                                 Height="72" />
-                        <TextBlock Text="Password"
-                                   Margin="8,0" />
-                        <PasswordBox x:Name="RegisterPassword" Height="72"
-                                     Margin="8,0" />
-                        <TextBlock Text="Retype password"
-                                   Margin="8,0" />
-                        <PasswordBox x:Name="RegisterPasswordRetype" Height="72"
-                                     Margin="8,0" />
-                        <TextBlock Text="Licence"
-                                   Margin="8,0" />
-                        <TextBox Margin="8,0"
-                                 TextWrapping="Wrap"
-                                 Height="196"
-                                 IsReadOnly="True"
-                                 Text="[todo]&#xd;&#xa;&#xd;&#xa;&quot;THE BEER-WARE LICENSE&quot; (Revision 42): &lt;phk@FreeBSD.ORG&gt; wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return Poul-Henning Kamp."
-                                 FontSize="21.333" />
-                        <CheckBox x:Name="RegisterAgreeCheckbox" Content="I have read and agree to the license agreement."
-                                  Height="72"
-                                  Margin="8,0"
-                                  FontSize="16" />
-                        <Button Click="RegisterButtonClick"
-                                Content="Register"
-                                Margin="0" />
-                    </StackPanel>
-                </ScrollViewer>
-            </controls:PivotItem>
-        </controls:Pivot>
-    </Grid>
+
+                            <TextBlock Text="Password"
+                                       Margin="8,0"
+                                       Visibility="{Binding IsChecked, ConverterParameter=true, Converter={StaticResource myBooleanToVisibilityConverter}, ElementName=LoginAnonymouslyToggleSwitch, Mode=OneWay}" />
+
+                            <PasswordBox x:Name="LoginPassword"
+                                         Height="72"
+                                         Margin="8,0"
+                                         Visibility="{Binding IsChecked, ConverterParameter=true, Converter={StaticResource myBooleanToVisibilityConverter}, ElementName=LoginAnonymouslyToggleSwitch, Mode=OneWay}" />
+
+                            <Button Click="LoginButtonClick"
+                                    Content="Login"
+                                    Margin="0" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </controls:PivotItem>
+                <controls:PivotItem Header="register">
+                    <ScrollViewer>
+                        <StackPanel>
+                            <TextBlock Text="Login"
+                                       Margin="8,0" />
+                            <TextBox x:Name="RegisterName"
+                                     Margin="8,0"
+                                     TextWrapping="Wrap"
+                                     Height="72" />
+                            <TextBlock Text="Password"
+                                       Margin="8,0" />
+                            <PasswordBox x:Name="RegisterPassword"
+                                         Height="72"
+                                         Margin="8,0" />
+                            <TextBlock Text="Retype password"
+                                       Margin="8,0" />
+                            <PasswordBox x:Name="RegisterPasswordRetype"
+                                         Height="72"
+                                         Margin="8,0" />
+                            <TextBlock Text="Licence"
+                                       Margin="8,0" />
+                            <TextBox Margin="8,0"
+                                     TextWrapping="Wrap"
+                                     Height="196"
+                                     IsReadOnly="True"
+                                     Text="[todo]&#xd;&#xa;&#xd;&#xa;&quot;THE BEER-WARE LICENSE&quot; (Revision 42): &lt;phk@FreeBSD.ORG&gt; wrote this file. As long as you retain this notice you can do whatever you want with this stuff. If we meet some day, and you think this stuff is worth it, you can buy me a beer in return Poul-Henning Kamp."
+                                     FontSize="21.333" />
+                            <CheckBox x:Name="RegisterAgreeCheckbox"
+                                      Content="I have read and agree to the license agreement."
+                                      Height="72"
+                                      Margin="8,0"
+                                      FontSize="16" />
+                            <Button Click="RegisterButtonClick"
+                                    Content="Register"
+                                    Margin="0" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </controls:PivotItem>
+            </controls:Pivot>
+        </Grid>
+    </Infrastructure:BusyIndicatorControl>
+
 </phone:PhoneApplicationPage>
