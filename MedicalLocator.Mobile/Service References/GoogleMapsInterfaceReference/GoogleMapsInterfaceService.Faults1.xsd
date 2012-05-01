@@ -29,7 +29,8 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:FaultBase">
         <xs:sequence>
-          <xs:element minOccurs="0" name="ResponseText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Operation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RequestedAddress" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
