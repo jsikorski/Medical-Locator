@@ -252,6 +252,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Resource Include="Graphics\Pushpins\user.png" />
+    <Resource Include="Graphics\logoMobile.png" />
     <Content Include="ServiceReferences.ClientConfig">
       <SubType>Designer</SubType>
     </Content>

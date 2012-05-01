@@ -39,6 +39,7 @@
                   Margin="12,0,12,0">
                 <Maps:Map x:Name="BingMap"
                           LogoVisibility="Collapsed">
+                    <!--Mode="Aerial"-->
                     <Maps:MapItemsControl ItemsSource="{Binding BingMapPushpins}">
                         <Maps:MapItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -56,14 +57,22 @@
                     </Maps:MapItemsControl>
                 </Maps:Map>
             </Grid>
+            
             <TextBlock HorizontalAlignment="Right"
                        TextWrapping="Wrap"
                        Text="{Binding LoggedInUserName, StringFormat='You are logged in as \{0\}'}"
                        RenderTransformOrigin="1.627,-1.046"
                        VerticalAlignment="Top"
-                       Foreground="{StaticResource PhoneAccentBrush}"
+                       Foreground="Black"
                        IsHitTestVisible="False"
                        Margin="0,0,12,0" />
+            
+            <Image HorizontalAlignment="Left"
+                   Margin="12,0,0,0"
+                   VerticalAlignment="Bottom"
+                   Source="/MedicalLocator.Mobile;component/Graphics/logoMobile.png"
+                   Stretch="None"
+                   IsHitTestVisible="False" />
 
             <Grid Grid.Row="1"
                   Margin="12,0,12,0">
