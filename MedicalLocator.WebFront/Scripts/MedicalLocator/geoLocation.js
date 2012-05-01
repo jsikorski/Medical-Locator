@@ -1,16 +1,17 @@
-﻿geoLocationProvider = {
-    lastLocation: null,
+﻿function GeoLocationProvider() {
+}
 
-    getLocation: function () {
-        navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError);
-        return lastLocation;
-    },
+GeoLocationProvider.prototype.getLocation = function (a) {
+    var resultLocation;
 
-    onSuccess: function (location) {
-        lastLocation = location;
-    },
+    function onSuccess(location) {
+        resultLocation = location;
+        a(location);
+    }
 
-    onError: function (errorMessage) {
+    function onError(errorMessage) {
         alert(errorMessage);
     }
+
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
 };
