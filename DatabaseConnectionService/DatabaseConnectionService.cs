@@ -101,7 +101,7 @@ namespace DatabaseConnectionService
 
                     var user = userList[0];
                     user.LastSearch = lastSearch;
-                    session.Store(lastSearch);
+                    session.Store(user);
                     session.SaveChanges();
 
                     return SaveSettingsResponse.CreateValid();
