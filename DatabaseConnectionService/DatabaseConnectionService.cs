@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Text.RegularExpressions;
 using DatabaseConnectionService.Model;
 using DevOne.Security.Cryptography.BCrypt;
 using Raven.Client;
@@ -14,6 +15,10 @@ namespace DatabaseConnectionService
 {
     public class DatabaseConnectionService : IDatabaseConnectionService
     {
+        private const string PassAcceptedSpecialChars = "!@#$%^&*-_=+";
+        static private readonly Regex LoginRegex = new Regex("^[a-zA-Z][a-zA-Z0-9]*$");
+        static private readonly Regex PasswordRegex = new Regex("^[a-zA-Z][a-zA-Z0-9" + Regex.Escape(PassAcceptedSpecialChars) + "]*$");
+
         public LoginResponse Login(string login, string password)
         {
             // Simple validation of login and password.
@@ -25,6 +30,12 @@ namespace DatabaseConnectionService
 
             if (login.ToLower().Trim() == "anonymous")
                 return LoginResponse.CreateInvalid("You can not log in with username 'anonymous'.");
+
+            if (!LoginRegex.IsMatch(login))
+                return LoginResponse.CreateInvalid("Invalid characters in username.");
+
+            if (!PasswordRegex.IsMatch(password))
+                return LoginResponse.CreateInvalid("Invalid characters in password.");
 
             // Retrieve data from database.
             using (IDocumentStore documentStore = new DocumentStore { Url = "http://localhost:8080" })
@@ -60,6 +71,12 @@ namespace DatabaseConnectionService
             if (login.ToLower().Trim() == "anonymous")
                 return RegisterResponse.CreateInvalid("You can not create an account with username 'anonymous'.");
 
+            if (!LoginRegex.IsMatch(login))
+                return RegisterResponse.CreateInvalid("Invalid characters in username.");
+
+            if (!PasswordRegex.IsMatch(password))
+                return RegisterResponse.CreateInvalid("Invalid characters in password.");
+
             var salt = BCryptHelper.GenerateSalt();
             var hashedPassword = BCryptHelper.HashPassword(password, salt);
 
@@ -88,6 +105,9 @@ namespace DatabaseConnectionService
 
             if (login.ToLower().Trim() == "anonymous")
                 return SaveSettingsResponse.CreateInvalid("Error while saving settings: can not save settings with username 'anonymous'.");
+
+            if (!LoginRegex.IsMatch(login))
+                return SaveSettingsResponse.CreateInvalid("Error while saving settings: Invalid characters in username.");
 
             // Store data in database.
             using (IDocumentStore documentStore = new DocumentStore() { Url = "http://localhost:8080" })
