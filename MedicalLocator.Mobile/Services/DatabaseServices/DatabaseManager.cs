@@ -39,10 +39,11 @@ namespace MedicalLocator.Mobile.Services.DatabaseServices
                                      Range = saveSettingsData.Range,
                                      SearchedObjects = new ObservableCollection<MedicalTypeDatabaseService>(searchedObjects)
                                  };
+
             var client = new DatabaseConnectionServiceClient();
             var saveSettingsResponse = client.SaveSettings(saveSettingsData.Login, saveSettingsData.Password, lastSearch);
             if (!saveSettingsResponse.IsSuccessful)
-                throw new InvalidRegisterException(saveSettingsResponse.ErrorMessage);
+                throw new InvalidSaveSettingsException(saveSettingsResponse.ErrorMessage);
         }
 
         public void TryLogin(LoginData loginData)

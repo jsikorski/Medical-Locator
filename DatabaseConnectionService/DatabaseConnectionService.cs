@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using DatabaseConnectionService.Model;
+using DevOne.Security.Cryptography.BCrypt;
 using Raven.Client;
 using Raven.Client.Document;
 
@@ -19,7 +20,7 @@ namespace DatabaseConnectionService
             if (login.Length < 3 || login.Length > 16)
                 return LoginResponse.CreateInvalid("Incorrect length of username.");
 
-            if (password.Length < 3 || password.Length > 16)
+            if (password.Length < 4 || password.Length > 31)
                 return LoginResponse.CreateInvalid("Incorrect length of password.");
 
             if (login.ToLower().Trim() == "anonymous")
@@ -31,11 +32,10 @@ namespace DatabaseConnectionService
                 documentStore.Initialize();
                 using (var session = documentStore.OpenSession())
                 {
-                    var userList = session.Query<MedicalLocatorUserData>().Where(u => (u.Login == login && u.Password == password)).ToList();
-                    if (userList.Count == 0)
-                    {
+                    var userList = session.Query<MedicalLocatorUserData>().Where(u => u.Login == login).ToList();
+
+                    if (userList.Count == 0 || !BCryptHelper.CheckPassword(password, userList[0].Password))
                         return LoginResponse.CreateInvalid("Incorrect login or password.");
-                    }
 
                     return LoginResponse.CreateValid(userList[0]);
                 }
@@ -54,11 +54,14 @@ namespace DatabaseConnectionService
             if (password != passwordRetype)
                 return RegisterResponse.CreateInvalid("The passwords are not identical.");
 
-            if (password.Length < 3 || password.Length > 16)
+            if (password.Length < 4 || password.Length > 31)
                 return RegisterResponse.CreateInvalid("Incorrect length of password.");
 
             if (login.ToLower().Trim() == "anonymous")
                 return RegisterResponse.CreateInvalid("You can not create an account with username 'anonymous'.");
+
+            var salt = BCryptHelper.GenerateSalt();
+            var hashedPassword = BCryptHelper.HashPassword(password, salt);
 
             // Store data in database.
             using (IDocumentStore documentStore = new DocumentStore() { Url = "http://localhost:8080" })
@@ -70,7 +73,7 @@ namespace DatabaseConnectionService
                     if (hasLogin)
                         return RegisterResponse.CreateInvalid("There is a user with username '" + login + "'. Try a different login.");
 
-                    session.Store(MedicalLocatorUserData.CreateDefaultUser(login, password));
+                    session.Store(MedicalLocatorUserData.CreateDefaultUser(login, hashedPassword));
                     session.SaveChanges();
                 }
             }
@@ -83,9 +86,6 @@ namespace DatabaseConnectionService
             if (login.Length < 3 || login.Length > 16)
                 return SaveSettingsResponse.CreateInvalid("Error while saving settings: Incorrect length of username.");
 
-            if (password.Length < 3 || password.Length > 16)
-                return SaveSettingsResponse.CreateInvalid("Error while saving settings: Incorrect length of password.");
-
             if (login.ToLower().Trim() == "anonymous")
                 return SaveSettingsResponse.CreateInvalid("Error while saving settings: can not save settings with username 'anonymous'.");
 
@@ -96,6 +96,7 @@ namespace DatabaseConnectionService
                 using (var session = documentStore.OpenSession())
                 {
                     var userList = session.Query<MedicalLocatorUserData>().Where(u => (u.Login == login && u.Password == password)).ToList();
+                    
                     if (userList.Count == 0)
                         return SaveSettingsResponse.CreateInvalid("Error while saving settings: Incorrect pass or login for '" + login + "'.");
 
