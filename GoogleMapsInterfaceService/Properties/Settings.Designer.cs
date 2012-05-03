@@ -46,5 +46,29 @@ namespace GoogleMapsInterfaceService.Properties {
                 this["GooglePlacesApiRequestFormat"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://maps.googleapis.com/maps/api/geocode/json?")]
+        public string GoogleGeocodingApiBaseAddress {
+            get {
+                return ((string)(this["GoogleGeocodingApiBaseAddress"]));
+            }
+            set {
+                this["GoogleGeocodingApiBaseAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}address={1}&sensor={2}")]
+        public string GoogleGeocodingApiRequestFormat {
+            get {
+                return ((string)(this["GoogleGeocodingApiRequestFormat"]));
+            }
+            set {
+                this["GoogleGeocodingApiRequestFormat"] = value;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GoogleMapsInterfaceService.GoogleGeocodingApi;
 using GoogleMapsInterfaceService.GooglePlacesApi;
 using GoogleMapsInterfaceService.Model;
 using GoogleMapsInterfaceService.Requests;
@@ -23,6 +24,23 @@ namespace Tests.GoogleMapsInterfaceService
                                              };
             var requestsSender = new RequestsSender();
             string response = requestsSender.SendRequest(googlePlacesApiRequest);
+
+            Assert.IsNotNullOrEmpty(response);
+        }
+
+        [Test]
+        public void correct_request_gives_response_from_google_geocoding_api()
+        {
+            var address = "Poznań, Półwiejska 20";
+
+            var googleGeocodingApiRequest = new GoogleGeocodingApiRequest
+            {
+                IsGpsUsed = true,
+                Address = address
+            };
+
+            var requestsSender = new RequestsSender();
+            string response = requestsSender.SendRequest(googleGeocodingApiRequest);
 
             Assert.IsNotNullOrEmpty(response);
         }
