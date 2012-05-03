@@ -9,11 +9,16 @@ namespace MedicalLocator.Mobile.Services
     public class LocationProvider : ILocationProvider
     {
         private readonly CurrentContext _currentContext;
+        private readonly IGeocodingManager _geocodingManager;
         private readonly ILocationServicesManager _locationServicesManager;
 
-        public LocationProvider(CurrentContext currentContext, ILocationServicesManager locationServicesManager)
+        public LocationProvider(
+            CurrentContext currentContext, 
+            IGeocodingManager geocodingManager,
+            ILocationServicesManager locationServicesManager)
         {
             _currentContext = currentContext;
+            _geocodingManager = geocodingManager;
             _locationServicesManager = locationServicesManager;
         }
 
@@ -21,6 +26,11 @@ namespace MedicalLocator.Mobile.Services
         {
             TryStartLocationServices();
             return _locationServicesManager.GetCoordinates().ToLocation();
+        }
+
+        private Location GetLocationByAddress(string address)
+        {
+            return _geocodingManager.ExecuteGeocoding(address);
         }
 
         public Location GetCenterLocation()
@@ -31,8 +41,7 @@ namespace MedicalLocator.Mobile.Services
                 case CenterType.MyLocation:
                     return GetUserLocation();
                 case CenterType.Address:
-                // TODO
-                    throw new NotImplementedException();
+                    return GetLocationByAddress(_currentContext.LastAddress);
                 case CenterType.Coordinates:
                     return new Location { Lat = _currentContext.LastLatitude, Lng = _currentContext.LastLongitude };
             }

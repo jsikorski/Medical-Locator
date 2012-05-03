@@ -113,6 +113,7 @@
     <Compile Include="Converters\PushpinTypeToBrushConverter.cs" />
     <Compile Include="Converters\PushpinTypeToImageSourceConverter.cs" />
     <Compile Include="Converters\PushpinTypeToNameConverter.cs" />
+    <Compile Include="Exceptions\NoGeocodingResultsException.cs" />
     <Compile Include="Exceptions\NoSearchResultsException.cs" />
     <Compile Include="Features\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -147,6 +148,8 @@
     <Compile Include="Infrastructure\UICommand.cs" />
     <Compile Include="Keys\KeysProvider.cs" />
     <Compile Include="Model\CenterType.cs" />
+    <Compile Include="Services\IGeocodingManager.cs" />
+    <Compile Include="Services\GeocodingManager.cs" />
     <Compile Include="Services\DatabaseServices\SaveSettingsData.cs" />
     <Compile Include="Services\DatabaseServices\RegisterData.cs" />
     <Compile Include="Model\CurrentContext.cs" />
@@ -266,11 +269,17 @@
     <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GoogleGeocodingApi.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Model.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GoogleMapsInterfaceReference\MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GoogleMapsInterfaceReference\MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesWcfResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

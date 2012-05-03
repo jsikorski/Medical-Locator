@@ -8,6 +8,7 @@ namespace MedicalLocator.Mobile.Services
     {
         GooglePlacesWcfResponse GetResponseFromGooglePlacesApi(
             Location centerLocation, IEnumerable<MedicalType> searchedObjects, int range);
-    
+
+        GoogleGeocodingWcfResponse GetResponseFromGoogleGeocodingApi(string address);
     }
 }

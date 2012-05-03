@@ -35,5 +35,19 @@ namespace MedicalLocator.Mobile.Services
 
             return client.SendGooglePlacesApiRequest(request);
         }
+
+        public GoogleGeocodingWcfResponse GetResponseFromGoogleGeocodingApi(string address)
+        {
+            var client = new GoogleMapsInterfaceServiceClient();
+            bool isGpsUsed = _currentContext.AreLocationServicesAllowed;
+
+            var request = new GoogleGeocodingApiRequest
+            {
+                IsGpsUsed = isGpsUsed,
+                Address = address,
+            };
+
+            return client.SendGoogleGeocodingApiRequest(request);
+        }
     }
 }

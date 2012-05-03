@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodingApi" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodingApi" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="GoogleGeocodingApiRequest">
+    <xs:sequence>
+      <xs:element name="Address" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IsGpsUsed" type="xs:boolean">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GoogleGeocodingApiRequest" nillable="true" type="tns:GoogleGeocodingApiRequest" />
+  <xs:complexType name="GoogleGeocodingWcfResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Results" nillable="true" type="tns:ArrayOfGoogleGeocodingWcfResult" />
+      <xs:element minOccurs="0" name="Status" type="tns:Status" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GoogleGeocodingWcfResponse" nillable="true" type="tns:GoogleGeocodingWcfResponse" />
+  <xs:complexType name="ArrayOfGoogleGeocodingWcfResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GoogleGeocodingWcfResult" nillable="true" type="tns:GoogleGeocodingWcfResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGoogleGeocodingWcfResult" nillable="true" type="tns:ArrayOfGoogleGeocodingWcfResult" />
+  <xs:complexType name="GoogleGeocodingWcfResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Location" nillable="true" type="tns:Location" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GoogleGeocodingWcfResult" nillable="true" type="tns:GoogleGeocodingWcfResult" />
+  <xs:complexType name="Location">
+    <xs:sequence>
+      <xs:element name="Lat" type="xs:double">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Lng" type="xs:double">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Location" nillable="true" type="tns:Location" />
+  <xs:simpleType name="Status">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ok" />
+      <xs:enumeration value="Zero_Results" />
+      <xs:enumeration value="Request_Denied" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Status" nillable="true" type="tns:Status" />
+</xs:schema>

@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using GoogleMapsInterfaceService.Faults;
+using GoogleMapsInterfaceService.GoogleGeocodingApi;
 using GoogleMapsInterfaceService.GooglePlacesApi;
 
 namespace GoogleMapsInterfaceService
@@ -12,5 +13,11 @@ namespace GoogleMapsInterfaceService
         [FaultContract(typeof(InvalidResponseFault))]
         [FaultContract(typeof(RequestDeniedFault))]
         GooglePlacesWcfResponse SendGooglePlacesApiRequest(GooglePlacesApiRequest request);
+
+        [OperationContract]
+        [FaultContract(typeof(ConnectionFault))]
+        [FaultContract(typeof(InvalidResponseFault))]
+        [FaultContract(typeof(RequestDeniedFault))]
+        GoogleGeocodingWcfResponse SendGoogleGeocodingApiRequest(GoogleGeocodingApiRequest request);
     }
 }

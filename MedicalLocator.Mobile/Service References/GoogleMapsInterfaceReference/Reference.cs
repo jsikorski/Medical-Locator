@@ -393,6 +393,190 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
     public partial class RequestDeniedFault : MedicalLocator.Mobile.GoogleMapsInterfaceReference.FaultBase {
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GoogleGeocodingApiRequest", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodin" +
+        "gApi")]
+    public partial class GoogleGeocodingApiRequest : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string AddressField;
+        
+        private bool IsGpsUsedField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public bool IsGpsUsed {
+            get {
+                return this.IsGpsUsedField;
+            }
+            set {
+                if ((this.IsGpsUsedField.Equals(value) != true)) {
+                    this.IsGpsUsedField = value;
+                    this.RaisePropertyChanged("IsGpsUsed");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GoogleGeocodingWcfResponse", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodin" +
+        "gApi")]
+    public partial class GoogleGeocodingWcfResponse : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResult> ResultsField;
+        
+        private MedicalLocator.Mobile.GoogleMapsInterfaceReference.Status1 StatusField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResult> Results {
+            get {
+                return this.ResultsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResultsField, value) != true)) {
+                    this.ResultsField = value;
+                    this.RaisePropertyChanged("Results");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MedicalLocator.Mobile.GoogleMapsInterfaceReference.Status1 Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GoogleGeocodingWcfResult", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodin" +
+        "gApi")]
+    public partial class GoogleGeocodingWcfResult : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private MedicalLocator.Mobile.GoogleMapsInterfaceReference.Location1 LocationField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MedicalLocator.Mobile.GoogleMapsInterfaceReference.Location1 Location {
+            get {
+                return this.LocationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
+                    this.LocationField = value;
+                    this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Status", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodin" +
+        "gApi")]
+    public enum Status1 : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ok = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Zero_Results = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Request_Denied = 2,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Location", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodin" +
+        "gApi")]
+    public partial class Location1 : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private double LatField;
+        
+        private double LngField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public double Lat {
+            get {
+                return this.LatField;
+            }
+            set {
+                if ((this.LatField.Equals(value) != true)) {
+                    this.LatField = value;
+                    this.RaisePropertyChanged("Lat");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public double Lng {
+            get {
+                return this.LngField;
+            }
+            set {
+                if ((this.LngField.Equals(value) != true)) {
+                    this.LngField = value;
+                    this.RaisePropertyChanged("Lng");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GoogleMapsInterfaceReference.IGoogleMapsInterfaceService")]
     public interface IGoogleMapsInterfaceService {
@@ -408,6 +592,18 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         System.IAsyncResult BeginSendGooglePlacesApiRequest(MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesApiRequest request, System.AsyncCallback callback, object asyncState);
         
         MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesWcfResponse EndSendGooglePlacesApiRequest(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequest", ReplyAction="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestRespo" +
+            "nse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.ConnectionFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestConne" +
+            "ctionFaultFault", Name="ConnectionFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.RequestDeniedFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestReque" +
+            "stDeniedFaultFault", Name="RequestDeniedFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.InvalidResponseFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestInval" +
+            "idResponseFaultFault", Name="InvalidResponseFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        System.IAsyncResult BeginSendGoogleGeocodingApiRequest(MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest request, System.AsyncCallback callback, object asyncState);
+        
+        MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse EndSendGoogleGeocodingApiRequest(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -435,6 +631,25 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SendGoogleGeocodingApiRequestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SendGoogleGeocodingApiRequestCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GoogleMapsInterfaceServiceClient : System.ServiceModel.ClientBase<MedicalLocator.Mobile.GoogleMapsInterfaceReference.IGoogleMapsInterfaceService>, MedicalLocator.Mobile.GoogleMapsInterfaceReference.IGoogleMapsInterfaceService {
         
         private BeginOperationDelegate onBeginSendGooglePlacesApiRequestDelegate;
@@ -442,6 +657,12 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         private EndOperationDelegate onEndSendGooglePlacesApiRequestDelegate;
         
         private System.Threading.SendOrPostCallback onSendGooglePlacesApiRequestCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSendGoogleGeocodingApiRequestDelegate;
+        
+        private EndOperationDelegate onEndSendGoogleGeocodingApiRequestDelegate;
+        
+        private System.Threading.SendOrPostCallback onSendGoogleGeocodingApiRequestCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -498,6 +719,8 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         
         public event System.EventHandler<SendGooglePlacesApiRequestCompletedEventArgs> SendGooglePlacesApiRequestCompleted;
         
+        public event System.EventHandler<SendGoogleGeocodingApiRequestCompletedEventArgs> SendGoogleGeocodingApiRequestCompleted;
+        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
@@ -546,6 +769,52 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
             }
             base.InvokeAsync(this.onBeginSendGooglePlacesApiRequestDelegate, new object[] {
                         request}, this.onEndSendGooglePlacesApiRequestDelegate, this.onSendGooglePlacesApiRequestCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MedicalLocator.Mobile.GoogleMapsInterfaceReference.IGoogleMapsInterfaceService.BeginSendGoogleGeocodingApiRequest(MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSendGoogleGeocodingApiRequest(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse MedicalLocator.Mobile.GoogleMapsInterfaceReference.IGoogleMapsInterfaceService.EndSendGoogleGeocodingApiRequest(System.IAsyncResult result) {
+            return base.Channel.EndSendGoogleGeocodingApiRequest(result);
+        }
+        
+        private System.IAsyncResult OnBeginSendGoogleGeocodingApiRequest(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest request = ((MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest)(inValues[0]));
+            return ((MedicalLocator.Mobile.GoogleMapsInterfaceReference.IGoogleMapsInterfaceService)(this)).BeginSendGoogleGeocodingApiRequest(request, callback, asyncState);
+        }
+        
+        private object[] OnEndSendGoogleGeocodingApiRequest(System.IAsyncResult result) {
+            MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse retVal = ((MedicalLocator.Mobile.GoogleMapsInterfaceReference.IGoogleMapsInterfaceService)(this)).EndSendGoogleGeocodingApiRequest(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSendGoogleGeocodingApiRequestCompleted(object state) {
+            if ((this.SendGoogleGeocodingApiRequestCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SendGoogleGeocodingApiRequestCompleted(this, new SendGoogleGeocodingApiRequestCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SendGoogleGeocodingApiRequestAsync(MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest request) {
+            this.SendGoogleGeocodingApiRequestAsync(request, null);
+        }
+        
+        public void SendGoogleGeocodingApiRequestAsync(MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest request, object userState) {
+            if ((this.onBeginSendGoogleGeocodingApiRequestDelegate == null)) {
+                this.onBeginSendGoogleGeocodingApiRequestDelegate = new BeginOperationDelegate(this.OnBeginSendGoogleGeocodingApiRequest);
+            }
+            if ((this.onEndSendGoogleGeocodingApiRequestDelegate == null)) {
+                this.onEndSendGoogleGeocodingApiRequestDelegate = new EndOperationDelegate(this.OnEndSendGoogleGeocodingApiRequest);
+            }
+            if ((this.onSendGoogleGeocodingApiRequestCompletedDelegate == null)) {
+                this.onSendGoogleGeocodingApiRequestCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSendGoogleGeocodingApiRequestCompleted);
+            }
+            base.InvokeAsync(this.onBeginSendGoogleGeocodingApiRequestDelegate, new object[] {
+                        request}, this.onEndSendGoogleGeocodingApiRequestDelegate, this.onSendGoogleGeocodingApiRequestCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -634,6 +903,19 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
             public MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesWcfResponse EndSendGooglePlacesApiRequest(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesWcfResponse _result = ((MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesWcfResponse)(base.EndInvoke("SendGooglePlacesApiRequest", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginSendGoogleGeocodingApiRequest(MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest request, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = request;
+                System.IAsyncResult _result = base.BeginInvoke("SendGoogleGeocodingApiRequest", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse EndSendGoogleGeocodingApiRequest(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse _result = ((MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse)(base.EndInvoke("SendGoogleGeocodingApiRequest", _args, result)));
                 return _result;
             }
         }

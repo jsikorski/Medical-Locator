@@ -29,6 +29,7 @@
     <MetadataFile FileName="GoogleMapsInterfaceService.GooglePlacesApi.xsd" MetadataType="Schema" ID="92134396-d7c6-4ba0-a5ee-3f0960c5beeb" SourceId="1" SourceUrl="http://192.168.1.6:8090/GoogleMapsInterfaceService/mex" />
     <MetadataFile FileName="GoogleMapsInterfaceService.Model.xsd" MetadataType="Schema" ID="a2d279cc-4780-4859-9791-0136ef416abf" SourceId="1" SourceUrl="http://192.168.1.6:8090/GoogleMapsInterfaceService/mex" />
     <MetadataFile FileName="GoogleMapsInterfaceService.Faults.xsd" MetadataType="Schema" ID="8389e1d8-a580-4541-8d6f-ae449c000686" SourceId="1" SourceUrl="http://192.168.1.6:8090/GoogleMapsInterfaceService/mex" />
+    <MetadataFile FileName="GoogleMapsInterfaceService.GoogleGeocodingApi.xsd" MetadataType="Schema" ID="8730a7ee-f4cf-42d2-8032-7adf73aa24cd" SourceId="1" SourceUrl="http://192.168.1.6:8090/GoogleMapsInterfaceService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -33,6 +33,31 @@ namespace MedicalLocator.Mobile.Infrastructure
             return response;
         }
 
+        public static GoogleGeocodingWcfResponse SendGoogleGeocodingApiRequest(
+            this GoogleMapsInterfaceServiceClient client, GoogleGeocodingApiRequest request)
+        {
+            var syncProvider = new ManualResetEvent(false);
+            GoogleGeocodingWcfResponse response = null;
+            Exception responseException = null;
+            client.SendGoogleGeocodingApiRequestCompleted += (sender, args) =>
+            {
+                syncProvider.Set();
+
+                try
+                {
+                    response = args.Result;
+                }
+                catch (Exception exception)
+                {
+                    responseException = exception;
+                }
+            };
+            client.SendGoogleGeocodingApiRequestAsync(request);
+            syncProvider.WaitOne();
+            CheckException(responseException);
+            return response;
+        }
+
         public static LoginResponse Login(
             this DatabaseConnectionServiceClient client, string login, string password)
         {

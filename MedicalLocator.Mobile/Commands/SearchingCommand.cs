@@ -16,7 +16,8 @@ namespace MedicalLocator.Mobile.Commands
         IHasErrorHandler<FaultException<ConnectionFault>>,
         IHasErrorHandler<FaultException<InvalidResponseFault>>,
         IHasErrorHandler<FaultException<RequestDeniedFault>>,
-        IHasErrorHandler<NoSearchResultsException>
+        IHasErrorHandler<NoSearchResultsException>,
+        IHasErrorHandler<NoGeocodingResultsException>
     {
         public void HandleError(LocationServicesDisabledException exception)
         {
@@ -57,6 +58,11 @@ namespace MedicalLocator.Mobile.Commands
         public void HandleError(NoSearchResultsException exception)
         {
             MessageBoxService.ShowInformation("No results was found.");
+        }
+
+        public void HandleError(NoGeocodingResultsException exception)
+        {
+            MessageBoxService.ShowInformation("Invalid address.");
         }
 
         public abstract void Execute();

@@ -7,9 +7,11 @@ using System.ServiceModel;
 using System.Text;
 using System.Web.Script.Serialization;
 using GoogleMapsInterfaceService.Faults;
+using GoogleMapsInterfaceService.GoogleGeocodingApi;
 using GoogleMapsInterfaceService.GooglePlacesApi;
 using GoogleMapsInterfaceService.Model;
 using GoogleMapsInterfaceService.Requests;
+using Status = GoogleMapsInterfaceService.GooglePlacesApi.Status;
 
 namespace GoogleMapsInterfaceService
 {
@@ -79,6 +81,59 @@ namespace GoogleMapsInterfaceService
             return converter.Convert(googlePlacesApiResponse);
         }
 
+
+
+        public GoogleGeocodingWcfResponse SendGoogleGeocodingApiRequest(GoogleGeocodingApiRequest request)
+        {
+            string responseJson = GetJsonFromGoogleGeocodingApi(request);
+            var apiResponse = GetDeserializedDataFromJson<GoogleGeocodingApiResponse>(responseJson);
+            CheckGoogleGeocodingApiResponse(apiResponse);
+            GoogleGeocodingWcfResponse wcfResponse = ConvertGoogleGeocodingApiToGoogleGeocodingWcfResponse(apiResponse);
+            return wcfResponse;
+        }
+
+        private string GetJsonFromGoogleGeocodingApi(GoogleGeocodingApiRequest request)
+        {
+            string responseJson;
+            try
+            {
+                responseJson = _requestsSender.SendRequest(request);
+            }
+            catch (Exception)
+            {
+                var connectionFault = new ConnectionFault
+                {
+                    RequestedAddress = request.ToRequestUrl(),
+                    Operation = "Sending request",
+                    Message = "Cannot connect to Google Geocoding Api."
+                };
+
+                throw new FaultException<ConnectionFault>(connectionFault, "Connection error");
+            }
+
+            return responseJson;
+        }
+
+        private void CheckGoogleGeocodingApiResponse(GoogleGeocodingApiResponse response)
+        {
+            if (response.Status == GoogleGeocodingApi.Status.Request_Denied)
+            {
+                var requestDeniedFault = new RequestDeniedFault
+                {
+                    Message = "Google Geocoding Request Denied."
+                };
+
+                throw new FaultException<RequestDeniedFault>(requestDeniedFault, "Request is denied");
+            }
+        }
+
+        private GoogleGeocodingWcfResponse ConvertGoogleGeocodingApiToGoogleGeocodingWcfResponse(
+            GoogleGeocodingApiResponse googleGeocodingApiResponse)
+        {
+            var converter = new GoogleGeocodingApiToWcfResponseConverter();
+            return converter.Convert(googleGeocodingApiResponse);
+        }
+
         private T GetDeserializedDataFromJson<T>(string jsonString)
         {
             var serializer = new JavaScriptSerializer();
@@ -101,6 +156,7 @@ namespace GoogleMapsInterfaceService
 
             return deserializedData;
         }
+
 
     }
 }
