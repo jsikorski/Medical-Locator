@@ -16,6 +16,7 @@ namespace MedicalLocator.Mobile.Commands
         IHasErrorHandler<FaultException<ConnectionFault>>,
         IHasErrorHandler<FaultException<InvalidResponseFault>>,
         IHasErrorHandler<FaultException<RequestDeniedFault>>,
+        IHasErrorHandler<FaultException<IncorectCharsInAddressFault>>,
         IHasErrorHandler<NoSearchResultsException>,
         IHasErrorHandler<NoGeocodingResultsException>
     {
@@ -53,6 +54,11 @@ namespace MedicalLocator.Mobile.Commands
         public void HandleError(FaultException<RequestDeniedFault> exception)
         {
             MessageBoxService.ShowInternalError("Server does not have permission to connect ot external services.");
+        }
+
+        public void HandleError(FaultException<IncorectCharsInAddressFault> exception)
+        {
+            MessageBoxService.ShowInternalError("Incorect characters in address.");
         }
 
         public void HandleError(NoSearchResultsException exception)

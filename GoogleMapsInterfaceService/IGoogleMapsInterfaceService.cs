@@ -18,6 +18,7 @@ namespace GoogleMapsInterfaceService
         [FaultContract(typeof(ConnectionFault))]
         [FaultContract(typeof(InvalidResponseFault))]
         [FaultContract(typeof(RequestDeniedFault))]
+        [FaultContract(typeof(IncorectCharsInAddressFault))]
         GoogleGeocodingWcfResponse SendGoogleGeocodingApiRequest(GoogleGeocodingApiRequest request);
     }
 }

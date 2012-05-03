@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
 using GoogleMapsInterfaceService.Faults;
 using GoogleMapsInterfaceService.GoogleGeocodingApi;
@@ -81,10 +82,19 @@ namespace GoogleMapsInterfaceService
             return converter.Convert(googlePlacesApiResponse);
         }
 
-
-
+        static private readonly Regex AddressRegex = new Regex("^[a-zA-Z][a-zA-Z0-9,. ]*$");
         public GoogleGeocodingWcfResponse SendGoogleGeocodingApiRequest(GoogleGeocodingApiRequest request)
         {
+            if (!AddressRegex.IsMatch(request.Address))
+            {
+                var incorectCharsInAddressFault = new IncorectCharsInAddressFault
+                {
+                    Message = "Incorect characters in address."
+                };
+
+                throw new FaultException<IncorectCharsInAddressFault>(incorectCharsInAddressFault, "Invalid address");
+            }
+
             string responseJson = GetJsonFromGoogleGeocodingApi(request);
             var apiResponse = GetDeserializedDataFromJson<GoogleGeocodingApiResponse>(responseJson);
             CheckGoogleGeocodingApiResponse(apiResponse);

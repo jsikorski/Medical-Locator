@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Faults\ConnectionFault.cs" />
+    <Compile Include="Faults\IncorectCharsInAddressFault.cs" />
     <Compile Include="Faults\FaultBase.cs" />
     <Compile Include="Faults\InvalidResponseFault.cs" />
     <Compile Include="Faults\RequestDeniedFault.cs" />
