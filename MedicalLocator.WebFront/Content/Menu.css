@@ -1,4 +1,5 @@
-﻿#menu {
+﻿#menu 
+{
     background: black;
     border-bottom-color: white;
     border-bottom-width: 1px;
@@ -15,22 +16,21 @@
     text-decoration: none;
     color: white;
     background: transparent;
+    
 }
 
-.menu_item button 
+.menu_item a 
 {
-    cursor: pointer;
     font-family: inherit;
     font-size: inherit;
     text-decoration: none;
     color: inherit;
     background: inherit;
-    border: none;
 }
 
 .menu_item:hover {
     color: #C9E1AF;
-    cursor: wait;
+    cursor: pointer;
 }
 
 #login_block {
