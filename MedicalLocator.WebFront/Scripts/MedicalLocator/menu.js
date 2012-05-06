@@ -1,10 +1,12 @@
-﻿menuManager = {
-    initializeFindNearby: function (findNearbyElement) {
-        findNearbyElement.click(onFindNearbyClick);
-    }
-};
+﻿function MenuManager() {
 
-function onFindNearbyClick() {
     var searchingManager = new SearchingManager();
-    searchingManager.findNearby();
+
+    var onFindNearbyClick = function () {
+        searchingManager.findNearby();
+    };
+
+    this.initializeFindNearby = function(findNearbyElement) {
+        findNearbyElement.click(onFindNearbyClick);
+    };
 }

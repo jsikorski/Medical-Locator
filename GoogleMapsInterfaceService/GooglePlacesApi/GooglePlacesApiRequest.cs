@@ -17,7 +17,7 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
         public Location Location { get; set; }
         [DataMember(IsRequired = true, EmitDefaultValue = false)]
         public int Radius { get; set; }
-        [DataMember(IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(IsRequired = true)]
         public bool IsGpsUsed { get; set; }
         [DataMember(IsRequired = true, EmitDefaultValue = false)]
         public IEnumerable<MedicalTypeGoogleService> MedicalTypes { get; set; }

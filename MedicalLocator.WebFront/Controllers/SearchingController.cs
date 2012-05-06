@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using MedicalLocator.WebFront.CommandsData;
+using MedicalLocator.WebFront.Infrastructure;
 
 namespace MedicalLocator.WebFront.Controllers
 {
-    public class SearchingController : Controller
+    public class SearchingController : CommandsController
     {
-        public string FindNearby(double longitude, double latitude)
+        public ActionResult FindNearby(double longitude, double latitude)
         {
-            return (longitude + latitude).ToString(CultureInfo.InvariantCulture);
+            var findNearbyData = new FindNearbyData(longitude, latitude);
+            return ProcessCommandData(
+                findNearbyData,
+                () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
         }
     }
 }

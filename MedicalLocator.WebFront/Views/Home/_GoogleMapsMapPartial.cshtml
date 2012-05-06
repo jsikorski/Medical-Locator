@@ -1,7 +1,8 @@
 ﻿<div id="google_map_div"></div>
 
 <script type="text/javascript">
-     $(function() {
-         googleMapsManager.initializeMap('google_map_div');
-     });
+    $(function () {
+        var googleMapDomElement = $("#google_map_div")[0];
+        googleMapsManager.initializeMap(googleMapDomElement);
+    });
  </script>

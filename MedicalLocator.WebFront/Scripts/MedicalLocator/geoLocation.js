@@ -1,17 +1,17 @@
 ﻿function GeoLocationProvider() {
-}
 
-GeoLocationProvider.prototype.getLocation = function (a) {
-    var resultLocation;
+    var lastOnLocationFound;
 
-    function onSuccess(location) {
-        resultLocation = location;
-        a(location);
-    }
+    var onGeoLocationSuccess = function (location) {
+        lastOnLocationFound(location);
+    };
 
-    function onError(errorMessage) {
+    var onGeoLocationError = function (errorMessage) {
         alert(errorMessage);
-    }
+    };
 
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    this.getLocation = function (onLocationFound) {
+        lastOnLocationFound = onLocationFound;
+        navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError);
+    };
 };

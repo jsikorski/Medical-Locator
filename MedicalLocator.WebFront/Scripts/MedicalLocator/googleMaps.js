@@ -1,43 +1,61 @@
-googleMapsManager = {
-    map: null,
-    markers: [],
+googleMapsManager = new GoogleMapsManager();
 
-    initializeMap: function (googleMapDivId) {
-        var googleMaps = window.google.maps;
+function GoogleMapsManager() {
+    var googleMapsApi = window.google.maps;
+    var map;
+    var markers = [];
+
+    this.initializeMap = function (googleMapDomElement) {
         var mapOptions = {
             zoom: 1,
-            center: new googleMaps.LatLng(0, 0),
-            mapTypeId: googleMaps.MapTypeId.ROADMAP
+            center: new googleMapsApi.LatLng(0, 0),
+            mapTypeId: googleMapsApi.MapTypeId.ROADMAP
         };
 
-        var mapElement = $('#' + googleMapDivId)[0];
-        this.map = new googleMaps.Map(mapElement, mapOptions);
-    },
+        map = new googleMapsApi.Map(googleMapDomElement, mapOptions);
+    };
 
-    clearMarkers: function () {
-        for (var i = 0; i < this.markers.length; i++) {
-            this.markers[i].setMap(null);
-        }
-
-        this.markers.length = 0;
-    },
-
-    addMarker: function (location) {
-        var googleMaps = window.google.maps;        
-        
-        var position = new googleMaps.LatLng(location.coords.latitude, location.coords.longitude);
-        var newMarker = new google.maps.Marker({
+    this.addMarker = function (markerLocation, markerName) {
+        var position = new googleMapsApi.LatLng(markerLocation.Lat, markerLocation.Lng);
+        var newMarker = new googleMapsApi.Marker({
             position: position,
-            map: this.map,
-            title: "Hello World!"
+            map: map,
+            title: markerName
         });
 
-        this.markers.push(newMarker);
+        var contentString = "<div class='info_window_content'><h1>" + markerName + "</h1></div>";
 
-        var markersBounds = new googleMaps.LatLngBounds(position, position);
-        for (var i = 0; i < this.markers.length; i++) {
-            markersBounds.extend(this.markers[0].getPosition());
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        google.maps.event.addListener(infowindow, 'domready', function () {
+            $('.info_window_content').parent().parent().css('margin-top', '15px');
+            var height = $('.info_window_content').parent().parent().height();
+            height = height - 15;
+            $('info_window_content').parent().parent().height(height);
+        });
+
+        googleMapsApi.event.addListener(newMarker, 'click', function () {
+            infowindow.open(map, newMarker);
+        });
+
+        markers.push(newMarker);
+    };
+
+    this.clearMarkers = function () {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
         }
-        this.map.fitBounds(markersBounds);
-    }
-};
+        markers.length = 0;
+    };
+
+    this.fitMapBounds = function () {
+        var firstMarkerPosition = markers[0].getPosition();
+        var markersBounds = new googleMapsApi.LatLngBounds(firstMarkerPosition, firstMarkerPosition);
+        for (var i = 1; i < markers.length; i++) {
+            markersBounds.extend(markers[i].getPosition());
+        }
+        map.fitBounds(markersBounds);
+    };
+}
