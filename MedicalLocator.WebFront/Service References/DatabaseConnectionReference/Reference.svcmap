@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.100:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.2.11:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="c207c8d2-3fd6-4eb6-a662-127fbc0f535a" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="51e8fb53-d8ae-47d0-88b2-9dff58e4af25" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="9c523c1a-d21d-4cdf-ba55-3980fdf66162" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="DatabaseConnectionService.Model.xsd" MetadataType="Schema" ID="7913f6f0-2dc6-4cc5-95c9-f186543035a4" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="a5455022-9c64-4f6d-956c-ef9537b24935" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="7fc183f7-77f6-465d-b2af-5fadf6203de0" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="43b38126-7e98-4327-8d6b-34448a05ff2c" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="DatabaseConnectionService.Model1.xsd" MetadataType="Schema" ID="efdac719-c8be-40fa-88f3-2604107452fa" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

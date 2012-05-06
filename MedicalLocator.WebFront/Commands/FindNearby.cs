@@ -13,7 +13,7 @@ namespace MedicalLocator.WebFront.Commands
 {
     public class FindNearby : SearchingCommand, ICommand<FindNearbyData>
     {
-        private const int FindNearbyRange = 2500;
+        private const int FindNearbyRange = 1000;
 
         private readonly ISearchingManager _searchingManager;
         private readonly IMedicalTypesProvider _medicalTypesProvider;

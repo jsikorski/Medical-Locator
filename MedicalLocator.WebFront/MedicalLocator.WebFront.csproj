@@ -164,7 +164,7 @@
     <Content Include="Scripts\MedicalLocator\searching.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
-    <None Include="Service References\DatabaseConnectionReference\DatabaseConnectionService.Model.xsd">
+    <None Include="Service References\DatabaseConnectionReference\DatabaseConnectionService.Model1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\DatabaseConnectionReference\MedicalLocator.WebFront.DatabaseConnectionReference.LoginResponse.datasource">
@@ -176,15 +176,24 @@
     <None Include="Service References\DatabaseConnectionReference\MedicalLocator.WebFront.DatabaseConnectionReference.SaveSettingsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\DatabaseConnectionReference\service.wsdl" />
-    <None Include="Service References\DatabaseConnectionReference\service.xsd">
+    <None Include="Service References\DatabaseConnectionReference\service1.wsdl" />
+    <None Include="Service References\DatabaseConnectionReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DatabaseConnectionReference\service1.xsd">
+    <None Include="Service References\DatabaseConnectionReference\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GoogleMapsInterfaceReference\configuration91.svcinfo" />
     <None Include="Service References\GoogleMapsInterfaceReference\configuration.svcinfo" />
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Model1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\GoogleMapsInterfaceReference\MedicalLocator.WebFront.GoogleMapsInterfaceReference.GooglePlacesWcfResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -220,6 +229,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_OverlayPartial.cshtml" />
+    <None Include="Service References\GoogleMapsInterfaceReference\service1.wsdl" />
+    <None Include="Service References\GoogleMapsInterfaceReference\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GoogleMapsInterfaceReference\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -243,24 +259,6 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\DatabaseConnectionReference\" />
     <WCFMetadataStorage Include="Service References\GoogleMapsInterfaceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Model.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\service.wsdl" />
-    <None Include="Service References\GoogleMapsInterfaceReference\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

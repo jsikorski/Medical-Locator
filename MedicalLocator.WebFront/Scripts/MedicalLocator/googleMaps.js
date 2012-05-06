@@ -16,7 +16,7 @@ MedicalMarkerType = {
     Pharmacy: 5,
     Physotherapist: 6,
 
-    fromNumber: function (number) {
+    fromWcfNumber: function (number) {
         switch (number) {
             case 0:
                 return this.Doctor;

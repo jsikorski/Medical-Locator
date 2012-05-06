@@ -21,7 +21,7 @@ function SearchingManager() {
         googleMapsManager.clearMarkers();
         placeUserMarkerOnGoogleMaps(userLongitude, userLatitude);
         var foundObjects = response.Results;
-        placeMarkersOnGoogleMaps(foundObjects);
+        placeResultsMarkersOnGoogleMaps(foundObjects);
 
         busyIndicator.endBusy();
     };
@@ -29,19 +29,19 @@ function SearchingManager() {
     var placeUserMarkerOnGoogleMaps = function (longitude, latitude) {
         var markerOptions = new MedicalMarkerOptions();
         markerOptions.name = "Me";
-        markerOptions.vicinity = "User location.";
+        markerOptions.vicinity = "Longitude: " + longitude + "<br>Latitude: " + latitude;
         markerOptions.location = { Lat: latitude, Lng: longitude };
         markerOptions.type = MedicalMarkerType.User;
         googleMapsManager.addMarker(markerOptions);
     };
 
-    var placeMarkersOnGoogleMaps = function (foundObjects) {
+    var placeResultsMarkersOnGoogleMaps = function (foundObjects) {
         for (var i = 0; i < foundObjects.length; i++) {
             var markerOptions = new MedicalMarkerOptions();
             markerOptions.name = foundObjects[i].Name;
             markerOptions.location = foundObjects[i].Location;
             markerOptions.vicinity = foundObjects[i].Vicinity;
-            markerOptions.type = MedicalMarkerType.fromNumber(foundObjects[i].Type);
+            markerOptions.type = MedicalMarkerType.fromWcfNumber(foundObjects[i].Type);
             googleMapsManager.addMarker(markerOptions);
         }
         googleMapsManager.fitMapBounds();
