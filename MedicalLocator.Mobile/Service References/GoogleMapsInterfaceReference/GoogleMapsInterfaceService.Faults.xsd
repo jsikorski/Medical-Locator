@@ -17,6 +17,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FaultBase" nillable="true" type="tns:FaultBase" />
+  <xs:complexType name="InvalidResponseFault">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:FaultBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ResponseText" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="InvalidResponseFault" nillable="true" type="tns:InvalidResponseFault" />
   <xs:complexType name="RequestDeniedFault">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:FaultBase">
@@ -25,17 +35,6 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="RequestDeniedFault" nillable="true" type="tns:RequestDeniedFault" />
-  <xs:complexType name="InvalidResponseFault">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:FaultBase">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Operation" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="RequestedAddress" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="InvalidResponseFault" nillable="true" type="tns:InvalidResponseFault" />
   <xs:complexType name="IncorectCharsInAddressFault">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:FaultBase">

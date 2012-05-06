@@ -2,7 +2,6 @@
     @MenuItem("find_nearby", "Find nearby")
     @MenuItem("search", "Search")
     @MenuItem("about", "About")
-
     @Html.Partial("_LoginPartial")
 </div>
 
@@ -11,12 +10,3 @@
         <a>@itemText</a>
     </div>
 }
-
-<script type="text/javascript">
-    $(function () {
-        var menuManager = new MenuManager();
-
-        var findNearby = $("#find_nearby");
-        menuManager.initializeFindNearby(findNearby);
-    });
-</script>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2e679b9a-7ae7-459e-b906-920504d1b35a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9255684f-03d1-4ef5-addb-39145e924825" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -20,13 +20,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.100:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.2.11:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="4b04847b-0075-46f2-9ee4-f288d2f74e90" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="387fe9a5-f245-4e38-8ed2-5351fb6b6829" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="e8ce8d02-a30f-4517-b2c1-19c35ed3f665" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="DatabaseConnectionService.Model.xsd" MetadataType="Schema" ID="f2a31d20-f766-4e60-81e6-f1ca101d7b8c" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="0568a0f3-dcd8-4d1b-96d5-0cca921a7f47" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="2a512a86-a373-4aa0-886d-c966b5446411" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="136dae83-8f96-4000-a1c0-5bbea3fbf591" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="DatabaseConnectionService.Model.xsd" MetadataType="Schema" ID="4c638155-1218-4779-8e36-7f6b70d18c09" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

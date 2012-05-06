@@ -19,14 +19,11 @@
   <wsdl:message name="IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_ConnectionFaultFault_FaultMessage">
     <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q1:ConnectionFault" />
   </wsdl:message>
-  <wsdl:message name="IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_RequestDeniedFaultFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q2:RequestDeniedFault" />
-  </wsdl:message>
   <wsdl:message name="IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_InvalidResponseFaultFault_FaultMessage">
     <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q2:InvalidResponseFault" />
   </wsdl:message>
-  <wsdl:message name="IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_ConnectionFaultFault_FaultMessage">
-    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q3:ConnectionFault" />
+  <wsdl:message name="IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_RequestDeniedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q3:RequestDeniedFault" />
   </wsdl:message>
   <wsdl:message name="IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_InputMessage">
     <wsdl:part name="parameters" element="tns:SendGoogleGeocodingApiRequest" />
@@ -34,33 +31,33 @@
   <wsdl:message name="IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendGoogleGeocodingApiRequestResponse" />
   </wsdl:message>
-  <wsdl:message name="IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_InvalidResponseFaultFault_FaultMessage">
-    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q4:InvalidResponseFault" />
-  </wsdl:message>
-  <wsdl:message name="IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_RequestDeniedFaultFault_FaultMessage">
-    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q5:RequestDeniedFault" />
+  <wsdl:message name="IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_ConnectionFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q4:ConnectionFault" />
   </wsdl:message>
   <wsdl:message name="IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_IncorectCharsInAddressFaultFault_FaultMessage">
-    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q6:IncorectCharsInAddressFault" />
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q5:IncorectCharsInAddressFault" />
   </wsdl:message>
-  <wsdl:message name="IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_ConnectionFaultFault_FaultMessage">
-    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q7:ConnectionFault" />
+  <wsdl:message name="IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_InvalidResponseFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q6:InvalidResponseFault" />
+  </wsdl:message>
+  <wsdl:message name="IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_RequestDeniedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults" name="detail" element="q7:RequestDeniedFault" />
   </wsdl:message>
   <wsdl:portType name="IGoogleMapsInterfaceService">
     <wsdl:operation name="SendGooglePlacesApiRequest">
       <wsdl:input wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequest" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestResponse" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestRequestDeniedFaultFault" name="RequestDeniedFaultFault" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_RequestDeniedFaultFault_FaultMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestInvalidResponseFaultFault" name="InvalidResponseFaultFault" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_InvalidResponseFaultFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestConnectionFaultFault" name="ConnectionFaultFault" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_ConnectionFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestInvalidResponseFaultFault" name="InvalidResponseFaultFault" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_InvalidResponseFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestRequestDeniedFaultFault" name="RequestDeniedFaultFault" message="tns:IGoogleMapsInterfaceService_SendGooglePlacesApiRequest_RequestDeniedFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendGoogleGeocodingApiRequest">
       <wsdl:input wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequest" message="tns:IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestResponse" message="tns:IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestConnectionFaultFault" name="ConnectionFaultFault" message="tns:IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_ConnectionFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestIncorectCharsInAddressFaultFault" name="IncorectCharsInAddressFaultFault" message="tns:IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_IncorectCharsInAddressFaultFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestInvalidResponseFaultFault" name="InvalidResponseFaultFault" message="tns:IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_InvalidResponseFaultFault_FaultMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestRequestDeniedFaultFault" name="RequestDeniedFaultFault" message="tns:IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_RequestDeniedFaultFault_FaultMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestIncorectCharsInAddressFaultFault" name="IncorectCharsInAddressFaultFault" message="tns:IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_IncorectCharsInAddressFaultFault_FaultMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestConnectionFaultFault" name="ConnectionFaultFault" message="tns:IGoogleMapsInterfaceService_SendGoogleGeocodingApiRequest_ConnectionFaultFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IGoogleMapsInterfaceService" type="tns:IGoogleMapsInterfaceService">
@@ -76,11 +73,11 @@
       <wsdl:fault name="ConnectionFaultFault">
         <soap:fault use="literal" name="ConnectionFaultFault" namespace="" />
       </wsdl:fault>
-      <wsdl:fault name="RequestDeniedFaultFault">
-        <soap:fault use="literal" name="RequestDeniedFaultFault" namespace="" />
-      </wsdl:fault>
       <wsdl:fault name="InvalidResponseFaultFault">
         <soap:fault use="literal" name="InvalidResponseFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="RequestDeniedFaultFault">
+        <soap:fault use="literal" name="RequestDeniedFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="SendGoogleGeocodingApiRequest">
@@ -91,23 +88,23 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ConnectionFaultFault">
+        <soap:fault use="literal" name="ConnectionFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="IncorectCharsInAddressFaultFault">
+        <soap:fault use="literal" name="IncorectCharsInAddressFaultFault" namespace="" />
+      </wsdl:fault>
       <wsdl:fault name="InvalidResponseFaultFault">
         <soap:fault use="literal" name="InvalidResponseFaultFault" namespace="" />
       </wsdl:fault>
       <wsdl:fault name="RequestDeniedFaultFault">
         <soap:fault use="literal" name="RequestDeniedFaultFault" namespace="" />
       </wsdl:fault>
-      <wsdl:fault name="IncorectCharsInAddressFaultFault">
-        <soap:fault use="literal" name="IncorectCharsInAddressFaultFault" namespace="" />
-      </wsdl:fault>
-      <wsdl:fault name="ConnectionFaultFault">
-        <soap:fault use="literal" name="ConnectionFaultFault" namespace="" />
-      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="GoogleMapsInterfaceService">
     <wsdl:port name="BasicHttpBinding_IGoogleMapsInterfaceService" binding="tns:BasicHttpBinding_IGoogleMapsInterfaceService">
-      <soap:address location="http://192.168.1.100:8090/GoogleMapsInterfaceService/Service.svc" />
+      <soap:address location="http://192.168.2.11:8090/GoogleMapsInterfaceService/Service.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

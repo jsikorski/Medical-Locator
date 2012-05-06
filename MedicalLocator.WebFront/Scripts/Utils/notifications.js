@@ -34,3 +34,7 @@ function NotificationsManager() {
         });
     };
 }
+
+$(function () {
+    notificationsManager.tryShowNotification();
+});

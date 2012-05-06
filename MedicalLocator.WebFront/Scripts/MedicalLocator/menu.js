@@ -6,7 +6,14 @@
         searchingManager.findNearby();
     };
 
-    this.initializeFindNearby = function(findNearbyElement) {
+    this.initializeFindNearby = function (findNearbyElement) {
         findNearbyElement.click(onFindNearbyClick);
     };
 }
+
+$(function () {
+    var menuManager = new MenuManager();
+
+    var findNearby = $("#find_nearby");
+    menuManager.initializeFindNearby(findNearby);
+});
