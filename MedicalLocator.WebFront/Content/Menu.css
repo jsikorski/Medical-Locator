@@ -9,25 +9,32 @@
     display: inline-block;
     margin-top: 4px;
     margin-bottom: 4px;
-    margin-left: 25px;
+    margin-left: 15px;
+    font-family: Arial;
     font-size: 15px;
     text-decoration: none;
     color: white;
+    background: transparent;
 }
 
-.menu_item a 
+.menu_item button 
 {
+    cursor: pointer;
+    font-family: inherit;
     font-size: inherit;
-    text-decoration: inherit;
+    text-decoration: none;
     color: inherit;
+    background: inherit;
+    border: none;
 }
 
 .menu_item:hover {
-    color: #C9E1AF
+    color: #C9E1AF;
+    cursor: wait;
 }
 
 #login_block {
     float: right;
-    margin-right: 25px;
+    margin-right: 15px;
     margin-left: 0px;
 }

@@ -6,9 +6,9 @@ namespace GoogleMapsInterfaceService.GooglePlacesApi
     [DataContract]
     public class Location
     {
-        [DataMember(IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(IsRequired = true)]
         public double Lat { get; set; }
-        [DataMember(IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(IsRequired = true)]
         public double Lng { get; set; }
 
         // Method virtual for mocking purposes

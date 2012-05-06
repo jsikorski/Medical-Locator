@@ -7,7 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Autofac;
+using Autofac.Builder;
+using Autofac.Features.Scanning;
 using Autofac.Integration.Mvc;
+using MedicalLocator.WebFront.Commands;
+using MedicalLocator.WebFront.Controllers;
+using MedicalLocator.WebFront.Infrastructure;
 
 namespace MedicalLocator.WebFront
 {
@@ -46,9 +51,25 @@ namespace MedicalLocator.WebFront
         private void ConfigureContainer()
         {
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterControllers(Assembly.GetExecutingAssembly());
+            RegisterControllers(containerBuilder);
+            RegisterNotControllers(containerBuilder);
             IContainer container = containerBuilder.Build();
+
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+        }
+
+        private void RegisterControllers(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterControllers(Assembly.GetExecutingAssembly()).PropertiesAutowired();
+        }
+
+        private void RegisterNotControllers(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                .Where(type => type != typeof (CommandsController) &&
+                               type.BaseType != typeof (Controller) &&
+                               type.BaseType != typeof (CommandsController))
+                .AsSelf().AsImplementedInterfaces().PropertiesAutowired();
         }
     }
 }
