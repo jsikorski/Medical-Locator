@@ -1,10 +1,10 @@
 ﻿<div id="login_block" class="menu_item">
     @if (User.Identity.IsAuthenticated)
     {
-        <button>@User.Identity.Name</button>
+        <a>@User.Identity.Name</a>
     }
     else
     {
-        <button>Login</button>
+        <a>Login</a>
     }
 </div>

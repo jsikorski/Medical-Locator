@@ -113,6 +113,13 @@
   <ItemGroup>
     <Content Include="Content\GoogleMaps.css" />
     <Content Include="Content\Graphics\busy.gif" />
+    <Content Include="Content\Graphics\Icons\dentist.png" />
+    <Content Include="Content\Graphics\Icons\doctor.png" />
+    <Content Include="Content\Graphics\Icons\health.png" />
+    <Content Include="Content\Graphics\Icons\hospital.png" />
+    <Content Include="Content\Graphics\Icons\pharmacy.png" />
+    <Content Include="Content\Graphics\Icons\physotherapist.png" />
+    <Content Include="Content\Graphics\Icons\user.png" />
     <Content Include="Content\Menu.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
