@@ -95,3 +95,14 @@ textarea
     margin-top: -50px;
     margin-left: -50px;
 }
+
+.field_block
+{
+    display: block;
+    margin-bottom: 15px;
+}
+
+.field_block label
+{
+    margin-right: 10px;
+}

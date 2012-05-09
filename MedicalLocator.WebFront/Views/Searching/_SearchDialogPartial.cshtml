@@ -1,0 +1,19 @@
+﻿@using MedicalLocator.WebFront.CommandsData
+@using MedicalLocator.WebFront.Helpers
+@model SearchData
+<div id="search_options_tabs">
+    <ul>
+        <li><a href="#tabs-1">General</a></li>
+        <li><a href="#tabs-2">Objects</a></li>
+    </ul>
+
+    <div id="tabs-1">
+        @Html.FieldFor(model => model.Address)
+        @Html.FieldFor(model => model.Address)
+        @Html.FieldFor(model => model.Address)
+    </div>
+
+    <div id="tabs-2">
+        Hello World!
+    </div>
+</div>

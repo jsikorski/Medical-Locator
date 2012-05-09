@@ -2,18 +2,37 @@
 
     var searchingManager = new SearchingManager();
 
-    var onFindNearbyClick = function () {
+    var onFindNearbyButtonClick = function () {
         searchingManager.findNearby();
     };
 
-    this.initializeFindNearby = function (findNearbyElement) {
-        findNearbyElement.click(onFindNearbyClick);
+    var onSearchButtonClick = function () {
+        $.ajax({
+            url: "Searching/ShowSearchDialog",
+            success: function (response) {
+                dialogsManager.addDialogDiv();
+                dialogsManager.placeContentIntoDialogDiv(response);
+                $("#search_options_tabs").tabs();
+                dialogsManager.initializeDialog("Search");
+            }
+        });
+    };
+
+    this.initializeFindNearbyButton = function (findNearbyButtonElement) {
+        findNearbyButtonElement.click(onFindNearbyButtonClick);
+    };
+
+    this.initializeSearchButton = function (searchButtonElement) {
+        searchButtonElement.click(onSearchButtonClick);
     };
 }
 
 $(function () {
     var menuManager = new MenuManager();
 
-    var findNearby = $("#find_nearby");
-    menuManager.initializeFindNearby(findNearby);
+    var findNearbyButtonElement = $("#find_nearby_button");
+    menuManager.initializeFindNearbyButton(findNearbyButtonElement);
+
+    var searchButtonElement = $("#search_button");
+    menuManager.initializeSearchButton(searchButtonElement);
 });

@@ -19,5 +19,10 @@ namespace MedicalLocator.WebFront.Controllers
                 findNearbyData,
                 () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
         }
+
+        public ActionResult ShowSearchDialog()
+        {
+            return PartialView("_SearchDialogPartial");
+        }
     }
 }
