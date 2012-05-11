@@ -12,7 +12,6 @@
             success: function (response) {
                 dialogsManager.addDialogDiv();
                 dialogsManager.placeContentIntoDialogDiv(response);
-                $("#search_options_tabs").tabs();
                 dialogsManager.initializeDialog("Search");
             }
         });
@@ -26,13 +25,3 @@
         searchButtonElement.click(onSearchButtonClick);
     };
 }
-
-$(function () {
-    var menuManager = new MenuManager();
-
-    var findNearbyButtonElement = $("#find_nearby_button");
-    menuManager.initializeFindNearbyButton(findNearbyButtonElement);
-
-    var searchButtonElement = $("#search_button");
-    menuManager.initializeSearchButton(searchButtonElement);
-});

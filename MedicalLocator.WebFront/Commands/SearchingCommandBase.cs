@@ -5,7 +5,7 @@ using MedicalLocator.WebFront.Infrastructure;
 
 namespace MedicalLocator.WebFront.Commands
 {
-    public abstract class SearchingCommand :
+    public abstract class SearchingCommandBase :
         IHandleException<NoSearchResultsException>,
         IHandleException<EndpointNotFoundException>,
         IHandleException<FaultException<ConnectionFault>>,

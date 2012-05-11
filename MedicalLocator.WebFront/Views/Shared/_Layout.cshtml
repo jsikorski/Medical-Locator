@@ -4,16 +4,12 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <title>@ViewBag.Title</title>
-        @StyleSheet("~/Content/Site.css")
+        @StyleSheet("~/Content/jQuery/jquery-ui-1.8.20.custom.css")
+        @StyleSheet("~/Content/Common.css")
         @StyleSheet("~/Content/GoogleMaps.css")
         @StyleSheet("~/Content/Menu.css")
-        @StyleSheet("~/Content/jQuery/jquery-ui-1.8.20.custom.css")
-    </head>
-    <body>
-        @Html.Partial("_OverlayPartial")
-        @Html.Partial("_MenuPartial")
-        @RenderBody()
-
+        @StyleSheet("~/Content/Site.css")
+    
         @Script("~/Scripts/jQuery/jquery-1.7.2.min.js")
         @Script("~/Scripts/jQuery/jquery-ui-1.8.20.custom.min.js")
         @Script("~/Scripts/Utils/notifier.js")
@@ -25,12 +21,24 @@
         @Script("~/Scripts/MedicalLocator/googleMaps.js")
         @Script("~/Scripts/MedicalLocator/geoLocation.js")
         @Script("~/Scripts/MedicalLocator/searching.js")
+    </head>
+    <body>
+        @Html.Partial("_OverlayPartial")
+        @Html.Partial("_MenuPartial")
+        @RenderBody()
+
+        <script type="text/javascript">
+            $(function () {
+                notificationsManager.tryShowNotification();
+            });
+        </script>
     </body>
 </html>
-
-@helper StyleSheet(string cssUrl) {
+@helper StyleSheet(string cssUrl)
+    {
     <link href="@Url.Content(cssUrl)" rel="stylesheet" type="text/css"/>    
 }
-@helper Script(string scriptUrl) {
+@helper Script(string scriptUrl)
+    {
     <script src="@Url.Content(scriptUrl)" type="text/javascript"></script>    
 }

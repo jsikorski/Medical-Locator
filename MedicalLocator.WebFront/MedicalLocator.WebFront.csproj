@@ -73,17 +73,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandsData\FindNearbyData.cs" />
-    <Compile Include="CommandsData\SearchData.cs" />
     <Compile Include="Commands\FindNearby.cs" />
-    <Compile Include="Commands\SearchingCommand.cs" />
+    <Compile Include="Commands\SearchingCommandBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchingController.cs" />
     <Compile Include="Exceptions\NoSearchResultsException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
+    <Compile Include="Helpers\HtmlHelperFormsExtensions.cs" />
     <Compile Include="Infrastructure\CommandDataProcessFailure.cs" />
     <Compile Include="Infrastructure\CommandDataProcessResult.cs" />
     <Compile Include="Infrastructure\CommandDataProcessSuccess.cs" />
@@ -95,9 +93,12 @@
     <Compile Include="Infrastructure\ICommandsDataProcessor.cs" />
     <Compile Include="Infrastructure\NotificationType.cs" />
     <Compile Include="Infrastructure\IHandleException.cs" />
-    <Compile Include="Models\IMedicalTypesProvider.cs" />
+    <Compile Include="Models\CenterType.cs" />
+    <Compile Include="Models\CommandsData\FindNearbyData.cs" />
+    <Compile Include="Models\CommandsData\SearchData.cs" />
+    <Compile Include="Models\EnumsValuesProvider.cs" />
+    <Compile Include="Models\IEnumsValuesProvider.cs" />
     <Compile Include="Models\MedicalType.cs" />
-    <Compile Include="Models\MedicalTypesProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\DatabaseConnectionReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -111,8 +112,10 @@
     </Compile>
     <Compile Include="Services\ISearchingManager.cs" />
     <Compile Include="Services\SearchingManager.cs" />
+    <Compile Include="ViewModels\SearchDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Common.css" />
     <Content Include="Content\GoogleMaps.css" />
     <Content Include="Content\Graphics\busy.gif" />
     <Content Include="Content\Graphics\Icons\dentist.png" />
@@ -122,15 +125,15 @@
     <Content Include="Content\Graphics\Icons\pharmacy.png" />
     <Content Include="Content\Graphics\Icons\physotherapist.png" />
     <Content Include="Content\Graphics\Icons\user.png" />
+    <Content Include="Content\jQuery\images\ui-bg_flat_100_ffffff_40x100.png" />
+    <Content Include="Content\jQuery\images\ui-bg_flat_25_000000_40x100.png" />
     <Content Include="Content\jQuery\images\ui-bg_flat_30_cccccc_40x100.png" />
-    <Content Include="Content\jQuery\images\ui-bg_flat_50_5c5c5c_40x100.png" />
-    <Content Include="Content\jQuery\images\ui-bg_glass_20_555555_1x400.png" />
-    <Content Include="Content\jQuery\images\ui-bg_glass_40_0078a3_1x400.png" />
+    <Content Include="Content\jQuery\images\ui-bg_flat_30_f58400_40x100.png" />
+    <Content Include="Content\jQuery\images\ui-bg_flat_40_f58400_40x100.png" />
+    <Content Include="Content\jQuery\images\ui-bg_glass_20_000000_1x400.png" />
     <Content Include="Content\jQuery\images\ui-bg_glass_40_ffc73d_1x400.png" />
-    <Content Include="Content\jQuery\images\ui-bg_gloss-wave_25_333333_500x100.png" />
     <Content Include="Content\jQuery\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
-    <Content Include="Content\jQuery\images\ui-bg_inset-soft_25_000000_1x100.png" />
-    <Content Include="Content\jQuery\images\ui-bg_inset-soft_30_f58400_1x100.png" />
+    <Content Include="Content\jQuery\images\ui-bg_inset-soft_25_ffffff_1x100.png" />
     <Content Include="Content\jQuery\images\ui-icons_222222_256x240.png" />
     <Content Include="Content\jQuery\images\ui-icons_4b8e0b_256x240.png" />
     <Content Include="Content\jQuery\images\ui-icons_a83300_256x240.png" />
@@ -167,7 +170,7 @@
     <None Include="Service References\DatabaseConnectionReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DatabaseConnectionReference\service21.xsd">
+    <None Include="Service References\DatabaseConnectionReference\service3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GoogleMapsInterfaceReference\configuration91.svcinfo" />
@@ -175,11 +178,17 @@
     <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GoogleGeocodingApi1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Model1.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GoogleMapsInterfaceReference\MedicalLocator.WebFront.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\GoogleMapsInterfaceReference\MedicalLocator.WebFront.GoogleMapsInterfaceReference.GooglePlacesWcfResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -217,14 +226,17 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_OverlayPartial.cshtml" />
+    <Content Include="Views\Searching\_SearchDialogPartial.cshtml" />
     <None Include="Service References\GoogleMapsInterfaceReference\service1.wsdl" />
     <None Include="Service References\GoogleMapsInterfaceReference\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\service21.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\service3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Searching\_SearchDialogPartial.cshtml" />
+    <Content Include="Views\Searching\_SearchGenralTabPartial.cshtml" />
+    <Content Include="Views\Home\_GoogleMapPartial.cshtml" />
+    <Content Include="Views\Searching\_SearchObjectsTabPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

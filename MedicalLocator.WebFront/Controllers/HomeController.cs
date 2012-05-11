@@ -7,7 +7,7 @@ using MedicalLocator.WebFront.Infrastructure;
 
 namespace MedicalLocator.WebFront.Controllers
 {
-    public class HomeController : SearchingController
+    public class HomeController : CommandsController
     {
         public ActionResult Index()
         {

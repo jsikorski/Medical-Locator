@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Web.Mvc;
 using Autofac;
 using MedicalLocator.WebFront.Commands;
-using MedicalLocator.WebFront.CommandsData;
 using System.Linq;
 
 namespace MedicalLocator.WebFront.Infrastructure

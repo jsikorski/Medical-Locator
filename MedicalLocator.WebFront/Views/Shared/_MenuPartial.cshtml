@@ -1,9 +1,21 @@
 ﻿<div id="menu">
-    @MenuItem("find_nearby_button", "Find nearby")
-    @MenuItem("search_button", "Search")
-    @MenuItem("about_button", "About")
+    @MenuItem("find_nearby_menu_button", "Find nearby")
+    @MenuItem("search_menu_button", "Search")
+    @MenuItem("about_menu_button", "About")
     @Html.Partial("_LoginPartial")
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        var menuManager = new MenuManager();
+
+        var findNearbyButtonElement = $("#find_nearby_menu_button");
+        menuManager.initializeFindNearbyButton(findNearbyButtonElement);
+
+        var searchButtonElement = $("#search_menu_button");
+        menuManager.initializeSearchButton(searchButtonElement);
+    });
+</script>
 
 @helper MenuItem(string elementId, string itemText) {
     <div id="@elementId" class="menu_item">

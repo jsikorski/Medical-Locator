@@ -1,6 +1,6 @@
-﻿using MedicalLocator.WebFront.Infrastructure;
+using MedicalLocator.WebFront.Infrastructure;
 
-namespace MedicalLocator.WebFront.CommandsData
+namespace MedicalLocator.WebFront.Models.CommandsData
 {
     public class FindNearbyData : ICommandData
     {

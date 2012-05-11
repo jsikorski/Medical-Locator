@@ -1,0 +1,8 @@
+﻿@using MedicalLocator.WebFront.Models
+@model IDictionary<MedicalType, bool>
+           
+@foreach (var medicalTypeEntry in Model)
+{
+    KeyValuePair<MedicalType, bool> entry = medicalTypeEntry;
+    @Html.NamedCheckBoxFor(@medicalTypeEntry.Key.ToString(), model => entry.Value)
+}

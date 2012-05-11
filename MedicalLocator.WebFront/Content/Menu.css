@@ -11,7 +11,6 @@
     margin-top: 4px;
     margin-bottom: 4px;
     margin-left: 15px;
-    font-family: Arial;
     font-size: 15px;
     text-decoration: none;
     color: white;
@@ -21,7 +20,6 @@
 
 .menu_item a 
 {
-    font-family: inherit;
     font-size: inherit;
     text-decoration: none;
     color: inherit;
@@ -29,7 +27,7 @@
 }
 
 .menu_item:hover {
-    color: #C9E1AF;
+    color: #F1AB00;
     cursor: pointer;
 }
 

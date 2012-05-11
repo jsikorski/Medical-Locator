@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.2.11:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.1.100:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="a5455022-9c64-4f6d-956c-ef9537b24935" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="7fc183f7-77f6-465d-b2af-5fadf6203de0" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="43b38126-7e98-4327-8d6b-34448a05ff2c" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="DatabaseConnectionService.Model1.xsd" MetadataType="Schema" ID="efdac719-c8be-40fa-88f3-2604107452fa" SourceId="1" SourceUrl="http://192.168.2.11:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="8b681e62-a4a9-4892-877e-74c408d2d1d1" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="79325200-6ec2-4333-b4da-e00dea59c9d3" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="9b32293f-2511-45fd-a277-e68cd38d73ed" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="DatabaseConnectionService.Model1.xsd" MetadataType="Schema" ID="48006f67-4647-4ca5-af25-ac179f3b486d" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

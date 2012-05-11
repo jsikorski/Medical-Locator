@@ -2,7 +2,7 @@
 
 namespace MedicalLocator.WebFront.Models
 {
-    public class MedicalTypesProvider : IMedicalTypesProvider
+    public class EnumsValuesProvider : IEnumsValuesProvider
     {
         public IEnumerable<MedicalType> GetAllMedicalTypes()
         {
@@ -11,10 +11,15 @@ namespace MedicalLocator.WebFront.Models
                            MedicalType.Dentist, 
                            MedicalType.Doctor, 
                            MedicalType.Health, 
-                           MedicalType.Hospital,
-                           MedicalType.Physiotherapist, 
-                           MedicalType.Pharmacy
+                           MedicalType.Hospital, 
+                           MedicalType.Pharmacy, 
+                           MedicalType.Physiotherapist
                        };
+        }
+
+        public IEnumerable<CenterType> GetAllCenterTypes()
+        {
+            return new[] { CenterType.MyLocation, CenterType.Address, CenterType.Coordinates };
         }
     }
 }

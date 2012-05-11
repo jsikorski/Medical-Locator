@@ -131,13 +131,3 @@ function GoogleMapsManager() {
         map.fitBounds(markersBounds);
     };
 }
-
-$(function () {
-    var googleMapElement = $("#google_map_div");
-
-    var bodyHeight = $("body").height();
-    var menuHeight = $("#menu").height();
-    googleMapElement.height(bodyHeight - menuHeight - 1);
-
-    googleMapsManager.initializeMap(googleMapElement[0]);
-});

@@ -1,19 +1,25 @@
-﻿@using MedicalLocator.WebFront.CommandsData
-@using MedicalLocator.WebFront.Helpers
-@model SearchData
+﻿@using MedicalLocator.WebFront.ViewModels
+@model SearchDataViewModel
+           
 <div id="search_options_tabs">
     <ul>
         <li><a href="#tabs-1">General</a></li>
         <li><a href="#tabs-2">Objects</a></li>
     </ul>
-
     <div id="tabs-1">
-        @Html.FieldFor(model => model.Address)
-        @Html.FieldFor(model => model.Address)
-        @Html.FieldFor(model => model.Address)
+        @Html.Partial("_SearchGenralTabPartial", Model)
     </div>
-
     <div id="tabs-2">
-        Hello World!
+        @Html.Partial("_SearchObjectsTabPartial", Model.MedicalTypesDictionary)        
     </div>
 </div>
+<hr />
+
+<button id="search_button">
+    Search
+</button>
+
+<script type="text/javascript">
+    $("#search_options_tabs").tabs();
+    $("#search_button").button();
+</script>

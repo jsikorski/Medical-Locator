@@ -361,9 +361,10 @@ namespace MedicalLocator.WebFront.GoogleMapsInterfaceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="FaultBase", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.InvalidResponseFault))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.ConnectionFault))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.RequestDeniedFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.InvalidResponseFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.IncorectCharsInAddressFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.ConnectionFault))]
     public partial class FaultBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -407,6 +408,13 @@ namespace MedicalLocator.WebFront.GoogleMapsInterfaceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RequestDeniedFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class RequestDeniedFault : MedicalLocator.WebFront.GoogleMapsInterfaceReference.FaultBase {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="InvalidResponseFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
     [System.SerializableAttribute()]
     public partial class InvalidResponseFault : MedicalLocator.WebFront.GoogleMapsInterfaceReference.FaultBase {
@@ -426,6 +434,13 @@ namespace MedicalLocator.WebFront.GoogleMapsInterfaceReference {
                 }
             }
         }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IncorectCharsInAddressFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+    [System.SerializableAttribute()]
+    public partial class IncorectCharsInAddressFault : MedicalLocator.WebFront.GoogleMapsInterfaceReference.FaultBase {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -469,9 +484,245 @@ namespace MedicalLocator.WebFront.GoogleMapsInterfaceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RequestDeniedFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GoogleGeocodingApiRequest", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodin" +
+        "gApi")]
     [System.SerializableAttribute()]
-    public partial class RequestDeniedFault : MedicalLocator.WebFront.GoogleMapsInterfaceReference.FaultBase {
+    public partial class GoogleGeocodingApiRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string AddressField;
+        
+        private bool IsGpsUsedField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public bool IsGpsUsed {
+            get {
+                return this.IsGpsUsedField;
+            }
+            set {
+                if ((this.IsGpsUsedField.Equals(value) != true)) {
+                    this.IsGpsUsedField = value;
+                    this.RaisePropertyChanged("IsGpsUsed");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GoogleGeocodingWcfResponse", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodin" +
+        "gApi")]
+    [System.SerializableAttribute()]
+    public partial class GoogleGeocodingWcfResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MedicalLocator.WebFront.GoogleMapsInterfaceReference.GoogleGeocodingWcfResult[] ResultsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MedicalLocator.WebFront.GoogleMapsInterfaceReference.Status1 StatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MedicalLocator.WebFront.GoogleMapsInterfaceReference.GoogleGeocodingWcfResult[] Results {
+            get {
+                return this.ResultsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResultsField, value) != true)) {
+                    this.ResultsField = value;
+                    this.RaisePropertyChanged("Results");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MedicalLocator.WebFront.GoogleMapsInterfaceReference.Status1 Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GoogleGeocodingWcfResult", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodin" +
+        "gApi")]
+    [System.SerializableAttribute()]
+    public partial class GoogleGeocodingWcfResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MedicalLocator.WebFront.GoogleMapsInterfaceReference.Location1 LocationField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MedicalLocator.WebFront.GoogleMapsInterfaceReference.Location1 Location {
+            get {
+                return this.LocationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
+                    this.LocationField = value;
+                    this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Status", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodin" +
+        "gApi")]
+    public enum Status1 : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ok = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Zero_Results = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Request_Denied = 2,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Location", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.GoogleGeocodin" +
+        "gApi")]
+    [System.SerializableAttribute()]
+    public partial class Location1 : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private double LatField;
+        
+        private double LngField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public double Lat {
+            get {
+                return this.LatField;
+            }
+            set {
+                if ((this.LatField.Equals(value) != true)) {
+                    this.LatField = value;
+                    this.RaisePropertyChanged("Lat");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        public double Lng {
+            get {
+                return this.LngField;
+            }
+            set {
+                if ((this.LngField.Equals(value) != true)) {
+                    this.LngField = value;
+                    this.RaisePropertyChanged("Lng");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -480,13 +731,25 @@ namespace MedicalLocator.WebFront.GoogleMapsInterfaceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequest", ReplyAction="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestResponse" +
             "")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.ConnectionFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestConnecti" +
+            "onFaultFault", Name="ConnectionFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.RequestDeniedFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestRequestD" +
             "eniedFaultFault", Name="RequestDeniedFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.InvalidResponseFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestInvalidR" +
             "esponseFaultFault", Name="InvalidResponseFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.ConnectionFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGooglePlacesApiRequestConnecti" +
-            "onFaultFault", Name="ConnectionFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         MedicalLocator.WebFront.GoogleMapsInterfaceReference.GooglePlacesWcfResponse SendGooglePlacesApiRequest(MedicalLocator.WebFront.GoogleMapsInterfaceReference.GooglePlacesApiRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequest", ReplyAction="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestRespo" +
+            "nse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.ConnectionFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestConne" +
+            "ctionFaultFault", Name="ConnectionFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.IncorectCharsInAddressFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestIncor" +
+            "ectCharsInAddressFaultFault", Name="IncorectCharsInAddressFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.RequestDeniedFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestReque" +
+            "stDeniedFaultFault", Name="RequestDeniedFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.InvalidResponseFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestInval" +
+            "idResponseFaultFault", Name="InvalidResponseFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        MedicalLocator.WebFront.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse SendGoogleGeocodingApiRequest(MedicalLocator.WebFront.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -518,6 +781,10 @@ namespace MedicalLocator.WebFront.GoogleMapsInterfaceReference {
         
         public MedicalLocator.WebFront.GoogleMapsInterfaceReference.GooglePlacesWcfResponse SendGooglePlacesApiRequest(MedicalLocator.WebFront.GoogleMapsInterfaceReference.GooglePlacesApiRequest request) {
             return base.Channel.SendGooglePlacesApiRequest(request);
+        }
+        
+        public MedicalLocator.WebFront.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse SendGoogleGeocodingApiRequest(MedicalLocator.WebFront.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest request) {
+            return base.Channel.SendGoogleGeocodingApiRequest(request);
         }
     }
 }
