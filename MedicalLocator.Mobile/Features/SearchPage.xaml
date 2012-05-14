@@ -52,11 +52,12 @@
                      Grid.Row="0"
                      Grid.Column="0">
           </TextBlock>
-          <TextBox Grid.Row="0"
+          <TextBox Name="RangeTextBox"
+                   Grid.Row="0"
                    Grid.Column="1"
                    InputScope="TelephoneNumber"
                    Text="{Binding SearchingRange, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
-                   TextChanged="BindableTextBoxTextChanged" />
+                   TextChanged="RangeBindableTextBoxTextChanged" />
 
           <TextBlock Text="Center"
                      Grid.Row="1"
@@ -72,20 +73,22 @@
                      Grid.Row="2"
                      Grid.Column="0"
                      Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
-          <TextBox Grid.Row="2"
+          <TextBox Name="AddressTextBox"
+                   Grid.Row="2"
                    Grid.Column="1"
                    Text="{Binding SearchedAddress, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
-                   TextChanged="BindableTextBoxTextChanged"
+                   TextChanged="AddressBindableTextBoxTextChanged"
                    Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Address}" />
 
           <TextBlock Text="Latitude"
                      Grid.Row="3"
                      Grid.Column="0"
                      Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
-          <TextBox Grid.Row="3"
+          <TextBox Name="LatitudeTextBox"
+                   Grid.Row="3"
                    Grid.Column="1"
                    Text="{Binding SearchedLatitude, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
-                   TextChanged="BindableTextBoxTextChanged"
+                   TextChanged="CoordinatesBindableTextBoxTextChanged"
                    InputScope="TelephoneNumber"
                    Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
 
@@ -93,10 +96,11 @@
                      Grid.Row="4"
                      Grid.Column="0"
                      Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
-          <TextBox Grid.Row="4"
+          <TextBox Name="LongtitudeTextBox" 
+                   Grid.Row="4"
                    Grid.Column="1"
                    Text="{Binding SearchedLongitude, Mode=TwoWay, UpdateSourceTrigger=Explicit}"
-                   TextChanged="BindableTextBoxTextChanged"
+                   TextChanged="CoordinatesBindableTextBoxTextChanged"
                    InputScope="TelephoneNumber"
                    Visibility="{Binding Path=SelectedItem, ElementName=centerTypeListPicker, Converter={StaticResource centerTypeToVisibilityConverter}, ConverterParameter=Coordinates}" />
         </Grid>
@@ -126,7 +130,8 @@
 
   <phone:PhoneApplicationPage.ApplicationBar>
     <shell:ApplicationBar IsVisible="True"
-                          IsMenuEnabled="True">
+                          IsMenuEnabled="True"
+                              x:Name="ApplicationBarX">
       <cal:AppBarButton Message="Search"
                         IconUri="/Graphics/searchIcon.png"
                         Text="search" />
