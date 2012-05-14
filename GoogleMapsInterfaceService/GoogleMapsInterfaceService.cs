@@ -82,10 +82,10 @@ namespace GoogleMapsInterfaceService
             return converter.Convert(googlePlacesApiResponse);
         }
 
-        static private readonly Regex AddressRegex = new Regex("^[a-zA-Z][a-zA-Z0-9,. ]*$");
+        static private readonly string[] IncorectCharsInAddress = { "=", "!", "@", "#", "$", "%", "^", "&", "*", "?", "|", "'", "\"", "\n", "\r", "\t" };
         public GoogleGeocodingWcfResponse SendGoogleGeocodingApiRequest(GoogleGeocodingApiRequest request)
         {
-            if (!AddressRegex.IsMatch(request.Address))
+            if (IncorectCharsInAddress.Any(s => request.Address.Contains(s)))
             {
                 var incorectCharsInAddressFault = new IncorectCharsInAddressFault
                 {

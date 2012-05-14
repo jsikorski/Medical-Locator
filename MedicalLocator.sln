@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseConnectionService",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{306B2B9C-D916-4D3E-AEDF-E105432039A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleMapsInterfaceService", "GoogleMapsInterfaceService\GoogleMapsInterfaceService.csproj", "{B2FF034E-0386-4D17-8151-D611E1324764}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,16 @@ Global
 		{306B2B9C-D916-4D3E-AEDF-E105432039A9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{306B2B9C-D916-4D3E-AEDF-E105432039A9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{306B2B9C-D916-4D3E-AEDF-E105432039A9}.Release|x86.ActiveCfg = Release|Any CPU
+		{B2FF034E-0386-4D17-8151-D611E1324764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2FF034E-0386-4D17-8151-D611E1324764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2FF034E-0386-4D17-8151-D611E1324764}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B2FF034E-0386-4D17-8151-D611E1324764}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B2FF034E-0386-4D17-8151-D611E1324764}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B2FF034E-0386-4D17-8151-D611E1324764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2FF034E-0386-4D17-8151-D611E1324764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2FF034E-0386-4D17-8151-D611E1324764}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B2FF034E-0386-4D17-8151-D611E1324764}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B2FF034E-0386-4D17-8151-D611E1324764}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

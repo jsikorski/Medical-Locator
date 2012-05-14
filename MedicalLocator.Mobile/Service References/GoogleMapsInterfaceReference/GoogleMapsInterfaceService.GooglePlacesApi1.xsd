@@ -3,7 +3,13 @@
   <xs:import namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Model" />
   <xs:complexType name="GooglePlacesApiRequest">
     <xs:sequence>
-      <xs:element name="IsGpsUsed" type="xs:boolean" />
+      <xs:element name="IsGpsUsed" type="xs:boolean">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="Location" nillable="true" type="tns:Location">
         <xs:annotation>
           <xs:appinfo>
@@ -30,8 +36,20 @@
   <xs:element name="GooglePlacesApiRequest" nillable="true" type="tns:GooglePlacesApiRequest" />
   <xs:complexType name="Location">
     <xs:sequence>
-      <xs:element name="Lat" type="xs:double" />
-      <xs:element name="Lng" type="xs:double" />
+      <xs:element name="Lat" type="xs:double">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Lng" type="xs:double">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Location" nillable="true" type="tns:Location" />
