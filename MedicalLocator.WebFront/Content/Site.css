@@ -1,7 +1,7 @@
 body
 {
     font-size: .85em;
-    font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif;
+    font-family: Segoe UI, Arial, sans-serif;
     color: #232323;
     background-color: #fff;
 }
@@ -42,6 +42,17 @@ textarea
     margin: 0.5em 0 0 0;
 }
 
+.field_block
+{
+    display: block;
+    margin-bottom: 8px;
+}
+
+.field_block label
+{
+    margin-right: 10px;
+    display: block;
+}
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
@@ -72,3 +83,52 @@ textarea
     display: none;
 }
 
+input[type=text]
+{
+    width: 170px;
+}
+
+select
+{
+    width: 175px;
+}
+
+span.field-validation-error 
+{
+    margin-left: 5px;
+}
+
+
+/* Styles for busy indicator 
+-----------------------------------------------------------*/
+#overlay
+{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: white;
+    opacity: 0.4;
+    z-index: 1;
+    display: none;
+    z-index: 9999;
+}
+
+#busy_image
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
+/* Styles for searching 
+-----------------------------------------------------------*/
+#search_button
+{
+    float: right;
+}

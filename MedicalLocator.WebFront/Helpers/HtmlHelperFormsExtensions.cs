@@ -12,7 +12,10 @@ namespace MedicalLocator.WebFront.Helpers
             Expression<Func<TModel, TValue>> expression)
         {
             var fieldInnerHtml = new MvcHtmlString(
-                htmlHelper.LabelFor(expression).ToString() + htmlHelper.EditorFor(expression));
+                htmlHelper.LabelFor(expression).ToString() + 
+                htmlHelper.EditorFor(expression) + 
+                htmlHelper.ValidationMessageFor(expression));
+            
             return GetFieldHtmlString(fieldInnerHtml);
         }
 
@@ -20,7 +23,10 @@ namespace MedicalLocator.WebFront.Helpers
             Expression<Func<TModel, TValue>> expression, IEnumerable<SelectListItem> selectList)
         {
             var comboxBoxInnderHtml = new MvcHtmlString(
-                htmlHelper.LabelFor(expression).ToString() + htmlHelper.DropDownListFor(expression, selectList));
+                htmlHelper.LabelFor(expression).ToString() + 
+                htmlHelper.DropDownListFor(expression, selectList) +
+                htmlHelper.ValidationMessageFor(expression));
+
             return GetFieldHtmlString(comboxBoxInnderHtml);
         }
 

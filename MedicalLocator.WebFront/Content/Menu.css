@@ -1,37 +1,41 @@
-﻿#menu 
+﻿#menu
 {
-    background: black;
+    background: #000000;
     border-bottom-color: white;
     border-bottom-width: 1px;
     border-bottom-style: solid;
 }
 
-.menu_item {
+.menu_item
+{
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    background: transparent;
     display: inline-block;
     margin-top: 4px;
     margin-bottom: 4px;
     margin-left: 15px;
-    font-size: 15px;
-    text-decoration: none;
-    color: white;
-    background: transparent;
-    
 }
 
-.menu_item a 
+.menu_item a
 {
     font-size: inherit;
+    font-weight: bold;
     text-decoration: none;
     color: inherit;
     background: inherit;
 }
 
-.menu_item:hover {
+.menu_item:hover
+{
     color: #F1AB00;
     cursor: pointer;
 }
 
-#login_block {
+#login_block
+{
     float: right;
     margin-right: 15px;
     margin-left: 0px;

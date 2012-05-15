@@ -1,11 +1,11 @@
 function SearchingManager() {
-    
+
     var geoLocationProvider = new GeoLocationProvider();
 
     var onLocationFoundForFindNearby = function (location) {
         var userLongitude = location.coords.longitude;
         var userLatitude = location.coords.latitude;
-        
+
         $.ajax({
             url: "Searching/FindNearby",
             data: { longitude: userLongitude, latitude: userLatitude },
@@ -16,12 +16,8 @@ function SearchingManager() {
     var onLocationFoundForSearch = function (location) {
         var userLongitude = location.coords.longitude;
         var userLatitude = location.coords.latitude;
-
-        $.ajax({
-            url: "Searching/FindNearby",
-            data: { longitude: userLongitude, latitude: userLatitude },
-            success: function (response) { onSearchSuccess(response, userLongitude, userLatitude); }
-        });
+        searchingDialogManager.setUserCoordinates(userLatitude, userLongitude);
+        searchingDialogManager.submitDialogForm();
     };
 
     var onSearchSuccess = function (response, userLongitude, userLatitude) {

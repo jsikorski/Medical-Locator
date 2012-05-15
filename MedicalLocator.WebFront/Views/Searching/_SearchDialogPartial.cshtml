@@ -1,25 +1,74 @@
 ﻿@using MedicalLocator.WebFront.ViewModels
 @model SearchDataViewModel
            
-<div id="search_options_tabs">
-    <ul>
-        <li><a href="#tabs-1">General</a></li>
-        <li><a href="#tabs-2">Objects</a></li>
-    </ul>
-    <div id="tabs-1">
-        @Html.Partial("_SearchGenralTabPartial", Model)
-    </div>
-    <div id="tabs-2">
-        @Html.Partial("_SearchObjectsTabPartial", Model.MedicalTypesDictionary)        
-    </div>
-</div>
-<hr />
+@Content.Script(Url, "~/Scripts/jquery.validate.min.js")
+@Content.Script(Url, "~/Scripts/jquery.validate.unobtrusive.min.js")
+@Content.Script(Url, "~/Scripts/jquery.unobtrusive-ajax.min.js")
 
+<script type="text/javascript">
+
+    (function () {
+        jQuery.validator.addMethod('mustbe', function (value, element, params) {
+            alert("OK!");
+            var testValue = params['propertyvalue'];
+            var condition = params['condition'];
+            if ((condition == '0') && (value != testValue))
+                return true;
+            if ((condition == '1') && (value == testValue))
+                return true;
+            return false;
+        });
+
+        var setValidationValues = function (options, ruleName, value) {
+            options.rules[ruleName] = value;
+            if (options.message) {
+                options.messages[ruleName] = options.message;
+            }
+        };
+
+        var $Unob = $.validator.unobtrusive;
+        $Unob.adapters.add("mustbe", ["propertyvalue", "condition"], function (options) {
+            var value = {
+                propertyvalue: options.params.propertyvalue,
+                condition: options.params.condition
+            };
+            setValidationValues(options, "mustbe", value);
+        });
+
+    })();
+
+</script>
+
+
+@using (Ajax.BeginForm("Search", "Searching", null, 
+    new AjaxOptions { OnSuccess = "onSearchSuccess"}, 
+    new { id = "search_form" }))
+{
+    @Html.HiddenFor(model => model.SearchData.UserLatitude)
+    @Html.HiddenFor(model => model.SearchData.UserLongitude)
+    
+    <div id="search_options_tabs">
+        <ul>
+            <li><a href="#tabs-1">General</a></li>
+            <li><a href="#tabs-2">Objects</a></li>
+        </ul>
+        <div id="tabs-1">
+            @Html.Partial("_SearchGenralTabPartial", Model)
+        </div>
+        <div id="tabs-2">
+            @Html.Partial("_SearchObjectsTabPartial", Model.MedicalTypesDictionary)
+        </div>
+    </div>
+    <hr />
+}
 <button id="search_button">
     Search
 </button>
 
 <script type="text/javascript">
-    $("#search_options_tabs").tabs();
-    $("#search_button").button();
+    function onSearchSuccess(response) {
+        alert("Success");
+    }
+
+    searchingDialogManager.initialize();
 </script>

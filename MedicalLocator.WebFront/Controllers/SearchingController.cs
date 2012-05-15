@@ -39,6 +39,17 @@ namespace MedicalLocator.WebFront.Controllers
 
         public ActionResult Search(SearchDataViewModel searchDataViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                var allCenterTypes = _enumsValuesProvider.GetAllCenterTypes();
+                var allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
+                var medicalTypesDictionary = allMedicalTypes.ToDictionary(type => type, type => true);
+                searchDataViewModel.AllCenterTypes = allCenterTypes;
+                searchDataViewModel.MedicalTypesDictionary = medicalTypesDictionary;
+                string view = RenderPartialViewToString("_SearchDialogPartial", searchDataViewModel);
+                return Json(new { validation_status = "Failure", view });
+            }
+
             var searchedMedicalTypes = searchDataViewModel.MedicalTypesDictionary.Where(pair => pair.Value).Select(pair => pair.Key);
             searchDataViewModel.SearchData.SearchedMedicalTypes = searchedMedicalTypes;
             return ProcessCommandData(searchDataViewModel.SearchData, () => null);

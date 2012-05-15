@@ -1,51 +1,7 @@
 ﻿@model MedicalLocator.WebFront.ViewModels.SearchDataViewModel
-@Html.FieldFor(model => model.SearchData.Range)
+
+@Html.FieldFor(model => model.SearchData.SearchingRange)
 @Html.ComboBoxFor(model => model.SearchData.CenterType, new SelectList(Model.AllCenterTypes))
 @Html.FieldFor(model => model.SearchData.SearchedAddress)
 @Html.FieldFor(model => model.SearchData.SearchedLatitude)
 @Html.FieldFor(model => model.SearchData.SearchedLongitude)
-
-<script type="text/javascript">
-    var medicalTypeComboBoxSelector = "#SearchData_CenterType";
-    var myLocationOptionValue = "MyLocation";
-    var addressOptionValue = "Address";
-    var coordinatesOptionValue = "Coordinates";
-
-    function getSelectedMedicalType() {
-        return $(medicalTypeComboBoxSelector).children(":selected").val();
-    }
-
-    function hideField(fieldId) {
-        $("#" + fieldId).parent().hide();
-    }
-
-    function showField(fieldId) {
-        $("#" + fieldId).parent().show("slow");
-    }
-
-    function updateFieldsVisibility() {
-        var selectedMedicalType = getSelectedMedicalType();
-        switch (selectedMedicalType) {
-            case myLocationOptionValue:
-                hideField("SearchData_SearchedAddress");
-                hideField("SearchData_SearchedLatitude");
-                hideField("SearchData_SearchedLongitude");
-                break;
-            case addressOptionValue:
-                showField("SearchData_SearchedAddress");
-                hideField("SearchData_SearchedLatitude");
-                hideField("SearchData_SearchedLongitude");
-                break;
-            case coordinatesOptionValue:
-                hideField("SearchData_SearchedAddress");
-                showField("SearchData_SearchedLatitude");
-                showField("SearchData_SearchedLongitude");
-                break;
-        }
-    }
-
-    $(function () {
-        $(medicalTypeComboBoxSelector).change(updateFieldsVisibility);
-        updateFieldsVisibility();
-    });
-</script>

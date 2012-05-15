@@ -8,9 +8,13 @@ namespace MedicalLocator.WebFront.ViewModels
 {
     public class SearchDataViewModel
     {
-        public SearchData SearchData { get; private set; }
-        public IEnumerable<CenterType> AllCenterTypes { get; private set; }
-        public IDictionary<MedicalType, bool> MedicalTypesDictionary { get; private set; }
+        public SearchData SearchData { get; set; }
+        public IEnumerable<CenterType> AllCenterTypes { get; set; }
+        public IDictionary<MedicalType, bool> MedicalTypesDictionary { get; set; }
+
+        public SearchDataViewModel()
+        {
+        }
 
         public SearchDataViewModel(
             IEnumerable<CenterType> allCenterTypes,

@@ -5,22 +5,24 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <title>@ViewBag.Title</title>
         @StyleSheet("~/Content/jQuery/jquery-ui-1.8.20.custom.css")
-        @StyleSheet("~/Content/Common.css")
         @StyleSheet("~/Content/GoogleMaps.css")
         @StyleSheet("~/Content/Menu.css")
         @StyleSheet("~/Content/Site.css")
     
-        @Script("~/Scripts/jQuery/jquery-1.7.2.min.js")
-        @Script("~/Scripts/jQuery/jquery-ui-1.8.20.custom.min.js")
-        @Script("~/Scripts/Utils/notifier.js")
-        @Script("~/Scripts/Utils/notifications.js")
-        @Script("~/Scripts/Utils/googleMapsApi.js")
-        @Script("~/Scripts/Utils/busyIndicator.js")
-        @Script("~/Scripts/Utils/dialogs.js")
-        @Script("~/Scripts/MedicalLocator/menu.js")
-        @Script("~/Scripts/MedicalLocator/googleMaps.js")
-        @Script("~/Scripts/MedicalLocator/geoLocation.js")
-        @Script("~/Scripts/MedicalLocator/searching.js")
+        @Content.Script(Url, "~/Scripts/jQuery/jquery-1.7.2.min.js")
+        @Content.Script(Url, "~/Scripts/jQuery/jquery-ui-1.8.20.custom.min.js")
+
+        @Content.Script(Url, "~/Scripts/Utils/notifier.js")
+        @Content.Script(Url, "~/Scripts/Utils/notifications.js")
+        @Content.Script(Url, "~/Scripts/Utils/googleMapsApi.js")
+        @Content.Script(Url, "~/Scripts/Utils/busyIndicator.js")
+        @Content.Script(Url, "~/Scripts/Utils/dialogs.js")
+        
+        @Content.Script(Url, "~/Scripts/MedicalLocator/menu.js")
+        @Content.Script(Url, "~/Scripts/MedicalLocator/googleMaps.js")
+        @Content.Script(Url, "~/Scripts/MedicalLocator/geoLocation.js")
+        @Content.Script(Url, "~/Scripts/MedicalLocator/searching.js")
+        @Content.Script(Url, "~/Scripts/MedicalLocator/searchingDialog.js")
     </head>
     <body>
         @Html.Partial("_OverlayPartial")
@@ -34,11 +36,7 @@
         </script>
     </body>
 </html>
-@helper StyleSheet(string cssUrl)
-    {
+
+@helper StyleSheet(string cssUrl) {
     <link href="@Url.Content(cssUrl)" rel="stylesheet" type="text/css"/>    
-}
-@helper Script(string scriptUrl)
-    {
-    <script src="@Url.Content(scriptUrl)" type="text/javascript"></script>    
 }

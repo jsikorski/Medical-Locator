@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\FindNearby.cs" />
+    <Compile Include="Commands\Search.cs" />
     <Compile Include="Commands\SearchingCommandBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchingController.cs" />
@@ -112,10 +113,10 @@
     </Compile>
     <Compile Include="Services\ISearchingManager.cs" />
     <Compile Include="Services\SearchingManager.cs" />
+    <Compile Include="Validation\RequiredIfPropertyEqualAttribute.cs" />
     <Compile Include="ViewModels\SearchDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Common.css" />
     <Content Include="Content\GoogleMaps.css" />
     <Content Include="Content\Graphics\busy.gif" />
     <Content Include="Content\Graphics\Icons\dentist.png" />
@@ -152,8 +153,10 @@
     <Content Include="Scripts\MedicalLocator\googleMaps.js" />
     <Content Include="Scripts\MedicalLocator\menu.js" />
     <Content Include="Scripts\MedicalLocator\searching.js" />
+    <Content Include="Scripts\MedicalLocator\searchingDialog.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="App_Code\Content.cshtml" />
     <None Include="Service References\DatabaseConnectionReference\DatabaseConnectionService.Model1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -208,6 +211,7 @@
     <Content Include="Scripts\Utils\notifications.js" />
     <Content Include="Scripts\Utils\notifier.js" />
     <Content Include="Scripts\Utils\busyIndicator.js" />
+    <Content Include="Scripts\Utils\validation.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -275,7 +279,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2020</DevelopmentServerPort>
+          <DevelopmentServerPort>2666</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
