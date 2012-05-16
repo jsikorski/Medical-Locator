@@ -8,21 +8,23 @@
         @StyleSheet("~/Content/GoogleMaps.css")
         @StyleSheet("~/Content/Menu.css")
         @StyleSheet("~/Content/Site.css")
-    
         @Content.Script(Url, "~/Scripts/jQuery/jquery-1.7.2.min.js")
         @Content.Script(Url, "~/Scripts/jQuery/jquery-ui-1.8.20.custom.min.js")
-
+        @Content.Script(Url, "~/Scripts/jquery.validate.js")
+        @Content.Script(Url, "~/Scripts/jquery.validate.unobtrusive.js")
+        @Content.Script(Url, "~/Scripts/Utils/validation.js")
         @Content.Script(Url, "~/Scripts/Utils/notifier.js")
         @Content.Script(Url, "~/Scripts/Utils/notifications.js")
         @Content.Script(Url, "~/Scripts/Utils/googleMapsApi.js")
         @Content.Script(Url, "~/Scripts/Utils/busyIndicator.js")
         @Content.Script(Url, "~/Scripts/Utils/dialogs.js")
-        
         @Content.Script(Url, "~/Scripts/MedicalLocator/menu.js")
         @Content.Script(Url, "~/Scripts/MedicalLocator/googleMaps.js")
         @Content.Script(Url, "~/Scripts/MedicalLocator/geoLocation.js")
         @Content.Script(Url, "~/Scripts/MedicalLocator/searching.js")
         @Content.Script(Url, "~/Scripts/MedicalLocator/searchingDialog.js")
+        
+        
     </head>
     <body>
         @Html.Partial("_OverlayPartial")

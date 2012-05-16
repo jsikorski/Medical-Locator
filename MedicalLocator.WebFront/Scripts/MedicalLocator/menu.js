@@ -11,7 +11,7 @@
             url: "Searching/ShowSearchDialog",
             success: function (response) {
                 dialogsManager.addDialogDiv();
-                dialogsManager.placeContentIntoDialogDiv(response);
+                dialogsManager.placeContentIntoDialogDiv(response);             
                 dialogsManager.initializeDialog("Search");
             }
         });

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using MedicalLocator.WebFront.Infrastructure;
 using MedicalLocator.WebFront.Validation;
-using MedicalLocator.WebFront.Validation.AjaxTest.Validation;
 
 namespace MedicalLocator.WebFront.Models.CommandsData
 {
@@ -24,10 +24,11 @@ namespace MedicalLocator.WebFront.Models.CommandsData
         [DisplayName("Center type")]
         public CenterType CenterType { get; set; }
 
-        //[DisplayName("Address")]
-        [MustBe(Condition.NotEqualTo, "abcd", ErrorMessage = "Username must not equal 'abcd'.")]
-        //[RequiredIfPropertyEqual("CenterType", CenterType.Address)]
+        [DisplayName("Address")]
         public string SearchedAddress { get; set; }
+
+        [StatusCheckAge]
+        public string Test { get; set; }
 
         [DisplayName("Latitude")]
         [RequiredIfPropertyEqual("CenterType", CenterType.Coordinates)]
@@ -35,7 +36,7 @@ namespace MedicalLocator.WebFront.Models.CommandsData
         public double SearchedLatitude { get; set; }
 
         [DisplayName("Longitude")]
-        [RequiredIfPropertyEqual("CenterType", CenterType.Coordinates)]
+        //[RequiredIfPropertyEqual("CenterType", CenterType.Coordinates)]
         [Range(-180.0, 180.0)]
         public double SearchedLongitude { get; set; }
 

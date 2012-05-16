@@ -14,7 +14,7 @@ function DialogsManager() {
     };
 
     this.placeContentIntoDialogDiv = function (content) {
-        $("#" + dialogDivId).html(content);
+        $("#" + dialogDivId).html(content);  
     };
 
     this.initializeDialog = function (dialogTitle) {

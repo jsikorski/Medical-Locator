@@ -1,51 +1,17 @@
 ﻿@using MedicalLocator.WebFront.ViewModels
 @model SearchDataViewModel
            
-@Content.Script(Url, "~/Scripts/jquery.validate.min.js")
-@Content.Script(Url, "~/Scripts/jquery.validate.unobtrusive.min.js")
-@Content.Script(Url, "~/Scripts/jquery.unobtrusive-ajax.min.js")
-
-<script type="text/javascript">
-
-    (function () {
-        jQuery.validator.addMethod('mustbe', function (value, element, params) {
-            alert("OK!");
-            var testValue = params['propertyvalue'];
-            var condition = params['condition'];
-            if ((condition == '0') && (value != testValue))
-                return true;
-            if ((condition == '1') && (value == testValue))
-                return true;
-            return false;
-        });
-
-        var setValidationValues = function (options, ruleName, value) {
-            options.rules[ruleName] = value;
-            if (options.message) {
-                options.messages[ruleName] = options.message;
-            }
-        };
-
-        var $Unob = $.validator.unobtrusive;
-        $Unob.adapters.add("mustbe", ["propertyvalue", "condition"], function (options) {
-            var value = {
-                propertyvalue: options.params.propertyvalue,
-                condition: options.params.condition
-            };
-            setValidationValues(options, "mustbe", value);
-        });
-
-    })();
-
-</script>
-
-
-@using (Ajax.BeginForm("Search", "Searching", null, 
-    new AjaxOptions { OnSuccess = "onSearchSuccess"}, 
+@using (Ajax.BeginForm("Search", "Searching", null,
+    new AjaxOptions { OnSuccess = "onSearchSuccess" },
     new { id = "search_form" }))
 {
     @Html.HiddenFor(model => model.SearchData.UserLatitude)
     @Html.HiddenFor(model => model.SearchData.UserLongitude)
+    
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.SearchData.Test)
+        @Html.ValidationMessageFor(model => model.SearchData.Test)
+    </div>
     
     <div id="search_options_tabs">
         <ul>
@@ -70,5 +36,8 @@
         alert("Success");
     }
 
-    searchingDialogManager.initialize();
+    $(function () {
+        jQuery.validator.unobtrusive.parse(document);
+        searchingDialogManager.initialize();
+    });
 </script>

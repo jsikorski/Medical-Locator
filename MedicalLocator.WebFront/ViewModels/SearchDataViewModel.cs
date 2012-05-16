@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MedicalLocator.WebFront.DatabaseConnectionReference;
 using MedicalLocator.WebFront.Models;
 using MedicalLocator.WebFront.Models.CommandsData;
+using MedicalLocator.WebFront.Validation;
 
 namespace MedicalLocator.WebFront.ViewModels
 {

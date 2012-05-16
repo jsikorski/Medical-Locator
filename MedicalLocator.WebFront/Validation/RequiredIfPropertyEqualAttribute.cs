@@ -13,63 +13,27 @@ namespace MedicalLocator.WebFront.Validation
     using System.Text;
     using System.Web.Mvc;
 
-    namespace AjaxTest.Validation
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
+    public class StatusCheckAge : RequiredAttribute, IClientValidatable
     {
-        public enum Condition
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            NotEqualTo,
-            EqualTo
+            DateTime dtV = (DateTime)value;
+            long lTicks = DateTime.Now.Ticks - dtV.Ticks;
+            DateTime dtAge = new DateTime(lTicks);
+            string sErrorMessage = "Age range is 18 to 30 yrs. old.";
+            if (!(dtAge.Year >= 18 && dtAge.Year <= 30)) { return new ValidationResult(sErrorMessage); }
+            return ValidationResult.Success;
         }
-
-        [AttributeUsage(AttributeTargets.Property)]
-        public class MustBeAttribute : ValidationAttribute, IClientValidatable
+        public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
         {
-            private object _valueToCompare { get; set; }
-
-            private readonly Condition _condition = Condition.EqualTo;
-
-            public MustBeAttribute(Condition condition, object value)
-            {
-                _condition = condition;
-                _valueToCompare = value;
-            }
-
-            public override bool IsValid(object value)
-            {
-                try
-                {
-                    switch (_condition)
-                    {
-                        case Condition.EqualTo:
-                            return value.Equals(_valueToCompare);
-                        case Condition.NotEqualTo:
-                            return !value.Equals(_valueToCompare);
-                        default:
-                            return false;
-                    }
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-
-            public class ModelClientValidationMustBeRule : ModelClientValidationRule
-            {
-                public ModelClientValidationMustBeRule(string errorMessage, Condition condition, object propertyValue)
-                    : base()
-                {
-                    this.ErrorMessage = errorMessage;
-                    this.ValidationType = "mustbe";
-                    this.ValidationParameters.Add("propertyvalue", propertyValue);
-                    this.ValidationParameters.Add("condition", (int)condition);
-                }
-            }
-
-            public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
-            {
-                yield return new ModelClientValidationMustBeRule(ErrorMessage, _condition, _valueToCompare);
-            }
+            ModelClientValidationRule mcvrTwo = new ModelClientValidationRule();
+            mcvrTwo.ValidationType = "checkage";
+            mcvrTwo.ErrorMessage = "Age range is 18 to 30 yrs. old.";
+            mcvrTwo.ValidationParameters.Add("param", DateTime.Now.ToString("dd-MM-yyyy"));
+            mcvrTwo.ValidationParameters.Add("param1", DateTime.Now.ToString("dd-MM-yyyy"));
+            
+            return new List<ModelClientValidationRule> { mcvrTwo };
         }
     }
 

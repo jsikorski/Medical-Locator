@@ -1,41 +1,36 @@
-﻿(function () {
-    jQuery.validator.addMethod('mustbe', function (value, element, params) {
-        var testValue = params['propertyvalue'];
-        var condition = params['condition'];
-        if ((condition == '0') && (value != testValue))
-            return true;
-        if ((condition == '1') && (value == testValue))
-            return true;
+﻿jQuery.validator.addMethod("checkage",
+    function(value, element, param) {
+        alert("Checkage");
+        return true;
+        var currDate = param;
+        var sdoc = currDate.split('-');
+        var dobDate = value;
+        var sdob = dobDate.split('-');
+        //pass year,month,date in new Date object.
+        var vDOB = new Date(sdob[2], sdob[1], sdob[0]);
+        var vDOC = new Date(sdoc[2], sdoc[1], sdoc[0]);
+        //getAge user define function to calculate age.
+        var vYrs = getAge(vDOB, vDOC);
+        var result = false;
+        if (vYrs >= 18 && vYrs <= 30) {
+            result = true;
+        }
+        return result;
+    });
+
+jQuery.validator.addMethod("hello",
+    function(value, element, param) {
+        alert("Hello");
         return false;
     });
-    var setValidationValues = function (options, ruleName, value) {
-        options.rules[ruleName] = value;
-        if (options.message) {
-            options.messages[ruleName] = options.message;
-        }
-    };
-    var $Unob = $.validator.unobtrusive;
-    $Unob.adapters.add("mustbe", ["propertyvalue", "condition"], function (options) {
-        var value = {
-            propertyvalue: options.params.propertyvalue,
-            condition: options.params.condition
-        };
-        setValidationValues(options, "mustbe", value);
-    });
 
-})();
+jQuery.validator.unobtrusive.adapters.add("checkage", ["param", "param1"], function(options) {
+    alert("Is OK");
+    options.rules["checkage"] = options.params.param;
+    options.rules["hello"] = options.params.param;
+    options.messages["hello"] = options.message;
+});
 
-//(function ($) {
-//    $.validator.addMethod("notequalto", function (value, element, params) {
-
-//        return false;
-//        alert("Hello");
-
-//        if (!this.optional(element)) {
-//            var otherProp = $('#' + params);
-//            return (otherProp.val() != value);
-//        }
-//        return true;
-//    });
-//    $.validator.unobtrusive.adapters.addSingleVal("notequalto", "otherproperty");
-//} (jQuery));
+function getAge(oldDate, currDate) {
+    return currDate.getFullYear() - oldDate.getFullYear();
+}
