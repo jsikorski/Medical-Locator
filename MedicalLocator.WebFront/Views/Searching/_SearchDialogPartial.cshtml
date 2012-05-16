@@ -8,11 +8,6 @@
     @Html.HiddenFor(model => model.SearchData.UserLatitude)
     @Html.HiddenFor(model => model.SearchData.UserLongitude)
     
-    <div class="editor-field">
-        @Html.TextBoxFor(model => model.SearchData.Test)
-        @Html.ValidationMessageFor(model => model.SearchData.Test)
-    </div>
-    
     <div id="search_options_tabs">
         <ul>
             <li><a href="#tabs-1">General</a></li>

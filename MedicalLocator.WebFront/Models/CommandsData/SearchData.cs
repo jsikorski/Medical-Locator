@@ -25,10 +25,8 @@ namespace MedicalLocator.WebFront.Models.CommandsData
         public CenterType CenterType { get; set; }
 
         [DisplayName("Address")]
+        [RequiredIfPropertyEqual("CenterType", CenterType.Address)]
         public string SearchedAddress { get; set; }
-
-        [StatusCheckAge]
-        public string Test { get; set; }
 
         [DisplayName("Latitude")]
         [RequiredIfPropertyEqual("CenterType", CenterType.Coordinates)]
@@ -36,7 +34,7 @@ namespace MedicalLocator.WebFront.Models.CommandsData
         public double SearchedLatitude { get; set; }
 
         [DisplayName("Longitude")]
-        //[RequiredIfPropertyEqual("CenterType", CenterType.Coordinates)]
+        [RequiredIfPropertyEqual("CenterType", CenterType.Coordinates)]
         [Range(-180.0, 180.0)]
         public double SearchedLongitude { get; set; }
 

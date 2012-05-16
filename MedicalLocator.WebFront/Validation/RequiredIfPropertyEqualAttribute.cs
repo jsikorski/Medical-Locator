@@ -13,30 +13,6 @@ namespace MedicalLocator.WebFront.Validation
     using System.Text;
     using System.Web.Mvc;
 
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
-    public class StatusCheckAge : RequiredAttribute, IClientValidatable
-    {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            DateTime dtV = (DateTime)value;
-            long lTicks = DateTime.Now.Ticks - dtV.Ticks;
-            DateTime dtAge = new DateTime(lTicks);
-            string sErrorMessage = "Age range is 18 to 30 yrs. old.";
-            if (!(dtAge.Year >= 18 && dtAge.Year <= 30)) { return new ValidationResult(sErrorMessage); }
-            return ValidationResult.Success;
-        }
-        public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ModelMetadata metadata, ControllerContext context)
-        {
-            ModelClientValidationRule mcvrTwo = new ModelClientValidationRule();
-            mcvrTwo.ValidationType = "checkage";
-            mcvrTwo.ErrorMessage = "Age range is 18 to 30 yrs. old.";
-            mcvrTwo.ValidationParameters.Add("param", DateTime.Now.ToString("dd-MM-yyyy"));
-            mcvrTwo.ValidationParameters.Add("param1", DateTime.Now.ToString("dd-MM-yyyy"));
-            
-            return new List<ModelClientValidationRule> { mcvrTwo };
-        }
-    }
-
     public class RequiredIfPropertyEqualAttribute : RequiredAttribute, IClientValidatable
     {
         private readonly string _propertyName;
@@ -70,7 +46,7 @@ namespace MedicalLocator.WebFront.Validation
             yield return new ModelClientValidationRule
                              {
                                  ErrorMessage = string.Format(ErrorMessageString, metadata.DisplayName),
-                                 ValidationType = "notequalto"
+                                 ValidationType = "requiredifpropertyequal"
                              };
         }
     }
