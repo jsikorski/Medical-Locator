@@ -31,12 +31,12 @@ namespace MedicalLocator.WebFront.Models.CommandsData
         [DisplayName("Latitude")]
         [RequiredIfPropertyEqual("CenterType", CenterType.Coordinates)]
         [Range(-180.0, 180.0)]
-        public double SearchedLatitude { get; set; }
+        public double? SearchedLatitude { get; set; }
 
         [DisplayName("Longitude")]
         [RequiredIfPropertyEqual("CenterType", CenterType.Coordinates)]
         [Range(-180.0, 180.0)]
-        public double SearchedLongitude { get; set; }
+        public double? SearchedLongitude { get; set; }
 
         public IEnumerable<MedicalType> SearchedMedicalTypes { get; set; }
 

@@ -4,13 +4,14 @@ using System.IO;
 using System.Net.Cache;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace MedicalLocator.WebFront.Infrastructure
 {
-    public class CommandsController : Controller
+    public abstract class CommandsController : Controller
     {
         public ICommandsDataProcessor CommandsDataProcessor { get; set; }
-        
+
         protected object LastCommandResult { get; private set; }
 
         private bool _isNotificationSet;

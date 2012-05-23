@@ -52,7 +52,7 @@ namespace MedicalLocator.WebFront.Controllers
 
             var searchedMedicalTypes = searchDataViewModel.MedicalTypesDictionary.Where(pair => pair.Value).Select(pair => pair.Key);
             searchDataViewModel.SearchData.SearchedMedicalTypes = searchedMedicalTypes;
-            return ProcessCommandData(searchDataViewModel.SearchData, () => null);
+            return ProcessCommandData(searchDataViewModel.SearchData, () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
         }
     }
 }

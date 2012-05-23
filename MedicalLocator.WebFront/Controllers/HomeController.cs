@@ -14,7 +14,7 @@ namespace MedicalLocator.WebFront.Controllers
 {
     public class HomeController : CommandsController
     {
-       public ActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }

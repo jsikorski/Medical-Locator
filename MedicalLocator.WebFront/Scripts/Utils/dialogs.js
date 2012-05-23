@@ -3,9 +3,17 @@
 function DialogsManager() {
     var dialogDivId = "dialog";
 
-    var setDialogCloseHandler = function (dialogDiv) {
-        dialogDiv.prev().children(".ui-dialog-titlebar-close").click(function () {
-            dialogDiv.remove();
+    var getDialogDiv = function () {
+        return $("#" + dialogDivId);
+    };
+
+    var closeDialog = function() {
+        getDialogDiv().remove();        
+    };
+
+    var setDialogCloseHandler = function () {
+        getDialogDiv().prev().children(".ui-dialog-titlebar-close").click(function () {
+            closeDialog();
         });
     };
 
@@ -18,7 +26,7 @@ function DialogsManager() {
     };
 
     this.initializeDialog = function (dialogTitle) {
-        var dialogDiv = $("#" + dialogDivId);
+        var dialogDiv = getDialogDiv();
 
         dialogDiv.dialog({
             modal: true,
@@ -30,4 +38,6 @@ function DialogsManager() {
 
         setDialogCloseHandler(dialogDiv);
     };
+
+    this.closeDialog = closeDialog;
 }

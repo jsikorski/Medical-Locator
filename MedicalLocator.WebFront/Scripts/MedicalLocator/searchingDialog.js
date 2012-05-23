@@ -1,20 +1,22 @@
 ﻿var searchingDialogManager = new SearchingDialogManager();
 
+SearchingType = {
+    myLocation: "MyLocation",
+    address: "Address",
+    coordinates : "Coordinates"
+};
+
 function SearchingDialogManager() {
-    var medicalTypeComboBoxSelector = "#SearchData_CenterType";
+    var searchingManager = new SearchingManager();
+    
+    var searchingTypeComboBoxSelector = "#SearchData_CenterType";
     var searchFormSelector = "#search_form";
     var searchOptionsTabsSelector = "#search_options_tabs";
     var searchButtonSelector = "#search_button";
-    var userLatitudeFieldSelector = "#SearchData_UserLatitude";
-    var userLongitudeFieldSelector = "#SearchData_UserLongitude";
 
     var searchedAddressFieldId = "SearchData_SearchedAddress";
     var searchedLatitudeFieldId = "SearchData_SearchedLatitude";
     var searchedLongitudeFieldId = "SearchData_SearchedLongitude";
-
-    var myLocationOptionValue = "MyLocation";
-    var addressOptionValue = "Address";
-    var coordinatesOptionValue = "Coordinates";
 
     var hideField = function (fieldId) {
         $("#" + fieldId).parent().hide();
@@ -24,24 +26,24 @@ function SearchingDialogManager() {
         $("#" + fieldId).parent().show("slow");
     };
 
-    var getSelectedMedicalType = function () {
-        return $(medicalTypeComboBoxSelector).children(":selected").val();
+    var getSelectedSearchingType = function () {
+        return $(searchingTypeComboBoxSelector).children(":selected").val();
     };
     
     var updateFieldsVisibility = function () {
-        var selectedMedicalType = getSelectedMedicalType();
-        switch (selectedMedicalType) {
-            case myLocationOptionValue:
+        var selectedSearchingType = getSelectedSearchingType();
+        switch (selectedSearchingType) {
+            case SearchingType.myLocation:
                 hideField(searchedAddressFieldId);
                 hideField(searchedLatitudeFieldId);
                 hideField(searchedLongitudeFieldId);
                 break;
-            case addressOptionValue:
+            case SearchingType.address:
                 showField(searchedAddressFieldId);
                 hideField(searchedLatitudeFieldId);
                 hideField(searchedLongitudeFieldId);
                 break;
-            case coordinatesOptionValue:
+            case SearchingType.coordinates:
                 hideField(searchedAddressFieldId);
                 showField(searchedLatitudeFieldId);
                 showField(searchedLongitudeFieldId);
@@ -54,26 +56,25 @@ function SearchingDialogManager() {
             return;
         }
 
-        var searchingManager = new SearchingManager();
-        searchingManager.search();
+        var selectedSearchingType = getSelectedSearchingType();
+        if (selectedSearchingType == SearchingType.myLocation) {
+            searchingManager.searchUsingUserLocation();
+        } else {
+            searchingManager.searchNotUsingUserLocation();
+        }
+
     };
 
-    var initializeSearchButton = function() {
+    var initializeSearchButton = function () {
         var searchButton = $(searchButtonSelector);
         searchButton.button();
         searchButton.click(onSearchButtonClick);
     };
 
     var initializeGeneralTab = function () {
-        $(medicalTypeComboBoxSelector).change(updateFieldsVisibility);
+        $(searchingTypeComboBoxSelector).change(updateFieldsVisibility);
         updateFieldsVisibility();
     };
-
-    this.myLocationOptionValue = myLocationOptionValue;
-    this.addressOptionValue = addressOptionValue;
-    this.coordinatesOptionValue = coordinatesOptionValue;
-
-    this.getSelectedMedicalType = getSelectedMedicalType;
 
     this.initialize = function () {
         $(searchOptionsTabsSelector).tabs();
@@ -81,13 +82,12 @@ function SearchingDialogManager() {
         initializeGeneralTab();
     };
 
-    this.submitDialogForm = function () {
-        $(searchFormSelector).submit();
-    };
+    this.processSearchResponse = function (response) {
+        searchingManager.processSearchResponse(response);
 
-    this.setUserCoordinates = function (latitude, longitude) {
-        $(userLatitudeFieldSelector).val(latitude);
-        $(userLongitudeFieldSelector).val(longitude);
+        if (responsesController.isResponseValid(response)) {
+            dialogsManager.closeDialog();
+        }
     };
 }
 

@@ -7,7 +7,8 @@
     };
 
     var onGeoLocationError = function (errorMessage) {
-        alert(errorMessage);
+        busyIndicator.endBusy();
+        notificationsManager.showError("Cannot get localization.");
     };
 
     this.getLocation = function (onLocationFound) {

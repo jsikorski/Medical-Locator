@@ -1,36 +1,34 @@
-﻿jQuery.validator.addMethod("checkage",
-    function(value, element, param) {
-        alert("Checkage");
-        return true;
-        var currDate = param;
-        var sdoc = currDate.split('-');
-        var dobDate = value;
-        var sdob = dobDate.split('-');
-        //pass year,month,date in new Date object.
-        var vDOB = new Date(sdob[2], sdob[1], sdob[0]);
-        var vDOC = new Date(sdoc[2], sdoc[1], sdoc[0]);
-        //getAge user define function to calculate age.
-        var vYrs = getAge(vDOB, vDOC);
-        var result = false;
-        if (vYrs >= 18 && vYrs <= 30) {
-            result = true;
+﻿(function ($) {
+    function getElementNameBase(element) {
+        var nameParts = $(element).attr("name").split(".");
+        var nameBase = "";
+        var lastIndex = nameParts.length - 1;
+        for (var i = 0; i < lastIndex; i++) {
+            nameBase += nameParts[i];
+
+            if (i != lastIndex) {
+                nameBase += ".";
+            }
         }
-        return result;
+        return nameBase;
+    }
+
+    $.validator.addMethod("requiredifpropertyequal", function (value, element, params) {
+        var elementNameBase = getElementNameBase(element);
+        var fullPropertyName = elementNameBase + params.propertyname;
+        var currentPropertyValue = $("[name='" + fullPropertyName + "']").val();
+
+        if (currentPropertyValue == params.propertyvalue) {
+            var isValid = value != null && value.length > 0;
+            return isValid;
+        }
+
+        return true;
     });
 
-jQuery.validator.addMethod("hello",
-    function(value, element, param) {
-        alert("Hello");
-        return false;
+    $.validator.unobtrusive.adapters.add("requiredifpropertyequal", ["propertyname", "propertyvalue"], function (options) {
+        options.rules["requiredifpropertyequal"] = options.params;
+        options.messages["requiredifpropertyequal"] = options.message;
     });
 
-jQuery.validator.unobtrusive.adapters.add("checkage", ["param", "param1"], function(options) {
-    alert("Is OK");
-    options.rules["checkage"] = options.params.param;
-    options.rules["hello"] = options.params.param;
-    options.messages["hello"] = options.message;
-});
-
-function getAge(oldDate, currDate) {
-    return currDate.getFullYear() - oldDate.getFullYear();
-}
+} (jQuery));

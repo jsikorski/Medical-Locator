@@ -43,11 +43,16 @@ namespace MedicalLocator.WebFront.Validation
         public IEnumerable<ModelClientValidationRule> GetClientValidationRules(
             ModelMetadata metadata, ControllerContext context)
         {
-            yield return new ModelClientValidationRule
-                             {
-                                 ErrorMessage = string.Format(ErrorMessageString, metadata.DisplayName),
-                                 ValidationType = "requiredifpropertyequal"
-                             };
+            var modelClientValidationRule = new ModelClientValidationRule
+                                                {
+                                                    ErrorMessage = string.Format(ErrorMessageString, metadata.DisplayName),
+                                                    ValidationType = "requiredifpropertyequal"
+                                                };
+
+            modelClientValidationRule.ValidationParameters.Add("propertyname", _propertyName);
+            modelClientValidationRule.ValidationParameters.Add("propertyvalue", _propertyValue);
+
+            yield return modelClientValidationRule;
         }
     }
 }

@@ -28,11 +28,11 @@
 
 <script type="text/javascript">
     function onSearchSuccess(response) {
-        alert("Success");
+        searchingDialogManager.processSearchResponse(response);
     }
 
     $(function () {
-        jQuery.validator.unobtrusive.parse(document);
+        $.validator.unobtrusive.parse(document);
         searchingDialogManager.initialize();
     });
 </script>

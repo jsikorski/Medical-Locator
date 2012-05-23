@@ -14,7 +14,7 @@ namespace MedicalLocator.WebFront.Commands
     {
         public ExceptionModel HandleException(NoSearchResultsException exception)
         {
-            return new ExceptionModel("No results was found.", NotificationType.Info);
+            return new ExceptionModel("No results were found.", NotificationType.Info);
         }
 
         public ExceptionModel HandleException(EndpointNotFoundException exception)

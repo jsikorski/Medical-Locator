@@ -24,6 +24,22 @@ function NotificationsManager() {
         notifierFuntion(notificationMessage);
     };
 
+    this.showSuccess = function (notificationMessage) {
+        showNotification("Success", notificationMessage);
+    }; 
+
+    this.showInfo = function (notificationMessage) {
+        showNotification("Info", notificationMessage);
+    };
+
+    this.showWarning = function (notificationMessage) {
+        showNotification("Warning", notificationMessage);
+    };
+
+    this.showError = function (notificationMessage) {
+        showNotification("Error", notificationMessage);
+    };
+
     this.tryShowNotification = function () {
         $(document).ajaxSuccess(function (event, response) {
             var notificationType = response.getResponseHeader(notificationTypeHeader);

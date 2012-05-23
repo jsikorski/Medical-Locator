@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using MedicalLocator.WebFront.GoogleMapsInterfaceReference;
 using MedicalLocator.WebFront.Infrastructure;
 using MedicalLocator.WebFront.Models;
@@ -20,10 +22,29 @@ namespace MedicalLocator.WebFront.Commands
 
         public void Execute(SearchData commandData)
         {
-            var centerLocation = new Location {Lat = commandData.UserLatitude, Lng = commandData.UserLongitude};
-            var searchedMedicalTypes = commandData.SearchedMedicalTypes;
-            var searchingRange = commandData.SearchingRange;
-            Result = _searchingManager.GetDataFromGooglePlacesApi(centerLocation, searchedMedicalTypes, (int)searchingRange);
+            Location centerLocation = GetCenterLocationFromCommandData(commandData);
+            IEnumerable<MedicalType> searchedMedicalTypes = commandData.SearchedMedicalTypes;
+            int searchingRange = commandData.SearchingRange;
+            GooglePlacesWcfResponse googlePlacesApiResponse =
+                _searchingManager.GetDataFromGooglePlacesApi(centerLocation,
+                                                             searchedMedicalTypes,
+                                                             searchingRange);
+            Result = new { CenterLocation = centerLocation, GooglePlacesApiResponse = googlePlacesApiResponse };
+        }
+
+        private Location GetCenterLocationFromCommandData(SearchData commandData)
+        {
+            switch (commandData.CenterType)
+            {
+                case CenterType.MyLocation:
+                    return new Location { Lat = commandData.UserLatitude, Lng = commandData.UserLongitude };
+                case CenterType.Address:
+                    return null;
+                case CenterType.Coordinates:
+                    return new Location { Lat = commandData.SearchedLatitude.Value, Lng = commandData.SearchedLongitude.Value };
+            }
+
+            throw new Exception("Unknown center type.");
         }
     }
 }

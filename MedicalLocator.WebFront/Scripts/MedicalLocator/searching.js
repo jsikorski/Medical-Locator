@@ -1,6 +1,8 @@
 function SearchingManager() {
-
     var geoLocationProvider = new GeoLocationProvider();
+    var searchFormSelector = "#search_form";
+    var userLatitudeFieldSelector = "#SearchData_UserLatitude";
+    var userLongitudeFieldSelector = "#SearchData_UserLongitude";
 
     var onLocationFoundForFindNearby = function (location) {
         var userLongitude = location.coords.longitude;
@@ -9,34 +11,41 @@ function SearchingManager() {
         $.ajax({
             url: "Searching/FindNearby",
             data: { longitude: userLongitude, latitude: userLatitude },
-            success: function (response) { onSearchSuccess(response, userLongitude, userLatitude); }
+            success: onSearchSuccess
         });
     };
 
-    var onLocationFoundForSearch = function (location) {
-        var userLongitude = location.coords.longitude;
-        var userLatitude = location.coords.latitude;
-        searchingDialogManager.setUserCoordinates(userLatitude, userLongitude);
-        searchingDialogManager.submitDialogForm();
+    var onLocationFoundForSearchUsingUserLocation = function (location) {
+        setUserCoordinatesOnForm(location);
+        submitSearchForm();        
     };
 
-    var onSearchSuccess = function (response, userLongitude, userLatitude) {
-        if (response == "Failure") {
+    var setUserCoordinatesOnForm = function (userLocation) {
+        var userLongitude = userLocation.coords.longitude;
+        var userLatitude = userLocation.coords.latitude;
+        $(userLatitudeFieldSelector).val(userLatitude);
+        $(userLongitudeFieldSelector).val(userLongitude);
+    };
+
+    var onSearchSuccess = function (response) {
+        if (!responsesController.isResponseValid(response)) {
             busyIndicator.endBusy();
             return;
         }
+
         googleMapsManager.clearMarkers();
-        placeUserMarkerOnGoogleMaps(userLongitude, userLatitude);
-        var foundObjects = response.Results;
+        var centerLocation = response.CenterLocation;
+        placeCenterMarkerOnGoogleMaps(centerLocation.Lat, centerLocation.Lng);
+        var foundObjects = response.GooglePlacesApiResponse.Results;
         placeResultsMarkersOnGoogleMaps(foundObjects);
 
         busyIndicator.endBusy();
     };
 
-    var placeUserMarkerOnGoogleMaps = function (longitude, latitude) {
+    var placeCenterMarkerOnGoogleMaps = function (latitude, longitude) {
         var markerOptions = new MedicalMarkerOptions();
-        markerOptions.name = "Me";
-        markerOptions.vicinity = "Longitude: " + longitude + "<br>Latitude: " + latitude;
+        markerOptions.name = "Center";
+        markerOptions.vicinity = "Latitude: " + latitude + "<br>Longitude: " + longitude;
         markerOptions.location = { Lat: latitude, Lng: longitude };
         markerOptions.type = MedicalMarkerType.User;
         googleMapsManager.addMarker(markerOptions);
@@ -54,14 +63,25 @@ function SearchingManager() {
         googleMapsManager.fitMapBounds();
     };
 
+    var submitSearchForm = function() {
+        $(searchFormSelector).submit();
+    };
+
     this.findNearby = function () {
         busyIndicator.beginBusy();
         geoLocationProvider.getLocation(onLocationFoundForFindNearby);
     };
 
-    this.search = function () {
+    this.searchUsingUserLocation = function () {
         busyIndicator.beginBusy();
-        geoLocationProvider.getLocation(onLocationFoundForSearch);
+        geoLocationProvider.getLocation(onLocationFoundForSearchUsingUserLocation);
     };
+
+    this.searchNotUsingUserLocation = function () {
+        busyIndicator.beginBusy();
+        submitSearchForm();
+    };
+
+    this.processSearchResponse = onSearchSuccess;
 }
 
