@@ -7,14 +7,20 @@ namespace MedicalLocator.WebFront.Commands
 {
     public abstract class SearchingCommandBase :
         IHandleException<NoSearchResultsException>,
-        IHandleException<EndpointNotFoundException>,
+        IHandleException<NoGeocodingResultsException>,
+    IHandleException<EndpointNotFoundException>,
         IHandleException<FaultException<ConnectionFault>>,
         IHandleException<FaultException<InvalidResponseFault>>,
-        IHandleException<FaultException<RequestDeniedFault>>
+        IHandleException<FaultException<RequestDeniedFault>>,
     {
         public ExceptionModel HandleException(NoSearchResultsException exception)
         {
             return new ExceptionModel("No results were found.", NotificationType.Info);
+        }
+
+        public ExceptionModel HandleException(NoGeocodingResultsException exception)
+        {
+            return new ExceptionModel("Cannot find requested address.", NotificationType.Info);
         }
 
         public ExceptionModel HandleException(EndpointNotFoundException exception)
@@ -37,7 +43,7 @@ namespace MedicalLocator.WebFront.Commands
             return new ExceptionModel("Server does not have permission to connect ot external services", NotificationType.Error);
         }
 
-        public object GetSearchingCommandResult(Location centerLocation, GooglePlacesWcfResponse response)
+        protected object GetSearchingCommandResult(Location centerLocation, GooglePlacesWcfResponse response)
         {
             return new { CenterLocation = centerLocation, GooglePlacesApiResponse = response };
         }
