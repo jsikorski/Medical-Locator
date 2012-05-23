@@ -70,6 +70,10 @@ function MarkerTypeToIconUrlConverter() {
 }
 
 function GoogleMapsManager() {
+    var bodySelector = "body";
+    var menuSelector = "#menu";
+    var currentGoogleMapjQueryElement;
+
     var googleMapsApi = window.google.maps;
     var map;
     var markers = [];
@@ -85,7 +89,10 @@ function GoogleMapsManager() {
         });
     };
 
-    this.initializeMap = function (googleMapDomElement) {
+    this.initializeMap = function (googleMapjQueryElement) {
+        currentGoogleMapjQueryElement = googleMapjQueryElement;
+        var googleMapDomElement = currentGoogleMapjQueryElement[0];
+
         var mapOptions = {
             zoom: 1,
             center: new googleMapsApi.LatLng(0, 0),
@@ -129,5 +136,11 @@ function GoogleMapsManager() {
             markersBounds.extend(markers[i].getPosition());
         }
         map.fitBounds(markersBounds);
+    };
+
+    this.updateMapSize = function() {
+        var bodyHeight = $(bodySelector).height();
+        var menuHeight = $(menuSelector).height();
+        currentGoogleMapjQueryElement.height(bodyHeight - menuHeight - 1);
     };
 }
