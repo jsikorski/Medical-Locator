@@ -71,7 +71,7 @@
   </wsdl:binding>
   <wsdl:service name="DatabaseConnectionService">
     <wsdl:port name="BasicHttpBinding_IDatabaseConnectionService" binding="tns:BasicHttpBinding_IDatabaseConnectionService">
-      <soap:address location="http://192.168.1.100:8085/DatabaseConnectionService/Service.svc" />
+      <soap:address location="http://192.168.2.10:8085/DatabaseConnectionService/Service.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

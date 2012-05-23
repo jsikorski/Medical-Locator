@@ -17,14 +17,18 @@ namespace MedicalLocator.WebFront.ViewModels
 
         public static SearchDataViewModel CreateUsingContext(
             IEnumerable<CenterType> allCenterTypes,
-            IDictionary<MedicalType, bool> medicalTypesDictionary,
+            IEnumerable<MedicalType> allMedicalTypes,
             CurrentContext currentContext)
         {
-            return new SearchDataViewModel(allCenterTypes, medicalTypesDictionary) { SearchData = currentContext.LastSearchData };
-        }
+            var medicalTypesDictionary 
+                = allMedicalTypes.ToDictionary(type => type, type => WasMedicalTypeSelected(type, currentContext));
 
-        public SearchDataViewModel()
-        {
+            return new SearchDataViewModel
+                       {
+                           SearchData = currentContext.LastSearchData,
+                           AllCenterTypes = allCenterTypes,
+                           MedicalTypesDictionary = medicalTypesDictionary
+                       };
         }
 
         public SearchDataViewModel(
@@ -40,6 +44,16 @@ namespace MedicalLocator.WebFront.ViewModels
         public IEnumerable<MedicalType> GetSelectedMedicalTypes()
         {
             return MedicalTypesDictionary.Where(pair => pair.Value).Select(pair => pair.Key).ToList();
+        }
+
+        // Constructor public for ASP binding
+        public SearchDataViewModel()
+        {
+        }
+
+        private static bool WasMedicalTypeSelected(MedicalType medicalType, CurrentContext currentContext)
+        {
+            return currentContext.LastSearchData.SearchedMedicalTypes.Contains(medicalType);
         }
     }
 }

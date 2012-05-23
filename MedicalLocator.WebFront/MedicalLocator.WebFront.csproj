@@ -236,6 +236,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_OverlayPartial.cshtml" />
     <Content Include="Views\Searching\_SearchDialogPartial.cshtml" />
+    <Content Include="Views\Searching\_SearchGenralTabPartial.cshtml" />
+    <Content Include="Views\Home\_GoogleMapPartial.cshtml" />
+    <Content Include="Views\Searching\_SearchObjectsTabPartial.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Service References\GoogleMapsInterfaceReference\service1.wsdl" />
     <None Include="Service References\GoogleMapsInterfaceReference\service2.xsd">
       <SubType>Designer</SubType>
@@ -243,10 +247,6 @@
     <None Include="Service References\GoogleMapsInterfaceReference\service3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Searching\_SearchGenralTabPartial.cshtml" />
-    <Content Include="Views\Home\_GoogleMapPartial.cshtml" />
-    <Content Include="Views\Searching\_SearchObjectsTabPartial.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

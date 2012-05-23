@@ -44,22 +44,22 @@ namespace MedicalLocator.WebFront.Controllers
 
             IEnumerable<MedicalType> selectedMedicalTypes = searchDataViewModel.GetSelectedMedicalTypes();
             searchDataViewModel.SearchData.SearchedMedicalTypes = selectedMedicalTypes;
-            
+
             _currentContext.UpdateLastSearchData(searchDataViewModel.SearchData);
             return ProcessCommandData(searchDataViewModel.SearchData, () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
         }
 
         private SearchDataViewModel GetSearchDataViewModel()
         {
-            var allCenterTypes = _enumsValuesProvider.GetAllCenterTypes();
-            var allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
-            var medicalTypesDictionary = allMedicalTypes.ToDictionary(type => type, type => true);
+            IEnumerable<CenterType> allCenterTypes = _enumsValuesProvider.GetAllCenterTypes();
+            IEnumerable<MedicalType> allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
 
             if (_currentContext.LastSearchData != null)
             {
-                return SearchDataViewModel.CreateUsingContext(allCenterTypes, medicalTypesDictionary, _currentContext);
+                return SearchDataViewModel.CreateUsingContext(allCenterTypes, allMedicalTypes, _currentContext);
             }
 
+            var medicalTypesDictionary = allMedicalTypes.ToDictionary(type => type, type => true);
             return new SearchDataViewModel(allCenterTypes, medicalTypesDictionary);
         }
     }

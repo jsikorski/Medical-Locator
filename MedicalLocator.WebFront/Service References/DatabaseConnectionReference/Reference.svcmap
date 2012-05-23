@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.1.100:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.2.10:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="8b681e62-a4a9-4892-877e-74c408d2d1d1" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="79325200-6ec2-4333-b4da-e00dea59c9d3" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="9b32293f-2511-45fd-a277-e68cd38d73ed" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="DatabaseConnectionService.Model1.xsd" MetadataType="Schema" ID="48006f67-4647-4ca5-af25-ac179f3b486d" SourceId="1" SourceUrl="http://192.168.1.100:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="7b5ffc55-033f-449e-ab34-5e7ceec8e5c3" SourceId="1" SourceUrl="http://192.168.2.10:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="a0c28146-6842-4d4f-8739-843f46fd0b20" SourceId="1" SourceUrl="http://192.168.2.10:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="08475f57-bc4c-4a28-84df-c77f54cb2695" SourceId="1" SourceUrl="http://192.168.2.10:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="DatabaseConnectionService.Model1.xsd" MetadataType="Schema" ID="5f194eee-44c5-4dc9-ba5d-99a5b61e01ff" SourceId="1" SourceUrl="http://192.168.2.10:8085/DatabaseConnectionService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
