@@ -15,17 +15,17 @@ namespace MedicalLocator.WebFront.ViewModels
         public IEnumerable<CenterType> AllCenterTypes { get; set; }
         public IDictionary<MedicalType, bool> MedicalTypesDictionary { get; set; }
 
-        public static SearchDataViewModel CreateUsingContext(
+        public static SearchDataViewModel CreateUsingLastSearchData(
             IEnumerable<CenterType> allCenterTypes,
             IEnumerable<MedicalType> allMedicalTypes,
-            CurrentContext currentContext)
+            SearchData lastSearchData)
         {
             var medicalTypesDictionary 
-                = allMedicalTypes.ToDictionary(type => type, type => WasMedicalTypeSelected(type, currentContext));
+                = allMedicalTypes.ToDictionary(type => type, type => WasMedicalTypeSelected(type, lastSearchData));
 
             return new SearchDataViewModel
                        {
-                           SearchData = currentContext.LastSearchData,
+                           SearchData = lastSearchData,
                            AllCenterTypes = allCenterTypes,
                            MedicalTypesDictionary = medicalTypesDictionary
                        };
@@ -51,9 +51,9 @@ namespace MedicalLocator.WebFront.ViewModels
         {
         }
 
-        private static bool WasMedicalTypeSelected(MedicalType medicalType, CurrentContext currentContext)
+        private static bool WasMedicalTypeSelected(MedicalType medicalType, SearchData lastSearchData)
         {
-            return currentContext.LastSearchData.SearchedMedicalTypes.Contains(medicalType);
+            return lastSearchData.SearchedMedicalTypes.Contains(medicalType);
         }
     }
 }

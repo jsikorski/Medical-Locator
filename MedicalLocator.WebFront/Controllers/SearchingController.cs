@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using MedicalLocator.WebFront.Infrastructure;
 using MedicalLocator.WebFront.Models;
 using MedicalLocator.WebFront.Models.CommandsData;
+using MedicalLocator.WebFront.Services;
 using MedicalLocator.WebFront.ViewModels;
 
 namespace MedicalLocator.WebFront.Controllers
@@ -15,12 +16,10 @@ namespace MedicalLocator.WebFront.Controllers
     public class SearchingController : CommandsController
     {
         private readonly IEnumsValuesProvider _enumsValuesProvider;
-        private readonly CurrentContext _currentContext;
 
-        public SearchingController(IEnumsValuesProvider enumsValuesProvider, CurrentContext currentContext)
+        public SearchingController(IEnumsValuesProvider enumsValuesProvider)
         {
             _enumsValuesProvider = enumsValuesProvider;
-            _currentContext = currentContext;
         }
 
         public ActionResult FindNearby(double longitude, double latitude)
@@ -45,7 +44,7 @@ namespace MedicalLocator.WebFront.Controllers
             IEnumerable<MedicalType> selectedMedicalTypes = searchDataViewModel.GetSelectedMedicalTypes();
             searchDataViewModel.SearchData.SearchedMedicalTypes = selectedMedicalTypes;
 
-            _currentContext.UpdateLastSearchData(searchDataViewModel.SearchData);
+            SessionManager.LastSearchData = searchDataViewModel.SearchData;
             return ProcessCommandData(searchDataViewModel.SearchData, () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
         }
 
@@ -54,9 +53,10 @@ namespace MedicalLocator.WebFront.Controllers
             IEnumerable<CenterType> allCenterTypes = _enumsValuesProvider.GetAllCenterTypes();
             IEnumerable<MedicalType> allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
 
-            if (_currentContext.LastSearchData != null)
+            SearchData lastSearchData = SessionManager.LastSearchData;
+            if (lastSearchData != null)
             {
-                return SearchDataViewModel.CreateUsingContext(allCenterTypes, allMedicalTypes, _currentContext);
+                return SearchDataViewModel.CreateUsingLastSearchData(allCenterTypes, allMedicalTypes, lastSearchData);
             }
 
             var medicalTypesDictionary = allMedicalTypes.ToDictionary(type => type, type => true);

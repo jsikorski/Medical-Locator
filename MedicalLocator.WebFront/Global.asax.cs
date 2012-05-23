@@ -65,34 +65,16 @@ namespace MedicalLocator.WebFront
 
         private void RegisterNotControllers(ContainerBuilder containerBuilder)
         {
-            RegisterNotSingleInstanceTypes(containerBuilder);
-            RegisterSingleInstanceTypes(containerBuilder);
-        }
-
-        private void RegisterNotSingleInstanceTypes(ContainerBuilder containerBuilder)
-        {
             containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Where(type => !IsTypeControllerType(type) && !IsTypeSingleInstance(type))
+                .Where(type => !IsTypeControllerType(type))
                 .AsSelf().AsImplementedInterfaces().PropertiesAutowired();
-        }
-
-        private void RegisterSingleInstanceTypes(ContainerBuilder containerBuilder)
-        {
-            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Where(type => !IsTypeControllerType(type) && IsTypeSingleInstance(type))
-                .AsSelf().AsImplementedInterfaces().PropertiesAutowired().SingleInstance();
         }
 
         private bool IsTypeControllerType(Type type)
         {
-            return type == typeof (CommandsController) ||
-                   type.BaseType == typeof (Controller) ||
-                   type.BaseType == typeof (CommandsController);
-        }
-
-        private bool IsTypeSingleInstance(Type type)
-        {
-            return type.GetCustomAttributes(true).Any(a => a.GetType() == typeof (SingleInstanceAttribute));
+            return type == typeof(CommandsController) ||
+                   type.BaseType == typeof(Controller) ||
+                   type.BaseType == typeof(CommandsController);
         }
     }
 }
