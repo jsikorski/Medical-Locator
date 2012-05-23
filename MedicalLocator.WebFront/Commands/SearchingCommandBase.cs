@@ -36,5 +36,10 @@ namespace MedicalLocator.WebFront.Commands
         {
             return new ExceptionModel("Server does not have permission to connect ot external services", NotificationType.Error);
         }
+
+        public object GetSearchingCommandResult(Location centerLocation, GooglePlacesWcfResponse response)
+        {
+            return new { CenterLocation = centerLocation, GooglePlacesApiResponse = response };
+        }
     }
 }

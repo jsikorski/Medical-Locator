@@ -78,6 +78,7 @@
     <Compile Include="Commands\SearchingCommandBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchingController.cs" />
+    <Compile Include="Exceptions\NoGeocodingResultsException.cs" />
     <Compile Include="Exceptions\NoSearchResultsException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -111,6 +112,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\GeocodingManager.cs" />
+    <Compile Include="Services\IGeocodingManager.cs" />
     <Compile Include="Services\ISearchingManager.cs" />
     <Compile Include="Services\SearchingManager.cs" />
     <Compile Include="Validation\RequiredIfPropertyEqualAttribute.cs" />

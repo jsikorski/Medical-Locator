@@ -35,7 +35,7 @@ namespace MedicalLocator.WebFront.Commands
 
             GooglePlacesWcfResponse response
                 = _searchingManager.GetDataFromGooglePlacesApi(centerPosition, allMedicalTypes, FindNearbyRange);
-            Result = response;
+            Result = GetSearchingCommandResult(centerPosition, response);
         }
     }
 }

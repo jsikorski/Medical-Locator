@@ -12,12 +12,14 @@ namespace MedicalLocator.WebFront.Commands
     public class Search : SearchingCommandBase, ICommand<SearchData>
     {
         private readonly ISearchingManager _searchingManager;
+        private readonly IGeocodingManager _geocodingManager;
 
         public object Result { get; private set; }
 
-        public Search(ISearchingManager searchingManager)
+        public Search(ISearchingManager searchingManager, IGeocodingManager geocodingManager)
         {
             _searchingManager = searchingManager;
+            _geocodingManager = geocodingManager;
         }
 
         public void Execute(SearchData commandData)
@@ -29,7 +31,7 @@ namespace MedicalLocator.WebFront.Commands
                 _searchingManager.GetDataFromGooglePlacesApi(centerLocation,
                                                              searchedMedicalTypes,
                                                              searchingRange);
-            Result = new { CenterLocation = centerLocation, GooglePlacesApiResponse = googlePlacesApiResponse };
+            Result = GetSearchingCommandResult(centerLocation, googlePlacesApiResponse);
         }
 
         private Location GetCenterLocationFromCommandData(SearchData commandData)
@@ -39,7 +41,7 @@ namespace MedicalLocator.WebFront.Commands
                 case CenterType.MyLocation:
                     return new Location { Lat = commandData.UserLatitude, Lng = commandData.UserLongitude };
                 case CenterType.Address:
-                    return null;
+                    return _geocodingManager.ExecuteGeocoding(commandData.SearchedAddress);
                 case CenterType.Coordinates:
                     return new Location { Lat = commandData.SearchedLatitude.Value, Lng = commandData.SearchedLongitude.Value };
             }
