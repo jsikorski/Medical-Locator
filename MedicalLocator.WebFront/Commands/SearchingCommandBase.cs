@@ -8,10 +8,10 @@ namespace MedicalLocator.WebFront.Commands
     public abstract class SearchingCommandBase :
         IHandleException<NoSearchResultsException>,
         IHandleException<NoGeocodingResultsException>,
-    IHandleException<EndpointNotFoundException>,
+        IHandleException<EndpointNotFoundException>,
         IHandleException<FaultException<ConnectionFault>>,
         IHandleException<FaultException<InvalidResponseFault>>,
-        IHandleException<FaultException<RequestDeniedFault>>,
+        IHandleException<FaultException<RequestDeniedFault>>
     {
         public ExceptionModel HandleException(NoSearchResultsException exception)
         {

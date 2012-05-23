@@ -95,9 +95,11 @@
     <Compile Include="Infrastructure\ICommandsDataProcessor.cs" />
     <Compile Include="Infrastructure\NotificationType.cs" />
     <Compile Include="Infrastructure\IHandleException.cs" />
+    <Compile Include="Infrastructure\SingleInstanceAttribute.cs" />
     <Compile Include="Models\CenterType.cs" />
     <Compile Include="Models\CommandsData\FindNearbyData.cs" />
     <Compile Include="Models\CommandsData\SearchData.cs" />
+    <Compile Include="Models\CurrentContext.cs" />
     <Compile Include="Models\EnumsValuesProvider.cs" />
     <Compile Include="Models\IEnumsValuesProvider.cs" />
     <Compile Include="Models\MedicalType.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using MedicalLocator.WebFront.DatabaseConnectionReference;
 using MedicalLocator.WebFront.Models;
 using MedicalLocator.WebFront.Models.CommandsData;
@@ -14,6 +15,14 @@ namespace MedicalLocator.WebFront.ViewModels
         public IEnumerable<CenterType> AllCenterTypes { get; set; }
         public IDictionary<MedicalType, bool> MedicalTypesDictionary { get; set; }
 
+        public static SearchDataViewModel CreateUsingContext(
+            IEnumerable<CenterType> allCenterTypes,
+            IDictionary<MedicalType, bool> medicalTypesDictionary,
+            CurrentContext currentContext)
+        {
+            return new SearchDataViewModel(allCenterTypes, medicalTypesDictionary) { SearchData = currentContext.LastSearchData };
+        }
+
         public SearchDataViewModel()
         {
         }
@@ -26,6 +35,11 @@ namespace MedicalLocator.WebFront.ViewModels
 
             AllCenterTypes = allCenterTypes;
             MedicalTypesDictionary = medicalTypesDictionary;
+        }
+
+        public IEnumerable<MedicalType> GetSelectedMedicalTypes()
+        {
+            return MedicalTypesDictionary.Where(pair => pair.Value).Select(pair => pair.Key).ToList();
         }
     }
 }

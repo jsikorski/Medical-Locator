@@ -15,10 +15,12 @@ namespace MedicalLocator.WebFront.Controllers
     public class SearchingController : CommandsController
     {
         private readonly IEnumsValuesProvider _enumsValuesProvider;
+        private readonly CurrentContext _currentContext;
 
-        public SearchingController(IEnumsValuesProvider enumsValuesProvider)
+        public SearchingController(IEnumsValuesProvider enumsValuesProvider, CurrentContext currentContext)
         {
             _enumsValuesProvider = enumsValuesProvider;
+            _currentContext = currentContext;
         }
 
         public ActionResult FindNearby(double longitude, double latitude)
@@ -29,11 +31,7 @@ namespace MedicalLocator.WebFront.Controllers
 
         public ActionResult ShowSearchDialog()
         {
-            var allCenterTypes = _enumsValuesProvider.GetAllCenterTypes();
-            var allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
-            var medicalTypesDictionary = allMedicalTypes.ToDictionary(type => type, type => true);
-
-            var viewModel = new SearchDataViewModel(allCenterTypes, medicalTypesDictionary);
+            var viewModel = GetSearchDataViewModel();
             return PartialView("_SearchDialogPartial", viewModel);
         }
 
@@ -41,18 +39,28 @@ namespace MedicalLocator.WebFront.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var allCenterTypes = _enumsValuesProvider.GetAllCenterTypes();
-                var allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
-                var medicalTypesDictionary = allMedicalTypes.ToDictionary(type => type, type => true);
-                searchDataViewModel.AllCenterTypes = allCenterTypes;
-                searchDataViewModel.MedicalTypesDictionary = medicalTypesDictionary;
-                string view = RenderPartialViewToString("_SearchDialogPartial", searchDataViewModel);
-                return Json(new { validation_status = "Failure", view });
+                //TODO: Check if it will be needed
             }
 
-            var searchedMedicalTypes = searchDataViewModel.MedicalTypesDictionary.Where(pair => pair.Value).Select(pair => pair.Key);
-            searchDataViewModel.SearchData.SearchedMedicalTypes = searchedMedicalTypes;
+            IEnumerable<MedicalType> selectedMedicalTypes = searchDataViewModel.GetSelectedMedicalTypes();
+            searchDataViewModel.SearchData.SearchedMedicalTypes = selectedMedicalTypes;
+            
+            _currentContext.UpdateLastSearchData(searchDataViewModel.SearchData);
             return ProcessCommandData(searchDataViewModel.SearchData, () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
+        }
+
+        private SearchDataViewModel GetSearchDataViewModel()
+        {
+            var allCenterTypes = _enumsValuesProvider.GetAllCenterTypes();
+            var allMedicalTypes = _enumsValuesProvider.GetAllMedicalTypes();
+            var medicalTypesDictionary = allMedicalTypes.ToDictionary(type => type, type => true);
+
+            if (_currentContext.LastSearchData != null)
+            {
+                return SearchDataViewModel.CreateUsingContext(allCenterTypes, medicalTypesDictionary, _currentContext);
+            }
+
+            return new SearchDataViewModel(allCenterTypes, medicalTypesDictionary);
         }
     }
 }
