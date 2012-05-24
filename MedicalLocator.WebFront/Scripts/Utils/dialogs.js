@@ -32,8 +32,7 @@ function DialogsManager() {
             modal: true,
             width: 500,
             title: dialogTitle,
-            resizable: false,
-            draggable: false
+            resizable: false
         });
 
         setDialogCloseHandler(dialogDiv);

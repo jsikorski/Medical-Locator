@@ -18,6 +18,14 @@ function SearchingDialogManager() {
     var searchedLatitudeFieldId = "SearchData_SearchedLatitude";
     var searchedLongitudeFieldId = "SearchData_SearchedLongitude";
 
+    var objectsTabsSelector = "#tabs-2";
+
+    var generalTabIndex = 0;
+    var objectsTabIndex = 1;
+
+    var medicalTypesValidationDivSelector = "#medical_types_validation_div";
+    var medicalTypeCheckBoxSelector = ".medical_type_checkbox";
+
     var hideField = function (fieldId) {
         $("#" + fieldId).parent().hide();
     };
@@ -51,8 +59,55 @@ function SearchingDialogManager() {
         }
     };
 
+    var updateMedicalTypesValidation = function () {
+        if (!isAnyMedicalTypeSelected()) {
+            showMedicalTypesValidationError();
+        } else {
+            hideMedicalTypesValidationError();
+        }
+    };
+
+    var activateTab = function (tabIndex) {
+        $(searchOptionsTabsSelector).tabs({ selected: tabIndex });        
+    };
+
+    var activateGeneralTab = function () {
+        activateTab(generalTabIndex);
+    };
+
+    var activateObjectsTab = function () {
+        activateTab(objectsTabIndex);
+    };
+
+    var isAnyMedicalTypeSelected = function () {
+        var numberOfCheckedMedicalTypes = $(objectsTabsSelector).find("input[type=checkbox]:checked").length;
+        if (numberOfCheckedMedicalTypes > 0) {
+            return true;
+        }
+        return false;
+    };
+
+    var isSearchFormValid = function () {
+        return $(searchFormSelector).valid();
+    };
+
+    var showMedicalTypesValidationError = function () {
+        $(medicalTypesValidationDivSelector).attr("class", "validation-summary-errors");
+    };
+
+    var hideMedicalTypesValidationError = function () {
+        $(medicalTypesValidationDivSelector).attr("class", "validation-summary-valid");
+    };
+
     var onSearchButtonClick = function () {
-        if (!$(searchFormSelector).valid()) {
+        if (!isSearchFormValid()) {
+            activateGeneralTab();
+            return;
+        }
+
+        if (!isAnyMedicalTypeSelected()) {
+            updateMedicalTypesValidation();
+            activateObjectsTab();
             return;
         }
 
@@ -76,10 +131,15 @@ function SearchingDialogManager() {
         updateFieldsVisibility();
     };
 
+    var initializeObjectsTab = function () {
+        $(medicalTypeCheckBoxSelector).change(updateMedicalTypesValidation);
+    };
+
     this.initialize = function () {
         $(searchOptionsTabsSelector).tabs();
         initializeSearchButton();
         initializeGeneralTab();
+        initializeObjectsTab();
     };
 
     this.processSearchResponse = function (response) {

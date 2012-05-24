@@ -1,10 +1,14 @@
 ﻿@using MedicalLocator.WebFront.Models
 @model IDictionary<MedicalType, bool>
-    
+
+<div id="medical_types_validation_div" class="validation-summary-valid">
+    At least one medical type should be selected.
+</div>
+
 @for (int i = 0; i < Model.Count; i++)
 {
     <div>
-        @Html.CheckBox(string.Format("MedicalTypesDictionary[{0}].Value", i), Model.ElementAt(i).Value)
+        @Html.CheckBox(string.Format("MedicalTypesDictionary[{0}].Value", i), Model.ElementAt(i).Value, new { @class = "medical_type_checkbox" })
         @Html.Label(string.Format("MedicalTypesDictionary[{0}].Key", i), Model.ElementAt(i).Key.ToString())
         @Html.Hidden(string.Format("MedicalTypesDictionary[{0}].Key", i), Model.ElementAt(i).Key.ToString())
     </div>

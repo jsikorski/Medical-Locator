@@ -20,12 +20,12 @@
             @Html.Partial("_SearchObjectsTabPartial", Model.MedicalTypesDictionary)
         </div>
     </div>
-    <hr />
 }
+<hr />
+
 <button id="search_button">
     Search
 </button>
-
 <script type="text/javascript">
     function onSearchSuccess(response) {
         searchingDialogManager.processSearchResponse(response);
