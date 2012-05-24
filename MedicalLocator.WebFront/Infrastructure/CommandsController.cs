@@ -10,6 +10,8 @@ namespace MedicalLocator.WebFront.Infrastructure
 {
     public abstract class CommandsController : Controller
     {
+        private const string FailureJsonResultText = "Failure";
+
         public ICommandsDataProcessor CommandsDataProcessor { get; set; }
 
         protected object LastCommandResult { get; private set; }
@@ -73,6 +75,11 @@ namespace MedicalLocator.WebFront.Infrastructure
             }
         }
 
+        protected JsonResult FailureJsonResult()
+        {
+            return Json(FailureJsonResultText, JsonRequestBehavior.AllowGet);
+        }
+
         private ActionResult InvokeFailureAction(ExceptionModel exceptionModel, Func<ActionResult> customOnFailure)
         {
             if (customOnFailure != null)
@@ -86,7 +93,7 @@ namespace MedicalLocator.WebFront.Infrastructure
 
             if (HttpContext.Request.IsAjaxRequest())
             {
-                return Json("Failure", JsonRequestBehavior.AllowGet);
+                return FailureJsonResult();
             }
 
             return new EmptyResult();

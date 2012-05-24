@@ -36,9 +36,10 @@ namespace MedicalLocator.WebFront.Controllers
 
         public ActionResult Search(SearchDataViewModel searchDataViewModel)
         {
-            if (!ModelState.IsValid)
+            if (!IsSearchDataViewModelValid(searchDataViewModel))
             {
-                //TODO: Check if it will be needed
+                SetNotification(NotificationType.Error, "Some of the input data are invalid.");
+                return FailureJsonResult();
             }
 
             IEnumerable<MedicalType> selectedMedicalTypes = searchDataViewModel.GetSelectedMedicalTypes();
@@ -61,6 +62,11 @@ namespace MedicalLocator.WebFront.Controllers
 
             var medicalTypesDictionary = allMedicalTypes.ToDictionary(type => type, type => true);
             return new SearchDataViewModel(allCenterTypes, medicalTypesDictionary);
+        }
+
+        private bool IsSearchDataViewModelValid(SearchDataViewModel searchDataViewModel)
+        {
+            return ModelState.IsValid && searchDataViewModel.GetSelectedMedicalTypes().Any();
         }
     }
 }
