@@ -145,8 +145,8 @@ namespace DatabaseConnectionService
 
                     var user = userList[0];
                     user.LastSearch = lastSearch;
-                    session.SaveChanges();
                     session.Store(user);
+                    session.SaveChanges();
 
                     return SaveSettingsResponse.CreateValid();
                 }
