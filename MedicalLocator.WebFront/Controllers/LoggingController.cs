@@ -25,10 +25,10 @@ namespace MedicalLocator.WebFront.Controllers
             return PartialView("_LoginDialogPartial", viewModel);
         }
 
-        public ActionResult Login(string login, string password)
+        public ActionResult Login(string login, string password, bool rememberMe)
         {
             var loginDataViewModel = new LoginDataViewModel();
-            loginDataViewModel.LoginData = new LoginData {Login = login, Password = password};
+            loginDataViewModel.LoginData = new LoginData {Login = login, Password = password, RememberMe = rememberMe};
 
             if (!IsLoginDataViewModelValid(loginDataViewModel))
             {
