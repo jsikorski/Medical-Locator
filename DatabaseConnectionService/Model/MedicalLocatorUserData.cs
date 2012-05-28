@@ -19,6 +19,7 @@ namespace DatabaseConnectionService.Model
     public class MedicalLocatorUserData
     {
         public Guid Id { get; set; }
+        public Guid UserId { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public MedicalLocatorUserLastSearch LastSearch { get; set; }
@@ -38,6 +39,7 @@ namespace DatabaseConnectionService.Model
 
             var user = new MedicalLocatorUserData
             {
+                UserId = Guid.NewGuid(),
                 Login = login,
                 Password = password,
                 LastSearch = lastSearch

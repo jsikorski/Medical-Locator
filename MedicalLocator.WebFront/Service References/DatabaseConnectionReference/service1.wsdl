@@ -19,6 +19,12 @@
   <wsdl:message name="IDatabaseConnectionService_Register_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterResponse" />
   </wsdl:message>
+  <wsdl:message name="IDatabaseConnectionService_SaveSettingsEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSettingsEx" />
+  </wsdl:message>
+  <wsdl:message name="IDatabaseConnectionService_SaveSettingsEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSettingsExResponse" />
+  </wsdl:message>
   <wsdl:message name="IDatabaseConnectionService_SaveSettings_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveSettings" />
   </wsdl:message>
@@ -33,6 +39,10 @@
     <wsdl:operation name="Register">
       <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/Register" message="tns:IDatabaseConnectionService_Register_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseConnectionService/RegisterResponse" message="tns:IDatabaseConnectionService_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveSettingsEx">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/SaveSettingsEx" message="tns:IDatabaseConnectionService_SaveSettingsEx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDatabaseConnectionService/SaveSettingsExResponse" message="tns:IDatabaseConnectionService_SaveSettingsEx_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SaveSettings">
       <wsdl:input wsaw:Action="http://tempuri.org/IDatabaseConnectionService/SaveSettings" message="tns:IDatabaseConnectionService_SaveSettings_InputMessage" />
@@ -52,6 +62,15 @@
     </wsdl:operation>
     <wsdl:operation name="Register">
       <soap:operation soapAction="http://tempuri.org/IDatabaseConnectionService/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveSettingsEx">
+      <soap:operation soapAction="http://tempuri.org/IDatabaseConnectionService/SaveSettingsEx" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

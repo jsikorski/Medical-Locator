@@ -9,7 +9,7 @@ using MedicalLocator.WebFront.Services;
 
 namespace MedicalLocator.WebFront.Commands
 {
-    public class Register : LoggingCommandBase, ICommand<RegisterData>
+    public class Register : DatabaseCommandBase, ICommand<RegisterData>
     {
         private readonly IDatabaseManager _databaseManager;
 

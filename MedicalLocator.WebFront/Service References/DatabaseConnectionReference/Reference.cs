@@ -111,6 +111,9 @@ namespace MedicalLocator.WebFront.DatabaseConnectionReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid UserIdField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -169,6 +172,19 @@ namespace MedicalLocator.WebFront.DatabaseConnectionReference {
                 if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
                     this.PasswordField = value;
                     this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
                 }
             }
         }
@@ -477,6 +493,9 @@ namespace MedicalLocator.WebFront.DatabaseConnectionReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDatabaseConnectionService/Register", ReplyAction="http://tempuri.org/IDatabaseConnectionService/RegisterResponse")]
         MedicalLocator.WebFront.DatabaseConnectionReference.RegisterResponse Register(bool licenceAgree, string login, string password, string passwordRetype);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDatabaseConnectionService/SaveSettingsEx", ReplyAction="http://tempuri.org/IDatabaseConnectionService/SaveSettingsExResponse")]
+        MedicalLocator.WebFront.DatabaseConnectionReference.SaveSettingsResponse SaveSettingsEx(System.Guid userId, MedicalLocator.WebFront.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDatabaseConnectionService/SaveSettings", ReplyAction="http://tempuri.org/IDatabaseConnectionService/SaveSettingsResponse")]
         MedicalLocator.WebFront.DatabaseConnectionReference.SaveSettingsResponse SaveSettings(string login, string password, MedicalLocator.WebFront.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch);
     }
@@ -514,6 +533,10 @@ namespace MedicalLocator.WebFront.DatabaseConnectionReference {
         
         public MedicalLocator.WebFront.DatabaseConnectionReference.RegisterResponse Register(bool licenceAgree, string login, string password, string passwordRetype) {
             return base.Channel.Register(licenceAgree, login, password, passwordRetype);
+        }
+        
+        public MedicalLocator.WebFront.DatabaseConnectionReference.SaveSettingsResponse SaveSettingsEx(System.Guid userId, MedicalLocator.WebFront.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch) {
+            return base.Channel.SaveSettingsEx(userId, lastSearch);
         }
         
         public MedicalLocator.WebFront.DatabaseConnectionReference.SaveSettingsResponse SaveSettings(string login, string password, MedicalLocator.WebFront.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch) {

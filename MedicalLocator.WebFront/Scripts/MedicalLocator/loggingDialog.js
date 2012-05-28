@@ -28,6 +28,10 @@ function LoggingDialogManager() {
         loggingManager.processLoginResponse();
 
         if (responsesController.isResponseValid(response)) {
+            $("#user_name_text").html("Hello, " + ($("#Login").val()));
+            $("#login_block").hide();
+            $("#logout_block").show();
+            
             dialogsManager.closeDialog();
         }
     };

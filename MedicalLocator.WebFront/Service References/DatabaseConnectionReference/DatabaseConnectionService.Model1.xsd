@@ -15,6 +15,7 @@
       <xs:element minOccurs="0" name="LastSearch" nillable="true" type="tns:MedicalLocatorUserLastSearch" />
       <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" type="ser:guid" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MedicalLocatorUserData" nillable="true" type="tns:MedicalLocatorUserData" />

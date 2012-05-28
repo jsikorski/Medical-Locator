@@ -1,22 +1,41 @@
-﻿<div id="login_block">
-    @if (User.Identity.IsAuthenticated)
-    {
-        <a>@User.Identity.Name</a>
-    }
-    else
-    {
-        <div id="login_menu_button" class="menu_item">
-            <a>Login</a>
-        </div>
-    }
+﻿@if (User.Identity.IsAuthenticated)
+{
+    @Html.Hidden("is_authenticated_at_start", true);
+}
+    
+<div id="logout_block">
+    <span id="user_name_text" class="logged_in_user_name">Hello,
+        @User.Identity.Name
+    </span>
+    <div id="logout_menu_button" class="menu_item">
+        <a>Logout</a>
+    </div>
 </div>
-
+    
+<div id="login_block" style="display: block">
+    <div id="login_menu_button" class="menu_item">
+        <a>Login</a>
+    </div>
+</div>
 
 <script type="text/javascript">
     $(function () {
+        
+        if ($("#is_authenticated_at_start").attr("value"))
+         {
+            $("#login_block").hide();
+            $("#logout_block").show();
+        } else {
+            $("#login_block").show();
+            $("#logout_block").hide();
+        }
+
         var menuManager = new MenuManager();
 
         var loginButtonElement = $("#login_menu_button");
         menuManager.initializeLoginButton(loginButtonElement);
+
+        var logoutButtonElement = $("#logout_menu_button");
+        menuManager.initializeLogoutButton(logoutButtonElement);
     });
 </script>

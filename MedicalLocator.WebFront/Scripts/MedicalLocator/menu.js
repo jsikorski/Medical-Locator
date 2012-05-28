@@ -28,7 +28,17 @@
             }
         });
     };
-    
+
+    var onLogoutButtonClick = function () {
+        $.ajax({
+            url: "Logging/Logout",
+            success: function (response) {
+                $("#login_block").show();
+                $("#logout_block").hide();
+            }
+        });
+    };
+   
     this.initializeFindNearbyButton = function (findNearbyButtonElement) {
         findNearbyButtonElement.click(onFindNearbyButtonClick);
     };
@@ -39,5 +49,9 @@
 
     this.initializeLoginButton = function (loginButtonElement) {
         loginButtonElement.click(onLoginButtonClick);
+    };
+    
+    this.initializeLogoutButton = function (logoutButtonElement) {
+        logoutButtonElement.click(onLogoutButtonClick);
     };
 }

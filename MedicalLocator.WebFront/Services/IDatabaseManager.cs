@@ -8,7 +8,8 @@ namespace MedicalLocator.WebFront.Services
     public interface IDatabaseManager
     {
         void TryRegister(RegisterData registerData);
-        void TrySaveSettings(char saveSettingsData);
+        void TrySaveSettings();
         void TryLogin(LoginData loginData);
+        void TryLogout();
     }
 }

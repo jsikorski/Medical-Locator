@@ -73,9 +73,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Logout.cs" />
     <Compile Include="Commands\Register.cs" />
     <Compile Include="Commands\Login.cs" />
-    <Compile Include="Commands\LoggingCommandBase.cs" />
+    <Compile Include="Commands\DatabaseCommandBase.cs" />
     <Compile Include="Commands\FindNearby.cs" />
     <Compile Include="Commands\Search.cs" />
     <Compile Include="Commands\SearchingCommandBase.cs" />
@@ -83,6 +84,9 @@
     <Compile Include="Controllers\LoggingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchingController.cs" />
+    <Compile Include="Exceptions\InvalidSaveSettingsException.cs" />
+    <Compile Include="Exceptions\InvalidLoginException.cs" />
+    <Compile Include="Exceptions\InvalidRegisterException.cs" />
     <Compile Include="Exceptions\NoGeocodingResultsException.cs" />
     <Compile Include="Exceptions\NoSearchResultsException.cs" />
     <Compile Include="Global.asax.cs">
@@ -101,6 +105,7 @@
     <Compile Include="Infrastructure\NotificationType.cs" />
     <Compile Include="Infrastructure\IHandleException.cs" />
     <Compile Include="Models\CenterType.cs" />
+    <Compile Include="Models\CommandsData\LogoutData.cs" />
     <Compile Include="Models\CommandsData\LoginData.cs" />
     <Compile Include="Models\CommandsData\FindNearbyData.cs" />
     <Compile Include="Models\CommandsData\SearchData.cs" />

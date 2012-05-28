@@ -40,6 +40,11 @@ namespace MedicalLocator.WebFront.Controllers
                                       () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
         }
 
+        public ActionResult Logout()
+        {
+            return ProcessCommandData(new LogoutData(), () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
+        }
+
         private bool IsLoginDataViewModelValid(LoginDataViewModel loginDataViewModel)
         {
             return ModelState.IsValid && loginDataViewModel.LoginData.IsValid();

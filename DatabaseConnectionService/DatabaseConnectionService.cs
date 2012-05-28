@@ -98,6 +98,29 @@ namespace DatabaseConnectionService
             return RegisterResponse.CreateValid();
         }
 
+        public SaveSettingsResponse SaveSettingsEx(Guid userId, MedicalLocatorUserLastSearch lastSearch)
+        {
+            // Store data in database.
+            using (IDocumentStore documentStore = new DocumentStore() { Url = "http://localhost:8080" })
+            {
+                documentStore.Initialize();
+                using (var session = documentStore.OpenSession())
+                {
+                    var userList = session.Query<MedicalLocatorUserData>().Where(u => (u.UserId == userId)).ToList();
+
+                    if (userList.Count != 1)
+                        return SaveSettingsResponse.CreateInvalid("Error while saving settings: Incorrect user ID.");
+
+                    var user = userList[0];
+                    user.LastSearch = lastSearch;
+                    session.SaveChanges();
+                    session.Store(user);
+                    return SaveSettingsResponse.CreateValid();
+                }
+            }
+        }
+
+        // ! Zachowane wyłącznie dla zgodności z wersją na WP7, zmodyfikować ją tak by używała tej powyższej metody.
         public SaveSettingsResponse SaveSettings(string login, string password, MedicalLocatorUserLastSearch lastSearch)
         {
             if (login.Length < 3 || login.Length > 16)
@@ -122,8 +145,8 @@ namespace DatabaseConnectionService
 
                     var user = userList[0];
                     user.LastSearch = lastSearch;
-                    session.Store(user);
                     session.SaveChanges();
+                    session.Store(user);
 
                     return SaveSettingsResponse.CreateValid();
                 }

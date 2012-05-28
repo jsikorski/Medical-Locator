@@ -40,3 +40,23 @@
     margin-right: 15px;
     margin-left: 0px;
 }
+
+#logout_block
+{
+    float: right;
+    margin-right: 15px;
+    margin-left: 0px;
+}
+
+.logged_in_user_name
+{
+    font-size: 1.0em;
+    font-weight: normal;
+    text-decoration: none;
+    color: white;
+    background: transparent;
+    display: inline-block;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 15px;
+}

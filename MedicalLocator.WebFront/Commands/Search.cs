@@ -13,13 +13,15 @@ namespace MedicalLocator.WebFront.Commands
     {
         private readonly ISearchingManager _searchingManager;
         private readonly IGeocodingManager _geocodingManager;
+        private readonly IDatabaseManager _databaseManager;
 
         public object Result { get; private set; }
 
-        public Search(ISearchingManager searchingManager, IGeocodingManager geocodingManager)
+        public Search(ISearchingManager searchingManager, IGeocodingManager geocodingManager, IDatabaseManager databaseManager)
         {
             _searchingManager = searchingManager;
             _geocodingManager = geocodingManager;
+            _databaseManager = databaseManager;
         }
 
         public void Execute(SearchData commandData)
@@ -31,6 +33,9 @@ namespace MedicalLocator.WebFront.Commands
                 _searchingManager.GetDataFromGooglePlacesApi(centerLocation,
                                                              searchedMedicalTypes,
                                                              searchingRange);
+
+            _databaseManager.TrySaveSettings();
+
             Result = GetSearchingCommandResult(centerLocation, googlePlacesApiResponse);
         }
 

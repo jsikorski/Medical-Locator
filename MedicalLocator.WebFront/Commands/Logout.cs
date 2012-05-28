@@ -9,20 +9,20 @@ using MedicalLocator.WebFront.Services;
 
 namespace MedicalLocator.WebFront.Commands
 {
-    public class Login : DatabaseCommandBase, ICommand<LoginData>
+    public class Logout : DatabaseCommandBase, ICommand<LogoutData>
     {
         private readonly IDatabaseManager _databaseManager;
 
         public object Result { get; private set; }
 
-        public Login(IDatabaseManager databaseManager)
+        public Logout(IDatabaseManager databaseManager)
         {
             _databaseManager = databaseManager;
         }
 
-        public void Execute(LoginData commandData)
+        public void Execute(LogoutData logout)
         {
-            _databaseManager.TryLogin(commandData);
+            _databaseManager.TryLogout();
         }
     }
 }
