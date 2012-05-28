@@ -36,31 +36,13 @@ namespace MedicalLocator.WebFront.Controllers
                 return FailureJsonResult();
             }
 
-            return ProcessCommandData(loginDataViewModel.LoginData, () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
-        }
-
-        public ActionResult Register(string login, string password)
-        {
-            var registerDataViewModel = new LoginDataViewModel();
-            registerDataViewModel.RegisterData = new RegisterData { Login = login, Password = password };
-
-            if (!IsRegisterDataViewModelValid(registerDataViewModel))
-            {
-                SetNotification(NotificationType.Error, "Some of the input data are invalid.");
-                return FailureJsonResult();
-            }
-
-            return ProcessCommandData(registerDataViewModel.RegisterData, () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
+            return ProcessCommandData(loginDataViewModel.LoginData,
+                                      () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
         }
 
         private bool IsLoginDataViewModelValid(LoginDataViewModel loginDataViewModel)
         {
             return ModelState.IsValid && loginDataViewModel.LoginData.IsValid();
-        }
-
-        private bool IsRegisterDataViewModelValid(LoginDataViewModel loginDataViewModel)
-        {
-            return ModelState.IsValid && loginDataViewModel.RegisterData.IsValid();
         }
     }
 }

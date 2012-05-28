@@ -79,6 +79,7 @@
     <Compile Include="Commands\FindNearby.cs" />
     <Compile Include="Commands\Search.cs" />
     <Compile Include="Commands\SearchingCommandBase.cs" />
+    <Compile Include="Controllers\RegisteringController.cs" />
     <Compile Include="Controllers\LoggingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchingController.cs" />

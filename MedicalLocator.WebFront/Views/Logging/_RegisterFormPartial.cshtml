@@ -1,6 +1,6 @@
 ﻿@model MedicalLocator.WebFront.Models.CommandsData.RegisterData
            
-@using (Ajax.BeginForm("Register", "Logging", null,
+@using (Ajax.BeginForm("Register", "Registering", null,
     new AjaxOptions { OnSuccess = "onRegisterSuccess" },
     new { id = "register_form" }))
 {
