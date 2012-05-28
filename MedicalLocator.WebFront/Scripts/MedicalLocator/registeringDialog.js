@@ -6,6 +6,7 @@ function RegisteringDialogManager() {
 
     var registerFormSelector = "#register_form";
     var registerButtonSelector = "#register_button";
+    var loginOptionsTabsSelector = "#login_options_tabs";
 
     var onRegisterButtonClick = function () {
         if (!$(registerFormSelector).valid()) {
@@ -25,7 +26,7 @@ function RegisteringDialogManager() {
         registeringManager.processRegisterResponse();
 
         if (responsesController.isResponseValid(response)) {
-            dialogsManager.closeDialog();
+            $(loginOptionsTabsSelector).tabs({ selected: 0 }); // login tab
         }
     };
 }
