@@ -19,10 +19,10 @@ namespace MedicalLocator.WebFront.Controllers
         {
         }
 
-        public ActionResult Register(string login, string password)
+        public ActionResult Register(string login, string password, string passwordRetype, bool licenceAgree)
         {
             var registerDataViewModel = new LoginDataViewModel();
-            registerDataViewModel.RegisterData = new RegisterData { Login = login, Password = password };
+            registerDataViewModel.RegisterData = new RegisterData { Login = login, Password = password, PasswordRetype = passwordRetype, LicenceAgree = licenceAgree};
 
             if (!IsRegisterDataViewModelValid(registerDataViewModel))
             {

@@ -88,7 +88,7 @@ namespace DatabaseConnectionService
                 {
                     var hasLogin = session.Query<MedicalLocatorUserData>().Any(u => u.Login == login);
                     if (hasLogin)
-                        return RegisterResponse.CreateInvalid("There is a user with username '" + login + "'. Try a different login.");
+                        return RegisterResponse.CreateInvalid("There is an user with username '" + login + "'. Try a different login.");
 
                     session.Store(MedicalLocatorUserData.CreateDefaultUser(login, hashedPassword));
                     session.SaveChanges();

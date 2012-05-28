@@ -13,9 +13,9 @@
     <div>
         @Html.PasswordFor(model => model.Password)
     </div>
+    
+    @Html.NamedCheckBoxFor("Remember me?", model => model.RememberMe);
 }
-
-@*@Ajax.ActionLink("logout", "Logout", "Logging", null);*@
 
 <hr />
 

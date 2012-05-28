@@ -19,6 +19,9 @@ namespace MedicalLocator.WebFront.Models.CommandsData
         [MinLength(4), MaxLength(16)]
         public string Password { get; set; }
 
+        [DisplayName("Remember me?")]
+        public bool RememberMe { get; set; }
+
         public bool IsValid()
         {
             return true; // todo: pewnie da sie lepiej niz ifem po wszystkich parametrach
@@ -26,6 +29,7 @@ namespace MedicalLocator.WebFront.Models.CommandsData
 
         public LoginData()
         {
+            RememberMe = false;
         }
     }
 }
