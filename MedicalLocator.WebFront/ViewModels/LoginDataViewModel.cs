@@ -19,15 +19,5 @@ namespace MedicalLocator.WebFront.ViewModels
             LoginData = new LoginData();
             RegisterData = new RegisterData();
         }
-
-        // Constructor public for ASP binding
-       // public SearchDataViewModel()
-      //  {
-      //  }
-
-      //  private static bool WasMedicalTypeSelected(MedicalType medicalType, SearchData lastSearchData)
-      //  {
-      //      return lastSearchData.SearchedMedicalTypes.Contains(medicalType);
-      //  }
     }
 }

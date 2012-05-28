@@ -24,7 +24,7 @@
             success: function (response) {
                 dialogsManager.addDialogDiv();
                 dialogsManager.placeContentIntoDialogDiv(response);
-                dialogsManager.initializeDialog("Login");
+                dialogsManager.initializeDialog("Login or register");
             }
         });
     };

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 using MedicalLocator.WebFront.Infrastructure;
 using MedicalLocator.WebFront.Validation;
 
@@ -9,23 +10,29 @@ namespace MedicalLocator.WebFront.Models.CommandsData
 {
     public class RegisterData : ICommandData
     {
+        private const string LoginRegex = @"^[a-zA-Z][a-zA-Z0-9]*$";
+        private const string PasswordRegex = @"^[a-zA-Z][a-zA-Z0-9\!@#$%^&*-_=+]*$";
+
         [DisplayName("Licence Agreement")]
         [Required]
         public bool LicenceAgree { get; set; }
 
         [DisplayName("Login")]
         [Required]
-        [MinLength(3), MaxLength(16)]
+        [StringLength(16, MinimumLength = 3, ErrorMessage = "Login must be between 3 and 16 characters long.")]
+        [RegularExpression(LoginRegex, ErrorMessage = "Special characters are not allowed in login.")]
         public string Login { get; set; }
 
         [DisplayName("Password")]
         [Required]
-        [MinLength(4), MaxLength(16)]
+        [StringLength(16, MinimumLength = 4, ErrorMessage = "Password must be between 4 and 16 characters long.")]
+        [RegularExpression(PasswordRegex, ErrorMessage = "Special characters are not allowed in password.")]
         public string Password { get; set; }
 
         [DisplayName("Retype password")]
         [Required]
-        [MinLength(4), MaxLength(16)]
+        [StringLength(16, MinimumLength = 4, ErrorMessage = "Password must be between 4 and 16 characters long.")]
+        [RegularExpression(PasswordRegex, ErrorMessage = "Special characters are not allowed in password.")]
         public string PasswordRetype { get; set; }
 
         public bool IsValid()
