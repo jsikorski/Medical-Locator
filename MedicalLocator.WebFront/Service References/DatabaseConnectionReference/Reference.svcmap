@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.2.10:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.1.4:8085/DatabaseConnectionService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="7b5ffc55-033f-449e-ab34-5e7ceec8e5c3" SourceId="1" SourceUrl="http://192.168.2.10:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="a0c28146-6842-4d4f-8739-843f46fd0b20" SourceId="1" SourceUrl="http://192.168.2.10:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="08475f57-bc4c-4a28-84df-c77f54cb2695" SourceId="1" SourceUrl="http://192.168.2.10:8085/DatabaseConnectionService/mex" />
-    <MetadataFile FileName="DatabaseConnectionService.Model1.xsd" MetadataType="Schema" ID="5f194eee-44c5-4dc9-ba5d-99a5b61e01ff" SourceId="1" SourceUrl="http://192.168.2.10:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="20a6cabc-a34a-4fc3-ab42-aee8277f4d07" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="15a4f25f-947e-44aa-94e3-9f74f84c76b1" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="service3.xsd" MetadataType="Schema" ID="509864ff-4458-4177-92ef-c9d52c30618c" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
+    <MetadataFile FileName="DatabaseConnectionService.Model1.xsd" MetadataType="Schema" ID="d05a0fe6-6465-4c18-bad1-11a50e3bee8a" SourceId="1" SourceUrl="http://192.168.1.4:8085/DatabaseConnectionService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

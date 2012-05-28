@@ -25,6 +25,10 @@
         @Content.Script(Url, "~/Scripts/MedicalLocator/geoLocation.js")
         @Content.Script(Url, "~/Scripts/MedicalLocator/searching.js")
         @Content.Script(Url, "~/Scripts/MedicalLocator/searchingDialog.js")
+        @Content.Script(Url, "~/Scripts/MedicalLocator/logging.js")
+        @Content.Script(Url, "~/Scripts/MedicalLocator/loggingDialog.js")
+        @Content.Script(Url, "~/Scripts/MedicalLocator/registering.js")
+        @Content.Script(Url, "~/Scripts/MedicalLocator/registeringDialog.js")
         
     </head>
     <body>
@@ -40,6 +44,7 @@
     </body>
 </html>
 
-@helper StyleSheet(string cssUrl) {
+@helper StyleSheet(string cssUrl)
+    {
     <link href="@Url.Content(cssUrl)" rel="stylesheet" type="text/css"/>    
 }

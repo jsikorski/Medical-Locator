@@ -1,0 +1,33 @@
+﻿@model MedicalLocator.WebFront.Models.CommandsData.LoginData
+
+@using (Ajax.BeginForm("Login", "Logging", null,
+    new AjaxOptions { OnSuccess = "onLoginSuccess" },
+    new { id = "login_form" }))
+{
+    @Html.FieldFor(model => model.Login)
+
+    <div>
+        @Html.LabelFor(model => model.Password)
+    </div>
+    
+    <div>
+        @Html.PasswordFor(model => model.Password)
+    </div>
+}
+
+<hr />
+
+<button id="login_button">
+    Login
+</button>
+
+<script type="text/javascript">
+    function onLoginSuccess(response) {
+        loggingDialogManager.processLoginResponse(response);
+    }
+    
+    $(function () {
+        $.validator.unobtrusive.parse(document);
+        loggingDialogManager.initialize();
+    });
+</script>

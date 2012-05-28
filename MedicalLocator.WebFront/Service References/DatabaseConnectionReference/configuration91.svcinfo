@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="MWE2+i9tI50irc8CCUvHERoBvh0=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="OLRmwU3RJFzFMzPA9zIX6eVQX7s=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IDatabaseConnectionService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IDatabaseConnectionService" contract="DatabaseConnectionReference.IDatabaseConnectionService" bindingType="basicHttpBinding" address="http://192.168.2.10:8085/DatabaseConnectionService/Service.svc" bindingConfiguration="BasicHttpBinding_IDatabaseConnectionService">
+    <endpoint name="BasicHttpBinding_IDatabaseConnectionService" contract="DatabaseConnectionReference.IDatabaseConnectionService" bindingType="basicHttpBinding" address="http://192.168.1.4:8085/DatabaseConnectionService/Service.svc" bindingConfiguration="BasicHttpBinding_IDatabaseConnectionService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://192.168.2.10:8085/DatabaseConnectionService/Service.svc</serializedValue>
+          <serializedValue>http://192.168.1.4:8085/DatabaseConnectionService/Service.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

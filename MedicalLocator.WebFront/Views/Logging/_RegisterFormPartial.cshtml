@@ -1,0 +1,45 @@
+﻿@model MedicalLocator.WebFront.Models.CommandsData.RegisterData
+           
+@using (Ajax.BeginForm("Register", "Logging", null,
+    new AjaxOptions { OnSuccess = "onRegisterSuccess" },
+    new { id = "register_form" }))
+{
+    @Html.FieldFor(model => model.Login)
+
+    <div>
+        @Html.LabelFor(model => model.Password)
+    </div>
+    
+    @Html.PasswordFor(model => model.Password)
+
+    <div>
+        @Html.LabelFor(model => model.PasswordRetype)
+    </div>
+    
+    @Html.PasswordFor(model => model.PasswordRetype)
+
+    <p>
+        <textarea rows="5" cols="50" readonly="readonly" >
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris id mauris at augue faucibus condimentum. Nulla quam felis, vehicula nec lacinia id, rutrum non enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis malesuada hendrerit purus, vitae varius sem ullamcorper nec. Morbi vitae odio quam. Ut accumsan eleifend lorem, non faucibus ante cursus in. Maecenas nisl augue, tincidunt at scelerisque nec, ultrices eu justo. Nam aliquet malesuada pulvinar. Vestibulum erat lacus, scelerisque non ultrices a, ultrices id sem. Phasellus laoreet vestibulum tincidunt. ")
+        </textarea>
+   
+        @Html.NamedCheckBoxFor("Licence Agreement", model => model.LicenceAgree)
+    </p>
+}
+
+<hr />
+
+<button id="register_button">
+    Register
+</button>
+
+<script type="text/javascript">
+    function onRegisterSuccess(response) {
+        registeringDialogManager.processRegisterResponse(response);
+    }
+
+    $(function () {
+        $.validator.unobtrusive.parse(document);
+        registeringDialogManager.initialize();
+    });
+</script>

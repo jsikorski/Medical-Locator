@@ -741,12 +741,12 @@ namespace MedicalLocator.WebFront.GoogleMapsInterfaceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequest", ReplyAction="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestRespo" +
             "nse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.ConnectionFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestConne" +
-            "ctionFaultFault", Name="ConnectionFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.IncorectCharsInAddressFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestIncor" +
-            "ectCharsInAddressFaultFault", Name="IncorectCharsInAddressFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.InvalidResponseFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestInval" +
             "idResponseFaultFault", Name="InvalidResponseFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.IncorectCharsInAddressFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestIncor" +
+            "ectCharsInAddressFaultFault", Name="IncorectCharsInAddressFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.ConnectionFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestConne" +
+            "ctionFaultFault", Name="ConnectionFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.WebFront.GoogleMapsInterfaceReference.RequestDeniedFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestReque" +
             "stDeniedFaultFault", Name="RequestDeniedFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         MedicalLocator.WebFront.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse SendGoogleGeocodingApiRequest(MedicalLocator.WebFront.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest request);

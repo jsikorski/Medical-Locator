@@ -73,9 +73,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Register.cs" />
+    <Compile Include="Commands\Login.cs" />
+    <Compile Include="Commands\LoggingCommandBase.cs" />
     <Compile Include="Commands\FindNearby.cs" />
     <Compile Include="Commands\Search.cs" />
     <Compile Include="Commands\SearchingCommandBase.cs" />
+    <Compile Include="Controllers\LoggingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchingController.cs" />
     <Compile Include="Exceptions\NoGeocodingResultsException.cs" />
@@ -96,6 +100,7 @@
     <Compile Include="Infrastructure\NotificationType.cs" />
     <Compile Include="Infrastructure\IHandleException.cs" />
     <Compile Include="Models\CenterType.cs" />
+    <Compile Include="Models\CommandsData\LoginData.cs" />
     <Compile Include="Models\CommandsData\FindNearbyData.cs" />
     <Compile Include="Models\CommandsData\SearchData.cs" />
     <Compile Include="Models\EnumsValuesProvider.cs" />
@@ -112,12 +117,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\IDatabaseManager.cs" />
+    <Compile Include="Services\DatabaseManager.cs" />
     <Compile Include="Services\GeocodingManager.cs" />
     <Compile Include="Services\IGeocodingManager.cs" />
     <Compile Include="Services\ISearchingManager.cs" />
+    <Compile Include="Models\CommandsData\RegisterData.cs" />
     <Compile Include="Services\SearchingManager.cs" />
     <Compile Include="Services\SessionManager.cs" />
     <Compile Include="Validation\RequiredIfPropertyEqualAttribute.cs" />
+    <Compile Include="ViewModels\LoginDataViewModel.cs" />
     <Compile Include="ViewModels\SearchDataViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +162,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jQuery\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jQuery\jquery-ui-1.8.20.custom.min.js" />
+    <Content Include="Scripts\MedicalLocator\registeringDialog.js" />
+    <Content Include="Scripts\MedicalLocator\registering.js" />
+    <Content Include="Scripts\MedicalLocator\logging.js" />
+    <Content Include="Scripts\MedicalLocator\loggingDialog.js" />
     <Content Include="Scripts\MedicalLocator\geoLocation.js" />
     <Content Include="Scripts\MedicalLocator\googleMaps.js" />
     <Content Include="Scripts\MedicalLocator\menu.js" />
@@ -239,6 +252,9 @@
     <Content Include="Views\Home\_GoogleMapPartial.cshtml" />
     <Content Include="Views\Searching\_SearchObjectsTabPartial.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Logging\_LoginDialogPartial.cshtml" />
+    <Content Include="Views\Logging\_LoginFormPartial.cshtml" />
+    <Content Include="Views\Logging\_RegisterFormPartial.cshtml" />
     <None Include="Service References\GoogleMapsInterfaceReference\service1.wsdl" />
     <None Include="Service References\GoogleMapsInterfaceReference\service2.xsd">
       <SubType>Designer</SubType>

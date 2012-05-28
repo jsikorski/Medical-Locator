@@ -1,0 +1,15 @@
+﻿@using MedicalLocator.WebFront.ViewModels
+@model LoginDataViewModel 
+
+<div id="login_options_tabs">
+    <ul>
+        <li><a href="#tabs-login">Login</a></li>
+        <li><a href="#tabs-register">Register</a></li>
+    </ul>
+    <div id="tabs-login">
+        @Html.Partial("_LoginFormPartial", Model.LoginData)
+    </div>
+    <div id="tabs-register">
+        @Html.Partial("_RegisterFormPartial", Model.RegisterData)
+    </div>
+</div>
