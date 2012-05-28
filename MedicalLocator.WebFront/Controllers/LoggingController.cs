@@ -36,12 +36,15 @@ namespace MedicalLocator.WebFront.Controllers
                 return FailureJsonResult();
             }
 
+            SetNotification(NotificationType.Info, "Succesfully logged in as " + login);
+
             return ProcessCommandData(loginDataViewModel.LoginData,
                                       () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
         }
 
         public ActionResult Logout()
         {
+            SetNotification(NotificationType.Info, "Logged out.");
             return ProcessCommandData(new LogoutData(), () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
         }
 

@@ -30,6 +30,8 @@ namespace MedicalLocator.WebFront.Controllers
                 return FailureJsonResult();
             }
 
+            SetNotification(NotificationType.Info, "Succesfully registered as " + login);
+
             return ProcessCommandData(registerDataViewModel.RegisterData, () => Json(LastCommandResult, JsonRequestBehavior.AllowGet));
         }
 
