@@ -147,3 +147,37 @@ span.field-validation-error
 {
     float: right;
 }
+
+
+/* Styles for no javascript image 
+-----------------------------------------------------------*/
+#no_javascript
+{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: white;
+    z-index: 1;
+    z-index: 9999;
+}
+
+#no_javascript_message
+{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-left: -40%;
+    width: 80%;
+    text-align: center;
+}
+
+#no_javascript_message span {
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+
+#no_javascript_message img {
+    vertical-align: middle;
+}

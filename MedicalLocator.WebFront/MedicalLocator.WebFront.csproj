@@ -138,6 +138,7 @@
   <ItemGroup>
     <Content Include="Content\GoogleMaps.css" />
     <Content Include="Content\Graphics\busy.gif" />
+    <Content Include="Content\Graphics\error.png" />
     <Content Include="Content\Graphics\Icons\dentist.png" />
     <Content Include="Content\Graphics\Icons\doctor.png" />
     <Content Include="Content\Graphics\Icons\health.png" />
@@ -268,6 +269,7 @@
     <None Include="Service References\GoogleMapsInterfaceReference\service3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Shared\_NoJavascriptPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

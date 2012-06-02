@@ -68,12 +68,10 @@ function SearchingManager() {
     };
 
     this.findNearby = function () {
-        busyIndicator.beginBusy();
         geoLocationProvider.getLocation(onLocationFoundForFindNearby);
     };
 
     this.searchUsingUserLocation = function () {
-        busyIndicator.beginBusy();
         geoLocationProvider.getLocation(onLocationFoundForSearchUsingUserLocation);
     };
 

@@ -12,7 +12,13 @@
     };
 
     this.getLocation = function (onLocationFound) {
-        lastOnLocationFound = onLocationFound;
-        navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError);
+
+        if (Modernizr.geolocation) {
+            busyIndicator.beginBusy();
+            lastOnLocationFound = onLocationFound;
+            navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError);
+        } else {
+            notificationsManager.showError("Cannot use geolocation.");
+        }
     };
 };

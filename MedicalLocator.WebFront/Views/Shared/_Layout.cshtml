@@ -13,6 +13,7 @@
         @Content.Script(Url, "~/Scripts/jquery.unobtrusive-ajax.min.js")
         @Content.Script(Url, "~/Scripts/jquery.validate.js")
         @Content.Script(Url, "~/Scripts/jquery.validate.unobtrusive.js")
+        @Content.Script(Url, "~/Scripts/modernizr-1.7.min.js")
         @Content.Script(Url, "~/Scripts/Utils/responses.js")        
         @Content.Script(Url, "~/Scripts/Utils/validation.js")
         @Content.Script(Url, "~/Scripts/Utils/notifier.js")
@@ -32,6 +33,7 @@
         
     </head>
     <body>
+        @Html.Partial("_NoJavascriptPartial")
         @Html.Partial("_OverlayPartial")
         @Html.Partial("_MenuPartial")
         @RenderBody()
