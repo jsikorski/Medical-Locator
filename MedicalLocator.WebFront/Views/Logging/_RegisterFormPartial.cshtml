@@ -5,21 +5,11 @@
     new { id = "register_form" }))
 {
     @Html.FieldFor(model => model.Login)
-
-    <div>
-        @Html.LabelFor(model => model.Password)
-    </div>
-    
-    @Html.PasswordFor(model => model.Password)
-
-    <div>
-        @Html.LabelFor(model => model.PasswordRetype)
-    </div>
-    
-    @Html.PasswordFor(model => model.PasswordRetype)
+    @Html.PassFor(model => model.Password)
+    @Html.PassFor(model => model.PasswordRetype)
 
     <p>
-        <textarea rows="4" cols="60" readonly="readonly" style="font-size: 0.9em" >
+        <textarea rows="4" cols="70" readonly="readonly" style="font-size: 0.9em" >
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris id mauris at augue faucibus condimentum. Nulla quam felis, vehicula nec lacinia id, rutrum non enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis malesuada hendrerit purus, vitae varius sem ullamcorper nec. Morbi vitae odio quam. Ut accumsan eleifend lorem, non faucibus ante cursus in. Maecenas nisl augue, tincidunt at scelerisque nec, ultrices eu justo. Nam aliquet malesuada pulvinar. Vestibulum erat lacus, scelerisque non ultrices a, ultrices id sem. Mauris id mauris at augue faucibus condimentum. Nulla quam felis, vehicula nec lacinia id, rutrum non enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis malesuada hendrerit purus, vitae varius sem ullamcorper nec. Morbi vitae odio quam. Ut accumsan eleifend lorem, non faucibus ante cursus in. Maecenas nisl augue, tincidunt at scelerisque nec, ultrices eu justo. Nam aliquet malesuada pulvinar. Vestibulum erat lacus, scelerisque non ultrices a, ultrices id sem. Phasellus laoreet vestibulum tincidunt.
         </textarea>
    

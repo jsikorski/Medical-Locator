@@ -5,18 +5,8 @@
     new { id = "login_form" }))
 {
     @Html.FieldFor(model => model.Login)
-
-    <div>
-        @Html.LabelFor(model => model.Password)
-    </div>
-    
-    <div>
-        @Html.PasswordFor(model => model.Password)
-    </div>
-    
-    <p>
-        @Html.NamedCheckBoxFor("Remember me?", model => model.RememberMe)
-    </p>
+    @Html.PassFor(model => model.Password)
+    @Html.NamedCheckBoxFor("Remember me?", model => model.RememberMe)
 }
 
 <hr />

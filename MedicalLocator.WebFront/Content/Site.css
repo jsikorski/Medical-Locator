@@ -54,6 +54,12 @@ textarea
     display: block;
 }
 
+.field_block label
+{
+    margin-right: 10px;
+    display: block;
+}
+
 /* Styles for validation helpers
 -----------------------------------------------------------*/
 .field-validation-error
@@ -84,6 +90,11 @@ textarea
 }
 
 input[type=text]
+{
+    width: 170px;
+}
+
+input[type=password]
 {
     width: 170px;
 }

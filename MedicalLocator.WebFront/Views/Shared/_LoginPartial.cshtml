@@ -1,9 +1,4 @@
-﻿@if (User.Identity.IsAuthenticated)
-{
-    @Html.Hidden("is_authenticated_at_start", true);
-}
-    
-<div id="logout_block">
+﻿<div id="logout_block">
     <span id="user_name_text" class="logged_in_user_name">Hello,
         @User.Identity.Name
     </span>
@@ -21,7 +16,13 @@
 <script type="text/javascript">
     $(function () {
         
-        if ($("#is_authenticated_at_start").attr("value"))
+        var isAuthenticated = false; 
+        @if (User.Identity.IsAuthenticated) 
+        { 
+            @: isAuthenticated = true; 
+        }
+
+        if (isAuthenticated)
          {
             $("#login_block").hide();
             $("#logout_block").show();

@@ -19,6 +19,17 @@ namespace MedicalLocator.WebFront.Helpers
             return GetFieldHtmlString(fieldInnerHtml);
         }
 
+        public static MvcHtmlString PassFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TValue>> expression)
+        {
+            var passwordInnerHtml = new MvcHtmlString(
+                htmlHelper.LabelFor(expression).ToString() +
+                htmlHelper.PasswordFor(expression) +
+                htmlHelper.ValidationMessageFor(expression));
+
+            return GetFieldHtmlString(passwordInnerHtml);
+        }
+
         public static MvcHtmlString ComboBoxFor<TModel, TValue>(this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TValue>> expression, IEnumerable<SelectListItem> selectList)
         {
