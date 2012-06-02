@@ -9,3 +9,14 @@
 {
     height: 120px;
 }
+
+#logo_div
+{
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 406px;
+    height: 154px;
+    margin-top: -154px;
+}
