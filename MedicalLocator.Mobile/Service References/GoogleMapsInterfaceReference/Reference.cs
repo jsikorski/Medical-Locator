@@ -29,7 +29,7 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         
         private int RadiusField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public bool IsGpsUsed {
             get {
                 return this.IsGpsUsedField;
@@ -101,7 +101,7 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         
         private double LngField;
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public double Lat {
             get {
                 return this.LatField;
@@ -114,7 +114,7 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, EmitDefaultValue=false)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
         public double Lng {
             get {
                 return this.LngField;
@@ -602,14 +602,14 @@ namespace MedicalLocator.Mobile.GoogleMapsInterfaceReference {
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequest", ReplyAction="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestRespo" +
             "nse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.InvalidResponseFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestInval" +
+            "idResponseFaultFault", Name="InvalidResponseFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.IncorectCharsInAddressFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestIncor" +
+            "ectCharsInAddressFaultFault", Name="IncorectCharsInAddressFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.ConnectionFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestConne" +
             "ctionFaultFault", Name="ConnectionFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.RequestDeniedFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestReque" +
             "stDeniedFaultFault", Name="RequestDeniedFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.IncorectCharsInAddressFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestIncor" +
-            "ectCharsInAddressFaultFault", Name="IncorectCharsInAddressFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
-        [System.ServiceModel.FaultContractAttribute(typeof(MedicalLocator.Mobile.GoogleMapsInterfaceReference.InvalidResponseFault), Action="http://tempuri.org/IGoogleMapsInterfaceService/SendGoogleGeocodingApiRequestInval" +
-            "idResponseFaultFault", Name="InvalidResponseFault", Namespace="http://schemas.datacontract.org/2004/07/GoogleMapsInterfaceService.Faults")]
         System.IAsyncResult BeginSendGoogleGeocodingApiRequest(MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingApiRequest request, System.AsyncCallback callback, object asyncState);
         
         MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse EndSendGoogleGeocodingApiRequest(System.IAsyncResult result);

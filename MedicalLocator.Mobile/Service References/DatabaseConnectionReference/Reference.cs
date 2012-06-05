@@ -88,6 +88,8 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         private string PasswordField;
         
+        private System.Guid UserIdField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Guid Id {
             get {
@@ -136,6 +138,19 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
                 if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
                     this.PasswordField = value;
                     this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
                 }
             }
         }
@@ -396,6 +411,11 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         
         MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse EndRegister(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDatabaseConnectionService/SaveSettingsEx", ReplyAction="http://tempuri.org/IDatabaseConnectionService/SaveSettingsExResponse")]
+        System.IAsyncResult BeginSaveSettingsEx(System.Guid userId, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState);
+        
+        MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse EndSaveSettingsEx(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IDatabaseConnectionService/SaveSettings", ReplyAction="http://tempuri.org/IDatabaseConnectionService/SaveSettingsResponse")]
         System.IAsyncResult BeginSaveSettings(string login, string password, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState);
         
@@ -446,6 +466,25 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class SaveSettingsExCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public SaveSettingsExCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class SaveSettingsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -478,6 +517,12 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         private EndOperationDelegate onEndRegisterDelegate;
         
         private System.Threading.SendOrPostCallback onRegisterCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginSaveSettingsExDelegate;
+        
+        private EndOperationDelegate onEndSaveSettingsExDelegate;
+        
+        private System.Threading.SendOrPostCallback onSaveSettingsExCompletedDelegate;
         
         private BeginOperationDelegate onBeginSaveSettingsDelegate;
         
@@ -541,6 +586,8 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
         public event System.EventHandler<LoginCompletedEventArgs> LoginCompleted;
         
         public event System.EventHandler<RegisterCompletedEventArgs> RegisterCompleted;
+        
+        public event System.EventHandler<SaveSettingsExCompletedEventArgs> SaveSettingsExCompleted;
         
         public event System.EventHandler<SaveSettingsCompletedEventArgs> SaveSettingsCompleted;
         
@@ -646,6 +693,54 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
                         login,
                         password,
                         passwordRetype}, this.onEndRegisterDelegate, this.onRegisterCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService.BeginSaveSettingsEx(System.Guid userId, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginSaveSettingsEx(userId, lastSearch, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService.EndSaveSettingsEx(System.IAsyncResult result) {
+            return base.Channel.EndSaveSettingsEx(result);
+        }
+        
+        private System.IAsyncResult OnBeginSaveSettingsEx(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            System.Guid userId = ((System.Guid)(inValues[0]));
+            MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch = ((MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch)(inValues[1]));
+            return ((MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService)(this)).BeginSaveSettingsEx(userId, lastSearch, callback, asyncState);
+        }
+        
+        private object[] OnEndSaveSettingsEx(System.IAsyncResult result) {
+            MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse retVal = ((MedicalLocator.Mobile.DatabaseConnectionReference.IDatabaseConnectionService)(this)).EndSaveSettingsEx(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnSaveSettingsExCompleted(object state) {
+            if ((this.SaveSettingsExCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.SaveSettingsExCompleted(this, new SaveSettingsExCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void SaveSettingsExAsync(System.Guid userId, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch) {
+            this.SaveSettingsExAsync(userId, lastSearch, null);
+        }
+        
+        public void SaveSettingsExAsync(System.Guid userId, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, object userState) {
+            if ((this.onBeginSaveSettingsExDelegate == null)) {
+                this.onBeginSaveSettingsExDelegate = new BeginOperationDelegate(this.OnBeginSaveSettingsEx);
+            }
+            if ((this.onEndSaveSettingsExDelegate == null)) {
+                this.onEndSaveSettingsExDelegate = new EndOperationDelegate(this.OnEndSaveSettingsEx);
+            }
+            if ((this.onSaveSettingsExCompletedDelegate == null)) {
+                this.onSaveSettingsExCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnSaveSettingsExCompleted);
+            }
+            base.InvokeAsync(this.onBeginSaveSettingsExDelegate, new object[] {
+                        userId,
+                        lastSearch}, this.onEndSaveSettingsExDelegate, this.onSaveSettingsExCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -801,6 +896,20 @@ namespace MedicalLocator.Mobile.DatabaseConnectionReference {
             public MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse EndRegister(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse _result = ((MedicalLocator.Mobile.DatabaseConnectionReference.RegisterResponse)(base.EndInvoke("Register", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginSaveSettingsEx(System.Guid userId, MedicalLocator.Mobile.DatabaseConnectionReference.MedicalLocatorUserLastSearch lastSearch, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = userId;
+                _args[1] = lastSearch;
+                System.IAsyncResult _result = base.BeginInvoke("SaveSettingsEx", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse EndSaveSettingsEx(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse _result = ((MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse)(base.EndInvoke("SaveSettingsEx", _args, result)));
                 return _result;
             }
             

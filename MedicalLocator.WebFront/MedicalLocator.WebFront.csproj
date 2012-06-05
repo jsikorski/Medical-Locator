@@ -264,6 +264,8 @@
     <Content Include="Views\Logging\_LoginDialogPartial.cshtml" />
     <Content Include="Views\Logging\_LoginFormPartial.cshtml" />
     <Content Include="Views\Logging\_RegisterFormPartial.cshtml" />
+    <Content Include="Views\Shared\_NoJavascriptPartial.cshtml" />
+    <Content Include="Views\About\_AboutDialogPartial.cshtml" />
     <None Include="Service References\GoogleMapsInterfaceReference\service1.wsdl" />
     <None Include="Service References\GoogleMapsInterfaceReference\service2.xsd">
       <SubType>Designer</SubType>
@@ -271,8 +273,6 @@
     <None Include="Service References\GoogleMapsInterfaceReference\service3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Shared\_NoJavascriptPartial.cshtml" />
-    <Content Include="Views\About\_AboutDialogPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -311,7 +311,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2666</DevelopmentServerPort>
+          <DevelopmentServerPort>61799</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

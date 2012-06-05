@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:element name="Login">
     <xs:complexType>
       <xs:sequence>
@@ -33,19 +34,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SaveSettingsEx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userId" type="q3:guid" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" minOccurs="0" name="lastSearch" nillable="true" type="q4:MedicalLocatorUserLastSearch" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSettingsExResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" minOccurs="0" name="SaveSettingsExResult" nillable="true" type="q5:SaveSettingsResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SaveSettings">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" minOccurs="0" name="lastSearch" nillable="true" type="q3:MedicalLocatorUserLastSearch" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" minOccurs="0" name="lastSearch" nillable="true" type="q6:MedicalLocatorUserLastSearch" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveSettingsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" minOccurs="0" name="SaveSettingsResult" nillable="true" type="q4:SaveSettingsResponse" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DatabaseConnectionService.Model" minOccurs="0" name="SaveSettingsResult" nillable="true" type="q7:SaveSettingsResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

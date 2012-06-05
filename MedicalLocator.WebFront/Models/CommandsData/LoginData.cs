@@ -10,18 +10,18 @@ namespace MedicalLocator.WebFront.Models.CommandsData
     public class LoginData : ICommandData
     {
         private const string LoginRegex = @"^[a-zA-Z][a-zA-Z0-9]*$";
-        private const string PasswordRegex = @"^[a-zA-Z][a-zA-Z0-9\!@#$%^&*-_=+]*$";
+        private const string PasswordRegex = @"^[a-zA-Z0-9\!@#$%^&*-_=+]+$";
 
         [DisplayName("Login")]
         [Required]
         [StringLength(16, MinimumLength = 3, ErrorMessage = "Login must be between 3 and 16 characters long.")]
-        [RegularExpression(LoginRegex, ErrorMessage = "Special characters are not allowed in login.")]
+        [RegularExpression(LoginRegex, ErrorMessage = "Wrong login format.")]
         public string Login { get; set; }
 
         [DisplayName("Password")]
         [Required]
         [StringLength(16, MinimumLength = 4, ErrorMessage = "Password must be between 4 and 16 characters long.")]
-        [RegularExpression(PasswordRegex, ErrorMessage = "Special characters are not allowed in password.")]
+        [RegularExpression(PasswordRegex, ErrorMessage = "Wrong password format.")]
         public string Password { get; set; }
 
         [DisplayName("Remember me?")]

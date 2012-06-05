@@ -227,7 +227,7 @@
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml" />
-    <None Include="Service References\DatabaseConnectionReference\DatabaseConnectionService.Model1.xsd">
+    <None Include="Service References\DatabaseConnectionReference\DatabaseConnectionService.Model.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.LoginResponse.datasource">
@@ -239,23 +239,23 @@
     <None Include="Service References\DatabaseConnectionReference\MedicalLocator.Mobile.DatabaseConnectionReference.SaveSettingsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\DatabaseConnectionReference\service1.wsdl" />
-    <None Include="Service References\DatabaseConnectionReference\service2.xsd">
+    <None Include="Service References\DatabaseConnectionReference\service.wsdl" />
+    <None Include="Service References\DatabaseConnectionReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DatabaseConnectionReference\service21.xsd">
+    <None Include="Service References\DatabaseConnectionReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults1.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Faults.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GoogleGeocodingApi1.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GoogleGeocodingApi.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi1.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.GooglePlacesApi.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Model1.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\GoogleMapsInterfaceService.Model.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\GoogleMapsInterfaceReference\MedicalLocator.Mobile.GoogleMapsInterfaceReference.GoogleGeocodingWcfResponse.datasource">
@@ -264,11 +264,11 @@
     <None Include="Service References\GoogleMapsInterfaceReference\MedicalLocator.Mobile.GoogleMapsInterfaceReference.GooglePlacesWcfResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\service1.wsdl" />
-    <None Include="Service References\GoogleMapsInterfaceReference\service2.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\service.wsdl" />
+    <None Include="Service References\GoogleMapsInterfaceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GoogleMapsInterfaceReference\service21.xsd">
+    <None Include="Service References\GoogleMapsInterfaceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <Resource Include="Graphics\Pushpins\dentist.png" />
